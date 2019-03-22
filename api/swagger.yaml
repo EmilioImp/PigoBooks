@@ -1,0 +1,702 @@
+---
+swagger: "2.0"
+info:
+  description: "This is a Bookstore server\n"
+  version: "1.0.0"
+  title: "MyBookstore"
+host: "virtserver.swaggerhub.com"
+basePath: "/xXEmilioXx/MyBookstore/1.0.0"
+tags:
+- name: "book"
+  description: "Data about your Books"
+- name: "user"
+  description: "Operations about user"
+schemes:
+- "https"
+- "http"
+paths:
+  /book:
+    post:
+      tags:
+      - "book"
+      summary: "Add a new book to the store"
+      operationId: "addBook"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Book that needs to be added to the store"
+        required: true
+        schema:
+          $ref: "#/definitions/Book"
+      responses:
+        201:
+          description: "Book added"
+          schema:
+            $ref: "#/definitions/BookWithID"
+        400:
+          description: "Invalid input"
+      security:
+      - json_web_token: []
+      x-security-scopes:
+      - "admin"
+      x-swagger-router-controller: "Book"
+  /book/{bookID}:
+    get:
+      tags:
+      - "book"
+      summary: "Find book by ID"
+      description: "Returns a single book"
+      operationId: "getBookById"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "bookID"
+        in: "path"
+        description: "ID of the book to return"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/BookWithID"
+        400:
+          description: "Invalid ID supplied"
+        404:
+          description: "Book not found"
+      x-swagger-router-controller: "Book"
+    put:
+      tags:
+      - "book"
+      summary: "Update data regarding an existing book"
+      operationId: "updateBook"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "bookID"
+        in: "path"
+        description: "The ID of the book to modify"
+        required: true
+        type: "integer"
+        format: "int64"
+      - in: "body"
+        name: "body"
+        description: "Data to be updated about the book"
+        required: true
+        schema:
+          $ref: "#/definitions/Book"
+      responses:
+        200:
+          description: "Book updated"
+          schema:
+            $ref: "#/definitions/BookWithID"
+        400:
+          description: "Invalid ID supplied"
+        404:
+          description: "Book not found"
+      security:
+      - json_web_token: []
+      x-security-scopes:
+      - "admin"
+      x-swagger-router-controller: "Book"
+    delete:
+      tags:
+      - "book"
+      summary: "Deletes a book"
+      operationId: "deleteBook"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "bookID"
+        in: "path"
+        description: "The ID of the book to delete"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        200:
+          description: "Sucessful operation"
+          schema:
+            $ref: "#/definitions/BookWithID"
+        400:
+          description: "Invalid ID supplied"
+        404:
+          description: "Book not found"
+      security:
+      - json_web_token: []
+      x-security-scopes:
+      - "admin"
+      x-swagger-router-controller: "Book"
+  /book/findByStatus:
+    get:
+      tags:
+      - "book"
+      summary: "Finds Books by status"
+      operationId: "findBooksByStatus"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "status"
+        in: "query"
+        description: "Status values that need to be considered for filter"
+        required: true
+        type: "array"
+        items:
+          type: "string"
+          default: "available"
+          enum:
+          - "available"
+          - "out_of_stock"
+        collectionFormat: "multi"
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/BookWithID"
+        400:
+          description: "Invalid status value"
+        404:
+          description: "No books with that status"
+      x-swagger-router-controller: "Book"
+  /book/findByGenre:
+    get:
+      tags:
+      - "book"
+      summary: "Finds books by genre"
+      operationId: "findBooksByGenre"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "genre"
+        in: "query"
+        description: "Genre values that need to be considered for filter"
+        required: true
+        type: "array"
+        items:
+          type: "string"
+          enum:
+          - "historical novel"
+          - "science fiction"
+          - "fantasy novel"
+          - "adventure novel"
+          - "fiction novel"
+          - "appendix novel"
+          - "novel for kids"
+          - "horror novel"
+          - "thriller"
+          - "crime story"
+          - "romance"
+          - "erotic novel"
+          - "psychological novel"
+          - "humorous novel"
+          - "social novel"
+          - "epistolary novel"
+          - "tale"
+          - "historiography"
+          - "biography"
+          - "informative narrative"
+          - "poetry"
+          - "theatre"
+        collectionFormat: "multi"
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/BookWithID"
+        400:
+          description: "Invalid genre value"
+        404:
+          description: "No books with that genre"
+      x-swagger-router-controller: "Book"
+  /book/findByName:
+    get:
+      tags:
+      - "book"
+      summary: "Finds books by name"
+      operationId: "findBooksByName"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "name"
+        in: "query"
+        description: "Name values that need to be considered for filter"
+        required: true
+        type: "array"
+        items:
+          type: "string"
+        collectionFormat: "multi"
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/BookWithID"
+        400:
+          description: "Invalid name value"
+        404:
+          description: "No books with that name"
+      x-swagger-router-controller: "Book"
+  /book/findByAuthor:
+    get:
+      tags:
+      - "book"
+      summary: "Finds books by author"
+      operationId: "findBooksByAuthor"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "author"
+        in: "query"
+        description: "Author values that need to be considered for filter"
+        required: true
+        type: "array"
+        items:
+          type: "string"
+        collectionFormat: "multi"
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/BookWithID"
+        400:
+          description: "Invalid author value"
+        404:
+          description: "No books with that author"
+      x-swagger-router-controller: "Book"
+  /user:
+    get:
+      tags:
+      - "user"
+      summary: "Returns user data"
+      operationId: "getUser"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/User"
+        403:
+          description: "Access denied"
+      security:
+      - json_web_token: []
+      x-security-scopes:
+      - "user"
+      x-swagger-router-controller: "User"
+  /user/register:
+    post:
+      tags:
+      - "user"
+      summary: "Creates user"
+      description: "Creates a new user profile"
+      operationId: "createUser"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "User that needs to register"
+        required: false
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        201:
+          description: "User registered"
+          schema:
+            $ref: "#/definitions/UserWithID"
+        400:
+          description: "Invalid input"
+      x-swagger-router-controller: "User"
+  /user/login:
+    post:
+      tags:
+      - "user"
+      summary: "Logs user into the system"
+      operationId: "loginUser"
+      consumes:
+      - "application/x-www-form-urlencoded"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "username"
+        in: "formData"
+        description: "The user name for login"
+        required: true
+        type: "string"
+      - name: "password"
+        in: "formData"
+        description: "The password for login"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/Token"
+        400:
+          description: "Invalid username/password"
+      x-swagger-router-controller: "User"
+  /user/logout:
+    post:
+      tags:
+      - "user"
+      summary: "Logs out current logged in user session"
+      operationId: "logoutUser"
+      consumes:
+      - "application/json"
+      parameters: []
+      responses:
+        201:
+          description: "Successful operation"
+        403:
+          description: "Access denied"
+      security:
+      - json_web_token: []
+      x-security-scopes:
+      - "user"
+      x-swagger-router-controller: "User"
+  /user/unregister:
+    delete:
+      tags:
+      - "user"
+      summary: "Deletes user"
+      description: "A logged in user deletes his own account"
+      operationId: "deleteUser"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/UserWithID"
+        403:
+          description: "Access denied"
+      security:
+      - json_web_token: []
+      x-security-scopes:
+      - "user"
+      x-swagger-router-controller: "User"
+  /user/cart:
+    get:
+      tags:
+      - "user"
+      summary: "Gets the shopping cart of the user"
+      operationId: "getUserCart"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/Cart"
+        403:
+          description: "Access denied"
+      security:
+      - json_web_token: []
+      x-security-scopes:
+      - "user"
+      x-swagger-router-controller: "User"
+  /user/cart/addBook/{bookID}:
+    post:
+      tags:
+      - "user"
+      summary: "Adds books to the user's cart"
+      operationId: "addBooksToCart"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "bookID"
+        in: "path"
+        description: "ID of the book to add to the cart"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        201:
+          description: "Book added"
+          schema:
+            $ref: "#/definitions/Cart"
+        400:
+          description: "Invalid input"
+        403:
+          description: "Access denied"
+        404:
+          description: "Book not found"
+      security:
+      - json_web_token: []
+      x-security-scopes:
+      - "user"
+      x-swagger-router-controller: "User"
+  /user/cart/deleteBook/{bookID}:
+    delete:
+      tags:
+      - "user"
+      summary: "Deletes book from the user's cart"
+      operationId: "userCartDeleteBookBookIDDELETE"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "bookID"
+        in: "path"
+        description: "ID of the book to delete from the cart"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        200:
+          description: "Book deleted from the cart"
+          schema:
+            $ref: "#/definitions/Cart"
+        403:
+          description: "Access denied"
+        404:
+          description: "Book not found"
+      security:
+      - json_web_token: []
+      x-security-scopes:
+      - "user"
+      x-swagger-router-controller: "User"
+  /user/cart/buyBooks:
+    post:
+      tags:
+      - "user"
+      summary: "Buy books from user's cart"
+      operationId: "userCartBuyBooksPOST"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        201:
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/Cart"
+        403:
+          description: "Access denied"
+      security:
+      - json_web_token: []
+      x-security-scopes:
+      - "user"
+      x-swagger-router-controller: "User"
+securityDefinitions:
+  json_web_token:
+    type: "apiKey"
+    name: "json_web_token"
+    in: "header"
+definitions:
+  Token:
+    type: "object"
+    properties:
+      token:
+        type: "string"
+    example:
+      token: "token"
+  Book:
+    type: "object"
+    properties:
+      genre:
+        $ref: "#/definitions/Genre"
+      name:
+        type: "string"
+        example: "Il sentiero"
+      author:
+        type: "string"
+      publisher:
+        type: "string"
+      edition:
+        type: "integer"
+        format: "int64"
+      cost:
+        type: "integer"
+        format: "int64"
+      coverImageUrl:
+        type: "string"
+      status:
+        type: "string"
+        description: "book status in the store"
+        enum:
+        - "available"
+        - "out_of_stock"
+    example:
+      cost: 6
+      author: "author"
+      coverImageUrl: "coverImageUrl"
+      genre:
+        name: "historical novel"
+      name: "Il sentiero"
+      publisher: "publisher"
+      edition: 0
+      status: "available"
+  BookWithID:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      genre:
+        $ref: "#/definitions/Genre"
+      name:
+        type: "string"
+        example: "Il sentiero"
+      author:
+        type: "string"
+      publisher:
+        type: "string"
+      edition:
+        type: "integer"
+        format: "int64"
+      cost:
+        type: "integer"
+        format: "int64"
+      coverImageUrl:
+        type: "string"
+      status:
+        type: "string"
+        description: "book status in the store"
+        enum:
+        - "available"
+        - "out_of_stock"
+    example:
+      cost: 1
+      author: "author"
+      coverImageUrl: "coverImageUrl"
+      genre:
+        name: "historical novel"
+      name: "Il sentiero"
+      publisher: "publisher"
+      edition: 6
+      id: 0
+      status: "available"
+  Genre:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+        enum:
+        - "historical novel"
+        - "science fiction"
+        - "fantasy novel"
+        - "adventure novel"
+        - "fiction novel"
+        - "appendix novel"
+        - "novel for kids"
+        - "horror novel"
+        - "thriller"
+        - "crime story"
+        - "romance"
+        - "erotic novel"
+        - "psychological novel"
+        - "humorous novel"
+        - "social novel"
+        - "epistolary novel"
+        - "tale"
+        - "historiography"
+        - "biography"
+        - "informative narrative"
+        - "poetry"
+        - "theatre"
+    example:
+      name: "historical novel"
+  User:
+    type: "object"
+    properties:
+      username:
+        type: "string"
+      firstName:
+        type: "string"
+      lastName:
+        type: "string"
+      email:
+        type: "string"
+      password:
+        type: "string"
+      phone:
+        type: "string"
+    example:
+      firstName: "firstName"
+      lastName: "lastName"
+      password: "password"
+      phone: "phone"
+      email: "email"
+      username: "username"
+  UserWithID:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      username:
+        type: "string"
+      firstName:
+        type: "string"
+      lastName:
+        type: "string"
+      email:
+        type: "string"
+      password:
+        type: "string"
+      phone:
+        type: "string"
+    example:
+      firstName: "firstName"
+      lastName: "lastName"
+      password: "password"
+      phone: "phone"
+      id: 0
+      email: "email"
+      username: "username"
+  Cart:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      booklist:
+        type: "array"
+        items:
+          $ref: "#/definitions/BookWithID"
+      total_price:
+        type: "integer"
+        format: "int64"
+    example:
+      booklist:
+      - cost: 1
+        author: "author"
+        coverImageUrl: "coverImageUrl"
+        genre:
+          name: "historical novel"
+        name: "Il sentiero"
+        publisher: "publisher"
+        edition: 6
+        id: 0
+        status: "available"
+      - cost: 1
+        author: "author"
+        coverImageUrl: "coverImageUrl"
+        genre:
+          name: "historical novel"
+        name: "Il sentiero"
+        publisher: "publisher"
+        edition: 6
+        id: 0
+        status: "available"
+      total_price: 6
+      id: 0
