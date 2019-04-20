@@ -1,0 +1,142 @@
+#map {
+  height: 400px;  /* The height is 400 pixels */
+ width: 100%;  /* The width is the width of the web page */}
+
+a.link{
+  color: #675e66;
+}
+
+.page-footer{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: #AF94B6;
+  padding: 0.1rem;
+}
+
+
+.figure{
+  margin: 0 0 0rem!important;
+  margin-bottom: 0rem!important;
+}
+
+.figure-img {
+    margin-bottom: 0rem;
+    line-height: 1;
+}
+
+.navbar {
+
+}
+
+.navbar-expand-lg {
+
+}
+
+.navbar-light {
+
+}
+
+.bg-light {
+  background-color: #f0e6ee!important;
+}
+
+.navbar-brand {
+
+}
+
+.navbar-toggler {
+
+}
+
+.navbar-toggler-icon {
+
+}
+
+.collapse {
+
+}
+
+.navbar-collapse {
+
+}
+
+.navbar-nav {
+
+}
+
+.mr-auto {
+
+}
+
+.nav-item {
+
+}
+
+.active {
+
+}
+
+.nav-link {
+
+}
+
+.sr-only {
+
+}
+
+.dropdown {
+
+}
+
+.dropdown-toggle {
+
+}
+
+.dropdown-menu {
+
+}
+
+.dropdown-item {
+
+}
+
+.dropdown-divider {
+
+}
+
+.disabled {
+
+}
+
+.form-inline {
+
+}
+
+.my-2 {
+
+}
+
+.my-lg-0 {
+
+}
+
+.form-control {
+
+}
+
+.mr-sm-2 {
+
+}
+
+.btn {
+
+}
+
+.btn-outline-success {
+
+}
+
+.my-sm-0 {
+
+}
