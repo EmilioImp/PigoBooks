@@ -3,6 +3,8 @@
 var utils = require('../utils/writer.js');
 var User = require('../service/UserService');
 
+const auth = require('../authentication.js');
+
 module.exports.addBooksToCart = function addBooksToCart (req, res, next) {
   var bookID = req.swagger.params['bookID'].value;
   User.addBooksToCart(bookID)
@@ -18,10 +20,10 @@ module.exports.createUser = function createUser (req, res, next) {
   var body = req.swagger.params['body'].value;
   User.createUser(body)
     .then(function (response) {
-      utils.writeJson(res, response);
+      utils.writeJson(res, response, 201);
     })
     .catch(function (response) {
-      utils.writeJson(res, response);
+      utils.writeJson(res, response, 400);
     });
 };
 
@@ -36,7 +38,10 @@ module.exports.deleteUser = function deleteUser (req, res, next) {
 };
 
 module.exports.getUser = function getUser (req, res, next) {
-  User.getUser()
+  const authenticated = auth(req, res);
+  if (!authenticated) return;
+  var userID = req.user.userID;
+  User.getUser(userID)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -60,10 +65,10 @@ module.exports.loginUser = function loginUser (req, res, next) {
   var password = req.swagger.params['password'].value;
   User.loginUser(username,password)
     .then(function (response) {
-      utils.writeJson(res, response);
+      utils.writeJson(res, response, 201);
     })
     .catch(function (response) {
-      utils.writeJson(res, response);
+      utils.writeJson(res, response,400);
     });
 };
 

@@ -1,5 +1,10 @@
 'use strict';
 
+const knex = require('../knex.js');
+const db = knex.database;
+
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 /**
  * Adds books to the user's cart
@@ -12,29 +17,29 @@ exports.addBooksToCart = function(bookID) {
     var examples = {};
     examples['application/json'] = {
   "booklist" : [ {
-    "cost" : 1,
-    "author" : "author",
-    "coverImageUrl" : "coverImageUrl",
-    "genre" : {
-      "name" : "historical novel"
-    },
     "name" : "Il sentiero",
-    "publisher" : "publisher",
-    "edition" : 6,
     "id" : 0,
-    "status" : "available"
+    "authors" : [ {
+      "firstName" : "firstName",
+      "lastName" : "",
+      "id" : 0
+    }, {
+      "firstName" : "firstName",
+      "lastName" : "",
+      "id" : 0
+    } ]
   }, {
-    "cost" : 1,
-    "author" : "author",
-    "coverImageUrl" : "coverImageUrl",
-    "genre" : {
-      "name" : "historical novel"
-    },
     "name" : "Il sentiero",
-    "publisher" : "publisher",
-    "edition" : 6,
     "id" : 0,
-    "status" : "available"
+    "authors" : [ {
+      "firstName" : "firstName",
+      "lastName" : "",
+      "id" : 0
+    }, {
+      "firstName" : "firstName",
+      "lastName" : "",
+      "id" : 0
+    } ]
   } ],
   "total_price" : 6,
   "id" : 0
@@ -57,21 +62,18 @@ exports.addBooksToCart = function(bookID) {
  **/
 exports.createUser = function(body) {
   return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "firstName" : "firstName",
-  "lastName" : "lastName",
-  "password" : "password",
-  "phone" : "phone",
-  "id" : 0,
-  "email" : "email",
-  "username" : "username"
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
+    db.select().from('User').where('username', body.username).then(function (user) {
+      if (user.length>0) return reject('User already registered');
+      bcrypt.genSalt(10, function(err, salt) {
+        bcrypt.hash(body.password, salt, function(err, hashed) {
+          db('User').insert([{username: body.username, firstName: body.firstName, lastName: body.lastName, email: body.email, password_hashed: hashed, phone: body.phone}]).then(function () {
+            db.select('userID', 'username').from('User').where('username', body.username).then(function(registered) {
+              resolve(registered);
+          })
+          })
+        })
+      })
+    })
   });
 }
 
@@ -108,22 +110,11 @@ exports.deleteUser = function() {
  *
  * returns User
  **/
-exports.getUser = function() {
+exports.getUser = function(userID) {
   return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "firstName" : "firstName",
-  "lastName" : "lastName",
-  "password" : "password",
-  "phone" : "phone",
-  "email" : "email",
-  "username" : "username"
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
+    db.select('username','firstName','lastName','email','phone').from('User').where('userID', userID).then(function (user) {
+      resolve(user);
+    })
   });
 }
 
@@ -138,29 +129,29 @@ exports.getUserCart = function() {
     var examples = {};
     examples['application/json'] = {
   "booklist" : [ {
-    "cost" : 1,
-    "author" : "author",
-    "coverImageUrl" : "coverImageUrl",
-    "genre" : {
-      "name" : "historical novel"
-    },
     "name" : "Il sentiero",
-    "publisher" : "publisher",
-    "edition" : 6,
     "id" : 0,
-    "status" : "available"
+    "authors" : [ {
+      "firstName" : "firstName",
+      "lastName" : "",
+      "id" : 0
+    }, {
+      "firstName" : "firstName",
+      "lastName" : "",
+      "id" : 0
+    } ]
   }, {
-    "cost" : 1,
-    "author" : "author",
-    "coverImageUrl" : "coverImageUrl",
-    "genre" : {
-      "name" : "historical novel"
-    },
     "name" : "Il sentiero",
-    "publisher" : "publisher",
-    "edition" : 6,
     "id" : 0,
-    "status" : "available"
+    "authors" : [ {
+      "firstName" : "firstName",
+      "lastName" : "",
+      "id" : 0
+    }, {
+      "firstName" : "firstName",
+      "lastName" : "",
+      "id" : 0
+    } ]
   } ],
   "total_price" : 6,
   "id" : 0
@@ -183,15 +174,16 @@ exports.getUserCart = function() {
  **/
 exports.loginUser = function(username,password) {
   return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "token" : "token"
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
+    db.select().from('User').where("username", username).then(function (user) {
+      if (user.length<=0) reject('Invalid username or password');
+      else bcrypt.compare(password, user[0].password_hashed, function (err, isValid) {
+        if (!isValid) reject('Invalid username or password');
+        else {
+          const token = jwt.sign({userID: user[0].userID}, 'jwtPrivateKey');
+          resolve(token);
+        }
+      })
+    })
   });
 }
 
@@ -218,29 +210,29 @@ exports.userCartBuyBooksPOST = function() {
     var examples = {};
     examples['application/json'] = {
   "booklist" : [ {
-    "cost" : 1,
-    "author" : "author",
-    "coverImageUrl" : "coverImageUrl",
-    "genre" : {
-      "name" : "historical novel"
-    },
     "name" : "Il sentiero",
-    "publisher" : "publisher",
-    "edition" : 6,
     "id" : 0,
-    "status" : "available"
+    "authors" : [ {
+      "firstName" : "firstName",
+      "lastName" : "",
+      "id" : 0
+    }, {
+      "firstName" : "firstName",
+      "lastName" : "",
+      "id" : 0
+    } ]
   }, {
-    "cost" : 1,
-    "author" : "author",
-    "coverImageUrl" : "coverImageUrl",
-    "genre" : {
-      "name" : "historical novel"
-    },
     "name" : "Il sentiero",
-    "publisher" : "publisher",
-    "edition" : 6,
     "id" : 0,
-    "status" : "available"
+    "authors" : [ {
+      "firstName" : "firstName",
+      "lastName" : "",
+      "id" : 0
+    }, {
+      "firstName" : "firstName",
+      "lastName" : "",
+      "id" : 0
+    } ]
   } ],
   "total_price" : 6,
   "id" : 0
@@ -265,29 +257,29 @@ exports.userCartDeleteBookBookIDDELETE = function(bookID) {
     var examples = {};
     examples['application/json'] = {
   "booklist" : [ {
-    "cost" : 1,
-    "author" : "author",
-    "coverImageUrl" : "coverImageUrl",
-    "genre" : {
-      "name" : "historical novel"
-    },
     "name" : "Il sentiero",
-    "publisher" : "publisher",
-    "edition" : 6,
     "id" : 0,
-    "status" : "available"
+    "authors" : [ {
+      "firstName" : "firstName",
+      "lastName" : "",
+      "id" : 0
+    }, {
+      "firstName" : "firstName",
+      "lastName" : "",
+      "id" : 0
+    } ]
   }, {
-    "cost" : 1,
-    "author" : "author",
-    "coverImageUrl" : "coverImageUrl",
-    "genre" : {
-      "name" : "historical novel"
-    },
     "name" : "Il sentiero",
-    "publisher" : "publisher",
-    "edition" : 6,
     "id" : 0,
-    "status" : "available"
+    "authors" : [ {
+      "firstName" : "firstName",
+      "lastName" : "",
+      "id" : 0
+    }, {
+      "firstName" : "firstName",
+      "lastName" : "",
+      "id" : 0
+    } ]
   } ],
   "total_price" : 6,
   "id" : 0

@@ -2,68 +2,6 @@
 
 
 /**
- * Add a new book to the store
- *
- * body Book Book that needs to be added to the store
- * returns BookWithID
- **/
-exports.addBook = function(body) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "cost" : 1,
-  "author" : "author",
-  "coverImageUrl" : "coverImageUrl",
-  "genre" : {
-    "name" : "historical novel"
-  },
-  "name" : "Il sentiero",
-  "publisher" : "publisher",
-  "edition" : 6,
-  "id" : 0,
-  "status" : "available"
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
-}
-
-
-/**
- * Deletes a book
- *
- * bookID Long The ID of the book to delete
- * returns BookWithID
- **/
-exports.deleteBook = function(bookID) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "cost" : 1,
-  "author" : "author",
-  "coverImageUrl" : "coverImageUrl",
-  "genre" : {
-    "name" : "historical novel"
-  },
-  "name" : "Il sentiero",
-  "publisher" : "publisher",
-  "edition" : 6,
-  "id" : 0,
-  "status" : "available"
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
-}
-
-
-/**
  * Finds books by author
  *
  * author List Author values that need to be considered for filter
@@ -73,29 +11,29 @@ exports.findBooksByAuthor = function(author) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = [ {
-  "cost" : 1,
-  "author" : "author",
-  "coverImageUrl" : "coverImageUrl",
-  "genre" : {
-    "name" : "historical novel"
-  },
   "name" : "Il sentiero",
-  "publisher" : "publisher",
-  "edition" : 6,
   "id" : 0,
-  "status" : "available"
+  "authors" : [ {
+    "firstName" : "firstName",
+    "lastName" : "",
+    "id" : 0
+  }, {
+    "firstName" : "firstName",
+    "lastName" : "",
+    "id" : 0
+  } ]
 }, {
-  "cost" : 1,
-  "author" : "author",
-  "coverImageUrl" : "coverImageUrl",
-  "genre" : {
-    "name" : "historical novel"
-  },
   "name" : "Il sentiero",
-  "publisher" : "publisher",
-  "edition" : 6,
   "id" : 0,
-  "status" : "available"
+  "authors" : [ {
+    "firstName" : "firstName",
+    "lastName" : "",
+    "id" : 0
+  }, {
+    "firstName" : "firstName",
+    "lastName" : "",
+    "id" : 0
+  } ]
 } ];
     if (Object.keys(examples).length > 0) {
       resolve(examples[Object.keys(examples)[0]]);
@@ -116,29 +54,29 @@ exports.findBooksByGenre = function(genre) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = [ {
-  "cost" : 1,
-  "author" : "author",
-  "coverImageUrl" : "coverImageUrl",
-  "genre" : {
-    "name" : "historical novel"
-  },
   "name" : "Il sentiero",
-  "publisher" : "publisher",
-  "edition" : 6,
   "id" : 0,
-  "status" : "available"
+  "authors" : [ {
+    "firstName" : "firstName",
+    "lastName" : "",
+    "id" : 0
+  }, {
+    "firstName" : "firstName",
+    "lastName" : "",
+    "id" : 0
+  } ]
 }, {
-  "cost" : 1,
-  "author" : "author",
-  "coverImageUrl" : "coverImageUrl",
-  "genre" : {
-    "name" : "historical novel"
-  },
   "name" : "Il sentiero",
-  "publisher" : "publisher",
-  "edition" : 6,
   "id" : 0,
-  "status" : "available"
+  "authors" : [ {
+    "firstName" : "firstName",
+    "lastName" : "",
+    "id" : 0
+  }, {
+    "firstName" : "firstName",
+    "lastName" : "",
+    "id" : 0
+  } ]
 } ];
     if (Object.keys(examples).length > 0) {
       resolve(examples[Object.keys(examples)[0]]);
@@ -159,29 +97,29 @@ exports.findBooksByName = function(name) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = [ {
-  "cost" : 1,
-  "author" : "author",
-  "coverImageUrl" : "coverImageUrl",
-  "genre" : {
-    "name" : "historical novel"
-  },
   "name" : "Il sentiero",
-  "publisher" : "publisher",
-  "edition" : 6,
   "id" : 0,
-  "status" : "available"
+  "authors" : [ {
+    "firstName" : "firstName",
+    "lastName" : "",
+    "id" : 0
+  }, {
+    "firstName" : "firstName",
+    "lastName" : "",
+    "id" : 0
+  } ]
 }, {
-  "cost" : 1,
-  "author" : "author",
-  "coverImageUrl" : "coverImageUrl",
-  "genre" : {
-    "name" : "historical novel"
-  },
   "name" : "Il sentiero",
-  "publisher" : "publisher",
-  "edition" : 6,
   "id" : 0,
-  "status" : "available"
+  "authors" : [ {
+    "firstName" : "firstName",
+    "lastName" : "",
+    "id" : 0
+  }, {
+    "firstName" : "firstName",
+    "lastName" : "",
+    "id" : 0
+  } ]
 } ];
     if (Object.keys(examples).length > 0) {
       resolve(examples[Object.keys(examples)[0]]);
@@ -193,38 +131,38 @@ exports.findBooksByName = function(name) {
 
 
 /**
- * Finds Books by status
+ * Finds books by theme
  *
- * status List Status values that need to be considered for filter
+ * theme List Theme values that need to be considered for filter
  * returns List
  **/
-exports.findBooksByStatus = function(status) {
+exports.findBooksByTheme = function(theme) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = [ {
-  "cost" : 1,
-  "author" : "author",
-  "coverImageUrl" : "coverImageUrl",
-  "genre" : {
-    "name" : "historical novel"
-  },
   "name" : "Il sentiero",
-  "publisher" : "publisher",
-  "edition" : 6,
   "id" : 0,
-  "status" : "available"
+  "authors" : [ {
+    "firstName" : "firstName",
+    "lastName" : "",
+    "id" : 0
+  }, {
+    "firstName" : "firstName",
+    "lastName" : "",
+    "id" : 0
+  } ]
 }, {
-  "cost" : 1,
-  "author" : "author",
-  "coverImageUrl" : "coverImageUrl",
-  "genre" : {
-    "name" : "historical novel"
-  },
   "name" : "Il sentiero",
-  "publisher" : "publisher",
-  "edition" : 6,
   "id" : 0,
-  "status" : "available"
+  "authors" : [ {
+    "firstName" : "firstName",
+    "lastName" : "",
+    "id" : 0
+  }, {
+    "firstName" : "firstName",
+    "lastName" : "",
+    "id" : 0
+  } ]
 } ];
     if (Object.keys(examples).length > 0) {
       resolve(examples[Object.keys(examples)[0]]);
@@ -240,54 +178,32 @@ exports.findBooksByStatus = function(status) {
  * Returns a single book
  *
  * bookID Long ID of the book to return
- * returns BookWithID
+ * returns Book
  **/
 exports.getBookById = function(bookID) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = {
+  "themes" : [ {
+    "name" : "love"
+  }, {
+    "name" : "love"
+  } ],
   "cost" : 1,
-  "author" : "author",
-  "coverImageUrl" : "coverImageUrl",
   "genre" : {
     "name" : "historical novel"
   },
   "name" : "Il sentiero",
-  "publisher" : "publisher",
   "edition" : 6,
-  "id" : 0,
-  "status" : "available"
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
-}
-
-
-/**
- * Update data regarding an existing book
- *
- * bookID Long The ID of the book to modify
- * body Book Data to be updated about the book
- * returns BookWithID
- **/
-exports.updateBook = function(bookID,body) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "cost" : 1,
-  "author" : "author",
-  "coverImageUrl" : "coverImageUrl",
-  "genre" : {
-    "name" : "historical novel"
-  },
-  "name" : "Il sentiero",
-  "publisher" : "publisher",
-  "edition" : 6,
-  "id" : 0,
+  "authors" : [ {
+    "firstName" : "firstName",
+    "lastName" : "",
+    "id" : 0
+  }, {
+    "firstName" : "firstName",
+    "lastName" : "",
+    "id" : 0
+  } ],
   "status" : "available"
 };
     if (Object.keys(examples).length > 0) {
