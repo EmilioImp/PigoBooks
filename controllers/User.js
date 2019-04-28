@@ -5,14 +5,17 @@ var User = require('../service/UserService');
 
 const auth = require('../authentication.js');
 
-module.exports.addBooksToCart = function addBooksToCart (req, res, next) {
-  var bookID = req.swagger.params['bookID'].value;
-  User.addBooksToCart(bookID)
+module.exports.addBookToCart = function addBookToCart (req, res, next) {
+  const authenticated = auth(req, res);
+  if (!authenticated) return;
+  var userID = req.user.userID;
+  var body = req.swagger.params['body'].value;
+  User.addBookToCart(body, userID)
     .then(function (response) {
-      utils.writeJson(res, response);
+      utils.writeJson(res, response.actualResponse, response.status);
     })
     .catch(function (response) {
-      utils.writeJson(res, response);
+      utils.writeJson(res, response.actualResponse, response.status);
     });
 };
 
@@ -20,17 +23,20 @@ module.exports.createUser = function createUser (req, res, next) {
   var body = req.swagger.params['body'].value;
   User.createUser(body)
     .then(function (response) {
-      utils.writeJson(res, response, 201);
+      utils.writeJson(res, response.actualResponse, response.status);
     })
     .catch(function (response) {
-      utils.writeJson(res, response, 400);
+      utils.writeJson(res, response.actualResponse, response.status);
     });
 };
 
 module.exports.deleteUser = function deleteUser (req, res, next) {
-  User.deleteUser()
+  const authenticated = auth(req, res);
+  if (!authenticated) return;
+  var userID = req.user.userID;
+  User.deleteUser(userID)
     .then(function (response) {
-      utils.writeJson(res, response);
+      utils.writeJson(res, response.actualResponse, response.status);
     })
     .catch(function (response) {
       utils.writeJson(res, response);
@@ -51,7 +57,10 @@ module.exports.getUser = function getUser (req, res, next) {
 };
 
 module.exports.getUserCart = function getUserCart (req, res, next) {
-  User.getUserCart()
+  const authenticated = auth(req, res);
+  if (!authenticated) return;
+  var userID = req.user.userID;
+  User.getUserCart(userID)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -65,27 +74,20 @@ module.exports.loginUser = function loginUser (req, res, next) {
   var password = req.swagger.params['password'].value;
   User.loginUser(username,password)
     .then(function (response) {
-      utils.writeJson(res, response, 201);
+      utils.writeJson(res, response.actualResponse, response.status);
     })
     .catch(function (response) {
-      utils.writeJson(res, response,400);
-    });
-};
-
-module.exports.logoutUser = function logoutUser (req, res, next) {
-  User.logoutUser()
-    .then(function (response) {
-      utils.writeJson(res, response);
-    })
-    .catch(function (response) {
-      utils.writeJson(res, response);
+      utils.writeJson(res, response.actualResponse, response.status);
     });
 };
 
 module.exports.userCartBuyBooksPOST = function userCartBuyBooksPOST (req, res, next) {
-  User.userCartBuyBooksPOST()
+  const authenticated = auth(req, res);
+  if (!authenticated) return;
+  var userID = req.user.userID;
+  User.userCartBuyBooksPOST(userID)
     .then(function (response) {
-      utils.writeJson(res, response);
+      utils.writeJson(res, response.actualResponse, response.status);
     })
     .catch(function (response) {
       utils.writeJson(res, response);
@@ -93,12 +95,15 @@ module.exports.userCartBuyBooksPOST = function userCartBuyBooksPOST (req, res, n
 };
 
 module.exports.userCartDeleteBookBookIDDELETE = function userCartDeleteBookBookIDDELETE (req, res, next) {
+  const authenticated = auth(req, res);
+  if (!authenticated) return;
+  var userID = req.user.userID;
   var bookID = req.swagger.params['bookID'].value;
-  User.userCartDeleteBookBookIDDELETE(bookID)
+  User.userCartDeleteBookBookIDDELETE(bookID, userID)
     .then(function (response) {
-      utils.writeJson(res, response);
+      utils.writeJson(res, response.actualResponse, response.status);
     })
     .catch(function (response) {
-      utils.writeJson(res, response);
+      utils.writeJson(res, response.actualResponse, response.status);
     });
 };

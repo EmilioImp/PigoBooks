@@ -230,7 +230,7 @@ paths:
       - in: "body"
         name: "body"
         description: "User that needs to register"
-        required: false
+        required: true
         schema:
           $ref: "#/definitions/User"
       responses:
@@ -269,25 +269,6 @@ paths:
             $ref: "#/definitions/Token"
         400:
           description: "Invalid username or password"
-      x-swagger-router-controller: "User"
-  /user/logout:
-    post:
-      tags:
-      - "user"
-      summary: "Logs out current logged in user session"
-      operationId: "logoutUser"
-      consumes:
-      - "application/json"
-      parameters: []
-      responses:
-        201:
-          description: "Successful operation"
-        403:
-          description: "Access denied"
-      security:
-      - json_web_token: []
-      x-security-scopes:
-      - "user"
       x-swagger-router-controller: "User"
   /user/unregister:
     delete:
@@ -332,21 +313,23 @@ paths:
       x-security-scopes:
       - "user"
       x-swagger-router-controller: "User"
-  /user/cart/addBook/{bookID}:
+  /user/cart/addBook:
     post:
       tags:
       - "user"
-      summary: "Adds books to the user's cart"
-      operationId: "addBooksToCart"
+      summary: "Adds book to the user's cart"
+      operationId: "addBookToCart"
+      consumes:
+      - "application/json"
       produces:
       - "application/json"
       parameters:
-      - name: "bookID"
-        in: "path"
-        description: "ID of the book to add to the cart"
+      - in: "body"
+        name: "body"
+        description: "bookID and number of copies to add to the cart"
         required: true
-        type: "integer"
-        format: "int64"
+        schema:
+          $ref: "#/definitions/AddToCartRequest"
       responses:
         201:
           description: "Book added"
@@ -762,6 +745,18 @@ definitions:
           id: 0
       total_price: 6
       id: 0
+  AddToCartRequest:
+    type: "object"
+    properties:
+      bookID:
+        type: "integer"
+        format: "int64"
+      copies:
+        type: "integer"
+        format: "int64"
+    example:
+      copies: 6
+      bookID: 0
   Author:
     type: "object"
     properties:
