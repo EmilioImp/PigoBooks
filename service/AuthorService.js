@@ -10,13 +10,13 @@ const db = knex.database;
  * returns Author
  **/
 exports.getAuthorByID = function(authorID) {
-  return new Promise(function(resolve, reject) {
-    db.select().from('Author').where('authorID', authorID).then(function(author){
-      db.select('Book.bookID', 'name').from('Book').join('BookAuthor', {'Book.bookID' : 'BookAuthor.bookID'}).where('authorID', authorID).then(function(books){
-        resolve(author.concat(books));
-      })
-
-    })
+  return new Promise(async function(resolve, reject) {
+    const author = await db.select().from('Author').where('authorID', authorID);
+    if (author.length <= 0) reject({actualResponse: 'Author not found', status: 404});
+    else{
+      const books = await db.select('Book.bookID', 'name').from('Book').join('BookAuthor', {'Book.bookID' : 'BookAuthor.bookID'}).where('authorID', authorID);
+      resolve({actualResponse: author.concat(books), status: 200});
+    }
   });
 }
 
@@ -27,10 +27,10 @@ exports.getAuthorByID = function(authorID) {
  * returns List
  **/
 exports.getAuthors = function() {
-  return new Promise(function(resolve, reject) {
-    db.select().from('Author').then(function(authors) {
-      resolve(authors);
-    })
+  return new Promise(async function(resolve, reject) {
+    const authors = await db.select().from('Author');
+    if (authors.length <= 0) reject({actualResponse: 'No author found', status: 404});
+    else resolve({actualResponse: authors, status: 200});
   });
 }
 
