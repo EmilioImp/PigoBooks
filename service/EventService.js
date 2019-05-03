@@ -13,7 +13,7 @@ exports.getEventByID = function(eventID) {
   return new Promise(async function(resolve, reject){
     const event = await db.select().from('Event').where('eventID', eventID);
     if (event.length <= 0){
-      reject({actualResponse: 'This event does not exist!', status: 404});
+      reject({actualResponse: 'Event not found', status: 404});
     }
     else {
       const books = await db.select('Book.bookID', 'name').from('Book').join('Event', {'Book.bookID' : 'Event.bookID'}).where('eventID', eventID);
@@ -30,7 +30,7 @@ exports.getEvents = function() {
   return new Promise(async function (resolve, reject) {
     const events = await db.select().from('Event');
     if (events.length <= 0){
-      reject({actualResponse: 'No events planned', status: 404});
+      reject({actualResponse: 'No event found', status: 404});
     }
     else{
       resolve({actualResponse: events, status: 200});

@@ -13,30 +13,24 @@ const jwt = require('jsonwebtoken');
  * returns Cart
  **/
 exports.addBookToCart = function(body, userID) {
-  return new Promise(function(resolve, reject) {
-    db.select().from('Book').where('bookID', body.bookID).then(function (book) {
+  return new Promise(async function(resolve, reject) {
+    const book = await db.select().from('Book').where('bookID', body.bookID);
       if (book.length <= 0) {
-        reject({actualResponse: 'Book not found', status: 404});
+      reject({actualResponse: 'Book not found', status: 404});
+    }
+    else {
+      const bookInCart = await db.select().from('Cart').where({userID: userID, bookID: body.bookID});
+      if (bookInCart.length <= 0) {
+        await db('Cart').insert([{userID: userID, bookID: body.bookID, copies: body.copies}]);
+        const result = await db.select('bookID', 'copies').from('Cart').where('userID', userID);
+        resolve({actualResponse: result, status: 201});
       }
       else {
-        db.select().from('Cart').where({userID: userID, bookID: body.bookID}).then(function (bookInCart) {
-          if (bookInCart.length <= 0) {
-            db('Cart').insert([{userID: userID, bookID: body.bookID, copies: body.copies}]).then(function () {
-              db.select('bookID', 'copies').from('Cart').where('userID', userID).then(function (result) {
-                resolve({actualResponse: result, status: 201});
-              })
-            })
-          }
-          else {
-            db('Cart').update({copies: bookInCart[0].copies + body.copies}).where({userID: userID, bookID: body.bookID}).then(function () {
-              db.select('bookID', 'copies').from('Cart').where('userID', userID).then(function (result) {
-                resolve({actualResponse: result, status: 201});
-              })
-            })
-          }
-        })
+        await db('Cart').update({copies: bookInCart[0].copies + body.copies}).where({userID: userID, bookID: body.bookID});
+        const result = await db.select('bookID', 'copies').from('Cart').where('userID', userID);
+        resolve({actualResponse: result, status: 201});
       }
-    });
+    }
   });
 }
 
@@ -49,19 +43,14 @@ exports.addBookToCart = function(body, userID) {
  * returns UserWithID
  **/
 exports.createUser = function(body) {
-  return new Promise(function(resolve, reject) {
-    db.select().from('User').where('username', body.username).then(function (user) {
-      if (user.length>0) return reject({actualResponse: 'User already registered', status: 400});
-      bcrypt.genSalt(10, function(err, salt) {
-        bcrypt.hash(body.password, salt, function(err, hashed) {
-          db('User').insert([{username: body.username, firstName: body.firstName, lastName: body.lastName, email: body.email, password_hashed: hashed, phone: body.phone}]).then(function () {
-            db.select('userID', 'username').from('User').where('username', body.username).then(function(registered) {
-              resolve({actualResponse: registered, status: 201});
-            })
-          })
-        })
-      })
-    })
+  return new Promise(async function(resolve, reject) {
+    const user = await db.select().from('User').where('username', body.username);
+    if (user.length>0) return reject({actualResponse: 'User already registered', status: 400});
+    const salt = await bcrypt.genSalt(10);
+    const hashed = await bcrypt.hash(body.password, salt);444
+    await db('User').insert([{username: body.username, firstName: body.firstName, lastName: body.lastName, email: body.email, password_hashed: hashed, phone: body.phone}]);
+    const registered = await db.select('userID', 'username').from('User').where('username', body.username);
+    resolve({actualResponse: registered, status: 201});
   });
 }
 
@@ -73,12 +62,10 @@ exports.createUser = function(body) {
  * returns UserWithID
  **/
 exports.deleteUser = function(userID) {
-  return new Promise(function(resolve, reject) {
-    db.select('userID','username','firstName','lastName','email','phone').from('User').where('userID', userID).then(function (user) {
-      db('User').del().where('userID', userID).then(function () {
-        resolve({actualResponse: user, status: 200})
-      })
-    })
+  return new Promise(async function(resolve, reject) {
+    const user = await db.select('userID','username','firstName','lastName','email','phone').from('User').where('userID', userID);
+    await db('User').del().where('userID', userID);
+    resolve({actualResponse: user, status: 200});
   });
 }
 
@@ -89,10 +76,9 @@ exports.deleteUser = function(userID) {
  * returns UserWithoutPass
  **/
 exports.getUser = function(userID) {
-  return new Promise(function(resolve, reject) {
-    db.select('username','firstName','lastName','email','phone').from('User').where('userID', userID).then(function (user) {
-      resolve(user);
-    })
+  return new Promise(async function(resolve, reject) {
+    const user = await db.select('username','firstName','lastName','email','phone').from('User').where('userID', userID);
+    resolve(user);
   });
 }
 
@@ -103,10 +89,9 @@ exports.getUser = function(userID) {
  * returns Cart
  **/
 exports.getUserCart = function(userID) {
-  return new Promise(function(resolve, reject) {
-    db.select('bookID', 'copies').from('Cart').where('userID', userID).then(function (books) {
-      resolve(books);
-    })
+  return new Promise(async function(resolve, reject) {
+    const books = await db.select('bookID', 'copies').from('Cart').where('userID', userID);
+    resolve(books);
   });
 }
 
@@ -119,17 +104,17 @@ exports.getUserCart = function(userID) {
  * returns Token
  **/
 exports.loginUser = function(username,password) {
-  return new Promise(function(resolve, reject) {
-    db.select().from('User').where("username", username).then(function (user) {
-      if (user.length<=0) reject({actualResponse: 'Invalid username or password', status: 400});
-      else bcrypt.compare(password, user[0].password_hashed, function (err, isValid) {
-        if (!isValid) reject({actualResponse: 'Invalid username or password', status: 400});
-        else {
-          const token = jwt.sign({userID: user[0].userID}, 'jwtPrivateKey');
-          resolve({actualResponse: token, status: 201});
-        }
-      })
-    })
+  return new Promise(async function(resolve, reject) {
+    const user = await db.select().from('User').where("username", username);
+    if (user.length<=0) reject({actualResponse: 'Invalid username or password', status: 400});
+    else {
+      const isValid = await bcrypt.compare(password, user[0].password_hashed);
+      if (!isValid) reject({actualResponse: 'Invalid username or password', status: 400});
+      else {
+        const token = jwt.sign({userID: user[0].userID}, 'jwtPrivateKey');
+        resolve({actualResponse: token, status: 201});
+      }
+    }
   });
 }
 
@@ -140,23 +125,18 @@ exports.loginUser = function(username,password) {
  * returns Cart
  **/
 exports.userCartBuyBooksPOST = function(userID) {
-  return new Promise(function(resolve, reject) {
-    db.select('bookID', 'copies').from('Cart').where('userID', userID).then(function (books) {
-      db('Order').insert([{userID: userID}]).returning('orderID').then(function (orderID) {
-        var numberOfOrderedBooks = books.length;
-        var booksArray = [];
-        for (var i = 0; i < numberOfOrderedBooks; i++) {
-          booksArray[i] = {orderID: orderID[0], bookID: books[i].bookID, copies: books[i].copies};
-        }
-        db('OrderBook').insert(booksArray).then(function () {
-          db.select('bookID', 'copies').from('OrderBook').where('orderID', orderID[0]).then(function (order) {
-            db('Cart').del().where('userID', userID).then(function () {
-              resolve({actualResponse: order, status: 201});
-            })
-          })
-        });
-      })
-    })
+  return new Promise(async function(resolve, reject) {
+    const books = await db.select('bookID', 'copies').from('Cart').where('userID', userID);
+    const orderID = await db('Order').insert([{userID: userID}]).returning('orderID');
+    var numberOfOrderedBooks = books.length;
+    var booksArray = [];
+    for (var i = 0; i < numberOfOrderedBooks; i++) {
+      booksArray[i] = {orderID: orderID[0], bookID: books[i].bookID, copies: books[i].copies};
+    }
+    await db('OrderBook').insert(booksArray);
+    const order = await db.select('bookID', 'copies').from('OrderBook').where('orderID', orderID[0]);
+    await db('Cart').del().where('userID', userID);
+    resolve({actualResponse: order, status: 201});
   });
 }
 
@@ -168,19 +148,16 @@ exports.userCartBuyBooksPOST = function(userID) {
  * returns Cart
  **/
 exports.userCartDeleteBookBookIDDELETE = function(bookID, userID) {
-  return new Promise(function(resolve, reject) {
-    db.select().from('Cart').where({userID: userID, bookID: bookID}).then(function (books) {
-      if (books.length <= 0) {
-        reject({actualResponse: "Book not found", status: 404});
-      }
-      else {
-        db('Cart').del().where({userID: userID, bookID: bookID}).then(function () {
-          db.select('bookID', 'copies').from('Cart').where('userID', userID).then(function (cart) {
-            resolve({actualResponse: cart, status: 200})
-          })
-        })
-      }
-    })
+  return new Promise(async function(resolve, reject) {
+    const books = await db.select().from('Cart').where({userID: userID, bookID: bookID});
+    if (books.length <= 0) {
+      reject({actualResponse: "Book not found", status: 404});
+    }
+    else {
+      await db('Cart').del().where({userID: userID, bookID: bookID});
+      const cart = await db.select('bookID', 'copies').from('Cart').where('userID', userID);
+      resolve({actualResponse: cart, status: 200});
+    }
   });
 }
 
