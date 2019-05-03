@@ -1,0 +1,27 @@
+h1 {
+	color : #805d89;
+	text-align : center;
+	font-weight : bold;
+	margin-top : 0.5em; 
+	margin-bottom : 0.5em;
+}
+
+.question_text {
+	color : #805d89;
+	text-align : center;
+	line-height : 1.1;
+	font-weight : bold;
+	margin-bottom : 0.1em;
+	margin-left : 2em;
+    margin-right : 2em;
+}
+
+.answer_text {
+	text-align : center;
+	line-height: 1.1;
+	word-spacing : 0.1em;
+	margin-bottom : 1.5em; 
+	margin-left : 2em;
+    margin-right : 2em;
+}
+

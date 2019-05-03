@@ -10,7 +10,7 @@ a.link{
 @media only screen and (max-width: 1200px) {
   .page-footer {
       display : block;
-      position: static!important;
+      position: static;
       bottom: 0;
       width: 100%;
       background-color: #AF94B6;
