@@ -6,14 +6,29 @@ a.link{
   color: #E2D5DD;
 }
 
-.page-footer{
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  background-color: #AF94B6;
-  padding: 0.1rem;
-}
+/* Extra small, small, medium and large devices (phones, landscape tablets, laptops/desktops 1200px and down) */
+@media only screen and (max-width: 1200px) {
+  .page-footer {
+      display : block;
+      position: static!important;
+      bottom: 0;
+      width: 100%;
+      background-color: #AF94B6;
+      padding: 0.1rem;
+    }
+} 
 
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .page-footer {
+      display : block;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background-color: #AF94B6;
+      padding: 0.1rem;
+    }
+}
 
 .figure{
   margin: 0 0 0rem!important;
@@ -140,3 +155,4 @@ a.link{
 .my-sm-0 {
 
 }
+
