@@ -39,7 +39,7 @@ module.exports.deleteUser = function deleteUser (req, res, next) {
       utils.writeJson(res, response.actualResponse, response.status);
     })
     .catch(function (response) {
-      utils.writeJson(res, response);
+      utils.writeJson(res, response.actualResponse, response.status);
     });
 };
 
@@ -49,10 +49,10 @@ module.exports.getUser = function getUser (req, res, next) {
   var userID = req.user.userID;
   User.getUser(userID)
     .then(function (response) {
-      utils.writeJson(res, response);
+      utils.writeJson(res, response.actualResponse, response.status);
     })
     .catch(function (response) {
-      utils.writeJson(res, response);
+      utils.writeJson(res, response.actualResponse, response.status);
     });
 };
 
@@ -62,10 +62,10 @@ module.exports.getUserCart = function getUserCart (req, res, next) {
   var userID = req.user.userID;
   User.getUserCart(userID)
     .then(function (response) {
-      utils.writeJson(res, response);
+      utils.writeJson(res, response.actualResponse, response.status);
     })
     .catch(function (response) {
-      utils.writeJson(res, response);
+      utils.writeJson(res, response.actualResponse, response.status);
     });
 };
 

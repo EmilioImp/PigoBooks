@@ -9,32 +9,28 @@ const db = knex.database;
  * eventID: ID of the wanted event
  * returns Event
  */
-exports.getEventByID = function(eventID) {
-  return new Promise(async function(resolve, reject){
+exports.getEventByID = async function(eventID) {
     const event = await db.select().from('Event').where('eventID', eventID);
     if (event.length <= 0){
-      reject({actualResponse: 'Event not found', status: 404});
+      throw {actualResponse: 'Event not found', status: 404};
     }
     else {
       const books = await db.select('Book.bookID', 'name').from('Book').join('Event', {'Book.bookID' : 'Event.bookID'}).where('eventID', eventID);
-      resolve({actualResponse: event.concat(books), status: 200});
+      return {actualResponse: event.concat(books), status: 200};
     }
-  })
 }
 
 /**
  * Returns all events' essential data
  * returns List
  */
-exports.getEvents = function() {
-  return new Promise(async function (resolve, reject) {
+exports.getEvents = async function() {
     const events = await db.select().from('Event');
     if (events.length <= 0){
-      reject({actualResponse: 'No event found', status: 404});
+      throw {actualResponse: 'No event found', status: 404};
     }
     else{
-      resolve({actualResponse: events, status: 200});
+      return {actualResponse: events, status: 200};
     }
-  })
 }
 
