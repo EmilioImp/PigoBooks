@@ -20,8 +20,13 @@ module.exports.addBookToCart = function addBookToCart (req, res, next) {
 };
 
 module.exports.createUser = function createUser (req, res, next) {
-  var body = req.swagger.params['body'].value;
-  User.createUser(body)
+  var username = req.swagger.params['username'].value;
+  var firstName = req.swagger.params['firstName'].value;
+  var lastName = req.swagger.params['lastName'].value;
+  var email = req.swagger.params['email'].value;
+  var password = req.swagger.params['password'].value;
+  var phone = req.swagger.params['phone'].value;
+  User.createUser(username, firstName, lastName, email, password, phone)
     .then(function (response) {
       utils.writeJson(res, response.actualResponse, response.status);
     })

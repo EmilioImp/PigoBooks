@@ -40,13 +40,13 @@ exports.addBookToCart = async function(body, userID) {
  * body User User that needs to register (optional)
  * returns UserWithID
  **/
-exports.createUser = async function(body) {
-    const user = await db.select().from('User').where('username', body.username);
-    if (user.length>0) return throw {actualResponse: 'User already registered', status: 400};
+exports.createUser = async function(username, firstName, lastName, email, password, phone) {
+    const user = await db.select().from('User').where('username', username);
+    if (user.length>0) throw {actualResponse: 'User already registered', status: 400};
     const salt = await bcrypt.genSalt(10);
-    const hashed = await bcrypt.hash(body.password, salt);
-    await db('User').insert([{username: body.username, firstName: body.firstName, lastName: body.lastName, email: body.email, password_hashed: hashed, phone: body.phone}]);
-    const registered = await db.select('userID', 'username').from('User').where('username', body.username);
+    const hashed = await bcrypt.hash(password, salt);
+    await db('User').insert([{username: username, firstName: firstName, lastName: lastName, email: email, password_hashed: hashed, phone: phone}]);
+    const registered = await db.select('userID', 'username').from('User').where('username', username);
     return {actualResponse: registered, status: 201};
 }
 

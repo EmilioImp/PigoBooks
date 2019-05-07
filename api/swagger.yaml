@@ -223,16 +223,40 @@ paths:
       description: "Creates a new user profile"
       operationId: "createUser"
       consumes:
-      - "application/json"
+      - "application/x-www-form-urlencoded"
       produces:
       - "application/json"
       parameters:
-      - in: "body"
-        name: "body"
-        description: "User that needs to register"
-        required: true
-        schema:
-          $ref: "#/definitions/User"
+        - name: "username"
+          in: "formData"
+          description: "the username of the user"
+          required: true
+          type: "string"
+        - name: "firstName"
+          in: "formData"
+          description: "the first name of the user"
+          required: true
+          type: "string"
+        - name: "lastName"
+          in: "formData"
+          description: "the last name of the user"
+          required: true
+          type: "string"
+        - name: "email"
+          in: "formData"
+          description: "the email of the user"
+          required: true
+          type: "string"
+        - name: "password"
+          in: "formData"
+          description: "the password of the user"
+          required: true
+          type: "string"
+        - name: "phone"
+          in: "formData"
+          description: "the phone number of the user"
+          required: true
+          type: "string"
       responses:
         201:
           description: "User registered"
