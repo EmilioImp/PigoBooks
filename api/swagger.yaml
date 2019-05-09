@@ -56,35 +56,9 @@ paths:
       parameters:
       - name: "genre"
         in: "query"
-        description: "Genre values that need to be considered for filter"
+        description: "Genre value that need to be considered for filter"
         required: true
-        type: "array"
-        items:
-          type: "string"
-          enum:
-          - "historical novel"
-          - "science fiction"
-          - "fantasy novel"
-          - "adventure novel"
-          - "fiction novel"
-          - "appendix novel"
-          - "novel for kids"
-          - "horror novel"
-          - "thriller"
-          - "crime story"
-          - "romance"
-          - "erotic novel"
-          - "psychological novel"
-          - "humorous novel"
-          - "social novel"
-          - "epistolary novel"
-          - "tale"
-          - "historiography"
-          - "biography"
-          - "informative narrative"
-          - "poetry"
-          - "theatre"
-        collectionFormat: "multi"
+        type: "string"
       responses:
         200:
           description: "Successful operation"
@@ -223,40 +197,16 @@ paths:
       description: "Creates a new user profile"
       operationId: "createUser"
       consumes:
-      - "application/x-www-form-urlencoded"
+      - "application/json"
       produces:
       - "application/json"
       parameters:
-        - name: "username"
-          in: "formData"
-          description: "the username of the user"
-          required: true
-          type: "string"
-        - name: "firstName"
-          in: "formData"
-          description: "the first name of the user"
-          required: true
-          type: "string"
-        - name: "lastName"
-          in: "formData"
-          description: "the last name of the user"
-          required: true
-          type: "string"
-        - name: "email"
-          in: "formData"
-          description: "the email of the user"
-          required: true
-          type: "string"
-        - name: "password"
-          in: "formData"
-          description: "the password of the user"
-          required: true
-          type: "string"
-        - name: "phone"
-          in: "formData"
-          description: "the phone number of the user"
-          required: true
-          type: "string"
+      - in: "body"
+        name: "body"
+        description: "User that needs to register"
+        required: true
+        schema:
+          $ref: "#/definitions/User"
       responses:
         201:
           description: "User registered"

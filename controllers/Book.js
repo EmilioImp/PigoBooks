@@ -18,10 +18,10 @@ module.exports.findBooksByGenre = function findBooksByGenre (req, res, next) {
   var genre = req.swagger.params['genre'].value;
   Book.findBooksByGenre(genre)
     .then(function (response) {
-      utils.writeJson(res, response);
+      utils.writeJson(res, response.actualResponse, response.status);
     })
     .catch(function (response) {
-      utils.writeJson(res, response);
+      utils.writeJson(res, response.actualResponse, response.status);
     });
 };
 

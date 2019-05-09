@@ -17,20 +17,15 @@ $('#submitButton').click(function(){
         password: $password.val(),
         phone: $phone.val(),
     };
-    
-    $.post("http://localhost:8080/xXEmilioXx/MyBookstore/1.0.0/user/register", submitData, function (response) {
-        console.log(response);
-    }, "json").done(function (data) {
-        console.log(data);
-    })
 
-    /*$.ajax({
+
+    $.ajax({
         type: "POST",
         url: "http://localhost:8080/xXEmilioXx/MyBookstore/1.0.0/user/register",
-        data: JSON.stringify(submitData),
-        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify($('#registrationForm').serialize()),
+        contentType: "application/json;",
         dataType: "json",
-    });*/
+    });
     
 });
 })
