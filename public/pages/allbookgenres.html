@@ -14,7 +14,7 @@
 
                 $.ajax({
                     type : 'GET',
-                    url : 'http://localhost:8080/xXEmilioXx/MyBookstore/1.0.0/book/findByGenre',
+                    url : 'http://localhost:8080/xXEmilioXx/MyBookstore/1.0.0/book/findBooksByGenre',
                     dataType : 'json',
                     success : function(response){
                         createFlexElements(response);

@@ -18,7 +18,7 @@
 
             $.ajax({  //con questa GET ottengo la lista di libri scritti da uno specifico autore
                 type : 'GET',
-                url : 'http://localhost:8080/xXEmilioXx/MyBookstore/1.0.0/book/findByAuthor?author=' + authorid,
+                url : 'http://localhost:8080/xXEmilioXx/MyBookstore/1.0.0/book/findBooksByAuthor?author=' + authorid,
                 datatype : 'json',
                 success : function (response) {
                     booksArray = JSON.parse(JSON.stringify(response));
@@ -28,7 +28,7 @@
 
             $.ajax({  // con questa GET ottengo un singolo oggetto json contenente le informazioni riguardo ad uno specifico autore
                 type : 'GET',
-                url : 'http://localhost:8080/xXEmilioXx/MyBookstore/1.0.0/author/' + authorid,
+                url : 'http://localhost:8080/xXEmilioXx/MyBookstore/1.0.0/author/getAuthorByID?authorID=' + authorid,
                 datatype : 'json',
                 success : function (response) {
                     createAuthorPage(response);
