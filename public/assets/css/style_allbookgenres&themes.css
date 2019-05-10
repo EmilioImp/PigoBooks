@@ -1,0 +1,88 @@
+h1 {
+    color : #805d89;
+    text-align : center;
+    font-weight : bold;
+    margin-top : 0.5em;
+    margin-bottom : 1.0em;
+}
+
+@media only screen and (max-width: 768px){
+    .flex-container {
+        display : flex;
+        flex-flow : column wrap;
+        margin : 0 10% 5% 10%;
+        justify-content : center;
+        align-items: center;
+    }
+
+    .flex-container > div {
+        background-color : #f0e6ee;
+        width : 50%;
+        margin : 0.25em;
+        padding : 0.5em;
+        font-size : 1em;
+        text-align : center;
+        border-radius : 5px;
+        overflow-wrap : break-spaces;
+    }
+}
+
+@media only screen and (min-width: 769px ){
+    .flex-container {
+        display : flex;
+        flex-flow : row wrap;
+        margin : 0 10% 5% 10%;
+        justify-content : center;
+        align-items: center;
+    }
+
+    .flex-container > div {
+        background-color : #f0e6ee;
+        width : 30%;
+        margin : 0.25em;
+        padding : 0.5em;
+        font-size : 1em;
+        text-align : center;
+        border-radius : 5px;
+        overflow-wrap : break-spaces;
+    }
+}
+
+@media only screen and (min-width: 1017px){
+    .flex-container {
+        display : flex;
+        flex-flow : row wrap;
+        margin : 0 10% 5% 10%;
+        justify-content : center;
+        align-items: center;
+    }
+
+    .flex-container > div {
+        background-color : #f0e6ee;
+        width : 20%;
+        margin : 0.25em;
+        padding : 0.5em;
+        font-size : 1em;
+        text-align : center;
+        border-radius : 5px;
+        overflow-wrap : break-spaces;
+    }
+}
+
+.flex-container > div a{
+    text-decoration-color: #63486a;
+}
+
+.flex-container > div:hover {
+    background-color : #cbb4c2;
+}
+
+.genre {
+    color : #63486a;
+    margin-top : 0.5em;
+}
+
+.theme {
+    color : #63486a;
+    margin-top : 0.5em;
+}

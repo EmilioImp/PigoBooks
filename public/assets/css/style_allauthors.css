@@ -1,0 +1,98 @@
+h1 {
+    color : #805d89;
+    text-align : center;
+    font-weight : bold;
+    margin-top : 0.5em;
+    margin-bottom : 1.0em;
+}
+
+.list-group {
+    display: block;
+    margin : 0 33.3% 0 33.3%;
+    width : 33.3%;
+    height : auto;
+    /*column-count: 2; opzione per visualizzare gli autori su due colonne in una sola pagina: migliorerebbe la visibilità e l'impiego di spazio?
+    Bisognerebbe ovviamente aumentare il pageSize di molto, aumentare il column-count e cercare di diminuire le dimensioni delle singole icone (e variare le percentuali di
+    margin, da aumentare in larghezza, e width per .list-group. Possibile anche sfruttare entrambe le opzioni (con o senza colonne) tramite media-queries.
+     */
+}
+
+.list-group a{
+    text-decoration : none;
+}
+
+.list-group a:hover{
+    border-style : solid inset;
+    border-radius: 5px;
+    border-bottom-color : #AF94B6;
+    border-right-color : #AF94B6;
+    border-top-color : #805d89;
+    border-left-color : #805d89;
+    background-color : #cbb4c2;
+}
+
+.list-group-item {
+    display : block;
+    height : 33.3%;
+    max-width : 100%;
+    overflow : auto;
+    margin-bottom : 1%;
+    padding : 0.75rem 0.75rem 0.75rem 0.75rem; /*funziona su pc, per altri dispositivi c'è da fare media-queries*/
+    border-style : solid outset;
+    border-radius: 5px;
+    border-bottom-color : #805d89;
+    border-right-color : #805d89;
+    border-top-color : #AF94B6;
+    border-left-color : #AF94B6;
+    border-width : 3px;
+    background-color : #E2D5DD;
+}
+
+.innerImg {
+    display : block;
+    margin-left : auto;
+    margin-right: auto; /* margin-left e margin-right apportano poche migliorie alla grafica*/
+    border-color : #805d89;
+    border-style : solid;
+    float : left;
+    max-width : 95px;  /*width e height statiche per ora, da sostituire con valori dinamici*/
+    height : 95px;
+    object-fit : cover;
+}
+
+.authorName {
+    display : block;
+    color : #805d89;
+    font-weight : bold;
+    text-align : center;
+    margin : auto;
+    margin-top : 7%;
+    word-break: keep-all;
+}
+
+.pagination {
+    padding-left : 0;
+    margin-top : 1em;
+    margin-left : 33.3%;
+    margin-right : 33.3%;
+}
+
+.page-item {
+    display : inline-block;
+}
+
+.page-item a{
+    color : #805d89;
+    float : left;
+    padding : 0.15em 0.30em 0.15em 0.30em;
+    text-decoration : none;
+    border-radius : 5px;
+}
+
+.page-item a.current {
+    background-color : #AF94B6;
+    color : white;
+    border-radius : 5px;
+}
+
+.page-item a:hover:not(.current) {background-color : #E2D5DD;}

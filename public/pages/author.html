@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/header&footer.css">
+    <link rel="shortcut icon" type="image/png" href="assets/img/favicon.png">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,shrink-to-fit=no">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <title>Author page</title>
+
+    <script>
+        $(document).ready(function(){
+
+            var booksArray; //vi metterò la lista di oggetti contenenti le informazioni sui libri (name e bookID) di un autore
+            var authorid = getParam(); //salvo l'authorID ottenuto dall'URL
+
+
+            $.ajax({  //con questa GET ottengo la lista di libri scritti da uno specifico autore
+                type : 'GET',
+                url : 'http://localhost:8080/xXEmilioXx/MyBookstore/1.0.0/book/findByAuthor?author=' + authorid,
+                datatype : 'json',
+                success : function (response) {
+                    booksArray = JSON.parse(JSON.stringify(response));
+                }
+            });
+
+
+            $.ajax({  // con questa GET ottengo un singolo oggetto json contenente le informazioni riguardo ad uno specifico autore
+                type : 'GET',
+                url : 'http://localhost:8080/xXEmilioXx/MyBookstore/1.0.0/author/' + authorid,
+                datatype : 'json',
+                success : function (response) {
+                    createAuthorPage(response);
+                }
+            });
+
+            function getParam(){
+                var url_string = window.location.href; //salvo in url_string l'url di questa pagina sotto forma di stringa
+                var url = new URL(url_string); //lo faccio codificare come effettivo URL
+                var param = url.searchParams.get("authorid");
+                return param;
+            }
+
+            function createBookList(books){  //creo così tutta la lista di libri dell'autore (con relativi link alle loro singole pagine)
+                var i = 0;
+                var nBooks = books.length;
+
+                for (i; i < nBooks; i++){
+                    $(".list-group list-group-flush").append('<a href="/book?bookid=' + nBooks[i].bookID + '" class="list-group-item list-group-item-action">' + nBooks[i].name + '</a>')
+                }
+            }
+
+
+            function createAuthorPage(authorjson){
+                var author = JSON.parse(JSON.stringify(authorjson)); //ricevo l'oggetto json contenente le info che mi servono
+
+                $("#author-container").getElementsByClassName("h1").innerHTML = author.firstName + author.lastName; //creo il titolo dinamicamente
+                $(".card text-center").append('<img src="' + author.image_path + '" class="card-img-top" alt="authorimage" style="width: 33%">'); //aggiungo l'immagine
+
+                $(".card text-center").append('<div class="card-header"><ul class="nav nav-pills card-header-pills justify-content-center"><li class="nav-item"><a id="bio" class="nav-link active" href="#"> Bio </a></li>' +
+                    '<li class="nav-item"><a id="books" class="nav-link" href="#"> Books </a></li></ul></div>');  //creo il nav che permette di scegliere se vedere la biografia dell'autore o i suoi libri
+                $(".card text-center").append('<div class="card-body"><p class="card-text">Short bio</p></div>');  //creo la prima pagina del nav, con la bio
+                $(".card text-center").append('<div class="card-body"><div class="list-group list-group-flush"></div></div>'); //creo il list group vuoto
+
+                createBookList(booksArray); //riempio ora il list group
+
+
+                //funzione per gestire quale tra Bio e Books debba essere visualizzata come pagina (in base a quale delle due ha la classe "nav-link active"
+                showPage = function() {
+                    $(".card-body").hide();
+                    if ($("#bio").className === "nav-link active"){
+                        $(this).show();
+
+                    }
+                    else if($("#books").className === "nav-link active"){
+                        $(this).show();
+                    }
+                };
+
+                //la chiamo inizialmente per stabilire quale mostrare (sempre Bio per come è costruito il codice)
+                showPage();
+
+                //gestisco il caso in cui sono su Bio e premo su Books
+                $("#books").click(function(){
+                    if ($("#bio").className === "nav-link active"){
+                        $("#bio").removeClass("active");
+                        $("#books").addClass("active");
+                        showPage();
+                    }
+                    else {}
+                });
+
+                //gestisco il caso in cui sono su Books e premo su Bio
+                $("#bio").click(function(){
+                    if ($("#books").className === "nav-link active"){
+                        $("#books").removeClass("active");
+                        $("#bio").addClass("active");
+                        showPage();
+                    }
+                    else {}
+                });
+
+            }
+        })
+    </script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <img src="http://i63.tinypic.com/vg33mq.png" alt="">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Books
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Genres</a>
+                        <a class="dropdown-item" href="#">Themes</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Authors</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Events</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Best Sellers</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Our Favourites</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Require a Gift Card</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact Us</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- tutto il codice che scrivo qui dovrà essere poi inserito in uno script che prenda con una get le informazioni necessarie e crei piano piano la pagina;
+ovviamente dovrà tutto essere inserito sotto forma di stringa (sfrutto append() per aggiungere elementi all'interno di altri, e wrap() per aggiungere
+un "genitore")-->
+
+<div id="author-container" class="container-fluid">
+    <h1></h1>  <!--con innerHTML ne modifico il contenuto nello script-->
+    <div class="card text-center" style="width: 50%"></div>
+</div>
+
+<!-- tengo questo commento come schema sulla struttura della pagina
+
+<div class="card text-center" style="width: 50%">
+    <img src="#" class="card-img-top" alt="..." style="width: 33%">
+    <div class="card-header">
+        <ul class="nav nav-pills card-header-pills justify-content-center">
+
+            <li class="nav-item">
+                <a id="bio" class="nav-link active" href="#"> Bio </a>
+            </li>
+
+            <li class="nav-item">
+                <a id="books" class="nav-link" href="#"> Books </a>
+            </li>
+
+        </ul>
+    </div>
+
+    <div class="card-body">
+        <p class="card-text"> Short bio </p>
+    </div>
+
+    <div class="card-body">
+        <div class="list-group list-group-flush">
+            <a href="#" class="list-group-item list-group-item-action">Da aggiungere dinamicamente con le informazioni di un'altra GET </a>
+        </div>
+    </div>
+</div>
+-->
+
+
+<!-- Footer -->
+<footer class="page-footer font-small">
+    <!-- Footer Links -->
+    <div class="container text-center text-md-left mt-5">
+        <!-- Grid row -->
+        <div class="row mt-3">
+            <!-- Grid column -->
+            <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                <!-- Content -->
+                <h6 class="text-uppercase font-weight-bold">Pigo Books</h6>
+                <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto">
+                <p>2019 © Pigo Books srl</p>
+                <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto">
+            </div>
+            <!-- Grid column -->
+            <!-- Grid column -->
+            <!-- Grid column -->
+            <!-- Grid column -->
+            <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-4">
+                <!-- Links -->
+                <h6 class="text-uppercase font-weight-bold">Useful links</h6>
+                <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto">
+                <p>
+                    <a class="link" href="faq.html">FAQ</a>
+                </p>
+                <p>
+                    <a class="link" href="#!">Ordering and Shipping</a>
+                </p>
+            </div>
+            <!-- Grid column -->
+            <!-- Grid column -->
+            <div class="col-md-5 col-lg-4 col-xl-4 mx-auto mb-md-0 mb-4">
+                <!-- Links -->
+                <h6 class="text-uppercase font-weight-bold">Contact</h6>
+                <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto">
+                <p><b>
+                    <a class="link" href="#!">Contact Us</a>
+                </b></p>
+                <p>
+                    <i class="fas fa-home"></i> Via della Troncaia 53, Olgiate Comasco (CO)</p>
+                <address>
+                    <a class="link" href="mailto:pigobooks@gmail.com">pigobooks@gmail.com</a><br/>
+                    <p></p>
+                    <a class="link" href="tel:+311-555-2368">+311-555-2368</a><br/>
+                </address>
+            </div>
+            <!-- Grid column -->
+            <!-- Grid row -->
+        </div>
+    </div>
+    <!-- Footer Links -->
+    <!-- Copyright -->
+</footer>
+<!-- Footer -->
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
