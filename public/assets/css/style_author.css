@@ -1,0 +1,39 @@
+h1 {
+    color : #805d89;
+    text-align : center;
+    margin-top : 0.5em;
+    margin-bottom : 3%;
+}
+
+.card {
+    margin-left : 33%;
+    margin-right : 33%;
+    margin-bottom : 3%;
+}
+
+.card-header {
+    background-color : #f0e6ee;
+}
+
+.nav-pills {
+    background-color : #f0e6ee;
+}
+
+#bio {
+    color : #805d89;
+}
+
+#books {
+    color : #805d89;
+}
+
+#bio.active{
+    color : #ffffff!important;
+    background-color : #805d89!important;
+}
+
+#books.active {
+    color : #ffffff!important;
+    background-color : #805d89!important;
+}
+

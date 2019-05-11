@@ -41,7 +41,7 @@
                  var pageCount =  arrayLength / pageSize; //pagine necessarie per contenere tutti gli autori del database
 
                  for( i; i < arrayLength; i++){  //per ogni elemento nell'array obj creo un list-group item con link alla pagina dell'autore, sua immagine e suo nome
-                     $("#authorsList").append('<a href="' + '/author?authorid=' + jsArray[i].authorID  + '" class="list-group-item"><img class="innerImg" src="' + jsArray[i].image_path + '" alt=""><p class="authorName">' + jsArray[i].firstName + " " + jsArray[i].lastName + '</p></a>')
+                     $("#authorsList").append('<a href="' + '/author/' + jsArray[i].authorID  + '" class="list-group-item"><img class="innerImg" src="' + jsArray[i].image_path + '" alt=""><p class="authorName">' + jsArray[i].firstName + " " + jsArray[i].lastName + '</p></a>')
                  }
 
                  //se pageCount > 1 faccio per prima l'append del simbolo <<
