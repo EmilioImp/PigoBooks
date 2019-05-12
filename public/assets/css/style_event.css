@@ -1,0 +1,34 @@
+h1 {
+    color : #805d89;
+    text-align : center;
+    font-weight : bold;
+    margin-top : 0.5em;
+    margin-bottom : 0.5em;
+}
+
+.card {
+    margin : 3% 10% 3% 10%;
+    background-color : #E2D5DD;
+}
+
+#eventImg {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+#link-box {
+    margin : 2em 35% 2em 35%;
+    width : 40%;
+}
+
+#link-intro {
+    display : inline-block;
+    margin-right : 0.3em;
+}
+
+#booklink {
+    display : inline-block;
+    background-color : #805d89!important;
+    border-color : #805d89!important;
+}

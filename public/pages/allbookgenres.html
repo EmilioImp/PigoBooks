@@ -4,17 +4,18 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" href="../assets/css/header&footer.css">
         <link rel="stylesheet" href="../assets/css/style_allbookgenres&themes.css">
-        <link rel="shortcut icon" type="image/png" href="assets/img/favicon.png">
+        <link rel="shortcut icon" type="image/png" href="../assets/img/favicon.png">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,shrink-to-fit=no">
         <title>All book genres</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
         <script>
             $(document).ready(function(){
 
                 $.ajax({
                     type : 'GET',
-                    url : 'http://localhost:8080/xXEmilioXx/MyBookstore/1.0.0/book/findBooksByGenre',
+                    url : 'http://localhost:8080/xXEmilioXx/MyBookstore/1.0.0/book/genres',
                     dataType : 'json',
                     success : function(response){
                         createFlexElements(response);
@@ -28,7 +29,7 @@
                     var arrayLength = jsArray.length;
 
                     for( i; i < arrayLength; i++){
-                        $(".flex-container").append('<div><a href="/book/findByGenre?genre=' + jsArray[i].genre + '"><p class="genre">' + jsArray[i].genre + '</p></a></div>');
+                        $(".flex-container").append('<div><a href="/book/findByGenre?genre=' + encodeURIComponent(jsArray[i]) + '"><p class="genre">' + jsArray[i] + '</p></a></div>');
                     }
                 }
             });

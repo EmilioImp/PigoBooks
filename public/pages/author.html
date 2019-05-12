@@ -13,30 +13,28 @@
     <script>
         $(document).ready(function(){
 
-            var authorid = getParam(); //salvo l'authorID ottenuto dall'URL
-
             $.ajax({  // con questa GET ottengo un array json contenente le informazioni riguardo ad uno specifico autore in pos.0, e la lista dei libri che ha scritto nelle posizioni successive
                 type : 'GET',
-                url : 'http://localhost:8080/xXEmilioXx/MyBookstore/1.0.0/author/1', <!--+ authorid,-->
+                url : 'http://localhost:8080/xXEmilioXx/MyBookstore/1.0.0/author/' + returnURLsLastChar(), <!--+ authorid,-->
                 datatype : 'json',
                 success : function (response) {
                     createAuthorPage(response);
                 }
             });
 
-            function getParam(){
-                var url_string = window.location.href; //salvo in url_string l'url di questa pagina sotto forma di stringa
-                var url = new URL(url_string); //lo faccio codificare come effettivo URL
-                var param = url.searchParams.get("authorid");
-                return param;
+            function returnURLsLastChar(){  //serve per ottenere il valore dell'authorID su cui costruire la pagina
+                var str = window.location.href;  //salvo come stringa l'URL di questa pagina
+                var res = str.charAt(str.length - 1);  //estraggo l'ultimo char dell'URL, che sarà per forza l'authorID
+                console.log(res);
+                return res;
             }
 
-            function createBookList(authorarray){  //creo così tutta la lista di libri dell'autore (con relativi link alle loro singole pagine)
-                var i = 1;
-                var nBooks = authorarray.length;
+            function createBookList(booksarray){  //creo così tutta la lista di libri dell'autore (con relativi link alle loro singole pagine)
+                var i = 0;
+                var nBooks = booksarray.length;
 
                 for (i; i < nBooks; i++){
-                    $("#bookList").append('<a href="/book/' + authorarray[i].bookID + '" class="list-group-item list-group-item-action">' + authorarray[i].name + '</a>')
+                    $("#bookList").append('<a href="/book/' + booksarray[i].bookID + '" class="list-group-item list-group-item-action">' + booksarray[i].name + '</a>')
                 }
             }
 
@@ -45,7 +43,7 @@
 
                 document.getElementById("authorName").innerHTML = author[0].firstName + " " + author[0].lastName; //creo il titolo dinamicamente
                 $("#authorImg").attr("src", author[0].image_path); //aggiungo l'immagine
-                createBookList(author); //riempio ora il list group
+                createBookList(author[0].writtenBooks); //riempio ora il list group
             }
 
             $("#biotext").show();

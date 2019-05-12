@@ -13,35 +13,34 @@
         <script>
             $(document).ready(function(){
 
-                var eventid = getParam(); //salvo l'id dell'evento
-
                 $.ajax({  //GET per ricevere un oggetto json con i dati dell'evento più il nome del libro (dalla tab Book) e dell'autore (dalla tab Bookauthor)
                     type : 'GET',
-                    url : 'http://localhost:8080/xXEmilioXx/MyBookstore/1.0.0/event/1', //"+ eventid" al posto del valore specificato
+                    url : 'http://localhost:8080/xXEmilioXx/MyBookstore/1.0.0/event/' + returnURLsLastChar(), //"+ eventid" al posto del valore specificato
                     datatype : 'json',
                     success : function(response) {
                         adjustEventPage(response);
                     }
-
                 });
 
-                function getParam(){
-                    var url_string = window.location.href; //salvo in url_string l'url di questa pagina sotto forma di stringa
-                    var url = new URL(url_string); //lo faccio codificare come effettivo URL
-                    var param = url.searchParams.get("eventID");
-                    return param;
+                function returnURLsLastChar(){  //serve per ottenere il valore dell'authorID su cui costruire la pagina
+                    var str = window.location.href;  //salvo come stringa l'URL di questa pagina
+                    var res = str.charAt(str.length - 1);  //estraggo l'ultimo char dell'URL, che sarà per forza l'authorID
+                    console.log(res);
+                    return res;
                 }
 
                 function adjustEventPage(eventjson){
                     var event = JSON.parse(JSON.stringify(eventjson));
                     $(".card-img").attr("src", event[0].image_path); //salvo nella pagina l'img dell'evento
-                    $(".card-title").innerHTML = "Event #" + event[0].eventID;
-                    $("#bookname").innerHTML = event[0].bookName;
-                    $("#location").innerHTML = event[0].location;
-                    $("#date").innerHTML = event[0].date;
-                    $("#time").innerHTML = event[0].time;
-                    $("#booklink").innerHTML = event[0].bookName;
-                    $("#authorlink").innerHTML = event[0].authorFirstName + " " + event[0].authorLastName;
+                    document.getElementById("eventid").innerHTML = "Event" + " " + "#" + event[0].eventID;
+                    document.getElementById("eventname").innerHTML = event[0].name;
+                    document.getElementById("bookname").innerHTML = event[0].book.name;
+                    document.getElementById("location").innerHTML = event[0].location;
+                    document.getElementById("date").innerHTML = event[0].date;
+                    document.getElementById("time").innerHTML = event[0].time;
+                    document.getElementById("booklink").innerHTML = event[0].book.name;
+                    $("#booklink").attr("href", "/book/" + event[0].book.bookID);
+                    //$("#authorlink").innerHTML = event[0].authorFirstName + " " + event[0].authorLastName;
                 }
             })
         </script>
@@ -95,17 +94,17 @@
 
         <!--eventualmente per le carte cambio il colore del background (guardo sul sito di Bootstrap come fare)-->
 
-        <!-- CARD EXAMPLE ONE -->
+        <h1 id="eventid"> [Event #eventid] </h1>
 
-        <div class="card mb-3">
+        <div class="card mb-3" style="width: 80%;">
             <div class="row no-gutters">
                 <div class="col-sm-4">
-                    <img src="#" class="card-img" alt="Event image">
+                    <img id="eventImg" src="#" class="card-img" alt="Event image">
                 </div>
 
                 <div class="col-sm-8">
                     <div class="card-body"> <!--o così oppure se non riesce/non è bello provo ad aggiungere tramite Navigation un nav per ogni informazione-->
-                        <h4 class="card-title"> [Event #eventID] </h4> <!--aggiungo dinamicamente l'eventID-->
+                        <h4 id="eventname" class="card-title"> [Event-name] </h4> <!--aggiungo dinamicamente l'eventID-->
                         <h5 class="card-subtitle mb-2 text-muted"> Which book:</h5> <!-- visualizzo a sx il subtitle e a dx il valore-->
                         <p id="bookname"> [book name]</p>
                         <h5 class="card-subtitle mb-2 text-muted"> Where:</h5>
@@ -120,11 +119,9 @@
             </div>
         </div>
 
-        <div class="container-fluid">
-            <div class="link-box"> <!--coloro con un background viola tali link-boxes-->
-                <p class="link-intro"> To see more about the book presented:</p>
-                <a id="booklink" class="btn btn-primary btn-sm active" href="#" role="button" aria-pressed="true"> [book name]</a> <!-- [bookID] per il link]-->
-            </div>
+        <div id="link-box" class="container-fluid">
+                <p id="link-intro"> To see more about the book presented:</p>
+                <a id="booklink" class="btn btn-primary btn-sm active justify-content-center" href="#" role="button" aria-pressed="true"> [book name]</a> <!-- [bookID] per il link]-->
         </div>
 
         <!--
