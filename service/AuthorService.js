@@ -13,10 +13,10 @@ exports.getAuthorByID = async function(authorID) {
     const author = await db.select().from('Author').where('authorID', authorID);
     if (author.length <= 0) throw {actualResponse: 'Author not found', status: 404};
     else{
-      const books = await db.select('Book.bookID', 'name').from('Book').join('BookAuthor', {'Book.bookID' : 'BookAuthor.bookID'}).where('authorID', authorID);
-      return {actualResponse: author.concat(books), status: 200};
+      author[0].writtenBooks = await db.select('Book.bookID', 'name').from('Book').join('BookAuthor', {'Book.bookID' : 'BookAuthor.bookID'}).where('authorID', authorID);
+      return {actualResponse: author, status: 200};
     }
-}
+};
 
 
 /**
@@ -28,5 +28,5 @@ exports.getAuthors = async function() {
     const authors = await db.select().from('Author');
     if (authors.length <= 0) throw {actualResponse: 'No author found', status: 404};
     else return {actualResponse: authors, status: 200};
-}
+};
 

@@ -4,49 +4,6 @@ const knex = require('../knex.js');
 const db = knex.database;
 
 /**
- * Finds books by author
- *
- * author List Author values that need to be considered for filter
- * returns List
- **/
-exports.findBooksByAuthor = function(author) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = [ {
-  "name" : "Il sentiero",
-  "id" : 0,
-  "authors" : [ {
-    "firstName" : "firstName",
-    "lastName" : "",
-    "id" : 0
-  }, {
-    "firstName" : "firstName",
-    "lastName" : "",
-    "id" : 0
-  } ]
-}, {
-  "name" : "Il sentiero",
-  "id" : 0,
-  "authors" : [ {
-    "firstName" : "firstName",
-    "lastName" : "",
-    "id" : 0
-  }, {
-    "firstName" : "firstName",
-    "lastName" : "",
-    "id" : 0
-  } ]
-} ];
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
-}
-
-
-/**
  * Finds books by genre
  *
  * genre List Genre values that need to be considered for filter
@@ -60,12 +17,11 @@ exports.findBooksByGenre = async function(genre) {
        const nBooks = books.length;
        for (var i=0; i< nBooks; i++){
          const bookID = books[i].bookID;
-         const authors = await db.select('Author.authorID', 'Author.firstName', 'Author.lastName').from('Author').join('BookAuthor', {'Author.authorID' : 'BookAuthor.authorID'}).where('BookAuthor.bookID', bookID);
-         books[i] = Object.assign(books[i], authors);
+         books[i].authors = await db.select('Author.authorID', 'Author.firstName', 'Author.lastName').from('Author').join('BookAuthor', {'Author.authorID' : 'BookAuthor.authorID'}).where('BookAuthor.bookID', bookID);
        }
        return {actualResponse: books, status: 200};
     }
-}
+};
 
 
 /**
@@ -108,7 +64,7 @@ exports.findBooksByName = function(name) {
       resolve();
     }
   });
-}
+};
 
 
 /**
@@ -117,41 +73,19 @@ exports.findBooksByName = function(name) {
  * theme List Theme values that need to be considered for filter
  * returns List
  **/
-exports.findBooksByTheme = function(theme) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = [ {
-  "name" : "Il sentiero",
-  "id" : 0,
-  "authors" : [ {
-    "firstName" : "firstName",
-    "lastName" : "",
-    "id" : 0
-  }, {
-    "firstName" : "firstName",
-    "lastName" : "",
-    "id" : 0
-  } ]
-}, {
-  "name" : "Il sentiero",
-  "id" : 0,
-  "authors" : [ {
-    "firstName" : "firstName",
-    "lastName" : "",
-    "id" : 0
-  }, {
-    "firstName" : "firstName",
-    "lastName" : "",
-    "id" : 0
-  } ]
-} ];
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
+exports.findBooksByTheme = async function(theme) {
+  const bookTheme = await db.select().from('BookTheme').where('theme', theme);
+  if (bookTheme.length <= 0) throw {actualResponse: 'No books with that theme', status: 404};
+  else{
+    const books = await db.select('Book.bookID', 'Book.name').from('Book').join('BookTheme', {'Book.bookID' : 'BookTheme.bookID'}).where('theme', theme);
+    const nBooks = books.length;
+    for (var i=0; i< nBooks; i++){
+      const bookID = books[i].bookID;
+      books[i].authors = await db.select('Author.authorID', 'Author.firstName', 'Author.lastName').from('Author').join('BookAuthor', {'Author.authorID' : 'BookAuthor.authorID'}).where('BookAuthor.bookID', bookID);
     }
-  });
-}
+    return {actualResponse: books, status: 200};
+  }
+};
 
 
 /**
@@ -161,37 +95,42 @@ exports.findBooksByTheme = function(theme) {
  * bookID Long ID of the book to return
  * returns Book
  **/
-exports.getBookById = function(bookID) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "themes" : [ {
-    "name" : "love"
-  }, {
-    "name" : "love"
-  } ],
-  "cost" : 1,
-  "genre" : {
-    "name" : "historical novel"
-  },
-  "name" : "Il sentiero",
-  "edition" : 6,
-  "authors" : [ {
-    "firstName" : "firstName",
-    "lastName" : "",
-    "id" : 0
-  }, {
-    "firstName" : "firstName",
-    "lastName" : "",
-    "id" : 0
-  } ],
-  "status" : "available"
+exports.getBookById = async function(bookID) {
+  const book = await db.select().from('Book').where('bookID', bookID);
+  if (book.length <= 0) throw {actualResponse: 'Book not found', status: 404};
+  else{
+    book[0].authors = await db.select('Author.authorID', 'Author.firstName', 'Author.lastName').from('Author').join('BookAuthor', {'Author.authorID' : 'BookAuthor.authorID'}).where('BookAuthor.bookID', bookID);
+    return {actualResponse: book, status: 200};
+  }
 };
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
-}
+
+exports.getGenres = async function () {
+  const genres = await db.select('genre').from('BookGenre');
+  const nGenres = genres.length;
+  let genresArray = [];
+  for (let i=0; i < nGenres; i++){
+    genresArray[i] = genres[i].genre;
+  }
+  let uniqueGenresArray = [...new Set(genresArray)];
+  return {actualResponse: uniqueGenresArray, status: 200};
+};
+
+exports.getThemes = async function () {
+  const themes = await db.select('theme').from('BookTheme');
+  const nThemes = themes.length;
+  let themesArray = [];
+  for (let i=0; i < nThemes; i++){
+    themesArray[i] = themes[i].theme;
+  }
+  let uniqueThemesArray = [...new Set(themesArray)];
+  return {actualResponse: uniqueThemesArray, status: 200};
+};
+
+exports.getSimilarBooks = async function (bookID) {
+  const similarBooks = await db.select('Book.bookID', 'Book.name').from('Book').join('BookSimilar', {'Book.bookID' : 'BookSimilar.bookSimilarID'}).where('BookSimilar.bookID', bookID);
+  if (similarBooks.length <= 0) throw {actualResponse: 'No similar books found', status: 404};
+  else{
+    return {actualResponse: similarBooks, status: 200};
+  }
+};
 
