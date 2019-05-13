@@ -24,9 +24,7 @@
 
                 function returnURLsLastChar(){  //serve per ottenere il valore dell'authorID su cui costruire la pagina
                     var str = window.location.href;  //salvo come stringa l'URL di questa pagina
-                    var res = str.charAt(str.length - 1);  //estraggo l'ultimo char dell'URL, che sarà per forza l'authorID
-                    console.log(res);
-                    return res;
+                    return str.charAt(str.length - 1);  //estraggo l'ultimo char dell'URL, che sarà per forza l'authorID
                 }
 
                 function adjustEventPage(eventjson){

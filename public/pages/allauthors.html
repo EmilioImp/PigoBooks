@@ -5,7 +5,7 @@
      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
      <link rel="stylesheet" href="../assets/css/header&footer.css">
      <link rel="stylesheet" href="../assets/css/style_allauthors.css">
-     <link rel="shortcut icon" type="image/png" href="assets/img/favicon.png">
+     <link rel="shortcut icon" type="image/png" href="../assets/img/favicon.png">
      <meta charset="UTF-8">
      <meta name="viewport" content="width=device-width,initial-scale=1.0,shrink-to-fit=no">
      <title>List of all authors</title>
@@ -34,14 +34,14 @@
              function createPages(response){
                  var i = 0;
                  var j = 0;
-                 var pageSize = 2; //max numero di elementi Autore per pagina
+                 var pageSize = 10; //max numero di elementi Autore per pagina
                  var obj = JSON.stringify(response);
                  var jsArray = JSON.parse(obj); //converto l'array di JSON in array di oggetti js
                  var arrayLength = jsArray.length;
                  var pageCount =  arrayLength / pageSize; //pagine necessarie per contenere tutti gli autori del database
 
                  for( i; i < arrayLength; i++){  //per ogni elemento nell'array obj creo un list-group item con link alla pagina dell'autore, sua immagine e suo nome
-                     $("#authorsList").append('<a href="' + '/author/' + jsArray[i].authorID  + '" class="list-group-item"><img class="innerImg" src="' + jsArray[i].image_path + '" alt=""><p class="authorName">' + jsArray[i].firstName + " " + jsArray[i].lastName + '</p></a>')
+                     $(".card-columns").append('<div class="card"><a href="http://localhost:8080/xXEmilioXx/MyBookstore/1.0.0/author.html/' + jsArray[i].authorID + '" class="card-link"><img class="card-img" src="' + jsArray[i].image_path + '" alt="Card img cap"><div class="card-body"><h5 class="card-title">' + jsArray[i].firstName + " " + jsArray[i].lastName + '</h5></div></a></div>');
                  }
 
                  //se pageCount > 1 faccio per prima l'append del simbolo <<
@@ -69,8 +69,8 @@
                  }
 
                  showPage = function(page) {
-                     $(".list-group-item").hide();
-                     $(".list-group-item").each(function(n) {
+                     $(".card").hide();
+                     $(".card").each(function(n) {
                          if (n >= pageSize * (page - 1) && n < pageSize * page)
                              $(this).show();
                      });
@@ -155,7 +155,7 @@
         <h1>List of all authors</h1>
 
         <!--empty linked list-group (up to 3 elements per page)-->
-        <div id="authorsList" class="list-group"></div>
+        <div class="card-columns"></div>
 
         <!-- empty pagination (to be dynamically filled based on how many elements there are-->
         <nav aria-label="page-navigation">
