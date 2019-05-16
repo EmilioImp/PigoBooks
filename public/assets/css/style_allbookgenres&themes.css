@@ -6,20 +6,24 @@ h1 {
     margin-bottom : 1.0em;
 }
 
+.col-3 {
+    padding : 0 0 0 0;
+}
+
 @media only screen and (max-width: 768px){
     .flex-container {
         display : flex;
-        flex-flow : column wrap;
-        margin : 0 10% 5% 10%;
+        flex-flow : column nowrap;
+        margin : 0 0 5% 0;
         justify-content : center;
-        align-items: center;
+        width : 50%;
     }
 
     .flex-container > div {
         background-color : #f0e6ee;
-        width : 50%;
-        margin : 0.25em;
-        padding : 0.5em;
+        width : 100%;
+        margin : 0 0 0.25em 0;
+        padding : 0 0 0 0;
         font-size : 1em;
         text-align : center;
         border-radius : 5px;
@@ -27,20 +31,20 @@ h1 {
     }
 }
 
-@media only screen and (min-width: 769px ){
+@media only screen and (min-width: 769px){
     .flex-container {
         display : flex;
-        flex-flow : row wrap;
-        margin : 0 10% 5% 10%;
+        flex-flow : column nowrap;
+        margin : 0 0 5% 0;
         justify-content : center;
-        align-items: center;
+        width : 30%;
     }
 
     .flex-container > div {
         background-color : #f0e6ee;
-        width : 30%;
-        margin : 0.25em;
-        padding : 0.5em;
+        width : 100%;
+        margin : 0 0 0.25em 0;
+        padding : 0 0 0 0;
         font-size : 1em;
         text-align : center;
         border-radius : 5px;
@@ -51,18 +55,18 @@ h1 {
 @media only screen and (min-width: 1017px){
     .flex-container {
         display : flex;
-        flex-flow : row wrap;
-        margin : 0 10% 5% 10%;
+        flex-flow : column nowrap;
+        margin : 0 0 5% 0;
         justify-content : center;
-        align-items: center;
+        width : 34.5%;
     }
 
     .flex-container > div {
         background-color : #f0e6ee;
-        width : 20%;
-        margin : 0.25em;
-        padding : 0.5em;
-        font-size : 1em;
+        width : 100%;
+        margin : 0 0 0.25em 0;
+        padding : 0 0 0 0;
+        font-size : 0.8em;
         text-align : center;
         border-radius : 5px;
         overflow-wrap : break-spaces;
@@ -77,12 +81,18 @@ h1 {
     background-color : #cbb4c2;
 }
 
+.flex-container > div:active {
+    background-color : #cbb4c2;
+}
+
 .genre {
     color : #63486a;
     margin-top : 0.5em;
+    word-break: keep-all;
 }
 
 .theme {
     color : #63486a;
     margin-top : 0.5em;
+    word-break: keep-all;
 }
