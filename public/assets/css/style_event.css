@@ -11,9 +11,21 @@ h1 {
     background-color : #E2D5DD;
 }
 
+.card-header {
+    padding : 0 0 0 0;
+}
+
+.card-block {
+    margin : 1em 1em 1em 1em;
+}
+
+.card-text {
+    overflow : auto;
+}
+
 #eventImg {
     max-width: 100%;
-    height: auto;
+    height: 100%;
     object-fit: cover;
 }
 
