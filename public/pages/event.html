@@ -16,7 +16,7 @@
 
                 $.ajax({  //GET per ricevere un oggetto json con i dati dell'evento più il nome del libro (dalla tab Book) e dell'autore (dalla tab Bookauthor)
                     type : 'GET',
-                    url : 'http://localhost:8080/xXEmilioXx/MyBookstore/1.0.0/event/1', //+ getURLQueryParameter(), //"+ eventid" al posto del valore specificato
+                    url : 'http://localhost:8080/xXEmilioXx/MyBookstore/1.0.0/event/' + getURLQueryParameter(), //"+ eventid" al posto del valore specificato
                     datatype : 'json',
                     success : function(response) {
                         adjustEventPage(response);
