@@ -70,9 +70,8 @@ module.exports.getUserCart = function getUserCart (req, res, next) {
 };
 
 module.exports.loginUser = function loginUser (req, res, next) {
-  var username = req.swagger.params['username'].value;
-  var password = req.swagger.params['password'].value;
-  User.loginUser(username,password)
+  var body = req.swagger.params['body'].value;
+  User.loginUser(body)
     .then(function (response) {
       utils.writeJson(res, response.actualResponse, response.status);
     })

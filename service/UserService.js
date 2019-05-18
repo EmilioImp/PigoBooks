@@ -101,15 +101,16 @@ exports.getUserCart = async function(userID) {
  * password String The password for login
  * returns Token
  **/
-exports.loginUser = async function(username,password) {
-    const user = await db.select().from('User').where("username", username);
+exports.loginUser = async function(body) {
+    const user = await db.select().from('User').where("username", body.username);
     if (user.length<=0) throw {actualResponse: 'Invalid username or password', status: 400};
     else {
-      const isValid = await bcrypt.compare(password, user[0].password_hashed);
+      const isValid = await bcrypt.compare(body.password, user[0].password_hashed);
       if (!isValid) throw {actualResponse: 'Invalid username or password', status: 400};
       else {
         const token = jwt.sign({userID: user[0].userID}, 'jwtPrivateKey');
-        return {actualResponse: token, status: 201};
+        return {actualResponse: {token: token}, status: 201};
+        return {actualResponse: {token: token}, status: 201};
       }
     }
 }

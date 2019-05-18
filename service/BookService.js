@@ -13,7 +13,7 @@ exports.findBooksByGenre = async function(genre) {
     const bookGenre = await db.select().from('BookGenre').where('genre', genre);
     if (bookGenre.length <= 0) throw {actualResponse: 'No books with that genre', status: 404};
     else{
-       const books = await db.select('Book.bookID', 'Book.name').from('Book').join('BookGenre', {'Book.bookID' : 'BookGenre.bookID'}).where('genre', genre);
+       const books = await db.select('Book.bookID', 'Book.name', 'Book.image_path').from('Book').join('BookGenre', {'Book.bookID' : 'BookGenre.bookID'}).where('genre', genre);
        const nBooks = books.length;
        for (var i=0; i< nBooks; i++){
          const bookID = books[i].bookID;
@@ -77,7 +77,7 @@ exports.findBooksByTheme = async function(theme) {
   const bookTheme = await db.select().from('BookTheme').where('theme', theme);
   if (bookTheme.length <= 0) throw {actualResponse: 'No books with that theme', status: 404};
   else{
-    const books = await db.select('Book.bookID', 'Book.name').from('Book').join('BookTheme', {'Book.bookID' : 'BookTheme.bookID'}).where('theme', theme);
+    const books = await db.select('Book.bookID', 'Book.name', 'Book.image_path').from('Book').join('BookTheme', {'Book.bookID' : 'BookTheme.bookID'}).where('theme', theme);
     const nBooks = books.length;
     for (var i=0; i< nBooks; i++){
       const bookID = books[i].bookID;
@@ -100,6 +100,20 @@ exports.getBookById = async function(bookID) {
   if (book.length <= 0) throw {actualResponse: 'Book not found', status: 404};
   else{
     book[0].authors = await db.select('Author.authorID', 'Author.firstName', 'Author.lastName').from('Author').join('BookAuthor', {'Author.authorID' : 'BookAuthor.authorID'}).where('BookAuthor.bookID', bookID);
+    const genres = await db.select('BookGenre.genre').from('BookGenre').join('Book', {'BookGenre.bookID' : 'Book.bookID' }).where('Book.bookID', bookID);
+    const nGenres = genres.length;
+    const genresArray = [];
+    for (let i=0; i<nGenres; i++){
+      genresArray[i] = genres[i].genre;
+    }
+    book[0].genres = genresArray;
+    const themes = await db.select('BookTheme.theme').from('BookTheme').join('Book', {'BookTheme.bookID' : 'Book.bookID'}).where('Book.bookID', bookID);
+    const nThemes = themes.length;
+    const themesArray = [];
+    for (let i=0; i<nThemes; i++){
+      themesArray[i] = themes[i].theme;
+    }
+    book[0].themes = themesArray;
     return {actualResponse: book, status: 200};
   }
 };

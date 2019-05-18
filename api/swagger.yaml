@@ -235,20 +235,16 @@ paths:
       summary: "Logs user into the system"
       operationId: "loginUser"
       consumes:
-      - "application/x-www-form-urlencoded"
+      - "application/json"
       produces:
       - "application/json"
       parameters:
-      - name: "username"
-        in: "formData"
-        description: "The user name for login"
+      - in: "body"
+        name: "body"
+        description: "User that needs to register"
         required: true
-        type: "string"
-      - name: "password"
-        in: "formData"
-        description: "The password for login"
-        required: true
-        type: "string"
+        schema:
+          $ref: "#/definitions/UserLogin"
       responses:
         201:
           description: "Successful operation"
@@ -487,12 +483,14 @@ definitions:
   Book:
     type: "object"
     properties:
-      genre:
-        $ref: "#/definitions/Genre"
+      genres:
+        type: "array"
+        items:
+          type: "string"
       themes:
         type: "array"
         items:
-          $ref: "#/definitions/Theme"
+          type: "string"
       name:
         type: "string"
         example: "Il sentiero"
@@ -512,35 +510,20 @@ definitions:
         enum:
         - "available"
         - "out_of_stock"
-    example:
-      themes:
-      - name: "love"
-      - name: "love"
-      cost: 1
-      genre:
-        name: "historical novel"
-      name: "Il sentiero"
-      edition: 6
-      authors:
-      - firstName: "firstName"
-        lastName: ""
-        id: 0
-      - firstName: "firstName"
-        lastName: ""
-        id: 0
-      status: "available"
   BookWithID:
     type: "object"
     properties:
       id:
         type: "integer"
         format: "int64"
-      genre:
-        $ref: "#/definitions/Genre"
+      genres:
+        type: "array"
+        items:
+          type: "string"
       themes:
         type: "array"
         items:
-          $ref: "#/definitions/Theme"
+          type: "string"
       name:
         type: "string"
         example: "Il sentiero"
@@ -568,21 +551,12 @@ definitions:
         format: "int64"
       name:
         type: "string"
-        example: "Il sentiero"
+      image_path:
+        type: "string"
       authors:
         type: "array"
         items:
           $ref: "#/definitions/AuthorEssential"
-    example:
-      name: "Il sentiero"
-      id: 0
-      authors:
-      - firstName: "firstName"
-        lastName: ""
-        id: 0
-      - firstName: "firstName"
-        lastName: ""
-        id: 0
   BookIDandName:
     type: "object"
     properties:
@@ -591,57 +565,6 @@ definitions:
         format: "int64"
       name:
         type: "string"
-        example: "Il sentiero"
-    example:
-      name: "Il sentiero"
-      id: 0
-  Genre:
-    type: "object"
-    properties:
-      name:
-        type: "string"
-        enum:
-        - "historical novel"
-        - "science fiction"
-        - "fantasy novel"
-        - "adventure novel"
-        - "fiction novel"
-        - "appendix novel"
-        - "novel for kids"
-        - "horror novel"
-        - "thriller"
-        - "crime story"
-        - "romance"
-        - "erotic novel"
-        - "psychological novel"
-        - "humorous novel"
-        - "social novel"
-        - "epistolary novel"
-        - "tale"
-        - "historiography"
-        - "biography"
-        - "informative narrative"
-        - "poetry"
-        - "theatre"
-    example:
-      name: "historical novel"
-  Theme:
-    type: "object"
-    properties:
-      name:
-        type: "string"
-        enum:
-        - "love"
-        - "war"
-        - "nature"
-        - "space"
-        - "science"
-        - "politics"
-        - "economy"
-        - "misoltini"
-        - "society"
-    example:
-      name: "love"
   User:
     type: "object"
     properties:
@@ -709,6 +632,13 @@ definitions:
       id: 0
       email: "email"
       username: "username"
+  UserLogin:
+    type: "object"
+    properties:
+      username:
+        type: "string"
+      password:
+        type: "string"
   Cart:
     type: "object"
     properties:
@@ -763,32 +693,12 @@ definitions:
         type: "string"
       lastName:
         type: "string"
+      image_path:
+        type: "string"
       writtenBooks:
         type: "array"
         items:
           $ref: "#/definitions/BookIDandName"
-    example:
-      firstName: "firstName"
-      lastName: "lastName"
-      writtenBooks:
-      - name: "Il sentiero"
-        id: 0
-        authors:
-        - firstName: "firstName"
-          lastName: ""
-          id: 0
-        - firstName: "firstName"
-          lastName: ""
-          id: 0
-      - name: "Il sentiero"
-        id: 0
-        authors:
-        - firstName: "firstName"
-          lastName: ""
-          id: 0
-        - firstName: "firstName"
-          lastName: ""
-          id: 0
   AuthorEssential:
     type: "object"
     properties:
@@ -799,10 +709,8 @@ definitions:
         type: "string"
       lastName:
         format: "string"
-    example:
-      firstName: "firstName"
-      lastName: ""
-      authorID: 0
+      image_path:
+        type: "string"
   Event:
     type: "object"
     properties:

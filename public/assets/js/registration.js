@@ -1,12 +1,5 @@
 $(function (){
 
-    var $username = $('#registerUsername');
-    var $firstName = $('#registerFirstname');
-    var $lastName = $('#registerLastname');
-    var $password = $('#registerPassword');
-    var $email = $('#registerEmail');
-    var $phone = $('#registerPhoneNumber');
-
     $('#submitButton').click(function(){
 
         var formArray = $('#registrationForm').serializeArray();
@@ -15,9 +8,6 @@ $(function (){
         for (var i = 0; i < formArray.length; i++){
             returnArray[formArray[i]['name']] = formArray[i]['value'];
         }
-
-        console.log(JSON.stringify(returnArray));
-
 
         $.ajax({
             type: "POST",

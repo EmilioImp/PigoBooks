@@ -10,7 +10,7 @@ const db = knex.database;
  * returns Author
  **/
 exports.getAuthorByID = async function(authorID) {
-    const author = await db.select().from('Author').where('authorID', authorID);
+    const author = await db.select('firstName','lastName','image_path').from('Author').where('authorID', authorID);
     if (author.length <= 0) throw {actualResponse: 'Author not found', status: 404};
     else{
       author[0].writtenBooks = await db.select('Book.bookID', 'name').from('Book').join('BookAuthor', {'Book.bookID' : 'BookAuthor.bookID'}).where('authorID', authorID);
