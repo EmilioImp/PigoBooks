@@ -6,14 +6,13 @@ a.link{
   color: #E2D5DD;
 }
 
-.page-footer {
-      display : block;
-      position: static;
-      bottom: 0;
-      width: 100%;
-      background-color: #AF94B6;
-      padding: 0.1rem;
-    }
+.page-footer{
+  bottom: 0;
+  width: 100%;
+  background-color: #AF94B6;
+  padding: 0.1rem;
+}
+
 
 .figure{
   margin: 0 0 0rem!important;
