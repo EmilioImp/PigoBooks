@@ -102,6 +102,10 @@ h1 {
     word-break: keep-all;
 }
 
+.text-faded > p {
+    margin : 0 0 20% 0;
+}
+
 .card {
     /*margin : 3% 10% 3% 10%;*/
     max-width : 35%;

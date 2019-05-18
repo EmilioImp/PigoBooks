@@ -9,7 +9,6 @@
         <meta name="viewport" content="width=device-width,initial-scale=1.0,shrink-to-fit=no">
         <title>Event page</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="../assets/js/login.js"></script>
         <script src="../assets/js/getURLQueryParameter.js"></script>
 
         <script>
@@ -17,12 +16,21 @@
 
                 $.ajax({  //GET per ricevere un oggetto json con i dati dell'evento più il nome del libro (dalla tab Book) e dell'autore (dalla tab Bookauthor)
                     type : 'GET',
-                    url : '/xXEmilioXx/MyBookstore/1.0.0/event/' + getURLQueryParameter(), //"+ eventid" al posto del valore specificato
+                    url : 'http://localhost:8080/xXEmilioXx/MyBookstore/1.0.0/event/' + getURLQueryParameter(), //"+ eventid" al posto del valore specificato
                     datatype : 'json',
                     success : function(response) {
                         adjustEventPage(response);
                     }
                 });
+
+                /*function iconControl(){
+                $("a.socialicon i").hide();
+                $("a.socialicon").each(function(){
+                    if ($(this).attr("href") !== '#'){
+                        $(this).find('i').show();
+                    }
+                });
+            }*/
 
                 function adjustEventPage(eventjson){
                     var event = JSON.parse(JSON.stringify(eventjson));
@@ -35,6 +43,8 @@
                     document.getElementById("time").innerHTML = event[0].time;
                     document.getElementById("booklink").innerHTML = event[0].book.name;
                     $("#booklink").attr("href", "book.html?parameter=" + event[0].book.bookID);
+                    //linee di codice che creino dinamicamente le icone dei social SE il loro valore nel database è diverso da # (if event[0].fblink/instagramlink/twitterlink !== "#") {}
+                    //iconControl();
                     //$("#authorlink").innerHTML = event[0].authorFirstName + " " + event[0].authorLastName;
                 }
             })
@@ -43,7 +53,7 @@
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
-                <a class="navbar-brand" href="../index.html">
+                <a class="navbar-brand" href="#">
                     <img src="http://i63.tinypic.com/vg33mq.png" alt="">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -53,7 +63,7 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="../index.html">Home <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -82,16 +92,6 @@
                         <li class="nav-item">
                             <a class="nav-link" href="contact%20us.html">Contact Us</a>
                         </li>
-                        <li class="nav-item" id="loginItem">
-                            <form class="form-inline" id="loginForm">
-                                <label class="sr-only" for="loginUsername"></label>
-                                <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Username" name="username" id="loginUsername">
-
-                                <label class="sr-only" for="loginPassword"></label>
-                                <input type="password" class="form-control mb-2 mr-sm-2" placeholder="Password" name="password" id="loginPassword">
-                                <a href="#" type="submit" class="btn btn-primary mb-2" id="submitLoginButton">Log in</a>
-                            </form>
-                        </li>
                     </ul>
                 </div>
             </div>
@@ -101,22 +101,50 @@
 
         <h1 id="eventid"> [Event #eventid] </h1>
 
-        <div class="card flex-row mb-3" style="width: 80%;">
-            <div class="card-header border-0">
-                <img id="eventImg" src="#" class="card-img" alt="Event image">
+        <div class="card mb-3">
+            <div class="row no-gutters">
+
+                <div class="col-md-5">
+                    <img id="eventImg" src="#" class="card-img" alt="Event image">
+                </div>
+
+                <div class="col-md-7">
+                    <div class="card-block">
+                        <h4 id="eventname" class="card-title"> [Event-name] </h4>
+                        <h5 class="card-subtitle mb-2 text-muted"> Which book:</h5>
+                        <p id="bookname"> [book name]</p>
+                        <h5 class="card-subtitle mb-2 text-muted"> Where:</h5>
+                        <p id="location"> [location]</p>
+                        <h5 class="card-subtitle mb-2 text-muted"> On the day:</h5>
+                        <p id="date"> [date]</p>
+                        <h5 class="card-subtitle mb-2 text-muted"> At the hour:</h5>
+                        <p id="time"> [time]</p>
+                        <h5 class="card-subtitle mb-2 text-muted">Event on social networks:</h5>
+                        <a href="#" class="socialicon">
+                            <i style='font-size:24px' class='fab'>&#xf09a;</i>
+                        </a>
+                        <a href="#" class="socialicon">
+                            <i style='font-size:24px' class='fab'>&#xf16d;</i>
+                        </a>
+                        <a href="#" class="socialicon">
+                            <i style='font-size:24px' class='fab'>&#xf081;</i>
+                        </a>
+                    </div>
+                </div>
             </div>
 
-            <div class="card-block"> <!--o così oppure se non riesce/non è bello provo ad aggiungere tramite Navigation un nav per ogni informazione-->
-                <h4 id="eventname" class="card-title"> [Event-name] </h4> <!--aggiungo dinamicamente l'eventID-->
-                <h5 class="card-subtitle mb-2 text-muted"> Which book:</h5>
-                <p id="bookname"> [book name]</p>
-                <h5 class="card-subtitle mb-2 text-muted"> Where:</h5>
-                <p id="location"> [location]</p>
-                <h5 class="card-subtitle mb-2 text-muted"> On the day:</h5>
-                <p id="date"> [date]</p>
-                <h5 class="card-subtitle mb-2 text-muted"> At the hour:</h5>
-                <p id="time"> [time]</p>
-                <p class="card-text">[paragrafo in cui aggiungere eventuali descrizioni aggiuntive]</p> <!--per questo metto overflow:auto o scroll-->
+            <div class="row no-gutters">
+                <div class="card-footer">
+                    <p id="eventInfo">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin leo sapien, gravida at dolor quis, elementum condimentum lectus. Phasellus varius velit id laoreet commodo. Morbi congue aliquet elit, et cursus eros venenatis eu. Praesent ut tristique libero. Quisque ligula nisi, egestas eu orci ut, accumsan finibus sapien. Nunc erat velit, tempus et mauris id, laoreet hendrerit mauris. Nulla semper pellentesque mi nec porta. Proin dui risus, faucibus ut mi id, tristique mattis purus. Curabitur fringilla nisi at lacus lacinia, sit amet pharetra lacus commodo. Praesent sed lacinia nisi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer nulla erat, posuere quis finibus ac, dapibus dignissim neque. Integer at leo ante.
+
+                        Praesent maximus tempus tincidunt. Integer luctus nulla sed vestibulum aliquet. Curabitur quis venenatis ante. Morbi id nisi ut est tempus feugiat eu vitae orci. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam mauris nunc, tempus id feugiat ac, tempus et purus. Vestibulum placerat massa tellus, ut ornare mauris finibus sed. Vestibulum purus risus, semper eget malesuada posuere, ultricies ut metus. Aliquam at augue hendrerit, dictum nisi sed, viverra erat.
+
+                        Integer sed consequat lorem, eu tincidunt ligula. Donec tincidunt, purus eu convallis ultrices, elit nisl iaculis magna, sed iaculis massa ipsum vel magna. Ut lacus purus, vestibulum at leo vitae, dignissim maximus libero. Sed sit amet diam imperdiet, ullamcorper odio a, finibus justo. Proin tincidunt ligula vitae rhoncus malesuada. Nulla a mi eu risus fringilla suscipit. Nunc non cursus erat, vitae tincidunt ante. Curabitur lacus lectus, aliquet gravida mollis tempus, finibus quis quam. Nam varius dapibus magna, vel tincidunt elit eleifend ut. Etiam luctus eleifend pellentesque. Donec tellus diam, dictum non finibus sit amet, laoreet sed enim.
+
+                        Sed sit amet ante pharetra, tristique mi vel, porta nulla. Nunc varius nibh a porttitor pretium. Vestibulum sagittis aliquam risus, et fringilla leo dapibus vel. Nulla sed mauris eros. Integer mi lorem, consectetur at euismod ut, bibendum at nulla. Pellentesque commodo eleifend nulla, sit amet tincidunt lacus vehicula id. Vestibulum vel ante vitae nisl lacinia luctus eu in lectus. Aliquam semper, leo viverra blandit interdum, enim mi sodales dui, et luctus mauris augue et ipsum.
+
+                        Vivamus finibus velit ac tortor interdum facilisis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Phasellus eu convallis diam, in vulputate arcu. Nullam venenatis volutpat mi, sit amet vehicula velit cursus posuere. Nullam vestibulum et augue ut finibus. Etiam laoreet dolor nec orci facilisis, sit amet mollis lectus ultrices. Praesent pellentesque faucibus augue id ullamcorper. Integer et semper lectus. Aliquam eget lacinia metus. Donec nec felis mauris. Pellentesque lacinia at quam ac pretium. Cras ut lacus mauris. Nunc malesuada ut eros at maximus. Praesent euismod feugiat elit, et suscipit diam condimentum non. Donec sit amet accumsan augue.</p>
+                </div>
             </div>
         </div>
 
@@ -187,6 +215,8 @@
         </footer>
         <!-- Footer -->
 
+        <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     </body>

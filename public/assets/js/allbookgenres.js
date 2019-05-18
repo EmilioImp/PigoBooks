@@ -2,7 +2,7 @@ $(document).ready(function(){
 
     $.ajax({
         type : 'GET',
-        url : 'http://localhost:8080/xXEmilioXx/MyBookstore/1.0.0/book/genres',
+        url : '/xXEmilioXx/MyBookstore/1.0.0/book/genres',
         dataType : 'json',
         success : function(response){
             createFlexElements(response);
@@ -49,6 +49,7 @@ $(document).ready(function(){
                         '</div>' +
                         '<div class="col-md-9">' +
                         '<h5 class="card-title">' + jsArray[i].name + '</h5>' +
+                        '<small class="text-faded"><p>[Authors name]</p></small>' +
                         '</div>' +
                         '</div>' +
                         '</a>' +

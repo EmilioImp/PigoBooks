@@ -1,0 +1,79 @@
+h1 {
+    color : #805d89;
+    text-align : center;
+    font-weight : bold;
+    margin-top : 0.5em;
+    margin-bottom : 0.5em;
+}
+
+.flip-card {
+    background-color : transparent;
+    width : 300px;
+    height : 400px;
+    perspective : 1000px;
+    margin : 4em auto 5em auto;
+}
+
+.flip-card-inner {
+    position : relative;
+    width : 100%;
+    height : 100%;
+    text-align: center;
+    transition : 0.8s;
+    transform-style : preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner {
+    transform : rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+    position : absolute;
+    width : 100%;
+    height : 100%;
+    backface-visibility : hidden;
+}
+
+.flip-card-front {
+    background-color : #9271a8;
+    color : black;
+}
+
+.flip-card-back {
+    background-color : #9271a8;
+    color : white;
+    transform : rotateY(180deg);
+}
+
+.flip-card-back .content{
+    position : absolute;
+    bottom : 0;
+    background: rgb(0, 0, 0);
+    background: rgba(0, 0, 0, 0.5);
+    color: #f1f1f1;
+    width : 100%;
+    padding : 0.5em;
+}
+
+.staffImg {
+    width : 100%;
+    height : 100%;
+    object-fit : cover;
+}
+
+.bookImg {
+    width : 100%;
+    height : 100%;
+    object-fit : cover;
+}
+
+.bookRef {
+    text-decoration : none;
+    color : white;
+}
+
+.bookRef:hover {
+    text-decoration : none;
+    color : black;
+}
+

@@ -40,7 +40,20 @@ h1 {
 }
 
 #booklink {
+    display: inline-block;
+    background-color: #805d89 !important;
+    border-color: #805d89 !important;
+}
+
+i {
     display : inline-block;
-    background-color : #805d89!important;
-    border-color : #805d89!important;
+}
+
+.card-block a {
+    text-decoration : none;
+    color: #9271a8!important;
+}
+
+.card-block a:hover {
+    color : #63486a!important;
 }
