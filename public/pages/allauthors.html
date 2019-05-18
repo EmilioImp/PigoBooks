@@ -41,7 +41,7 @@
                  var pageCount =  arrayLength / pageSize; //pagine necessarie per contenere tutti gli autori del database
 
                  for( i; i < arrayLength; i++){  //per ogni elemento nell'array obj creo un list-group item con link alla pagina dell'autore, sua immagine e suo nome
-                     $(".card-columns").append('<div class="card"><a href="http://localhost:8080/xXEmilioXx/MyBookstore/1.0.0/author.html/' + jsArray[i].authorID + '" class="card-link"><img class="card-img" src="' + jsArray[i].image_path + '" alt="Card img cap"><div class="card-body"><h5 class="card-title">' + jsArray[i].firstName + " " + jsArray[i].lastName + '</h5></div></a></div>');
+                     $(".card-columns").append('<div class="card"><a href="author.html?parameter=' + jsArray[i].authorID + '" class="card-link"><img class="card-img" src="' + jsArray[i].image_path + '" alt="Card img cap"><div class="card-body"><h5 class="card-title">' + jsArray[i].firstName + " " + jsArray[i].lastName + '</h5></div></a></div>');
                  }
 
                  //se pageCount > 1 faccio per prima l'append del simbolo <<
@@ -124,12 +124,12 @@
                             Books
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Genres</a>
-                            <a class="dropdown-item" href="#">Themes</a>
+                            <a class="dropdown-item" href="allbookgenres.html">Genres</a>
+                            <a class="dropdown-item" href="allbookthemes.html">Themes</a>
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Authors</a>
+                        <a class="nav-link" href="allauthors.html">Authors</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Events</a>
@@ -144,7 +144,7 @@
                         <a class="nav-link" href="#">Require a Gift Card</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Contact Us</a>
+                        <a class="nav-link" href="contact%20us.html">Contact Us</a>
                     </li>
                 </ul>
             </div>
@@ -154,7 +154,7 @@
     <div class="container-fluid">
         <h1>List of all authors</h1>
 
-        <!--empty linked list-group (up to 3 elements per page)-->
+        <!--empty card-columns (up to 10 elements per page)-->
         <div class="card-columns"></div>
 
         <!-- empty pagination (to be dynamically filled based on how many elements there are-->
@@ -200,7 +200,7 @@
                     <h6 class="text-uppercase font-weight-bold">Contact</h6>
                     <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto">
                     <p><b>
-                        <a class="link" href="#!">Contact Us</a>
+                        <a class="link" href="contact%20us.html">Contact Us</a>
                     </b></p>
                     <p>
                         <i class="fas fa-home"></i> Via della Troncaia 53, Olgiate Comasco (CO)</p>

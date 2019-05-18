@@ -9,23 +9,19 @@
         <meta name="viewport" content="width=device-width,initial-scale=1.0,shrink-to-fit=no">
         <title>Event page</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="../assets/js/getURLQueryParameter.js"></script>
 
         <script>
             $(document).ready(function(){
 
                 $.ajax({  //GET per ricevere un oggetto json con i dati dell'evento più il nome del libro (dalla tab Book) e dell'autore (dalla tab Bookauthor)
                     type : 'GET',
-                    url : 'http://localhost:8080/xXEmilioXx/MyBookstore/1.0.0/event/' + returnURLsLastChar(), //"+ eventid" al posto del valore specificato
+                    url : 'http://localhost:8080/xXEmilioXx/MyBookstore/1.0.0/event/' + getURLQueryParameter(), //"+ eventid" al posto del valore specificato
                     datatype : 'json',
                     success : function(response) {
                         adjustEventPage(response);
                     }
                 });
-
-                function returnURLsLastChar(){  //serve per ottenere il valore dell'authorID su cui costruire la pagina
-                    var str = window.location.href;  //salvo come stringa l'URL di questa pagina
-                    return str.charAt(str.length - 1);  //estraggo l'ultimo char dell'URL, che sarà per forza l'authorID
-                }
 
                 function adjustEventPage(eventjson){
                     var event = JSON.parse(JSON.stringify(eventjson));
@@ -37,7 +33,7 @@
                     document.getElementById("date").innerHTML = event[0].date;
                     document.getElementById("time").innerHTML = event[0].time;
                     document.getElementById("booklink").innerHTML = event[0].book.name;
-                    $("#booklink").attr("href", "/book/" + event[0].book.bookID);
+                    $("#booklink").attr("href", "book.html?parameter=" + event[0].book.bookID);
                     //$("#authorlink").innerHTML = event[0].authorFirstName + " " + event[0].authorLastName;
                 }
             })
@@ -63,12 +59,12 @@
                                 Books
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Genres</a>
-                                <a class="dropdown-item" href="#">Themes</a>
+                                <a class="dropdown-item" href="allbookgenres.html">Genres</a>
+                                <a class="dropdown-item" href="allbookthemes.html">Themes</a>
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Authors</a>
+                            <a class="nav-link" href="allauthors.html">Authors</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Events</a>
@@ -83,7 +79,7 @@
                             <a class="nav-link" href="#">Require a Gift Card</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Contact Us</a>
+                            <a class="nav-link" href="contact%20us.html">Contact Us</a>
                         </li>
                     </ul>
                 </div>
@@ -94,26 +90,22 @@
 
         <h1 id="eventid"> [Event #eventid] </h1>
 
-        <div class="card mb-3" style="width: 80%;">
-            <div class="row no-gutters">
-                <div class="col-sm-4">
-                    <img id="eventImg" src="#" class="card-img" alt="Event image">
-                </div>
+        <div class="card flex-row mb-3" style="width: 80%;">
+            <div class="card-header border-0">
+                <img id="eventImg" src="#" class="card-img" alt="Event image">
+            </div>
 
-                <div class="col-sm-8">
-                    <div class="card-body"> <!--o così oppure se non riesce/non è bello provo ad aggiungere tramite Navigation un nav per ogni informazione-->
-                        <h4 id="eventname" class="card-title"> [Event-name] </h4> <!--aggiungo dinamicamente l'eventID-->
-                        <h5 class="card-subtitle mb-2 text-muted"> Which book:</h5> <!-- visualizzo a sx il subtitle e a dx il valore-->
-                        <p id="bookname"> [book name]</p>
-                        <h5 class="card-subtitle mb-2 text-muted"> Where:</h5>
-                        <p id="location"> [location]</p>
-                        <h5 class="card-subtitle mb-2 text-muted"> On the day:</h5>
-                        <p id="date"> [date]</p>
-                        <h5 class="card-subtitle mb-2 text-muted"> At the hour:</h5>
-                        <p id="time"> [time]</p>
-                        <p class="card-text">[paragrafo in cui aggiungere eventuali descrizioni aggiuntive]</p> <!--per questo metto overflow:auto o scroll-->
-                    </div>
-                </div>
+            <div class="card-block"> <!--o così oppure se non riesce/non è bello provo ad aggiungere tramite Navigation un nav per ogni informazione-->
+                <h4 id="eventname" class="card-title"> [Event-name] </h4> <!--aggiungo dinamicamente l'eventID-->
+                <h5 class="card-subtitle mb-2 text-muted"> Which book:</h5>
+                <p id="bookname"> [book name]</p>
+                <h5 class="card-subtitle mb-2 text-muted"> Where:</h5>
+                <p id="location"> [location]</p>
+                <h5 class="card-subtitle mb-2 text-muted"> On the day:</h5>
+                <p id="date"> [date]</p>
+                <h5 class="card-subtitle mb-2 text-muted"> At the hour:</h5>
+                <p id="time"> [time]</p>
+                <p class="card-text">[paragrafo in cui aggiungere eventuali descrizioni aggiuntive]</p> <!--per questo metto overflow:auto o scroll-->
             </div>
         </div>
 
@@ -165,7 +157,7 @@
                         <h6 class="text-uppercase font-weight-bold">Contact</h6>
                         <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto">
                         <p><b>
-                            <a class="link" href="#!">Contact Us</a>
+                            <a class="link" href="contact%20us.html">Contact Us</a>
                         </b></p>
                         <p>
                             <i class="fas fa-home"></i> Via della Troncaia 53, Olgiate Comasco (CO)</p>
