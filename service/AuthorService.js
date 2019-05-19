@@ -10,11 +10,13 @@ const db = knex.database;
  * returns Author
  **/
 exports.getAuthorByID = async function(authorID) {
+    //get the data about the author
     const author = await db.select('firstName','lastName','image_path').from('Author').where('authorID', authorID);
     if (author.length <= 0) throw {actualResponse: 'Author not found', status: 404};
     else{
-      author[0].writtenBooks = await db.select('Book.bookID', 'name').from('Book').join('BookAuthor', {'Book.bookID' : 'BookAuthor.bookID'}).where('authorID', authorID);
-      return {actualResponse: author, status: 200};
+        //get the books written bu the author
+        author[0].writtenBooks = await db.select('Book.bookID', 'name').from('Book').join('BookAuthor', {'Book.bookID' : 'BookAuthor.bookID'}).where('authorID', authorID);
+        return {actualResponse: author, status: 200};
     }
 };
 
@@ -25,6 +27,7 @@ exports.getAuthorByID = async function(authorID) {
  * returns List
  **/
 exports.getAuthors = async function() {
+    //get the data about all the authors
     const authors = await db.select().from('Author');
     if (authors.length <= 0) throw {actualResponse: 'No author found', status: 404};
     else return {actualResponse: authors, status: 200};

@@ -10,11 +10,13 @@ const db = knex.database;
  * returns Event
  */
 exports.getEventByID = async function(eventID) {
+    //get the data about the event
     const event = await db.select('eventID','name','location','time','date','image_path').from('Event').where('eventID', eventID);
     if (event.length <= 0){
       throw {actualResponse: 'Event not found', status: 404};
     }
     else {
+        //get the book presented in the event
         const book = await db.select('Book.bookID','Book.name').from('Book').join('Event', {'Book.bookID' : 'Event.bookID'}).where('eventID', eventID);
         event[0].book = book[0];
         return {actualResponse: event, status: 200};
@@ -26,6 +28,7 @@ exports.getEventByID = async function(eventID) {
  * returns List
  */
 exports.getEvents = async function() {
+    //get the data about all the events
     const events = await db.select().from('Event');
     if (events.length <= 0){
       throw {actualResponse: 'No event found', status: 404};

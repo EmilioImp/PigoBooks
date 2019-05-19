@@ -9,7 +9,7 @@ $(document).ready(function(){
         const loginItem =$('#loginItem');
         loginItem.empty();
         loginItem.append('<h5> You are logged in </h5>' +
-            '<a href="#" type=""submit" class="btn btn-primary mb-2" id="submitLogoutButton">Log out</a>');
+            '<a href="#" type="submit" class="btn btn-primary mb-2" id="submitLogoutButton">Log out</a>');
 
         $('#submitLogoutButton').click(function () {
             window.localStorage.removeItem("accessToken");

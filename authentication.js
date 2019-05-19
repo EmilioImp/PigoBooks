@@ -1,3 +1,4 @@
+const config = require('config');
 const jwt = require('jsonwebtoken');
 
 module.exports = function (req, res) {
@@ -10,7 +11,7 @@ module.exports = function (req, res) {
 
 
     try{
-        req.user = jwt.verify(token, 'jwtPrivateKey');
+        req.user = jwt.verify(token, config.get('jwtPrivateKey'));
         return true;
     }
     catch (exception){
@@ -18,4 +19,4 @@ module.exports = function (req, res) {
         res.end('Access denied: invalid token');
         return false;
     }
-}
+};
