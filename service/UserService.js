@@ -101,7 +101,7 @@ exports.getUserCart = async function(userID) {
     if (user.length <= 0) throw {actualResponse: 'User not found', status: 404};
     else{
         //get the books in user's cart
-        const books = await db.select('Book.bookID','Book.name','Cart.copies',).from('Cart').join('Book',{'Book.bookID' : 'Cart.bookID'}).where('userID', userID);
+        const books = await db.select('Book.bookID','Book.name','Book.image_path','Cart.copies',).from('Cart').join('Book',{'Book.bookID' : 'Cart.bookID'}).where('userID', userID);
         //for every book, get the authors
         const nBooks = books.length;
         for (var i=0; i< nBooks; i++){

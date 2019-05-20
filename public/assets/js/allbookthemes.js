@@ -30,6 +30,30 @@ $(document).ready(function(){
                 }
             });
 
+            function addAuthorNames(jsArray, i){
+                var b = 0;
+                var nAuthors = jsArray[i].authors.length;
+                var names;
+                if (nAuthors === 1){
+                    names = jsArray[i].authors[b].firstName + " " + jsArray[i].authors[b].lastName;
+                }
+                else if (nAuthors === 0){
+                    names = "Unknown";
+                }
+                else {
+                    for (b; b < nAuthors - 1; b++){
+                        if (b === 0){
+                            names = jsArray[i].authors[b].firstName + " " + jsArray[i].authors[b].lastName + ", ";
+                        }
+                        else {
+                            names = names + jsArray[i].authors[b].firstName + " " + jsArray[i].authors[b].lastName + ", ";
+                        }
+                    }
+                    names = names + jsArray[i].authors[b].firstName + " " + jsArray[i].authors[b].lastName;  //the last name is added separately to avoid adding the comma
+                }
+                return names;
+            }
+
             function createBooks(response){
                 var i = 0;
                 var obj = JSON.stringify(response);
@@ -49,16 +73,17 @@ $(document).ready(function(){
                         '</div>' +
                         '<div class="col-md-9">' +
                         '<h5 class="card-title">' + jsArray[i].name + '</h5>' +
-                        '<small class="text-faded"><p>[Authors name]</p></small>' +
+                        '<small class="text-faded"><p class="authorNames">' + addAuthorNames(jsArray, i) + '</p></small>' +
                         '</div>' +
                         '</div>' +
                         '</a>' +
                         '</div>');
 
-                    if (booksPerRow == 1){
+                    if (booksPerRow === 1){
                         $(".card-deck").append('<div class="w-100"></div>');
                         booksPerRow = 0;
-                    }else{
+                    }
+                    else{
                         booksPerRow++;
                     }
                 }

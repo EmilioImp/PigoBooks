@@ -112,6 +112,10 @@ h1 {
     max-height : 30%;
 }
 
+.card > a {
+    color : #9271a8;
+}
+
 .card-img {
     max-width: 100%;
     height: 100%;
@@ -129,4 +133,15 @@ h1 {
 
 .card-title {
     margin : 20% 0 20% 0;
+}
+
+.authorNames {
+    text-decoration: none;
+    color : #9271a8;
+}
+
+#shoppingCart > a > img {
+    width : 50px;
+    height : 50px;
+    color : #9271a8;
 }
