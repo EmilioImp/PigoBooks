@@ -84,7 +84,7 @@ module.exports.userCartBuyBooksPOST = function userCartBuyBooksPOST (req, res, n
   const authenticated = auth(req, res);
   if (!authenticated) return;
   var userID = req.user.userID;
-  User.userCartBuyBooksPOST(userID)
+  User.userCartBuyBooks(userID)
     .then(function (response) {
       utils.writeJson(res, response.actualResponse, response.status);
     })
@@ -98,11 +98,24 @@ module.exports.userCartDeleteBookBookIDDELETE = function userCartDeleteBookBookI
   if (!authenticated) return;
   var userID = req.user.userID;
   var bookID = req.swagger.params['bookID'].value;
-  User.userCartDeleteBookBookIDDELETE(bookID, userID)
+  User.userCartDeleteBookBookID(bookID, userID)
     .then(function (response) {
       utils.writeJson(res, response.actualResponse, response.status);
     })
     .catch(function (response) {
       utils.writeJson(res, response.actualResponse, response.status);
     });
+};
+
+module.exports.getUserOrders = function deleteUser (req, res, next) {
+  const authenticated = auth(req, res);
+  if (!authenticated) return;
+  var userID = req.user.userID;
+  User.getUserOrders(userID)
+      .then(function (response) {
+        utils.writeJson(res, response.actualResponse, response.status);
+      })
+      .catch(function (response) {
+        utils.writeJson(res, response.actualResponse, response.status);
+      });
 };

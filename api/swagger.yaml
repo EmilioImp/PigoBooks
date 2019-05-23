@@ -198,7 +198,7 @@ paths:
         403:
           description: "Access denied"
       security:
-      - json_web_token: []
+      - Bearer: []
       x-security-scopes:
       - "user"
       x-swagger-router-controller: "User"
@@ -271,7 +271,7 @@ paths:
         403:
           description: "Access denied"
       security:
-      - json_web_token: []
+      - Bearer: []
       x-security-scopes:
       - "user"
       x-swagger-router-controller: "User"
@@ -292,7 +292,7 @@ paths:
         403:
           description: "Access denied"
       security:
-      - json_web_token: []
+      - Bearer: []
       x-security-scopes:
       - "user"
       x-swagger-router-controller: "User"
@@ -325,7 +325,7 @@ paths:
         404:
           description: "Book not found"
       security:
-      - json_web_token: []
+      - Bearer: []
       x-security-scopes:
       - "user"
       x-swagger-router-controller: "User"
@@ -334,7 +334,7 @@ paths:
       tags:
       - "user"
       summary: "Deletes book from the user's cart"
-      operationId: "userCartDeleteBookBookIDDELETE"
+      operationId: "userCartDeleteBookBookID"
       produces:
       - "application/json"
       parameters:
@@ -354,7 +354,7 @@ paths:
         404:
           description: "Book not found"
       security:
-      - json_web_token: []
+      - Bearer: []
       x-security-scopes:
       - "user"
       x-swagger-router-controller: "User"
@@ -363,7 +363,7 @@ paths:
       tags:
       - "user"
       summary: "Buy books from user's cart"
-      operationId: "userCartBuyBooksPOST"
+      operationId: "userCartBuyBooks"
       produces:
       - "application/json"
       parameters: []
@@ -375,9 +375,31 @@ paths:
         403:
           description: "Access denied"
       security:
-      - json_web_token: []
+      - Bearer: []
       x-security-scopes:
       - "user"
+      x-swagger-router-controller: "User"
+  /user/orders:
+    get:
+      tags:
+        - "user"
+      summary: "Get orders of user"
+      operationId: "getUserOrders"
+      produces:
+        - "application/json"
+      responses:
+        201:
+          description: "Successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Order"
+        404:
+          description: "User not found"
+      security:
+        - Bearer: []
+      x-security-scopes:
+        - "user"
       x-swagger-router-controller: "User"
   /author:
     get:
@@ -468,7 +490,7 @@ paths:
           description: "Event not found"
       x-swagger-router-controller: "Event"
 securityDefinitions:
-  json_web_token:
+  Bearer:
     type: "apiKey"
     name: "json_web_token"
     in: "header"
@@ -633,6 +655,20 @@ definitions:
         type: "array"
         items:
           $ref: "#/definitions/BookInCart"
+  Order:
+    type: "array"
+    items:
+      $ref: "#/definitions/OrderBook"
+  OrderBook:
+    type: "object"
+    properties:
+      book:
+        $ref: "#/definitions/BookIDandName"
+      copies:
+        type: "integer"
+        format: "int64"
+      date:
+        type: "string"
   AddToCartRequest:
     type: "object"
     properties:
