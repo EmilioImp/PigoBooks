@@ -10,95 +10,11 @@
      <meta name="viewport" content="width=device-width,initial-scale=1.0,shrink-to-fit=no">
      <title>List of all authors</title>
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-     <script>
-         $(document).ready(function(){
-
-             $.ajax({
-                 type : 'GET',
-                 url : '/xXEmilioXx/MyBookstore/1.0.0/author',
-                 dataType : 'json',
-                 success : function(response){
-                     console.log(response);
-                     createPages(response);
-                 }
-             });
-
-             function createPages(response){
-                 var i = 0;
-                 var j = 0;
-                 var pageSize = 10; //max numero di elementi Autore per pagina
-                 var obj = JSON.stringify(response);
-                 var jsArray = JSON.parse(obj); //converto l'array di JSON in array di oggetti js
-                 var arrayLength = jsArray.length;
-                 var pageCount =  arrayLength / pageSize; //pagine necessarie per contenere tutti gli autori del database
-
-                 for( i; i < arrayLength; i++){  //per ogni elemento nell'array obj creo un list-group item con link alla pagina dell'autore, sua immagine e suo nome
-                     $(".card-columns").append('<div class="card"><a href="author.html?parameter=' + jsArray[i].authorID + '" class="card-link"><img class="card-img" src="' + jsArray[i].image_path + '" alt="Card img cap"><div class="card-body"><h5 class="card-title">' + jsArray[i].firstName + " " + jsArray[i].lastName + '</h5></div></a></div>');
-                 }
-
-                 //se pageCount > 1 faccio per prima l'append del simbolo <<
-                 if (pageCount > 1){
-                     $(".pagination").append('<li id="first" class="page-item"><a href="#" aria-label="First"><span aria-hidden="true">&laquo;</span></a></li>');
-                 }
-
-                 for( j ; j < pageCount; j++){ //creo il numero di pagine necessarie per contenere tutti gli elementi appena creati
-                     $(".pagination").append('<li class="page-item"><a href="#">'+(j+1)+'</a></li>');
-                 }
-
-                 //finito di creare la paginazione, se pageCount > 1 aggiungo anche il simbolo >>
-                 if (pageCount > 1){
-                     $(".pagination").append('<li id="last" class="page-item"><a href="#" aria-label="Last"><span aria-hidden="true">&raquo;</span></a></li>');
-                 }
-
-                 //se ho una sola pagina allora non ho creato le icone >> e << e quindi la prima pagina è current
-                 if (pageCount === 1){
-                     $(".pagination li").first().find("a").addClass("current");
-                 }
-
-                 //se ho più pagine allora devo saltare >> nel decidere quale pagina è current
-                 else {
-                     $(".pagination li").first().next().find("a").addClass("current");
-                 }
-
-                 showPage = function(page) {
-                     $(".card").hide();
-                     $(".card").each(function(n) {
-                         if (n >= pageSize * (page - 1) && n < pageSize * page)
-                             $(this).show();
-                     });
-                 }
-
-                 showPage(1);
-
-                 //gestione della pressione su <<
-                 $("#first").click(function() {
-                     $(".pagination li a").removeClass("current");
-                     $("#first").next().find("a").addClass("current");
-                     showPage(parseInt($("#first").next().find("a").text()))
-                 });
-
-                 //gestione della pressione su >>
-                 $("#last").click(function() {
-                     $(".pagination li a").removeClass("current");
-                     $("#last").prev().find("a").addClass("current");
-                     showPage(parseInt($("#last").prev().find("a").text()))
-                 });
-
-                 //generica gestione delle pagine con indici numerici
-                 $(".pagination li a").click(function() {
-                     $(".pagination li a").removeClass("current");
-                     $(this).addClass("current");
-                     showPage(parseInt($(this).text()))
-                 });
-             }
-         });
-     </script>
+     <script src="../assets/js/allauthors.js"></script>
      <script src="../assets/js/login.js"></script>
 
  </head>
  <body>
-    <!--Navigation bar and Header-->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="../index.html">
@@ -129,10 +45,10 @@
                         <a class="nav-link" href="#">Events</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Best Sellers</a>
+                        <a class="nav-link" href="best_sellers.html">Best Sellers</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Our Favourites</a>
+                        <a class="nav-link" href="ourfavouritereadings.html">Our Favourites</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Require a Gift Card</a>
@@ -168,39 +84,26 @@
 
     </div>
 
-    <!--Footer-->
     <footer class="page-footer font-small">
-        <!-- Footer Links -->
         <div class="container-fluid text-center text-md-left mt-5">
-            <!-- Grid row -->
             <div class="row mt-3">
-                <!-- Grid column -->
                 <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-                    <!-- Content -->
                     <h6 class="text-uppercase font-weight-bold">Pigo Books</h6>
                     <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto">
                     <p>2019 © Pigo Books srl</p>
                     <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto">
                 </div>
-                <!-- Grid column -->
-                <!-- Grid column -->
-                <!-- Grid column -->
-                <!-- Grid column -->
                 <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-4">
-                    <!-- Links -->
                     <h6 class="text-uppercase font-weight-bold">Useful links</h6>
                     <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto">
                     <p>
                         <a class="link" href="faq.html">FAQ</a>
                     </p>
                     <p>
-                        <a class="link" href="#!">Ordering and Shipping</a>
+                        <a class="link" href="ordering&shipping.html">Ordering and Shipping</a>
                     </p>
                 </div>
-                <!-- Grid column -->
-                <!-- Grid column -->
                 <div class="col-md-5 col-lg-4 col-xl-4 mx-auto mb-md-0 mb-4">
-                    <!-- Links -->
                     <h6 class="text-uppercase font-weight-bold">Contact</h6>
                     <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto">
                     <p><b>
@@ -214,12 +117,8 @@
                         <a class="link" href="tel:+311-555-2368">+311-555-2368</a><br/>
                     </address>
                 </div>
-                <!-- Grid column -->
-                <!-- Grid row -->
             </div>
         </div>
-        <!-- Footer Links -->
-        <!-- Copyright -->
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

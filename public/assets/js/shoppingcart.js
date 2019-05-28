@@ -69,13 +69,13 @@ $(document).ready(function(){
         var j = 0;
         var pageSize = 4;
         var obj = JSON.stringify(response);
-        var jsArray = JSON.parse(obj); //converto l'array di JSON in array di oggetti js
+        var jsArray = JSON.parse(obj); //converting the json array in js objects array
         var arrayLength = jsArray.length;
         var pageCount = arrayLength / pageSize;
 
         $("#booksCol").append('<hr class="featurette-divider">');
         $("#actionsCol").append('<hr class="featurette-divider">');
-        if (arrayLength === 0){ //empty cart
+        if (arrayLength === 0){    //empty cart
             $(".container-cart").append('<div class="featurette"><h1 class="error-emoji text-faded">' + "\\(o_o)/" + '</h1><p class="lead text-faded" id="empty-cart">' + "Your shopping cart is empty!" + '</p><hr class="featurette-divider"></div>');
         }
         else {
@@ -128,21 +128,21 @@ $(document).ready(function(){
 
             showPage(1);
 
-            //gestione della pressione su <<
+            //handling the click on <<
             $("#first").click(function() {
                 $(".pagination li a").removeClass("current");
                 $("#first").next().find("a").addClass("current");
                 showPage(parseInt($("#first").next().find("a").text()))
             });
 
-            //gestione della pressione su >>
+            //handling the click on >>
             $("#last").click(function() {
                 $(".pagination li a").removeClass("current");
                 $("#last").prev().find("a").addClass("current");
                 showPage(parseInt($("#last").prev().find("a").text()))
             });
 
-            //generica gestione delle pagine con indici numerici
+            //handling of clicks on generic numerical indexes
             $(".pagination li a").click(function() {
                 $(".pagination li a").removeClass("current");
                 $(this).addClass("current");
@@ -154,7 +154,6 @@ $(document).ready(function(){
     $("div").on('click', '.icon-btn', function(){
         if (typeof(Storage) !== "undefined"){
             window.sessionStorage.setItem("pressedDelete", $(this).attr("id"));
-            alert(window.sessionStorage.getItem("pressedDelete"));
         }
         else {
             pressedDelete = $(this).attr("id");

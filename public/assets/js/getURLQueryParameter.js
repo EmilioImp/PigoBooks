@@ -1,8 +1,8 @@
 function getURLQueryParameter(){
-    var url_string = window.location.href; //salvo in url_string l'url di questa pagina sotto forma di stringa
-    var url = new URL(url_string); //lo faccio codificare come effettivo URL
-    var param = url.searchParams.get("parameter");
+    var url_string = window.location.href; //saving the url of the actual page as string
+    var url = new URL(url_string); //coding the url string as a real URL
+    var param = url.searchParams.get("parameter"); //parameter is the general name given to every parameter used (authorid, bookid...)
     return param;
 }
 
-//es. sono in una pagina con URL "https://helloworld.com/hello/findByWorld?world=earth" e voglio ottenere il valore di world (earth in questo caso)
+//es.  to be used when in a page like "https://helloworld.com/hello/findByWorld?world=earth" and there's the need to extract world's value from the url (earth in this case)

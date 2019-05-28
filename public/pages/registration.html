@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0,shrink-to-fit=no">
     <title>Registration</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="../assets/js/registration.js"></script>
     <script src="../assets/js/login.js"></script>
   </head>
   <body>
@@ -42,10 +43,10 @@
             <a class="nav-link" href="#">Events</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Best Sellers</a>
+            <a class="nav-link" href="best_sellers.html">Best Sellers</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Our Favourites</a>
+            <a class="nav-link" href="ourfavouritereadings.html">Our Favourites</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Require a Gift Card</a>
@@ -70,11 +71,11 @@
 
 
 
- <h1>Registration</h1>
-        <p>Submit this form in order to registrate to our website!</p>
+    <h1>Registration</h1>
+    <p>Submit this form in order to registrate to our website!</p>
 
 
-        <div class="container">
+    <div class="container">
         <form class="needs-validation" id = "registrationForm" novalidate>
             <div class="form-row">
                 <div class="col-7 col-md-4">
@@ -128,97 +129,75 @@
                     <div class="invalid-feedback">Please write a valide phone number</div>
                 </div>
             </div>
+
             <p></p>
-  <a href="#" type="submit" class="btn btn-primary" id="submitButton">Register</a>
-</form>
-<p></p>
-        </div>
+
+            <a href="#" type="submit" class="btn btn-primary" id="submitButton">Register</a>
+        </form>
+        <p></p>
+    </div>
 
 
-        <script>
-// Example starter JavaScript for disabling form submissions if there are invalid fields
-(function() {
-  'use strict';
-  window.addEventListener('load', function() {
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    var forms = document.getElementsByClassName('needs-validation');
-    // Loop over them and prevent submission
-    var validation = Array.prototype.filter.call(forms, function(form) {
-      form.addEventListener('submit', function(event) {
-        if (form.checkValidity() === false) {
-          event.preventDefault();
-          event.stopPropagation();
-        }
-        form.classList.add('was-validated');
-      }, false);
-    });
-  }, false);
-})();
-</script>
+    <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function() {
+          'use strict';
+          window.addEventListener('load', function() {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function(form) {
+              form.addEventListener('submit', function(event) {
+                if (form.checkValidity() === false) {
+                  event.preventDefault();
+                  event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+              }, false);
+            });
+          }, false);
+        })();
+    </script>
 
-
-
-
-
-    <!-- Footer -->
-<footer class="page-footer font-small">
-    <!-- Footer Links -->
-<div class="container text-center text-md-left mt-5">
-      <!-- Grid row -->
-      <div class="row mt-3">
-        <!-- Grid column -->
-        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-          <!-- Content -->
-          <h6 class="text-uppercase font-weight-bold">Pigo Books</h6>
-          <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto">
-          <p>2019 © Pigo Books srl</p>
-          <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto">
-        </div>
-        <!-- Grid column -->
-        <!-- Grid column -->
-        <!-- Grid column -->
-        <!-- Grid column -->
-        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-4">
-          <!-- Links -->
-          <h6 class="text-uppercase font-weight-bold">Useful links</h6>
-          <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto">
-          <p>
-            <a class="link" href="faq.html">FAQ</a>
-          </p>
-          <p>
-            <a class="link" href="#!">Ordering and Shipping</a>
-          </p>
-        </div>
-        <!-- Grid column -->
-        <!-- Grid column -->
-        <div class="col-md-5 col-lg-4 col-xl-4 mx-auto mb-md-0 mb-4">
-          <!-- Links -->
-          <h6 class="text-uppercase font-weight-bold">Contact</h6>
-          <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto">
-          <p><b>
-            <a class="link" href="contact%20us.html">Contact Us</a>
-          </b></p>
-          <p>
-            <i class="fas fa-home"></i> Via della Troncaia 53, Olgiate Comasco (CO)</p>
-            <address>
-              <a class="link" href="mailto:pigobooks@gmail.com">pigobooks@gmail.com</a><br/>
-              <p></p>
-              <a class="link" href="tel:+311-555-2368">+311-555-2368</a><br/>
-            </address>
-        </div>
-        <!-- Grid column -->
-       <!-- Grid row -->
-      </div>
-     </div>
-    <!-- Footer Links -->
-    <!-- Copyright -->
-  </footer>
-  <!-- Footer -->
+    <footer class="page-footer font-small">
+        <div class="container text-center text-md-left mt-5">
+              <div class="row mt-3">
+                <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                  <h6 class="text-uppercase font-weight-bold">Pigo Books</h6>
+                  <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto">
+                  <p>2019 © Pigo Books srl</p>
+                  <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto">
+                </div>
+                <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-4">
+                  <h6 class="text-uppercase font-weight-bold">Useful links</h6>
+                  <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto">
+                  <p>
+                    <a class="link" href="faq.html">FAQ</a>
+                  </p>
+                  <p>
+                    <a class="link" href="ordering&shipping.html">Ordering and Shipping</a>
+                  </p>
+                </div>
+                <div class="col-md-5 col-lg-4 col-xl-4 mx-auto mb-md-0 mb-4">
+                  <h6 class="text-uppercase font-weight-bold">Contact</h6>
+                  <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto">
+                  <p><b>
+                    <a class="link" href="contact%20us.html">Contact Us</a>
+                  </b></p>
+                  <p>
+                    <i class="fas fa-home"></i> Via della Troncaia 53, Olgiate Comasco (CO)</p>
+                    <address>
+                      <a class="link" href="mailto:pigobooks@gmail.com">pigobooks@gmail.com</a><br/>
+                      <p></p>
+                      <a class="link" href="tel:+311-555-2368">+311-555-2368</a><br/>
+                    </address>
+                </div>
+              </div>
+             </div>
+      </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-
-    <script src="../assets/js/registration.js"></script>
   </body>
 </html>

@@ -10,50 +10,13 @@
         <title>Event page</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="../assets/js/getURLQueryParameter.js"></script>
-
-        <script>
-            $(document).ready(function(){
-
-                $.ajax({  //GET per ricevere un oggetto json con i dati dell'evento più il nome del libro (dalla tab Book) e dell'autore (dalla tab Bookauthor)
-                    type : 'GET',
-                    url : 'http://localhost:8080/xXEmilioXx/MyBookstore/1.0.0/event/' + getURLQueryParameter(), //"+ eventid" al posto del valore specificato
-                    datatype : 'json',
-                    success : function(response) {
-                        adjustEventPage(response);
-                    }
-                });
-
-                /*function iconControl(){
-                $("a.socialicon i").hide();
-                $("a.socialicon").each(function(){
-                    if ($(this).attr("href") !== '#'){
-                        $(this).find('i').show();
-                    }
-                });
-            }*/
-
-                function adjustEventPage(eventjson){
-                    var event = JSON.parse(JSON.stringify(eventjson));
-                    $(".card-img").attr("src", event[0].image_path); //salvo nella pagina l'img dell'evento
-                    document.getElementById("eventid").innerHTML = "Event" + " " + "#" + event[0].eventID;
-                    document.getElementById("eventname").innerHTML = event[0].name;
-                    document.getElementById("bookname").innerHTML = event[0].book.name;
-                    document.getElementById("location").innerHTML = event[0].location;
-                    document.getElementById("date").innerHTML = event[0].date;
-                    document.getElementById("time").innerHTML = event[0].time;
-                    document.getElementById("booklink").innerHTML = event[0].book.name;
-                    $("#booklink").attr("href", "book.html?parameter=" + event[0].book.bookID);
-                    //linee di codice che creino dinamicamente le icone dei social SE il loro valore nel database è diverso da # (if event[0].fblink/instagramlink/twitterlink !== "#") {}
-                    //iconControl();
-                    //$("#authorlink").innerHTML = event[0].authorFirstName + " " + event[0].authorLastName;
-                }
-            })
-        </script>
+        <script src="../assets/js/event.js"></script>
+        <script src="../assets/js/login.js"></script>
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="../index.html">
                     <img src="http://i63.tinypic.com/vg33mq.png" alt="">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -63,7 +26,7 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="../index.html">Home <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -81,10 +44,10 @@
                             <a class="nav-link" href="#">Events</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Best Sellers</a>
+                            <a class="nav-link" href="best_sellers.html">Best Sellers</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Our Favourites</a>
+                            <a class="nav-link" href="ourfavouritereadings.html">Our Favourites</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Require a Gift Card</a>
@@ -97,7 +60,6 @@
             </div>
         </nav>
 
-        <!--eventualmente per le carte cambio il colore del background (guardo sul sito di Bootstrap come fare)-->
 
         <h1 id="eventid"> [Event #eventid] </h1>
 
@@ -150,7 +112,7 @@
 
         <div id="link-box" class="container-fluid">
                 <p id="link-intro"> To see more about the book presented:</p>
-                <a id="booklink" class="btn btn-primary btn-sm active justify-content-center" href="#" role="button" aria-pressed="true"> [book name]</a> <!-- [bookID] per il link]-->
+                <a id="booklink" class="btn btn-primary btn-sm active justify-content-center" href="#" role="button" aria-pressed="true"> [book name]</a>
         </div>
 
         <!--
@@ -160,39 +122,26 @@
             </div>
         </div>-->
 
-        <!-- Footer -->
         <footer class="page-footer font-small">
-            <!-- Footer Links -->
             <div class="container text-center text-md-left mt-5">
-                <!-- Grid row -->
                 <div class="row mt-3">
-                    <!-- Grid column -->
                     <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-                        <!-- Content -->
                         <h6 class="text-uppercase font-weight-bold">Pigo Books</h6>
                         <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto">
                         <p>2019 © Pigo Books srl</p>
                         <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto">
                     </div>
-                    <!-- Grid column -->
-                    <!-- Grid column -->
-                    <!-- Grid column -->
-                    <!-- Grid column -->
                     <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-4">
-                        <!-- Links -->
                         <h6 class="text-uppercase font-weight-bold">Useful links</h6>
                         <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto">
                         <p>
                             <a class="link" href="faq.html">FAQ</a>
                         </p>
                         <p>
-                            <a class="link" href="#!">Ordering and Shipping</a>
+                            <a class="link" href="ordering&shipping.html">Ordering and Shipping</a>
                         </p>
                     </div>
-                    <!-- Grid column -->
-                    <!-- Grid column -->
                     <div class="col-md-5 col-lg-4 col-xl-4 mx-auto mb-md-0 mb-4">
-                        <!-- Links -->
                         <h6 class="text-uppercase font-weight-bold">Contact</h6>
                         <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto">
                         <p><b>
@@ -206,17 +155,11 @@
                             <a class="link" href="tel:+311-555-2368">+311-555-2368</a><br/>
                         </address>
                     </div>
-                    <!-- Grid column -->
-                    <!-- Grid row -->
                 </div>
             </div>
-            <!-- Footer Links -->
-            <!-- Copyright -->
         </footer>
-        <!-- Footer -->
 
         <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     </body>

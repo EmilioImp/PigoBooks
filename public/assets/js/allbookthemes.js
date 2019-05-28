@@ -12,7 +12,7 @@ $(document).ready(function(){
     function createFlexElements(response){
         var i = 0;
         var obj = JSON.stringify(response);
-        var jsArray = JSON.parse(obj); //converto l'array di JSON in array di oggetti js
+        var jsArray = JSON.parse(obj);
         var arrayLength = jsArray.length;
 
         for( i; i < arrayLength; i++){
