@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="../assets/css/header&footer.css">
     <link rel="stylesheet" href="../assets/css/style_form.css">
+    <link rel="stylesheet" href="../assets/css/style_contact%20us.css">
     <link rel="shortcut icon" type="image/png" href="../assets/img/favicon.png">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,shrink-to-fit=no">
@@ -68,44 +69,47 @@
      </div>
     </nav>
 
-    <h1>Contact us</h1>
-    <p>Submit this form if you want to contact us! We will send an answer to your email address as soon as possible.</p>
-
-    <div class="container">
+    <h1 class="display-4">Contact us</h1>
+    <p class="lead">Submit this form if you want to contact us! We will send an answer to your email address as soon as possible.</p>
 
 
-    <form class="needs-validation" novalidate>
-        <div class="form-row">
-            <div class="col-7 col-md-4">
-                <label class="formField" for="contactEmail">Email address</label>
-                <input type="email" class="form-control" id="contactEmail" placeholder="Email address"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
-                <div class="valid-feedback">Looks good!</div>
-                <div class="invalid-feedback">Please write a valid email address</div>
-            </div>
+    <div class="jumbotron jumbotron-fluid" id="content-box">
+
+        <div class="container" id="form-container">
+            <form class="needs-validation" novalidate>
+                <div class="form-row">
+                    <div class="col-7 col-md-4">
+                        <label class="formField" for="contactEmail">Email address</label>
+                        <input type="email" class="form-control" id="contactEmail" placeholder="Email address"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+                        <div class="valid-feedback">Looks good!</div>
+                        <div class="invalid-feedback">Please write a valid email address</div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="col-7 col-md-4">
+                        <label class="formField" for="contactObject">Object</label>
+                        <input type="text" class="form-control" id="contactObject" placeholder="Object" required>
+                        <div class="valid-feedback">Looks good!</div>
+                        <div class="invalid-feedback">Please write an object</div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="col-7 col-md-4">
+                        <label class="formField" for="contactMessage">Message</label>
+                        <textarea class="form-control" id="contactMessage" placeholder="Message" required></textarea>
+                        <div class="valid-feedback">Looks good!</div>
+                        <div class="invalid-feedback">Please write a message</div>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary" type="submit">Send message</button>
+            </form>
+
         </div>
-
-        <div class="form-row">
-            <div class="col-7 col-md-4">
-                <label class="formField" for="contactObject">Object</label>
-                <input type="text" class="form-control" id="contactObject" placeholder="Object" required>
-                <div class="valid-feedback">Looks good!</div>
-                <div class="invalid-feedback">Please write an object</div>
-            </div>
-        </div>
-
-        <div class="form-row">
-            <div class="col-7 col-md-4">
-                <label class="formField" for="contactMessage">Message</label>
-                <textarea class="form-control" id="contactMessage" placeholder="Message" required></textarea>
-                <div class="valid-feedback">Looks good!</div>
-                <div class="invalid-feedback">Please write a message</div>
-            </div>
-        </div>
-
-        <button class="btn btn-primary" type="submit">Send message</button>
-    </form>
-
     </div>
+
 
     <footer class="page-footer font-small">
 

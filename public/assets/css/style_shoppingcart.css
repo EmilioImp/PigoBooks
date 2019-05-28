@@ -3,7 +3,7 @@
 }
 
 .container-cart {
-    margin: 0 0 0 1em;
+    margin: 0 4em 0 4em;
 }
 
 #actionsCol {
@@ -63,7 +63,7 @@ h1.error-emoji {
 }
 
 .lead {
-    margin-bottom : 3em!important;
+    margin-bottom : 1em!important;
 }
 
 .featurette {
