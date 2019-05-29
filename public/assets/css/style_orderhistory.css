@@ -1,0 +1,19 @@
+.card-img {
+    float: left;
+    border-radius: 5px;
+    width : 150px;
+    height : 150px;
+}
+
+.card-header {
+    margin-bottom: 15px;
+}
+
+.flex-container {
+    flex-flow: nowrap;
+    justify-content: center;
+}
+
+.card-title > a{
+    color : #9271a8!important;
+}

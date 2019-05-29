@@ -103,7 +103,7 @@ exports.findBooksByTheme = async function(theme) {
  **/
 exports.getBookById = async function(bookID) {
   //get the data about the book
-  const book = await db.select('name','edition','isbn','cost','status','image_path').from('Book').where('bookID', bookID);
+  const book = await db.select('name','edition','isbn','cost','image_path').from('Book').where('bookID', bookID);
   if (book.length <= 0) throw {actualResponse: 'Book not found', status: 404};
   else{
     //get the authors of the book

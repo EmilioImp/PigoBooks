@@ -11,7 +11,7 @@ const db = knex.database;
  **/
 exports.getAuthorByID = async function(authorID) {
     //get the data about the author
-    const author = await db.select('firstName','lastName','image_path').from('Author').where('authorID', authorID);
+    const author = await db.select('firstName','lastName','image_path', 'shortBio').from('Author').where('authorID', authorID);
     if (author.length <= 0) throw {actualResponse: 'Author not found', status: 404};
     else{
         //get the books written bu the author
@@ -28,7 +28,7 @@ exports.getAuthorByID = async function(authorID) {
  **/
 exports.getAuthors = async function() {
     //get the data about all the authors
-    const authors = await db.select().from('Author');
+    const authors = await db.select('authorID', 'firstName','lastName','image_path').from('Author');
     if (authors.length <= 0) throw {actualResponse: 'No author found', status: 404};
     else return {actualResponse: authors, status: 200};
 };
