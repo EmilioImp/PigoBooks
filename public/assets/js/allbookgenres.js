@@ -68,10 +68,10 @@ $(document).ready(function(){
                     $(".card-deck").append('<div class="card text-center mb-3">' +
                         '<a href="book.html?parameter=' + jsArray[i].bookID + '">' +
                         '<div class="row no-gutters">' +
-                        '<div class="col-md-3">' +
+                        '<div class="col-md-4">' +
                         '<img src="' + jsArray[i].image_path + '" class="card-img" alt="Book image">' +
                         '</div>' +
-                        '<div class="col-md-9">' +
+                        '<div class="col-md-8">' +
                         '<h5 class="card-title">' + jsArray[i].name + '</h5>' +
                         '<small class="text-faded"><p class="authorNames">' + addAuthorNames(jsArray, i) +'</p></small>' +
                         '</div>' +

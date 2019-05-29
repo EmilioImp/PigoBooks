@@ -5,7 +5,6 @@ $(document).ready(function(){
         url : '/xXEmilioXx/MyBookstore/1.0.0/author',
         dataType : 'json',
         success : function(response){
-            console.log(response);
             createPages(response);
         }
     });
@@ -53,7 +52,7 @@ $(document).ready(function(){
                 if (n >= pageSize * (page - 1) && n < pageSize * page)
                     $(this).show();
             });
-        }
+        };
 
         showPage(1);
 
@@ -71,7 +70,7 @@ $(document).ready(function(){
             showPage(parseInt($("#last").prev().find("a").text()))
         });
 
-        //handling of clicks on generic numerical indexes
+        //handling the clicks on generic numerical indexes
         $(".pagination li a").click(function() {
             $(".pagination li a").removeClass("current");
             $(this).addClass("current");

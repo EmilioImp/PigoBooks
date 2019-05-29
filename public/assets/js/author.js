@@ -23,6 +23,7 @@ $(document).ready(function(){
 
         document.getElementById("authorName").innerHTML = author[0].firstName + " " + author[0].lastName; //dynamically creating the title
         $("#authorImg").attr("src", author[0].image_path); //adding the author's image
+        document.getElementById("shortBio").innerHTML = author[0].shortBio; //adding the author's short biography
         createBookList(author[0].writtenBooks); //filling the list group
     }
 

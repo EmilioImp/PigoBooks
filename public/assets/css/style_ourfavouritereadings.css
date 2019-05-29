@@ -6,10 +6,20 @@ h1 {
     margin-bottom : 0.5em;
 }
 
+.footer {
+    clear : both;
+}
+
+.column {
+    float: left;
+    display: block;
+    width: 33.3%;
+}
+
 .flip-card {
     background-color : transparent;
-    width : 300px;
-    height : 400px;
+    width : 65%;
+    height : 25vw;
     perspective : 1000px;
     margin : 4em auto 5em auto;
 }
@@ -19,7 +29,7 @@ h1 {
     width : 100%;
     height : 100%;
     text-align: center;
-    transition : 0.8s;
+    transition : 0.7s;
     transform-style : preserve-3d;
 }
 
@@ -74,6 +84,30 @@ h1 {
 
 .bookRef:hover {
     text-decoration : none;
-    color : black;
+    color : lightgray;
+}
+
+@media screen and (max-width: 600px) {
+    .column {
+        width: 100%!important;
+        display: block!important;
+        margin-bottom: 1em!important;
+    }
+
+    .flip-card {
+        height : 85vw!important;
+    }
+}
+
+@media screen and (max-width: 1000px){
+    .column {
+        width: 50%;
+        display : block;
+        margin-bottom: 1em;
+    }
+
+    .flip-card {
+        height : 40vw;
+    }
 }
 

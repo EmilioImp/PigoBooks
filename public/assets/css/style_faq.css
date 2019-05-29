@@ -9,14 +9,15 @@
 #content_box {
 	display : block;
 	margin-bottom : 0!important;
-	background-color: #E2D5DD!important;
-	padding-top : 0.1em;
+	background-color: white!important;
+	padding-top : 0.1rem;
+	padding-bottom : 0.5rem;
 }
 
 .question_text {
 	color : #805d89;
 	text-align : center;
-	line-height : 1.1;
+	line-height : 1.2;
 	font-weight : bold;
 	margin-bottom : 0.1em;
 	margin-left : 2em;
@@ -25,46 +26,9 @@
 
 .answer_text {
 	text-align : center;
-	line-height: 1.1;
+	line-height: 1.2;
 	word-spacing : 0.1em;
 	margin-bottom : 1.5em; 
 	margin-left : 2em;
     margin-right : 2em;
 }
-
-/*eventuale media query per sistemare il problema del container-fluid che non si adatta adeguatamente all'aumento dell'altezza
-(giocando con width e height e le percentuali rispetto allo schermo, oppure anche max-width per far "scalare" il testo in verticale una volta raggiunto il max)
-
-@media only screen and (min-height: 768px){
-	h1 {
-	  color : #805d89;
-	  text-align : center;
-	  font-weight : bold;
-	  margin-top : 0.5em;
-	  margin-bottom : 0.5em;
-    }
-
-    .question_text {
-	   color : #805d89;
-	   text-align : center;
-	   line-height : 1.1;
-	   font-weight : bold;
-	   margin-bottom : 0.1em;
-	   margin-left : 2em;
-       margin-right : 2em;
-    }
-
-    .answer_text {
-	  text-align : center;
-	  line-height: 1.1;
-	  word-spacing : 0.1em;
-  	  margin-bottom : 1.5em;
-  	  margin-left : 2em;
-      margin-right : 2em;
-    }
-
-    #content_box {
-
-    }
-}
-*/

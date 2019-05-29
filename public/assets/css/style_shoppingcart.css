@@ -11,12 +11,12 @@
 }
 
 #orderHistory {
-    margin : 30% 20% 0 20%;
+    margin : 10% 20% 0 20%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
 #orderBooks {
-    margin : 30% 20% 0 20%;
+    margin : 20% 20% 20% 20%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
@@ -54,6 +54,11 @@ h1.error-emoji {
     font-size: 15vw;
     margin-bottom : 1.5rem;
     opacity : 0.5;
+}
+
+#orderHistoryEmptyPageLink {
+    color : #805d89;
+    font-weight: bold;
 }
 
 #empty-cart {

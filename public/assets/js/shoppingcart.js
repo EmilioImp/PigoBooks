@@ -58,7 +58,8 @@ $(document).ready(function(){
                 $("#booksCol").append('<hr class="featurette-divider">');
                 $("#actionsCol").append('<hr class="featurette-divider">');
                 $(".container-cart").append('<div class="featurette"><h1 class="error-emoji text-faded">' + "\\(o_o)/" + '</h1><p class="lead text-faded"' + '' +
-                    'id="empty-cart">' + "Your shopping cart is empty!" + '</p><hr class="featurette-divider"></div>');
+                    'id="empty-cart">Your shopping cart is empty!<br>But you can click <a id="orderHistoryEmptyPageLink" href="orderhistory.html">here</a> to see your order history!' +
+                    '</p><hr class="featurette-divider"></div>');
             }
         })
 
@@ -76,7 +77,8 @@ $(document).ready(function(){
         $("#booksCol").append('<hr class="featurette-divider">');
         $("#actionsCol").append('<hr class="featurette-divider">');
         if (arrayLength === 0){    //empty cart
-            $(".container-cart").append('<div class="featurette"><h1 class="error-emoji text-faded">' + "\\(o_o)/" + '</h1><p class="lead text-faded" id="empty-cart">' + "Your shopping cart is empty!" + '</p><hr class="featurette-divider"></div>');
+            $(".container-cart").append('<div class="featurette"><h1 class="error-emoji text-faded">' + "\\(o_o)/" + '</h1><p class="lead text-faded" id="empty-cart">' +
+                'Your shopping cart is empty!<br>But you can click <a id="orderHistoryEmptyPageLink" href="orderhistory.html">here</a> to see your order history!</p><hr class="featurette-divider"></div>');
         }
         else {
             for (i; i < arrayLength; i++){
@@ -148,28 +150,29 @@ $(document).ready(function(){
                 $(this).addClass("current");
                 showPage(parseInt($(this).text()))
             });
+
+            $("#booksCol").on('click', '.icon-btn', function(){
+                if (typeof(Storage) !== "undefined"){
+                    window.sessionStorage.setItem("pressedDelete", $(this).attr("id"));
+                }
+                else {
+                    pressedDelete = $(this).attr("id");
+                }
+            });
+
+            $("#acceptModal").click(function(){
+                if (typeof(Storage) !== "undefined"){
+                    deleteBook(sessionStorage.getItem("pressedDelete"));
+                }
+                else {
+                    deleteBook(pressedDelete);
+                }
+            });
+
+
+            $("#orderBooks").on('click','a#order.btn.btn-primary', function(){
+                orderAllBooks();
+            })
         }
     }
-
-    $("div").on('click', '.icon-btn', function(){
-        if (typeof(Storage) !== "undefined"){
-            window.sessionStorage.setItem("pressedDelete", $(this).attr("id"));
-        }
-        else {
-            pressedDelete = $(this).attr("id");
-        }
-    });
-
-    $("#acceptModal").click(function(){
-        if (typeof(Storage) !== "undefined"){
-            deleteBook(sessionStorage.getItem("pressedDelete"));
-        }
-        else {
-            deleteBook(pressedDelete);
-        }
-    });
-
-    $("div").on('click','a#order.btn.btn-primary', function(){
-        orderAllBooks();
-    })
 });
