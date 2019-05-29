@@ -77,3 +77,13 @@ module.exports.getSimilarBooks = function getSimilarBooks(req, res, next) {
         utils.writeJson(res, response.actualResponse, response.status);
       })
 };
+
+module.exports.favouriteReadings = function favouriteReadings(req, res, next) {
+    Book.favouriteReadings()
+        .then(function (response) {
+            utils.writeJson(res, response.actualResponse, response.status);
+        })
+        .catch(function (response) {
+            utils.writeJson(res, response.actualResponse, response.status);
+        })
+};

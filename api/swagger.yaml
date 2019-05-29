@@ -181,6 +181,24 @@ paths:
         404:
           description: "No similar books found"
       x-swagger-router-controller: "Book"
+  /book/favouriteReadings:
+    get:
+      tags:
+      - "book"
+      summary: "Returns our favourite readings"
+      operationId: "favouriteReadings"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/FavouriteReadings"
+        400:
+          description: "No favourite readings found"
+      x-swagger-router-controller: "Book"
   /user:
     get:
       tags:
@@ -558,6 +576,16 @@ definitions:
         format: "int64"
       name:
         type: "string"
+  BookInFavourites:
+    type: "object"
+    properties:
+      bookID:
+        type: "integer"
+        format: "int64"
+      name:
+        type: "string"
+      image_path:
+        type: "string"
   BookInCart:
     type: "object"
     properties:
@@ -567,6 +595,8 @@ definitions:
       name:
         type: "integer"
         format: "int64"
+      image_path:
+        type: "string"
       copies:
         type: "integer"
         format: "int64"
@@ -574,6 +604,15 @@ definitions:
         type: "array"
         items:
           $ref: "#/definitions/AuthorEssentialWithoutImage"
+  FavouriteReadings:
+    type: "object"
+    properties:
+      person:
+        type: "string"
+      person_image_path:
+        type: "string"
+      book:
+        $ref: "#/definitions/BookInFavourites"
   User:
     type: "object"
     properties:
@@ -589,13 +628,6 @@ definitions:
         type: "string"
       phone:
         type: "string"
-    example:
-      firstName: "firstName"
-      lastName: "lastName"
-      password: "password"
-      phone: "phone"
-      email: "email"
-      username: "username"
   UserWithoutPass:
     type: "object"
     properties:
@@ -633,14 +665,6 @@ definitions:
         type: "string"
       phone:
         type: "string"
-    example:
-      firstName: "firstName"
-      lastName: "lastName"
-      password: "password"
-      phone: "phone"
-      id: 0
-      email: "email"
-      username: "username"
   UserLogin:
     type: "object"
     properties:

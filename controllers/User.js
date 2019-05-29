@@ -80,7 +80,7 @@ module.exports.loginUser = function loginUser (req, res, next) {
     });
 };
 
-module.exports.userCartBuyBooksPOST = function userCartBuyBooksPOST (req, res, next) {
+module.exports.userCartBuyBooks = function userCartBuyBooks (req, res, next) {
   const authenticated = auth(req, res);
   if (!authenticated) return;
   var userID = req.user.userID;
@@ -93,7 +93,7 @@ module.exports.userCartBuyBooksPOST = function userCartBuyBooksPOST (req, res, n
     });
 };
 
-module.exports.userCartDeleteBookBookIDDELETE = function userCartDeleteBookBookIDDELETE (req, res, next) {
+module.exports.userCartDeleteBookBookID = function userCartDeleteBookBookID (req, res, next) {
   const authenticated = auth(req, res);
   if (!authenticated) return;
   var userID = req.user.userID;

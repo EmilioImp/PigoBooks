@@ -165,3 +165,18 @@ exports.getSimilarBooks = async function (bookID) {
   }
 };
 
+exports.favouriteReadings = async function () {
+  const persons = await db.select('FavouriteBook.person', 'FavouriteBook.person_image_path', 'Book.bookID', 'Book.name', 'Book.image_path').from('FavouriteBook').join('Book', {'FavouriteBook.bookID' : 'Book.bookID'});
+  const numberOfPersons = persons.length;
+  if (numberOfPersons <= 0) throw {actualResponse: 'No favourite readings found', status: 404};
+  else{
+    for(let i=0; i < numberOfPersons; i++){
+      persons[i].book = {bookID: persons[i].bookID, name: persons[i].name, image_path: persons[i].image_path};
+      delete persons[i].bookID;
+      delete persons[i].name;
+      delete persons[i].image_path;
+    }
+    return {actualResponse: persons, status: 200};
+  }
+};
+
