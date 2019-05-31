@@ -199,6 +199,24 @@ paths:
         400:
           description: "No favourite readings found"
       x-swagger-router-controller: "Book"
+  /book/bestSellers:
+    get:
+      tags:
+      - "book"
+      summary: "Returns the best sellers"
+      operationId: "getBestSellers"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/BookEssentialBestSeller"
+        404:
+          description: "No bestseller found"
+      x-swagger-router-controller: "Book"
   /user:
     get:
       tags:
@@ -568,6 +586,23 @@ definitions:
         type: "array"
         items:
           $ref: "#/definitions/AuthorEssentialWithoutImage"
+  BookEssentialBestSeller:
+    type: "object"
+      properties:
+        bookID:
+          type: "integer"
+          format: "int64"
+        placement:
+          type: "integer"
+          format: "int64"
+        name:
+          type: "string"
+        image_path:
+          type: "string"
+        authors:
+          type: "array"
+          items:
+            $ref: "#/definitions/AuthorEssentialWithoutImage"
   BookIDandName:
     type: "object"
     properties:

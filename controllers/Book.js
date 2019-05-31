@@ -87,3 +87,13 @@ module.exports.favouriteReadings = function favouriteReadings(req, res, next) {
             utils.writeJson(res, response.actualResponse, response.status);
         })
 };
+
+module.exports.getBestSellers = function getBestSellers (req, res, next) {
+    Book.getBestSellers()
+        .then(function (response) {
+            utils.writeJson(res, response.actualResponse, response.status);
+        })
+        .catch(function (response) {
+            utils.writeJson(res, response.actualResponse, response.status);
+        });
+};

@@ -180,3 +180,17 @@ exports.favouriteReadings = async function () {
   }
 };
 
+exports.getBestSellers = async function () {
+  const books = await db.select('BestSeller.bookID', 'BestSeller.placement', 'Book.name', 'Book.image_path').from('BestSeller').join('Book', {'BestSeller.bookID' : 'Book.bookID'});
+  if (books.length <= 0) throw {actualResponse: 'No bestseller found', status: 404};
+  else{
+    //for every book, get the authors
+    const nBooks = books.length;
+    for (var i=0; i< nBooks; i++){
+      const bookID = books[i].bookID;
+      books[i].authors = await db.select('Author.authorID', 'Author.firstName', 'Author.lastName').from('Author').join('BookAuthor', {'Author.authorID' : 'BookAuthor.authorID'}).where('BookAuthor.bookID', bookID);
+    }
+    return {actualResponse: books, status: 200}
+  }
+};
+
