@@ -1,11 +1,11 @@
 $(function (){
 
-    $('#submitButton').click(function(){
+    $('#submitRegisterButton').click(function(){
 
-        var formArray = $('#registrationForm').serializeArray();
+        const formArray = $('#registrationForm').serializeArray();
 
-        var returnArray = {};
-        for (var i = 0; i < formArray.length; i++){
+        const returnArray = {};
+        for (let i = 0; i < formArray.length; i++){
             returnArray[formArray[i]['name']] = formArray[i]['value'];
         }
 

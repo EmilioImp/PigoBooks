@@ -3,14 +3,15 @@
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="../assets/css/header&footer.css">
-    <link rel="stylesheet" href="../assets/css/style_orderhistory.css">
+    <link rel="stylesheet" href="../assets/css/style_login.css">
     <link rel="shortcut icon" type="image/png" href="../assets/img/favicon.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,shrink-to-fit=no">
-    <title>Orders history</title>
+    <title>Login</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="../assets/js/orderhistory.js"></script>
     <script src="../assets/js/loginCheck.js"></script>
+    <script src="../assets/js/formvalidator.js"></script>
+    <script src="../assets/js/login.js"></script>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -67,36 +68,31 @@
 
 
 
+<h1 class="display-4">Login</h1>
 
-
-<h1>Your Orders</h1>
-
-
-
-
-<div class="row">
-    <div class="col-3"></div>
-    <div class="col-6">
-        <div class="flex-container" id="ordersContainer">
-
+<div class="jumbotron jumbotron-fluid" id="content-box">
+    <form class="needs-validation" id = "loginForm" novalidate>
+        <div class="form-row">
+            <div class="col">
+                <label class="formField" for="loginUsername">Username</label>
+                <input type="text" name="username" class="form-control" id="loginUsername" placeholder="Username" required>
+                <div class="valid-feedback">Looks good!</div>
+                <div class="invalid-feedback">Please write a valid username</div>
+            </div>
         </div>
-    </div>
-    <div class="col-3"></div>
+
+        <div class="form-row">
+            <div class="col">
+                <label class="formField" for="loginPassword">Password</label>
+                <input type="password" name="password" class="form-control" id="loginPassword" placeholder="Password" required>
+                <div class="valid-feedback">Looks good!</div>
+                <div class="invalid-feedback">Please write a valid password</div>
+            </div>
+        </div>
+
+        <a href="#" type="submit" class="btn btn-primary" id="submitLoginButton" >Log in</a>
+    </form>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -145,3 +141,4 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 </html>
+
