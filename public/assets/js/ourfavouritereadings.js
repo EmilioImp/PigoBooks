@@ -9,6 +9,20 @@ $(document).ready(function(){
         }
     });
 
+    function handleCardsRotationOnSmallerDevices(){
+        /*var j = 0;
+        var flipcard = document.getElementsByClassName("flip-card-inner");
+        alert(flipcard.length);
+        alert(flipcard[0].classList);
+        flipcard.forEach(function(){
+            alert(this);
+        });
+        for (j; j < flipcard.length; j++) {
+            flipcard[j].addEventListener('click',function(){
+                flipcard[].classList.toggle('is-flipped');
+            }, false);
+        }*/
+    }
     function generateStaffCards(response){
         var i = 0;
         var jsArray = JSON.parse(JSON.stringify(response));
@@ -27,5 +41,9 @@ $(document).ready(function(){
                 '<p>' + jsArray[i].book.name + '</p>' +
                 '</a></div></div></div></div></div>');
         }
+
+        $("#card-row").on('click', '.flip-card', function(){
+            $(this).children("div.flip-card-inner")[0].classList.toggle('is-flipped');
+        });
     }
 });
