@@ -22,32 +22,41 @@
 }
 
 .form-row {
-    margin : 1vw 3vw 1vw 3vw;
+    margin : 1vw 5vw 1vw 5vw;
 }
 
 .formField {
     text-align: center;
 }
 
-#submitButton {
-    margin : 1vw 35% 1vw 35%;
+#submitLoginButton {
+    margin : 1vw 30% 1vw 42%;
     background-color: #805d89;
     border-color: blueviolet;
+    border-radius: 16px;
 }
 
 @media screen and (max-width: 512px){
     #content-box {
         margin : 0 10% 4em 10%!important;
     }
+
+    #submitLoginButton {
+        margin : 1vw 30% 1vw 39%!important;
+    }
 }
 
 @media screen and (max-width: 768px) {
     #content-box {
-        margin : 0 15% 4em 15%;
+        margin : 0 25% 4em 25%;
+    }
+
+    #submitLoginButton {
+        margin : 1vw 37% 1vw 41%;
     }
 }
 
-@media screen and (min-width: 1200px){
+@media screen and (min-width: 1100px){
     #content-box {
         margin : 0 33% 4em 33%;
     }

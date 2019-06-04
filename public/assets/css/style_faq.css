@@ -32,3 +32,9 @@
 	margin-left : 2em;
     margin-right : 2em;
 }
+
+@media screen and (max-width: 424px){
+	.display-4 {
+		margin : 0.5em 0.4em 0.5em 0.4em;
+	}
+}

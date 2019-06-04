@@ -1,9 +1,14 @@
-h1 {
+.display-4 {
     color : #805d89;
     text-align : center;
-    font-weight : bold;
+    font-weight : 300;
     margin-top : 0.5em;
     margin-bottom : 0.5em;
+}
+
+.lead {
+    text-align : center;
+    margin: 0 0.5em 2em 0.5em;
 }
 
 .footer {

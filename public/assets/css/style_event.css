@@ -1,7 +1,7 @@
-h1 {
+.display-4 {
     color : #805d89;
     text-align : center;
-    font-weight : bold;
+    font-weight : 300;
     margin-top : 0.5em;
     margin-bottom : 0.5em;
 }
@@ -16,7 +16,7 @@ h1 {
 }
 
 .card-block {
-    margin : 1em 1em 1em 1em;
+    margin : 1em 0 1em 1em;
 }
 
 .card-text {
@@ -30,13 +30,13 @@ h1 {
 }
 
 #link-box {
-    margin : 2em 35% 2em 35%;
+    margin : 2em 35% 2em 30%;
     width : 40%;
+    text-align: center;
 }
 
 #link-intro {
     display : inline-block;
-    margin-right : 0.3em;
 }
 
 #booklink {
@@ -44,6 +44,12 @@ h1 {
     background-color: #805d89 !important;
     border-color: #805d89 !important;
 }
+
+#bookmark {
+    margin-top: 1em;
+    float : right;
+}
+
 
 i {
     display : inline-block;
@@ -56,4 +62,19 @@ i {
 
 .card-block a:hover {
     color : #63486a!important;
+}
+
+@media screen and (max-width: 1006px) {
+    #link-box {
+        margin : 2em 35% 2em 30%;
+    }
+
+    #link-intro {
+        display: block;
+    }
+
+    #booklink {
+        margin-right: 15%;
+        margin-left : 15%;
+    }
 }

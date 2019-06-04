@@ -4,7 +4,11 @@
 }
 
 .display-3 {
-
+  color : #805d89;
+  text-align : center;
+  font-weight : 300;
+  margin-top : 0.5em;
+  margin-bottom : 0.5em;
 }
 
 .rounded {
@@ -24,9 +28,13 @@
 }
 
 .display-4 {
-
+  color : #805d89;
+  text-align : center;
+  font-weight : 300;
+  margin-top : 0.5em;
+  margin-bottom : 0.5em;
 }
 
 .lead {
-
+  text-align : center;
 }

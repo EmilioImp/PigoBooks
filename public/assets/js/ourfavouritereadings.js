@@ -9,20 +9,6 @@ $(document).ready(function(){
         }
     });
 
-    function handleCardsRotationOnSmallerDevices(){
-        /*var j = 0;
-        var flipcard = document.getElementsByClassName("flip-card-inner");
-        alert(flipcard.length);
-        alert(flipcard[0].classList);
-        flipcard.forEach(function(){
-            alert(this);
-        });
-        for (j; j < flipcard.length; j++) {
-            flipcard[j].addEventListener('click',function(){
-                flipcard[].classList.toggle('is-flipped');
-            }, false);
-        }*/
-    }
     function generateStaffCards(response){
         var i = 0;
         var jsArray = JSON.parse(JSON.stringify(response));
