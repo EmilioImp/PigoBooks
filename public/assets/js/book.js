@@ -2,7 +2,7 @@ $(document).ready(function() {
 
     $.ajax({
         type: 'GET',
-        url: 'http://localhost:8080/xXEmilioXx/MyBookstore/1.0.0/book/' + getURLQueryParameter(),
+        url: '/xXEmilioXx/MyBookstore/1.0.0/book' + getURLQueryParameter(),
         datatype: 'json',
         success: function (response) {
             adjustBookPage(response);
