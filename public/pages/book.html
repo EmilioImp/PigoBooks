@@ -14,55 +14,58 @@
 
 
     </head>
-    <body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">
-                    <img src="http://i63.tinypic.com/vg33mq.png" alt="">
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="../index.html">
+                <img src="http://i63.tinypic.com/vg33mq.png" alt="">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Books
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="allbookgenres.html">Genres</a>
-                                <a class="dropdown-item" href="allbookthemes.html">Themes</a>
-                            </div>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="allauthors.html">Authors</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Events</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Best Sellers</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Our Favourites</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Require a Gift Card</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="contact%20us.html">Contact Us</a>
-                        </li>
-                    </ul>
-                </div>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="../index.html">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Books
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="allbookgenres.html">Genres</a>
+                            <a class="dropdown-item" href="allbookthemes.html">Themes</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="allauthors.html">Authors</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Events</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="best_sellers.html">Best Sellers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="ourfavouritereadings.html">Our Favourites</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Require a Gift Card</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact%20us.html">Contact Us</a>
+                    </li>
+                    <li class="nav-item" id="loginItem">
+                        <a href="login.html" type="submit" class="btn btn-primary mb-2" id="loginButton">Log in</a>
+                        <a href="registration.html" type="submit" class="btn btn-primary mb-2" id="registerButton">Register</a>
+                    </li>
+                </ul>
             </div>
-        </nav>
+        </div>
+    </nav>
 
 
-        <h1 id="bookid"> [Book #bookid] </h1>
+        <h1 id="id"> [Book #bookid] </h1>
 
         <div class="card mb-3">
             <div class="row no-gutters">
@@ -73,13 +76,13 @@
 
                 <div class="col-md-7">
                     <div class="card-block">
-                        <h4 id="bookname" class="card-title"> [Book-name] </h4>
-                        <h5 class="card-subtitle mb-2 text-muted"> Author:</h5>
-                        <p id="time"> [author]</p>
+                        <h4 id="name" class="card-title"> [name] </h4>
+                        <h5 class="card-subtitle mb-2 text-muted"> Authors:</h5>
+                        <p id="authors"> [authors]</p>
                         <h5 class="card-subtitle mb-2 text-muted"> Genres:</h5>
-                        <p id="bookgenres"> [book genres]</p>
+                        <p id="genres"> [genres]</p>
                         <h5 class="card-subtitle mb-2 text-muted"> Themes:</h5>
-                        <p id="bookthemes"> [book themes]</p>
+                        <p id="themes"> [themes]</p>
                         <h5 class="card-subtitle mb-2 text-muted"> Edition:</h5>
                         <p id="edition"> [edition]</p>
                         <h5 class="card-subtitle mb-2 text-muted"> Cost:</h5>
@@ -90,7 +93,7 @@
 
             <div class="row no-gutters">
                 <div class="card-footer">
-                    <p id="similarbooks">
+                    <p id="similarBooks">
                         
                         
                     </p>

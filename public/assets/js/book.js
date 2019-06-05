@@ -50,7 +50,8 @@ $(document).ready(function() {
         var book = JSON.parse(JSON.stringify(bookjson));
         $(".card-img").attr("src", book[0].image_path);
         document.getElementById("id").innerHTML = "Book" + " " + "#" + book[0].bookID;
-        document.getElementById("name").innerHTML = book[0].name;
+        document.getElementById("name").innerHTML =
+            book[0].name;
         document.getElementById("edition").innerHTML =
             book[0].edition;
         document.getElementById("cost").innerHTML =
