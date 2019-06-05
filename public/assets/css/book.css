@@ -1,0 +1,80 @@
+.display-4 {
+    color : #805d89;
+    text-align : center;
+    font-weight : 300;
+    margin-top : 0.5em;
+    margin-bottom : 0.5em;
+}
+
+.card {
+    margin : 3% 10% 3% 10%;
+    background-color : #E2D5DD;
+}
+
+.card-header {
+    padding : 0 0 0 0;
+}
+
+.card-block {
+    margin : 1em 0 1em 1em;
+}
+
+.card-text {
+    overflow : auto;
+}
+
+#eventImg {
+    max-width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#link-box {
+    margin : 2em 35% 2em 30%;
+    width : 40%;
+    text-align: center;
+}
+
+#link-intro {
+    display : inline-block;
+}
+
+#booklink {
+    display: inline-block;
+    background-color: #805d89 !important;
+    border-color: #805d89 !important;
+}
+
+#bookmark {
+    margin-top: 1em;
+    float : right;
+}
+
+
+i {
+    display : inline-block;
+}
+
+.card-block a {
+    text-decoration : none;
+    color: #9271a8!important;
+}
+
+.card-block a:hover {
+    color : #63486a!important;
+}
+
+@media screen and (max-width: 1006px) {
+    #link-box {
+        margin : 2em 35% 2em 30%;
+    }
+
+    #link-intro {
+        display: block;
+    }
+
+    #booklink {
+        margin-right: 15%;
+        margin-left : 15%;
+    }
+}
