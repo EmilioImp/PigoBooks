@@ -104,7 +104,7 @@
     }
 }
 
-@media screen and (max-width: 900px){
+@media screen and (max-width: 1024px){
     .column {
         width: 50%;
         display : block;
@@ -120,7 +120,7 @@
     }
 }
 
-@media screen and (min-width: 901px){
+@media screen and (min-width: 1025px){
     .flip-card:hover .flip-card-inner {
         transform : rotateY(180deg);
     }

@@ -5,18 +5,35 @@
     text-align : center;
     font-weight : 300;
     margin-top : 0.5em;
-    margin-bottom : 0.5em;
+    margin-bottom : 1em;
 }
 
-.row {
+.display-5 {
+    color: white;
+}
+
+#contentRow {
     margin-bottom: 2em;
 }
 
+#contentRow > .col-4 {
+    margin-right : 0;
+    margin-bottom : 2em;
+}
+
+#contentRow > .col-8 {
+    margin-bottom : 2em;
+}
+
+footer {
+    clear : both;
+}
+
+
 .tab {
-    /*border: 1px solid #ccc;*/
-    background-color: #f1f1f1;
+    background-color: #E2D5DD;
     width: 80%;
-    margin : 0 10% 0 10%;
+    margin : 0 5% 0 5%;
 }
 
 .tablinks {
@@ -31,90 +48,16 @@
     cursor: pointer;
     transition: 0.3s;
     font-size: 17px;
-}
-
-footer {
-    clear : both;
-}
-
-.col-4 {
-    margin-right : 0;
-}
-
-@media only screen and (max-width: 768px){
-    .flex-container {
-        display : flex;
-        flex-flow : column nowrap;
-        margin : 0 0 5% 0;
-        justify-content : center;
-        width : 50%;
-    }
-
-    .flex-container > div {
-        background-color : #f0e6ee;
-        width : 100%;
-        margin : 0 0 0.25em 0;
-        padding : 0 0 0 0;
-        font-size : 1em;
-        text-align : center;
-        border-radius : 5px;
-        overflow-wrap : break-spaces;
-    }
-}
-
-@media only screen and (min-width: 769px){
-    .flex-container {
-        display : flex;
-        flex-flow : column nowrap;
-        margin : 0 0 5% 0;
-        justify-content : center;
-        width : 30%;
-    }
-
-    .flex-container > div {
-        background-color : #f0e6ee;
-        width : 100%;
-        margin : 0 0 0.25em 0;
-        padding : 0 0 0 0;
-        font-size : 1em;
-        text-align : center;
-        border-radius : 5px;
-        overflow-wrap : break-spaces;
-    }
-}
-
-@media only screen and (min-width: 1017px){
-    .flex-container {
-        display : flex;
-        flex-flow : column nowrap;
-        margin : 0 0 5% 0;
-        justify-content : center;
-        width : 34.5%;
-    }
-
-    .flex-container > div {
-        background-color : #f0e6ee;
-        width : 100%;
-        margin : 0 0 0.25em 0;
-        padding : 0 0 0 0;
-        font-size : 0.8em;
-        text-align : center;
-        border-radius : 5px;
-        overflow-wrap : break-spaces;
-    }
-}
-
-.tablinks{
-    text-decoration-color: #63486a;
-    border-bottom-color : blueviolet;
+    margin-bottom : 1px;
 }
 
 .tablinks:hover {
     background-color : #cbb4c2;
 }
 
-.tablinks:active {
-    background-color : #cbb4c2;
+#bookBox {
+    margin-right : 2em;
+    background-color : #63486a;
 }
 
 .genre {
@@ -130,22 +73,57 @@ footer {
 }
 
 .text-faded > p {
-    margin : 0 0 20% 0;
+    text-decoration: none;
+    color : #9271a8;
+    margin : 0 0.7em 20% 0.7em;
+}
+
+.card-deck {
+    margin-left: 0!important;
+    margin-right: 0!important;
 }
 
 .card {
-    /*margin : 3% 10% 3% 10%;*/
-    max-width : 35%;
-    max-height : 30%;
+    max-width : 292px;
+    max-height : 180px;
+    margin : 1em 5em 3% 1em;
 }
 
 .card > a {
     color : #9271a8;
+    width : 100%;
+    height : 100%;
+    max-width: 292px;
+    max-height: 180px;
+}
+
+.card > a > .row {
+    width : 100%;
+    height : 100%;
+    max-width: 292px;
+    max-height: 180px;
+}
+
+.card > a > .row > .col-md-4{
+    width : 100%;
+    height : 100%;
+    max-width: 292px;
+    max-height: 180px;
+}
+
+.card > a > .row > .col-md-8{
+    width : 100%;
+    height : 100%;
+    max-width: 292px;
+    max-height: 180px;
 }
 
 .card-img {
-    max-width: 100%;
+    margin-top: 15.7%;
+    width: 100%;
     height: 100%;
+    max-width : 150px;
+    max-height : 150px;
     object-fit: cover;
 }
 
@@ -159,10 +137,5 @@ footer {
 }
 
 .card-title {
-    margin : 20% 0 20% 0;
-}
-
-.authorNames {
-    text-decoration: none;
-    color : #9271a8;
+    margin : 20% 0.3em 20% 0.3em;
 }

@@ -6,11 +6,20 @@ h1 {
     margin-bottom : 1.0em;
 }
 
+.card {
+    margin-bottom : 2em;
+}
+
+.card > .row {
+    margin-right : 0!important;
+    margin-left : 0!important;
+}
+
 .card-img {
     float: left;
     border-radius: 5px;
-    width : 150px;
-    height : 150px;
+    max-width : 150px;
+    max-height : 150px;
 }
 
 .card-header {

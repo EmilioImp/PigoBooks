@@ -8,11 +8,14 @@
 
 .card {
     margin : 0 30% 3% 30%;
+    max-width: 545px;
 }
 
 .card-img-top {
     width : 100%;
     height : 100%;
+    max-width : 545px;
+    max-height : 403px;
     object-fit : cover;
 }
 
