@@ -17,7 +17,7 @@ $(document).ready(function(){
 
         $('#submitLogoutButton').click(function () {
             window.localStorage.removeItem("accessToken");
-            location.reload();
+            window.location.href = "../../index.html"
         })
     }
 

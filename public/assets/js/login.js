@@ -22,6 +22,7 @@ $(document).ready(function () {
                 const obj = JSON.stringify(response);
                 const jsArray = JSON.parse(obj);
                 window.localStorage.setItem("accessToken", jsArray.token);
+                window.location.href = "../../index.html"
             }
         });
     });
