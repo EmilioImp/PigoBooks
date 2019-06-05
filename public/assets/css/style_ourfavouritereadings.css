@@ -1,9 +1,14 @@
-h1 {
+.display-4 {
     color : #805d89;
     text-align : center;
-    font-weight : bold;
+    font-weight : 300;
     margin-top : 0.5em;
     margin-bottom : 0.5em;
+}
+
+.lead {
+    text-align : center;
+    margin: 0 0.5em 2em 0.5em;
 }
 
 .footer {
@@ -31,10 +36,6 @@ h1 {
     text-align: center;
     transition : 0.7s;
     transform-style : preserve-3d;
-}
-
-.flip-card:hover .flip-card-inner {
-    transform : rotateY(180deg);
 }
 
 .flip-card-front, .flip-card-back {
@@ -97,9 +98,13 @@ h1 {
     .flip-card {
         height : 85vw!important;
     }
+
+    .flip-card-inner.is-flipped {
+        transform: rotateY(180deg)!important;
+    }
 }
 
-@media screen and (max-width: 1000px){
+@media screen and (max-width: 900px){
     .column {
         width: 50%;
         display : block;
@@ -108,6 +113,16 @@ h1 {
 
     .flip-card {
         height : 40vw;
+    }
+
+    .flip-card-inner.is-flipped {
+        transform: rotateY(180deg);
+    }
+}
+
+@media screen and (min-width: 901px){
+    .flip-card:hover .flip-card-inner {
+        transform : rotateY(180deg);
     }
 }
 

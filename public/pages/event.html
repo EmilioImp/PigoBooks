@@ -65,7 +65,7 @@
         </nav>
 
 
-        <h1 id="eventid"> [Event #eventid] </h1>
+        <h1 class="display-4" id="eventid"> [Event #eventid] </h1>
 
         <div class="card mb-3">
             <div class="row no-gutters">
@@ -75,8 +75,9 @@
                 </div>
 
                 <div class="col-md-7">
-                    <div class="card-block">
+                    <div class="card-block" id="infoContainer">
                         <h4 id="eventname" class="card-title"> [Event-name] </h4>
+                        <a id="bookmarkLink" href="#"><img id="bookmark" src="../assets/img/icon-bookmark-128x128.png" alt="bookmark"></a>
                         <h5 class="card-subtitle mb-2 text-muted"> Which book:</h5>
                         <p id="bookname"> [book name]</p>
                         <h5 class="card-subtitle mb-2 text-muted"> Where:</h5>
@@ -86,13 +87,14 @@
                         <h5 class="card-subtitle mb-2 text-muted"> At the hour:</h5>
                         <p id="time"> [time]</p>
                         <h5 class="card-subtitle mb-2 text-muted">Event on social networks:</h5>
-                        <a href="#" class="socialicon">
+                        <p id="noPages">No pages on social networks</p>
+                        <a id="facebookIcon" href="#" class="socialicon">
                             <i style='font-size:24px' class='fab'>&#xf09a;</i>
                         </a>
-                        <a href="#" class="socialicon">
+                        <a id="instagramIcon" href="#" class="socialicon">
                             <i style='font-size:24px' class='fab'>&#xf16d;</i>
                         </a>
-                        <a href="#" class="socialicon">
+                        <a id="twitterIcon" href="#" class="socialicon">
                             <i style='font-size:24px' class='fab'>&#xf081;</i>
                         </a>
                     </div>

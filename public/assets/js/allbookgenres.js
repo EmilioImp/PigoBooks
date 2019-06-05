@@ -16,10 +16,10 @@ $(document).ready(function(){
         var arrayLength = jsArray.length;
 
         for( i; i < arrayLength; i++){
-            $(".flex-container").append('<div><a href="#"><p class="genre">' + jsArray[i] + '</p></a></div>');
+            $(".tab").append('<button class="tablinks">' + jsArray[i] +'</button>');
         }
 
-        $('.genre').click(function() {
+        $('.tablinks').click(function() {
 
             $.ajax({
                 type: 'GET',
@@ -62,6 +62,7 @@ $(document).ready(function(){
 
                 var booksPerRow = 0;
 
+                $(".display-5").remove();
                 $(".card-deck").empty();
 
                 for( i; i < arrayLength; i++){

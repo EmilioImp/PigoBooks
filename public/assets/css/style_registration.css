@@ -29,6 +29,10 @@
     margin-right: 1em;
 }
 
+input {
+    text-overflow : ellipsis;
+}
+
 #submitRegisterButton {
     margin : 1vw 40% 1vw 41%;
     background-color: #805d89;

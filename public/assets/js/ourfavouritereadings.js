@@ -27,5 +27,9 @@ $(document).ready(function(){
                 '<p>' + jsArray[i].book.name + '</p>' +
                 '</a></div></div></div></div></div>');
         }
+
+        $("#card-row").on('click', '.flip-card', function(){
+            $(this).children("div.flip-card-inner")[0].classList.toggle('is-flipped');
+        });
     }
 });
