@@ -9,6 +9,7 @@
     <title>Bestsellers</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="../assets/js/loginCheck.js"></script>
+    <script src="../assets/js/best_sellers.js.js"></script>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -79,7 +80,7 @@
       <hr class="featurette-divider">
 
       <div class="row featurette">
-        <div class="col-md-7">
+        <div class="col-md-7" id="first-place">
           <h2 class="featurette-heading">[Book name]<span class="badge badge-secondary">1st</span></h2>
           <p class="lead">[Book details]</p>
         </div>
@@ -90,7 +91,7 @@
 
       <hr class="featurette-divider">
 
-      <div class="row featurette">
+      <div class="row featurette" id="second-place">
         <div class="col-md-7 order-md-2">
           <h2 class="featurette-heading">[Book name]<span class="badge badge-secondary">2nd</span></h2>
           <p class="lead">[Book details]</p>
@@ -102,7 +103,7 @@
 
       <hr class="featurette-divider">
 
-      <div class="row featurette">
+      <div class="row featurette" id="third-place">
         <div class="col-md-7">
           <h2 class="featurette-heading">[Book name]<span class="badge badge-secondary">3rd</span></h2>
           <p class="lead">[Book details]</p>
