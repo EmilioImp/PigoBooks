@@ -65,16 +65,19 @@
 
 
 
-<h1>Your profile</h1>
+<h1 class="display-4">Your profile</h1>
 
 <div class="row">
     <div class="col-3"></div>
     <div class="col-6">
         <div class="flex-container" id="profileContainer">
-            <div class="card">
-                <img id="profileImg" src="../assets/img/profile_image.png" class="card-img-top justify-content-center" alt="...">
-                <h5 class="card-subtitle mb-2 text-muted">Your username:</h5>
-                <p id="username">[username]</p>
+            <div class="card" id="profileCard">
+                <div class="card" id="imgContainer">
+                    <img id="profileImg" src="../assets/img/profile_image.png" class="card-img-top justify-content-center" alt="...">
+                    <div class="content">
+                        <p id="username">[username]</p>
+                    </div>
+                </div>
                 <h5 class="card-subtitle mb-2 text-muted">Your first name:</h5>
                 <p id="firstName">[first name]</p>
                 <h5 class="card-subtitle mb-2 text-muted">Your last name:</h5>

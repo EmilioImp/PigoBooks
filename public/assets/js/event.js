@@ -2,7 +2,7 @@ $(document).ready(function(){
 
     $.ajax({  //GET to receive the data regarding the event plus the book presented
         type : 'GET',
-        url : '/xXEmilioXx/MyBookstore/1.0.0/event/1', /*+ getURLQueryParameter(),*/
+        url : '/xXEmilioXx/MyBookstore/1.0.0/event/' + getURLQueryParameter(),
         datatype : 'json',
         success : function(response) {
             adjustEventPage(response);

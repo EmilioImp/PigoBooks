@@ -65,16 +65,37 @@
 
         <h1 class="display-4">List of all book genres</h1>
 
-        <div id="contentRow" class="row no-gutters">
-            <div class="col-4">
-                <div class="tab"></div>
-            </div>
+        <div id="filter" class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="vertical-tab" role="tablist">
 
-            <div class="col-8">
-                <div id="bookBox">
-                    <div class="tabcontent">
-                        <h2 class="display-5">Select a genre to filter the list of books with!</h2>
-                        <div class="card-deck"></div>
+                        <ul id="genresList" class="nav nav-tabs" role="tablist">
+                            <li id="reset" role="presentation"><a class="active" href="#noFilter" aria-controls="home" role="tab" data-toggle="tab">Reset filter</a></li>
+                        </ul>
+
+                        <div class="tab-content tabs">
+
+                            <div id="noFilter" role="tabpanel" class="tab-pane fade show active">
+                                <h5 class="display-3">Select a genre to filter the books belonging to it!</h5>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce semper, magna a ultricies volutpat, mi eros viverra massa, vitae consequat nisi justo in tortor. Proin accumsan felis ac felis dapibus, non iaculis mi varius.</p>
+                            </div>
+
+                            <div id="cardPanel" role="tabpanel" class="tab-pane fade">
+                                <div class="card-deck"></div>
+                            </div>
+
+                            <!--
+                            <div role="tabpanel" class="tab-pane fade" id="Section2">
+                                <h3>Section 2</h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce semper, magna a ultricies volutpat, mi eros viverra massa, vitae consequat nisi justo in tortor. Proin accumsan felis ac felis dapibus, non iaculis mi varius.</p>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="Section3">
+                                <h3>Section 3</h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce semper, magna a ultricies volutpat, mi eros viverra massa, vitae consequat nisi justo in tortor. Proin accumsan felis ac felis dapibus, non iaculis mi varius.</p>
+                            </div>
+                            -->
+                        </div>
                     </div>
                 </div>
             </div>
@@ -121,5 +142,3 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     </body>
 </html>
-
-

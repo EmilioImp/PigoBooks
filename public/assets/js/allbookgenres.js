@@ -16,16 +16,21 @@ $(document).ready(function(){
         var arrayLength = jsArray.length;
 
         for( i; i < arrayLength; i++){
-            $(".tab").append('<button class="tablinks">' + jsArray[i] +'</button>');
+            $('#genresList').append('<li class="nav-item" role="presentation"><a href="#cardPanel" role="tab" data-toggle="tab">' + jsArray[i] +'</a></li>');
         }
 
-        $('.tablinks').click(function() {
+
+        $('#genresList > li.nav-item').on('click', 'a' ,function() {
 
             $.ajax({
                 type: 'GET',
                 url: '/xXEmilioXx/MyBookstore/1.0.0/book/findByGenre?genre=' + $(this).text(),
                 datatype: 'json',
                 success: function(response) {
+                    $(this).add('activeTemp');
+                    $('#genresList > li').removeClass('active');
+                    $("li[class='activeTemp']").removeClass('activeTemp');
+                    $(this).addClass('active');
                     createBooks(response);
                 }
             });
@@ -62,7 +67,6 @@ $(document).ready(function(){
 
                 var booksPerRow = 0;
 
-                $(".display-5").remove();
                 $(".card-deck").empty();
 
                 for( i; i < arrayLength; i++){

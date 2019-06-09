@@ -1,13 +1,41 @@
-h1 {
+.display-4 {
     color : #805d89;
     text-align : center;
-    font-weight : bold;
+    font-weight : 300;
     margin-top : 0.5em;
-    margin-bottom : 1.0em;
+    margin-bottom : 1em;
+}
+
+
+h5 {
+    margin-top : 0.3em!important;
+}
+
+#imgContainer {
+    border : 0;
 }
 
 .card-text {
     color : #9271a8!important;
+}
+
+.card-img-overlay {
+    padding : 0 0 0 0;
+}
+
+.content {
+    position : absolute;
+    bottom : 0;
+    background: rgb(0, 0, 0);
+    background: rgba(0, 0, 0, 0.3);
+    color: #f1f1f1;
+    width : 100%;
+    padding : 0;
+}
+
+
+#profileCard {
+    margin-bottom : 2em;
 }
 
 #profileImg {
@@ -16,4 +44,12 @@ h1 {
     max-width: 100%;
     max-height: 100px;
     object-fit: cover;
+}
+
+#username {
+    text-align: center;
+    font-size: larger;
+    font-weight: 600;
+    color : white;
+    margin : 0 1em 0 1em;
 }
