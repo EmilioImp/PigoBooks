@@ -14,10 +14,6 @@
     border-right: 8px solid #b0a5ae;
 }
 
-#reset {
-    margin-bottom : 3px;
-}
-
 #reset > a {
     color : red;
 }
@@ -106,41 +102,6 @@ a:hover, a:focus {
     text-transform: uppercase;
     border-bottom: 1px solid #272e38;
 }
-@media only screen and (max-width: 479px) {
-    .vertical-tab{
-        border-right: none;
-        border-bottom: 8px solid #b0a5ae;
-    }
-    .vertical-tab .nav-tabs{
-        display: block;
-        margin: 0 -10px;
-        border-right: none;
-    }
-    .vertical-tab .nav-tabs li {
-        margin-bottom: 10px;
-    }
-
-    .vertical-tab .nav-tabs li:last-child {
-        margin-bottom: 0;
-    }
-
-    .vertical-tab .nav-tabs li a {
-        padding: 10px;
-    }
-
-    .vertical-tab .nav-tabs li a.active:after {
-        display: none;
-    }
-
-    .vertical-tab .tab-content {
-        display: block;
-        padding: 15px 0;
-    }
-
-    .vertical-tab .tab-content h3 {
-        font-size: 18px;
-    }
-}
 
 .genre {
     color : white;
@@ -154,11 +115,13 @@ a:hover, a:focus {
     word-break: keep-all;
 }
 
-/*cambio valori per il testo per farlo sempre stare nelle card, soprattutto per grandezza testo/spazio tra le righe e le parole*/
 .text-faded > p {
     text-decoration: none;
     color : white;
     margin : 0 0.7em 20% 0.7em;
+    letter-spacing: normal;
+    line-height: 1.0;
+    word-spacing: 0.05em;
 }
 
 .card-deck {
@@ -168,7 +131,7 @@ a:hover, a:focus {
 
 .card {
     max-width : 292px;
-    max-height : 180px;
+    max-height : 180px; /*may need to make it lesser to make all the card identical, with a value of like 130px to be sure*/
     margin-left : 11%!important;
     background-color: #2c222a;
 }
@@ -203,7 +166,6 @@ a:hover, a:focus {
 }
 
 .card-img {
-    margin-top: 15.7%;
     width: 100%;
     height: 100%;
     max-width : 150px;
@@ -225,6 +187,119 @@ a:hover, a:focus {
     color : white;
 }
 
+@media only screen and (max-width: 736px) {
+
+    #genresList {
+        display: block;
+        width : 100%;
+    }
+
+    .row {
+        border-right: 0;
+    }
+
+    #genresList > li > a {
+        margin-left : 1em;
+    }
+
+    .tab-content {
+        display: block!important;
+        margin-top : 1em;
+    }
+
+    #noFilter {
+        margin-left: 1em;
+        margin-right: 1em;
+    }
+
+    .display-3 {
+        font-size: 2.05rem!important;
+    }
+
+    .card-deck {
+        flex-flow: column wrap;
+    }
+
+    .card-img {
+        margin-top: 28%!important;
+    }
+
+    .card > a > .row > .col-md-4{
+        max-width: 97px;
+        max-height: 180px;
+    }
+
+    .card {
+        margin-left : 11%!important;
+    }
+
+    .card > a > .row > .col-md-8 {
+        max-width: 193px;
+        max-height: 180px;
+    }
+
+    .text-faded > p {
+        margin : 0 0.8em 10% 0.8em!important;
+    }
+
+    .vertical-tab{
+        width : 100%;
+        border-right: none;
+    }
+
+    .vertical-tab .nav-tabs{
+        display: block;
+        margin: 0 -10px;
+        border-right: none;
+    }
+
+    .vertical-tab .nav-tabs li {
+        margin-bottom: 10px;
+    }
+
+    .vertical-tab .nav-tabs li:last-child {
+        margin-bottom: 0;
+    }
+
+    .vertical-tab .nav-tabs li a {
+        padding: 10px;
+    }
+
+    .vertical-tab .nav-tabs li a.active:after {
+        display: none;
+    }
+}
+
 @media screen and (max-width: 991px){
-    /*media per iPad: cambio margin e grandezza cards per farci stare bene il testo*/
+    .display-3 {
+        font-size: 3rem;
+    }
+
+    .card {
+        margin-left : 5%!important;
+    }
+
+    .card-title {
+        margin : 20% 0.4em 20% 0.4em;
+    }
+
+    .card-img {
+        margin-top: 36.4%;
+        max-width: 100px!important;
+        max-height: 100px!important;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .card-img {
+        margin-top: 26.4%;
+        max-width: 125px;
+        max-height: 125px;
+    }
+}
+
+@media screen and (min-width : 1025px) {
+    .card-img {
+        margin-top: 15.7%;
+    }
 }
