@@ -14,17 +14,6 @@ module.exports.findBooksByGenre = function findBooksByGenre (req, res, next) {
     });
 };
 
-module.exports.findBooksByName = function findBooksByName (req, res, next) {
-  var name = req.swagger.params['name'].value;
-  Book.findBooksByName(name)
-    .then(function (response) {
-      utils.writeJson(res, response);
-    })
-    .catch(function (response) {
-      utils.writeJson(res, response);
-    });
-};
-
 module.exports.findBooksByTheme = function findBooksByTheme (req, res, next) {
   var theme = req.swagger.params['theme'].value;
   Book.findBooksByTheme(theme)

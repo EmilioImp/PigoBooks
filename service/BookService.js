@@ -28,49 +28,6 @@ exports.findBooksByGenre = async function(genre) {
 
 
 /**
- * Finds books by name
- *
- * name List Name values that need to be considered for filter
- * returns List
- **/
-exports.findBooksByName = function(name) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = [ {
-  "name" : "Il sentiero",
-  "id" : 0,
-  "authors" : [ {
-    "firstName" : "firstName",
-    "lastName" : "",
-    "id" : 0
-  }, {
-    "firstName" : "firstName",
-    "lastName" : "",
-    "id" : 0
-  } ]
-}, {
-  "name" : "Il sentiero",
-  "id" : 0,
-  "authors" : [ {
-    "firstName" : "firstName",
-    "lastName" : "",
-    "id" : 0
-  }, {
-    "firstName" : "firstName",
-    "lastName" : "",
-    "id" : 0
-  } ]
-} ];
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
-};
-
-
-/**
  * Finds books by theme
  *
  * theme List Theme values that need to be considered for filter
