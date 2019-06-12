@@ -16,6 +16,8 @@ exports.getEventByID = async function(eventID) {
       throw {actualResponse: 'Event not found', status: 404};
     }
     else {
+        //put the data in a better format
+        event[0].date = event[0].date.toISOString().slice(0,10);
         //get the book presented in the event
         const book = await db.select('Book.bookID','Book.name').from('Book').join('Event', {'Book.bookID' : 'Event.bookID'}).where('eventID', eventID);
         event[0].book = book[0];
@@ -29,12 +31,17 @@ exports.getEventByID = async function(eventID) {
  */
 exports.getEvents = async function() {
     //get the data about all the events
-    const events = await db.select().from('Event');
+    const events = await db.select('eventID','name','time','date','image_path').from('Event');
     if (events.length <= 0){
-      throw {actualResponse: 'No event found', status: 404};
+        throw {actualResponse: 'No event found', status: 404};
     }
     else{
-      return {actualResponse: events, status: 200};
+        //put the data in a better format, for every event
+        const nEvents = events.length;
+        for(let i=0; i<nEvents; i++){
+            events[i].date = events[i].date.toISOString().slice(0,10);
+        }
+        return {actualResponse: events, status: 200};
     }
 };
 

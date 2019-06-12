@@ -772,13 +772,9 @@ definitions:
         format: "int64"
       name:
         type: "string"
-      location:
-        type: "string"
       time:
         type: "string"
       date:
         type: "string"
       image_path:
         type: "string"
-      book:
-        $ref: "#/definitions/BookIDandName"
