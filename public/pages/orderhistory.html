@@ -1,147 +1,120 @@
 <!doctype html>
 <html lang="en" dir="ltr">
-<head>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="../assets/css/header&footer.css">
-    <link rel="stylesheet" href="../assets/css/style_orderhistory.css">
-    <link rel="shortcut icon" type="image/png" href="../assets/img/favicon.png">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0,shrink-to-fit=no">
-    <title>Orders history</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="../assets/js/orderhistory.js"></script>
-    <script src="../assets/js/loginCheck.js"></script>
-</head>
-<body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="../index.html">
-            <img src="http://i63.tinypic.com/vg33mq.png" alt="">
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="../assets/css/header&footer.css">
+        <link rel="stylesheet" href="../assets/css/style_orderhistory.css">
+        <link rel="shortcut icon" type="image/png" href="../assets/img/favicon.png">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,shrink-to-fit=no">
+        <title>Orders history</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="../assets/js/orderhistory.js"></script>
+        <script src="../assets/js/loginCheck.js"></script>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="../index.html">
+                    <img src="http://i63.tinypic.com/vg33mq.png" alt="">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="../index.html">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Books
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="allbookgenres.html">Genres</a>
-                        <a class="dropdown-item" href="allbookthemes.html">Themes</a>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="../index.html">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Books
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="allbookgenres.html">Genres</a>
+                                <a class="dropdown-item" href="allbookthemes.html">Themes</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="allauthors.html">Authors</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Events</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="best_sellers.html">Best Sellers</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="ourfavouritereadings.html">Our Favourites</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Require a Gift Card</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact%20us.html">Contact Us</a>
+                        </li>
+                        <li class="nav-item" id="loginItem">
+                            <a href="login.html" type="submit" class="btn btn-primary mb-2" id="loginButton">Log in</a>
+                            <a href="registration.html" type="submit" class="btn btn-primary mb-2" id="registerButton">Register</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <h1 class="display-4">Your Orders</h1>
+
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-8">
+                <div class="flex-container" id="ordersContainer">
+
+                </div>
+            </div>
+            <div class="col-2"></div>
+        </div>
+
+        <!-- cambiare organizzazione di ciascuna scheda dei libro in row contenente due col, una piccola e una grande che è a sua volta divisa in row?-->
+
+        <footer class="page-footer font-small">
+            <div class="container-fluid text-center text-md-left mt-5">
+                <div class="row mt-3">
+                    <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                        <h6 class="text-uppercase font-weight-bold">Pigo Books</h6>
+                        <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto">
+                        <p>2019 © Pigo Books srl</p>
+                        <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto">
                     </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="allauthors.html">Authors</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Events</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="best_sellers.html">Best Sellers</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="ourfavouritereadings.html">Our Favourites</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Require a Gift Card</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="contact%20us.html">Contact Us</a>
-                </li>
-                <li class="nav-item" id="loginItem">
-                    <a href="login.html" type="submit" class="btn btn-primary mb-2" id="loginButton">Log in</a>
-                    <a href="registration.html" type="submit" class="btn btn-primary mb-2" id="registerButton">Register</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
-
-
-
-
-
-
-
-<h1>Your Orders</h1>
-
-
-
-
-<div class="row">
-    <div class="col-3"></div>
-    <div class="col-6">
-        <div class="flex-container" id="ordersContainer">
-
-        </div>
-    </div>
-    <div class="col-3"></div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<footer class="page-footer font-small">
-    <div class="container-fluid text-center text-md-left mt-5">
-        <div class="row mt-3">
-            <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-                <h6 class="text-uppercase font-weight-bold">Pigo Books</h6>
-                <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto">
-                <p>2019 © Pigo Books srl</p>
-                <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto">
+                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-4">
+                        <h6 class="text-uppercase font-weight-bold">Useful links</h6>
+                        <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto">
+                        <p>
+                            <a class="link" href="faq.html">FAQ</a>
+                        </p>
+                        <p>
+                            <a class="link" href="ordering&shipping.html">Ordering and Shipping</a>
+                        </p>
+                    </div>
+                    <div class="col-md-5 col-lg-4 col-xl-4 mx-auto mb-md-0 mb-4">
+                        <h6 class="text-uppercase font-weight-bold">Contact</h6>
+                        <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto">
+                        <p><b>
+                            <a class="link" href="contact%20us.html">Contact Us</a>
+                        </b></p>
+                        <p>
+                            <i class="fas fa-home"></i> Via della Troncaia 53, Olgiate Comasco (CO)</p>
+                        <address>
+                            <a class="link" href="mailto:pigobooks@gmail.com">pigobooks@gmail.com</a><br/>
+                            <p></p>
+                            <a class="link" href="tel:+311-555-2368">+311-555-2368</a><br/>
+                        </address>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-4">
-                <h6 class="text-uppercase font-weight-bold">Useful links</h6>
-                <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto">
-                <p>
-                    <a class="link" href="faq.html">FAQ</a>
-                </p>
-                <p>
-                    <a class="link" href="ordering&shipping.html">Ordering and Shipping</a>
-                </p>
-            </div>
-            <div class="col-md-5 col-lg-4 col-xl-4 mx-auto mb-md-0 mb-4">
-                <h6 class="text-uppercase font-weight-bold">Contact</h6>
-                <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto">
-                <p><b>
-                    <a class="link" href="contact%20us.html">Contact Us</a>
-                </b></p>
-                <p>
-                    <i class="fas fa-home"></i> Via della Troncaia 53, Olgiate Comasco (CO)</p>
-                <address>
-                    <a class="link" href="mailto:pigobooks@gmail.com">pigobooks@gmail.com</a><br/>
-                    <p></p>
-                    <a class="link" href="tel:+311-555-2368">+311-555-2368</a><br/>
-                </address>
-            </div>
-        </div>
-    </div>
-</footer>
+        </footer>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-</body>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    </body>
 </html>

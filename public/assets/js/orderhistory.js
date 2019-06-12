@@ -15,19 +15,23 @@ $(document).ready(function () {
     function visualizeBooks(jsArray, i){
         let books = '';
         let numberOfBooks = jsArray[i].books.length;
-        for(let j=0; j < numberOfBooks; j++){
+        for(let j = 0; j < numberOfBooks; j++){
             books = books + '<div class="row">' +
                 '<div class="col">' +
                 '<img class="card-img" src="' + jsArray[i].books[j].image_path + '">' +
                 '</div>' +
-                '<div class="col">' +
-                '<h4 class="card-title"><a href="book.html?parameter=' + jsArray[i].books[j].bookID + '" >' + jsArray[i].books[j].name + '</a> </h4>' +
+                '<div class="col title">' +
+                '<h5 class="card-title"><a href="book.html?parameter=' + jsArray[i].books[j].bookID + '" >' + jsArray[i].books[j].name + '</a> </h5>' +
+                '<p class="bookInfo">BookID: #' + jsArray[i].books[j].bookID + '</p>' +
                 '</div>' +
-                '<div class="col">' +
-                '<h4>copies: ' + jsArray[i].books[j].copies + '</h4>' +
+                '<div class="col copies">' +
+                '<p class="bookInfo">Copies: ' + jsArray[i].books[j].copies + '</p>' +
                 '</div>' +
-                '</div>' +
-                '<hr>';
+                '</div>';
+
+            if (j + 1 < numberOfBooks) {
+                books = books + '<hr>';
+            }
         }
         return books;
     }
@@ -39,9 +43,9 @@ $(document).ready(function () {
         var arrayLength = jsArray.length;
 
 
-        for(let i=0; i < arrayLength; i++){
+        for(let i = 0; i < arrayLength; i++){
             $('#ordersContainer').append('<div class="card">' +
-                '<div class="card-header"> Date of order: ' + jsArray[i].date + '</div>' +
+                '<div class="card-header"><p class="lead">Date of order: ' + jsArray[i].date + '</p></div>' +
                 visualizeBooks(jsArray, i) + '</div>');
         }
     }
