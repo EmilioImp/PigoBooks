@@ -187,9 +187,43 @@ a:hover, a:focus {
     color : white;
 }
 
-@media only screen and (max-width: 736px) {
+@media screen and (min-width : 1025px) {
+    .card-img {
+        margin-top: 15.7%;
+    }
+}
 
-    #genresList {
+@media screen and (max-width: 1024px) {
+    .card-img {
+        margin-top: 26.4%;
+        max-width: 125px;
+        max-height: 125px;
+    }
+}
+
+@media screen and (max-width: 991px){
+    .display-3 {
+        font-size: 3rem;
+    }
+
+    .card {
+        margin-left : 5%!important;
+    }
+
+    .card-title {
+        margin : 20% 0.4em 20% 0.4em;
+    }
+
+    .card-img {
+        margin-top: 36.4%;
+        max-width: 100px!important;
+        max-height: 100px!important;
+    }
+}
+
+@media only screen and (max-width: 736px){
+
+    #filterList {
         display: block;
         width : 100%;
     }
@@ -198,7 +232,7 @@ a:hover, a:focus {
         border-right: 0;
     }
 
-    #genresList > li > a {
+    #filterList > li > a {
         margin-left : 1em;
     }
 
@@ -218,6 +252,7 @@ a:hover, a:focus {
 
     .card-deck {
         flex-flow: column wrap;
+        margin: 0 10% 0 10%!important;
     }
 
     .card-img {
@@ -270,36 +305,123 @@ a:hover, a:focus {
     }
 }
 
-@media screen and (max-width: 991px){
+@media only screen and (max-width: 454px) {
+
+    #filterList {
+        display: block;
+        width : 100%;
+    }
+
+    .row {
+        border-right: 0;
+    }
+
+    #filterList > li > a {
+        margin-left : 1em;
+    }
+
+    .tab-content {
+        display: block!important;
+        margin-top : 1em;
+    }
+
+    #noFilter {
+        margin-left: 1em;
+        margin-right: 1em;
+    }
+
     .display-3 {
-        font-size: 3rem;
+        font-size: 2.05rem!important;
+    }
+
+    .card-deck {
+        flex-flow: column wrap;
+        margin: 0 0 0 0!important;
+    }
+
+    .card-img {
+        margin-top: 28%!important;
+    }
+
+    .card > a > .row > .col-md-4{
+        max-width: 97px;
+        max-height: 180px;
     }
 
     .card {
-        margin-left : 5%!important;
+        margin-left : 11%!important;
     }
 
-    .card-title {
-        margin : 20% 0.4em 20% 0.4em;
+    .card > a > .row > .col-md-8 {
+        max-width: 193px;
+        max-height: 180px;
     }
 
-    .card-img {
-        margin-top: 36.4%;
-        max-width: 100px!important;
-        max-height: 100px!important;
+    .text-faded > p {
+        margin : 0 0.8em 10% 0.8em!important;
+    }
+
+    .vertical-tab{
+        width : 100%;
+        border-right: none;
+    }
+
+    .vertical-tab .nav-tabs{
+        display: block;
+        margin: 0 -10px;
+        border-right: none;
+    }
+
+    .vertical-tab .nav-tabs li {
+        margin-bottom: 10px;
+    }
+
+    .vertical-tab .nav-tabs li:last-child {
+        margin-bottom: 0;
+    }
+
+    .vertical-tab .nav-tabs li a {
+        padding: 10px;
+    }
+
+    .vertical-tab .nav-tabs li a.active:after {
+        display: none;
     }
 }
 
-@media screen and (max-width: 1024px) {
-    .card-img {
-        margin-top: 26.4%;
-        max-width: 125px;
-        max-height: 125px;
+@media only screen and (max-width: 375px){
+    .card {
+        margin-left : 6%!important;
     }
 }
 
-@media screen and (min-width : 1025px) {
-    .card-img {
-        margin-top: 15.7%;
-    }
+.pagination {
+    padding-left : 0;
+    margin-top : 1em;
+    margin-left : 33.3%;
+    margin-right : 33.3%;
+}
+
+.page-item {
+    display : inline-block;
+}
+
+.page-item a{
+    color : #805d89;
+    float : left;
+    padding : 0.15em 0.30em 0.15em 0.30em;
+    text-decoration : none;
+    border-radius : 5px;
+}
+
+.page-item a.current {
+    background-color : #AF94B6;
+    color : white;
+    border-radius : 5px;
+}
+
+.page-item a:hover:not(.current) {background-color : #E2D5DD;}
+
+#footerRow {
+    border-right: 0;
 }

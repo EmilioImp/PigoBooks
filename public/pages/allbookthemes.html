@@ -66,22 +66,39 @@
 
         <h1 class="display-4">List of all books themes</h1>
 
-        <div id="bigcontainer">
+        <div id="filter" class="container">
             <div class="row">
+                <div class="col-md-12">
+                    <div class="vertical-tab" role="tablist">
 
-                <div class="col-3">
-                    <div class="flex-container"></div>
-                </div>
+                        <ul id="filterList" class="nav nav-tabs" role="tablist">
+                            <li id="reset" role="presentation"><a class="active" href="#noFilter" aria-controls="home" role="tab" data-toggle="tab">Reset filter</a></li>
+                        </ul>
 
-                <div class="col-9">
-                    <div class="card-deck"></div>
+                        <div class="tab-content tabs">
+
+                            <div id="noFilter" role="tabpanel" class="tab-pane fade show active">
+                                <h5 class="display-3">Select a theme to filter the books belonging to it!</h5>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce semper, magna a ultricies volutpat, mi eros viverra massa, vitae consequat nisi justo in tortor. Proin accumsan felis ac felis dapibus, non iaculis mi varius.</p>
+                            </div>
+
+                            <div id="cardPanel" role="tabpanel" class="tab-pane fade">
+                                <div class="card-deck"></div>
+
+                                <nav aria-label="page-navigation">
+                                    <ul class="pagination justify-content-center"></ul>
+                                </nav>
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
         <footer class="page-footer font-small">
             <div class="container text-center text-md-left mt-5">
-                <div class="row mt-3">
+                <div id="footerRow" class="row mt-3">
                     <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
                         <h6 class="text-uppercase font-weight-bold">Pigo Books</h6>
                         <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto">

@@ -24,7 +24,7 @@ $(document).ready(function(){
 
         //if pageCount > 1 I must append the << symbol first
         if (pageCount > 1){
-            $(".pagination").append('<li id="first" class="page-item"><a href="#" aria-label="First"><span aria-hidden="true">&laquo;</span></a></li>');
+            $(".pagination").append('<li id="first" class="page-item"><a href="javascript:void(0)" aria-label="First"><span aria-hidden="true">&laquo;</span></a></li>');
         }
 
         for( j ; j < pageCount; j++){ //creating the necessary number of pages to contain the authors
@@ -33,7 +33,7 @@ $(document).ready(function(){
 
         //after the creation of the pagination, if pageCount > 1 I add the >> symbol
         if (pageCount > 1){
-            $(".pagination").append('<li id="last" class="page-item"><a href="#" aria-label="Last"><span aria-hidden="true">&raquo;</span></a></li>');
+            $(".pagination").append('<li id="last" class="page-item"><a href="javascript:void(0)" aria-label="Last"><span aria-hidden="true">&raquo;</span></a></li>');
         }
 
         //if there's only one page, then I won't have created the >> e << symbols and so the first page will be "current"
