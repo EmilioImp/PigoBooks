@@ -3,7 +3,7 @@
     text-align : center;
     font-weight : 300;
     margin-top : 0.5em;
-    margin-bottom : 0.5em;
+    margin-bottom : 1em;
 }
 
 hr {
@@ -47,14 +47,53 @@ hr {
     color : #9271a8!important;
 }
 
-.col.title {
-
-}
-
 .col.copies {
     text-align: right;
 }
 
 .bookInfo {
     font-weight: normal;
+}
+
+@media screen and (max-width: 450px) {
+
+    .card-title {
+        font-size: small;
+    }
+
+    .bookInfo {
+        font-weight: lighter;
+        font-size: small;
+    }
+
+    .card-img {
+        max-width : 100px;
+        max-height : 100px;
+    }
+}
+
+@media screen and (max-width: 390px) {
+
+    .lead {
+        font-size: medium;
+    }
+
+    .card-title {
+        font-size: small;
+    }
+
+    .bookInfo {
+        font-weight: lighter;
+        font-size: small;
+    }
+
+    .col.title {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .card-img {
+        max-width : 90px;
+        max-height : 90px;
+    }
 }

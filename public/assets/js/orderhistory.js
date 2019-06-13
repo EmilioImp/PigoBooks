@@ -18,14 +18,14 @@ $(document).ready(function () {
         for(let j = 0; j < numberOfBooks; j++){
             books = books + '<div class="row">' +
                 '<div class="col">' +
-                '<img class="card-img" src="' + jsArray[i].books[j].image_path + '">' +
+                '<img class="card-img" alt="bookimg" src="' + jsArray[i].books[j].image_path + '">' +
                 '</div>' +
                 '<div class="col title">' +
                 '<h5 class="card-title"><a href="book.html?parameter=' + jsArray[i].books[j].bookID + '" >' + jsArray[i].books[j].name + '</a> </h5>' +
-                '<p class="bookInfo">BookID: #' + jsArray[i].books[j].bookID + '</p>' +
+                '<p class="bookInfo">Copies: ' + jsArray[i].books[j].copies + '</p>' +
                 '</div>' +
                 '<div class="col copies">' +
-                '<p class="bookInfo">Copies: ' + jsArray[i].books[j].copies + '</p>' +
+                '<p class="bookInfo">[bookCost]</p>' +
                 '</div>' +
                 '</div>';
 
@@ -49,9 +49,5 @@ $(document).ready(function () {
                 visualizeBooks(jsArray, i) + '</div>');
         }
     }
-
-
-
-
 
 });
