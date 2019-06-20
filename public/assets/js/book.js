@@ -44,9 +44,9 @@ $(document).ready(function() {
             r=Math.floor(Math.random() * (nSimilarBooks-i))
             randomSimilarBooksArray.push(similarBooksArray[r]);
 
-            for( var i = 0; i < nSimilarBooks-i; i++){
-                if ( similarBooksArray[i] === r) {
-                    similarBooksArray.splice(i, 1);
+            for( var j = 0; j < nSimilarBooks-j; j++){
+                if ( similarBooksArray[j] === r) {
+                    similarBooksArray.splice(j, 1);
                 }
             }
 
