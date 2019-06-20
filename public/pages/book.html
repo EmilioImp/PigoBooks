@@ -41,7 +41,7 @@
                         <a class="nav-link" href="allauthors.html">Authors</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Events</a>
+                        <a class="nav-link" href="allevents.html">Events</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="best_sellers.html">Best Sellers</a>
@@ -65,7 +65,7 @@
     </nav>
 
 
-        <h1 id="id"> [Book #bookid] </h1>
+        <h1 id="name"> [name] </h1>
 
         <div class="card mb-3">
             <div class="row no-gutters">
@@ -76,17 +76,19 @@
 
                 <div class="col-md-7">
                     <div class="card-block">
-                        <h4 id="name" class="card-title"> [name] </h4>
                         <h5 class="card-subtitle mb-2 text-muted"> Authors:</h5>
-                        <p id="authors"> [authors]</p>
+                        <p id="authorList"> [authorList]</p>
                         <h5 class="card-subtitle mb-2 text-muted"> Genres:</h5>
-                        <p id="genres"> [genres]</p>
+                        <p id="genreList"> [genreList]</p>
                         <h5 class="card-subtitle mb-2 text-muted"> Themes:</h5>
-                        <p id="themes"> [themes]</p>
+                        <p id="themeList"> [themeList]</p>
                         <h5 class="card-subtitle mb-2 text-muted"> Edition:</h5>
                         <p id="edition"> [edition]</p>
                         <h5 class="card-subtitle mb-2 text-muted"> Cost:</h5>
                         <p id="cost"> [cost]</p>
+                        <div id="similar-Books-List" class="card-body">
+                            <div id="similarBooksList" class="list-group list-group-flush"></div>
+                        </div>
                     </div>
                 </div>
             </div>

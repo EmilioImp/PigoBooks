@@ -13,26 +13,49 @@ $(document).ready(function() {
         var i = 0;
         var nGenres = genresArray.length;
 
+        $("#genreList").append('<p>|');
+
         for (i; i < nGenres; i++) {
-            $("#genreList").append('<a href="allbookgenres.html?genre=' + genresArray[i] + '</a>')
+            $("#genreList").append('<p>' + genresArray[i] + '|' )
         }
+        $("#genreList").append('</p>');
     }
 
     function createThemesList(themesArray) {
         var i = 0;
         var nThemes = themesArray.length;
 
+        $("#themeList").append('<p>|');
+
         for (i; i < nThemes; i++) {
-            $("#themeList").append('<a href="allbookthemes.html?parameter=' + themesArray[i] + '</a>')
+            $("#themeList").append('<p>' + themesArray[i] + '|' )
         }
+        $("#themeList").append('</p>');
     }
 
     function createSimilarBookList(similarBooksArray) {
+        const maxBooks = 3;
         var i = 0;
+        var r;
         var nSimilarBooks = similarBooksArray.length;
+        var randomSimilarBooksArray = [];
 
-        for (i; i < nSimilarBooks; i++) {
-            $("#similarBooksList").append('<a href="book.html?parameter=' + similarBooksArray[i].bookID + '" class="list-group-item list-group-item-action">' + similarBooksArray[i].name + '</a>')
+        for (i; i < maxBooks; i++){
+            r=Math.floor(Math.random() * (nSimilarBooks-i))
+            randomSimilarBooksArray.push(similarBooksArray[r]);
+
+            for( var i = 0; i < nSimilarBooks-i; i++){
+                if ( similarBooksArray[i] === r) {
+                    similarBooksArray.splice(i, 1);
+                }
+            }
+
+        }
+
+        var nRandomSimilarBooks = randomSimilarBooksArray.length;
+
+        for (i=0; i < nRandomSimilarBooks; i++) {
+            $("#similarBooksList").append('<a href="book.html?parameter=' + randomSimilarBooksArray[i].bookID + '" class="list-group-item list-group-item-action">' + similarBooksArray[i].name + '</a>')
         }
     }
 
@@ -40,16 +63,18 @@ $(document).ready(function() {
         var i = 0;
         var nAuthors = authorArray.length;
 
+        $("#authorList").append('<p>|');
+
         for (i; i < nAuthors; i++) {
-            $("#authorList").append('<a href="author.html?parameter=' + authorArray[i].authorID + '" class="list-group-item list-group-item-action">' + authorArray[i].name + '</a>')
+            $("#authorList").append('<a href="author.html?parameter=' + authorArray[i].authorID + authorArray[i].name + '</a>')
         }
+        $("#authorList").append('</p>');
     }
 
 
     function adjustBookPage(bookjson) {
         var book = JSON.parse(JSON.stringify(bookjson));
         $(".card-img").attr("src", book[0].image_path);
-        document.getElementById("id").innerHTML = "Book" + " " + "#" + book[0].bookID;
         document.getElementById("name").innerHTML =
             book[0].name;
         document.getElementById("edition").innerHTML =
