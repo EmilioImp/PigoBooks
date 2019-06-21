@@ -13,24 +13,23 @@ $(document).ready(function() {
         var i = 0;
         var nGenres = genresArray.length;
 
-        $("#genreList").append('<p>|');
+
 
         for (i; i < nGenres; i++) {
-            $("#genreList").append('<p>' + genresArray[i] + '|' )
+            $("#genreList").append('<p>' + genresArray[i] + ' ' )
         }
-        $("#genreList").append('</p>');
+
     }
 
     function createThemesList(themesArray) {
         var i = 0;
         var nThemes = themesArray.length;
 
-        $("#themeList").append('<p>|');
 
         for (i; i < nThemes; i++) {
-            $("#themeList").append('<p>' + themesArray[i] + '|' )
+            $("#themeList").append('<p>' + themesArray[i] + ' ' )
         }
-        $("#themeList").append('</p>');
+
     }
 
     function createSimilarBookList(similarBooksArray) {
@@ -63,12 +62,11 @@ $(document).ready(function() {
         var i = 0;
         var nAuthors = authorArray.length;
 
-        $("#authorList").append('<p>|');
 
         for (i; i < nAuthors; i++) {
-            $("#authorList").append('<a href="author.html?parameter=' + authorArray[i].authorID + authorArray[i].name + '</a>')
+            $("#authorList").append('<a href="author.html?parameter=' + authorArray[i].authorID + authorArray[i].firstName + ' ' + authorArray[i].lastName + '</a>')
         }
-        $("#authorList").append('</p>');
+
     }
 
 
