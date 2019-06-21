@@ -20,6 +20,11 @@
     padding: 2rem;
 }
 
+.card-footer:last-child {
+    border-radius: 0 0 calc(.25rem - 1px) calc(.25rem - 1px);
+    width: 100%;
+}
+
 .card {
     margin : 3% 10% 3% 10%;
     background-color : #E2D5DD;
