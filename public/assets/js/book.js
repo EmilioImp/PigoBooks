@@ -66,7 +66,7 @@ $(document).ready(function() {
 
 
         for (i; i < nAuthors; i++) {
-            $("#authorList").append('<a href="author.html?parameter=' + authorArray[i].authorID + authorArray[i].firstName + ' ' + authorArray[i].lastName + '</a>')
+            $("#authorList").append('<a href="author.html?parameter=' + authorArray[i].authorID + '">' + authorArray[i].firstName + ' ' + authorArray[i].lastName + '</a>')
         }
 
     }
