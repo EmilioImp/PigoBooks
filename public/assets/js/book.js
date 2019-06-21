@@ -15,9 +15,10 @@ $(document).ready(function() {
 
 
         $("#genreList").append('<p>');
-        for (i; i < nGenres; i++) {
-            $("#genreList").append(genresArray[i] + ',' );
+        for (i; i < nGenres-1; i++) {
+            $("#genreList").append(genresArray[i] + ', ' );
         }
+        $("#genreList").append(genresArray[i]);
         $("#genreList").append('</p>');
     }
 
@@ -26,9 +27,10 @@ $(document).ready(function() {
         var nThemes = themesArray.length;
 
         $("#themeList").append('<p>');
-        for (i; i < nThemes; i++) {
-            $("#themeList").append(themesArray[i] + ',' );
+        for (i; i < nThemes-1; i++) {
+            $("#themeList").append(themesArray[i] + ', ' );
         }
+        $("#themeList").append(themesArray[i]);
         $("#themeList").append('</p>');
     }
 
