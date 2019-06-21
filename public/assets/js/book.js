@@ -87,4 +87,32 @@ $(document).ready(function() {
         createSimilarBookList(book[0].similarBooks);
     }
 
+    $('#pressBuyBookButton').click(function () {
+
+        const quantity = $('#exampleFormControlSelect1');
+        const id = $('#bookID');
+        var idQuantityObject = {bookID: id, copies:quantity};
+        var idQuantityJson = JSON.stringify(idQuantityObject);
+        const returnArray = {};
+        for (let i = 0; i < idQuantityJson.length; i++){
+            returnArray[idQuantityJson[i]['name']] = idQuantityJson[i]['value'];
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "/xXEmilioXx/MyBookstore/1.0.0/user/cart/addBook",
+            data: JSON.stringify(returnArray),
+            contentType: "application/json",
+            error: function (response) {
+                console.log(response.responseText);
+            },
+            success: function (response) {
+
+            }
+        });
+    });
+
+
 })
+
+
