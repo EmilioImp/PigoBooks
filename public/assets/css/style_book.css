@@ -87,3 +87,13 @@ i {
         margin-left : 15%;
     }
 }
+
+.form-group{
+    padding: 1rem 10rem 2rem;
+}
+
+.btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle {
+    color: #fff;
+    background-color: #805d89;
+    border-color: blueviolet;
+}
