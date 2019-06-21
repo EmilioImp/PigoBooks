@@ -14,22 +14,22 @@ $(document).ready(function() {
         var nGenres = genresArray.length;
 
 
-
+        $("#genreList").append('<p>');
         for (i; i < nGenres; i++) {
-            $("#genreList").append('<p>' + genresArray[i] + ' ' )
+            $("#genreList").append(genresArray[i] + ',' );
         }
-
+        $("#genreList").append('</p>');
     }
 
     function createThemesList(themesArray) {
         var i = 0;
         var nThemes = themesArray.length;
 
-
+        $("#themeList").append('<p>');
         for (i; i < nThemes; i++) {
-            $("#themeList").append('<p>' + themesArray[i] + ' ' )
+            $("#themeList").append(themesArray[i] + ',' );
         }
-
+        $("#themeList").append('</p>');
     }
 
     function createSimilarBookList(similarBooksArray) {
@@ -40,7 +40,7 @@ $(document).ready(function() {
         var randomSimilarBooksArray = [];
 
         for (i; i < maxBooks; i++){
-            r=Math.floor(Math.random() * (nSimilarBooks-i))
+            r=Math.floor(Math.random() * (nSimilarBooks-i));
             randomSimilarBooksArray.push(similarBooksArray[r]);
 
             for( var j = 0; j < nSimilarBooks-j; j++){
