@@ -23,8 +23,8 @@ $(document).ready(function() {
         var i = 0;
         const maxBooks=3
         var obj = JSON.stringify(response);
-        var jsArray = JSON.parse(obj); //converting the json array in js objects array
-        for (i; i<maxBooks-1;i++){
+        var jsArray = JSON.parse(obj);
+        for (i; i<maxBooks;i++){
             $(".top-books").append('<div class="row featurette" id="top-book">\n' +
                 '         <div class="col-md-7 order-md-2">\n' +
                 '           <h2 class="featurette-heading"><a href="book.html?parameter=' + jsArray[i].bookID + '">' + jsArray[i].name + '</a><span class="badge badge-secondary" id="position">' + jsArray[i].placement + '</span></h2>\n' +
