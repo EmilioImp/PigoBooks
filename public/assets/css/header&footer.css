@@ -28,3 +28,9 @@ a.link{
 .bg-light {
   background-color: #f0e6ee!important;
 }
+
+.btn-primary {
+    color: #fff;!important;
+    background-color: #805d89;
+    border-color: blueviolet;
+}
