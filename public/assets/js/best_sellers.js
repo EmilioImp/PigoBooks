@@ -15,7 +15,7 @@ $(document).ready(function() {
         for (j; j < authorlist[j].length - 1; j++) {
             string = string + '<a href="author.html?parameter=' + authorlist[j].authorID + '"' + ', ' + '>' + authorlist[j].firstName + ' ' + authorlist[j].lastName + '</a>';
         }
-        string = string + '<a href="author.html?parameter=' + authorlist[j].authorID + '"' + '>';
+        string = string + '<a href="author.html?parameter=' + authorlist[j].authorID + '"' + '>' + authorlist[j].firstName + ' ' + authorlist[j].lastName + '</a>';
         return string;
     }
 
