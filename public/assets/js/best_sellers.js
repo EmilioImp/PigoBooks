@@ -13,7 +13,7 @@ $(document).ready(function() {
         var j = 0;
         var string = "";
         for (j; j < authorlist.length-1; j++) {
-            string = string + '<a href="author.html?parameter=' + authorlist[j].authorID + '"' + '>' + authorlist[j].firstName + ' ' + authorlist[j].lastName + '</a>' + + ', ';
+            string = string + '<a href="author.html?parameter=' + authorlist[j].authorID + '"' + '>' + authorlist[j].firstName + ' ' + authorlist[j].lastName + '</a>' + ', ';
         }
         string = string + '<a href="author.html?parameter=' + authorlist[j].authorID + '"' + '>' + authorlist[j].firstName + ' ' + authorlist[j].lastName + '</a>';
         return string;
