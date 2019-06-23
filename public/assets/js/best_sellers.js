@@ -12,7 +12,7 @@ $(document).ready(function() {
     function generateAuthorLinks(authorlist) {
         var j = 0;
         var string = "";
-        for (j; j < authorlist[j].length - 1; j++) {
+        for (j; j < authorlist[j].length; j++) {
             string = string + '<a href="author.html?parameter=' + authorlist[j].authorID + '"' + ', ' + '>' + authorlist[j].firstName + ' ' + authorlist[j].lastName + '</a>';
         }
         string = string + '<a href="author.html?parameter=' + authorlist[j].authorID + '"' + '>' + authorlist[j].firstName + ' ' + authorlist[j].lastName + '</a>';
