@@ -27,7 +27,7 @@ $(document).ready(function() {
         for (i; i<maxBooks-1;i++){
             $(".top-books").append('<div class="row featurette" id="top-book">\n' +
                 '         <div class="col-md-7 order-md-2">\n' +
-                '           <h2 class="featurette-heading">' + jsArray[i].name + '<span class="badge badge-secondary" id="position">' + jsArray[i].placement + '</span></h2>\n' +
+                '           <h2 class="featurette-heading"><a href="book.html?parameter=' + booksarray[i].bookID + '">' + jsArray[i].name + '</a><span class="badge badge-secondary" id="position">' + jsArray[i].placement + '</span></h2>\n' +
                 '           <p class="lead" id="authors">'+ generateAuthorLinks(jsArray[i].authors)
                 +'</p>\n' +
                 '         </div>\n' +

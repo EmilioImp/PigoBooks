@@ -23,7 +23,7 @@ $(document).ready(function(){
                 '<img class="bookImg" src="' + jsArray[i].book.image_path + '" alt="...">' +
                 '<div class="content">' +
                 '<h3>' + jsArray[i].person + "'s favourite" + '</h3>' +
-                '<a class="bookRef" href="' + jsArray[i].book.bookID + '">' +
+                '<a class="bookRef" href="book.html?parameter=' + jsArray[i].book.bookID + '">' +
                 '<p>' + jsArray[i].book.name + '</p>' +
                 '</a></div></div></div></div></div>');
         }
