@@ -12,7 +12,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="../assets/js/registration.js"></script>
     <script src="../assets/js/loginCheck.js"></script>
-    <script src="../assets/js/formvalidator.js"></script>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -69,56 +68,44 @@
     <p class="lead">Submit this form in order to registrate to our website!</p>
 
     <div class="jumbotron jumbotron-fluid" id="content-box">
-        <form class="needs-validation" id = "registrationForm" novalidate>
+        <form role="form" id = "registrationForm" aria-label="registration form">
             <div class="form-row">
-                <div class="col-5">
+                <div class="col-5 form-group">
                     <label class="formField" for="registerFirstname">First name</label>
-                    <input type="text" name="firstName" class="form-control" id="registerFirstname" placeholder="Enter first name" required>
-                    <div class="valid-feedback">Looks good!</div>
-                    <div class="invalid-feedback">Please write a valid first name</div>
+                    <input type="text" name="firstName" class="form-control" id="registerFirstname" placeholder="Enter first name">
                 </div>
 
-                <div class="col-5">
+                <div class="col-5 form-group">
                     <label class="formField" for="registerLastname">Last name</label>
-                    <input type="text" name="lastName" class="form-control" id="registerLastname" placeholder="Enter last name" required>
-                    <div class="valid-feedback">Looks good!</div>
-                    <div class="invalid-feedback">Please write a valid last name</div>
+                    <input type="text" name="lastName" class="form-control" id="registerLastname" placeholder="Enter last name">
                 </div>
             </div>
 
             <div class="form-row">
-                <div class="col">
+                <div class="col form-group">
                     <label class="formField" for="registerUsername">Username</label>
-                    <input type="text" name="username" class="form-control" id="registerUsername" placeholder="Enter username" required>
-                    <div class="valid-feedback">Looks good!</div>
-                    <div class="invalid-feedback">Please write a valid username</div>
+                    <input type="text" name="username" class="form-control" id="registerUsername" placeholder="Enter username">
                 </div>
             </div>
 
             <div class="form-row">
-                <div class="col">
+                <div class="col form-group">
                     <label class="formField" for="registerPassword">Password</label>
-                    <input type="password" name="password" class="form-control" id="registerPassword" placeholder="Enter password" required>
-                    <div class="valid-feedback">Looks good!</div>
-                    <div class="invalid-feedback">Please write a valid password</div>
+                    <input type="password" name="password" class="form-control" id="registerPassword" placeholder="Enter password">
                 </div>
             </div>
 
             <div class="form-row">
-                <div class="col">
+                <div class="col form-group">
                     <label class="formField" for="registerEmail">Email address</label>
-                    <input type="email" name="email" class="form-control" id="registerEmail"  placeholder="Enter email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
-                    <div class="valid-feedback">Looks good!</div>
-                    <div class="invalid-feedback">Please write a valid email address</div>
+                    <input type="email" name="email" class="form-control" id="registerEmail"  placeholder="Enter email">
                 </div>
             </div>
 
             <div class="form-row">
-                <div class="col">
+                <div class="col form-group">
                     <label class="formField" for="registerPhonenumber">Phone number</label>
-                    <input type="text" name="phone" class="form-control" id="registerPhoneNumber"  placeholder="Enter phone number" required>
-                    <div class="valid-feedback">Looks good!</div>
-                    <div class="invalid-feedback">Please write a valide phone number</div>
+                    <input type="text" name="phone" class="form-control" id="registerPhoneNumber"  placeholder="Enter phone number">
                 </div>
             </div>
 
@@ -127,6 +114,27 @@
             <button type="submit" class="btn btn-primary" id="submitRegisterButton">Register</button>
         </form>
         <p></p>
+    </div>
+
+
+
+    <div class="modal fade" id="registrationFailedAlert" tabindex="-1" role="dialog" aria-labelledby="registrationFailedLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="registrationFailedLabel">Registration failed!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>User already registered</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="closeModal" class="btn btn-secondary" data-dismiss="modal">Ok</button>
+                </div>
+            </div>
+        </div>
     </div>
 
 

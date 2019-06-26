@@ -16,7 +16,7 @@ $(document).ready(function () {
             data: JSON.stringify(returnArray),
             contentType: "application/json",
             error: function (response) {
-                console.log(response.responseText);
+                $("#loginFailedAlert").modal();
             },
             success: function (response) {
                 const obj = JSON.stringify(response);

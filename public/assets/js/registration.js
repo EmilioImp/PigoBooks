@@ -14,7 +14,9 @@ $(function (){
             url: "/xXEmilioXx/MyBookstore/1.0.0/user/register",
             data: JSON.stringify(returnArray),
             contentType: "application/json",
-            dataType: "json",
+            error: function (response) {
+                $("#registrationFailedAlert").modal();
+            },
         });
 
     });

@@ -56,17 +56,6 @@ module.exports.getThemes = function getThemes (req, res, next) {
         });
 };
 
-module.exports.getSimilarBooks = function getSimilarBooks(req, res, next) {
-  var bookID = req.swagger.params['bookID'].value;
-  Book.getSimilarBooks(bookID)
-      .then(function (response) {
-        utils.writeJson(res, response.actualResponse, response.status);
-      })
-      .catch(function (response) {
-        utils.writeJson(res, response.actualResponse, response.status);
-      })
-};
-
 module.exports.favouriteReadings = function favouriteReadings(req, res, next) {
     Book.favouriteReadings()
         .then(function (response) {

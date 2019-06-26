@@ -113,15 +113,6 @@ exports.getThemes = async function () {
   return {actualResponse: uniqueThemesArray, status: 200};
 };
 
-exports.getSimilarBooks = async function (bookID) {
-  //get all the books similar to the given one
-  const similarBooks = await db.select('Book.bookID', 'Book.name').from('Book').join('BookSimilar', {'Book.bookID' : 'BookSimilar.bookSimilarID'}).where('BookSimilar.bookID', bookID);
-  if (similarBooks.length <= 0) throw {actualResponse: 'No similar books found', status: 404};
-  else{
-    return {actualResponse: similarBooks, status: 200};
-  }
-};
-
 exports.favouriteReadings = async function () {
   const persons = await db.select('FavouriteBook.person', 'FavouriteBook.person_image_path', 'Book.bookID', 'Book.name', 'Book.image_path').from('FavouriteBook').join('Book', {'FavouriteBook.bookID' : 'Book.bookID'});
   const numberOfPersons = persons.length;
