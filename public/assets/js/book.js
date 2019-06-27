@@ -48,7 +48,7 @@ $(document).ready(function() {
             randomSimilarBooksArray.push(similarBooksArray[r]);
 
             for( var j = 0; j < nSimilarBooks-j; j++){
-                if ( similarBooksArray[j] === r) {
+                if ( j === r) {
                     similarBooksArray.splice(j, 1);
                 }
             }
