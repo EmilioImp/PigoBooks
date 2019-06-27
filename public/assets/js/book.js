@@ -43,7 +43,7 @@ $(document).ready(function() {
         var nSimilarBooks = similarBooksArray.length;
         var randomSimilarBooksArray = [];
 
-        for (i; i < maxBooks; i++){
+        for (i; ((i < maxBooks) || (i < nSimilarBooks)); i++){
             r=Math.floor(Math.random() * (nSimilarBooks-i));
             randomSimilarBooksArray.push(similarBooksArray[r]);
 
@@ -104,7 +104,6 @@ $(document).ready(function() {
             headers : {'x-auth-token' : window.localStorage.getItem("accessToken")},
             error: function (response) {
                 console.log(response.responseText);
-                $('.toast').toast(options);
                 $("#quantityFormToast").append('<div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="failureToast" data-autohide="true">\n' +
                     '  <div class="toast-header">\n' +
                     '    <img src="..." class="rounded mr-2" alt="...">\n' +
@@ -117,10 +116,10 @@ $(document).ready(function() {
                     '    You must be logged in to purchase a book\n' +
                     '  </div>\n' +
                     '</div>');
+                $('#failureToast').toast(options);
                 $('#failureToast').toast('show');
             },
             success: function (response) {
-                $('.toast').toast(options);
             $("#quantityFormToast").append('<div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="successToast" data-autohide="true">\n' +
                 '  <div class="toast-header">\n' +
                 '    <img src="..." class="rounded mr-2" alt="...">\n' +
@@ -133,6 +132,7 @@ $(document).ready(function() {
                 '    Book added to cart!\n' +
                 '  </div>\n' +
                 '</div>');
+                $('#successToast').toast(options);
                 $('#successToast').toast('show');
             }
         });
