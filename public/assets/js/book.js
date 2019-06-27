@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+
+
     $.ajax({
         type: 'GET',
         url: '/xXEmilioXx/MyBookstore/1.0.0/book/' + getURLQueryParameter(),
@@ -89,19 +91,15 @@ $(document).ready(function() {
 
     $('#pressBuyBookButton').click(function () {
 
-        const quantity = $('#exampleFormControlSelect1');
-        const id = $('#bookID');
-        var idQuantityObject = {bookID: id, copies:quantity};
-        var idQuantityJson = JSON.stringify(idQuantityObject);
-        const returnArray = {};
-        for (let i = 0; i < idQuantityJson.length; i++){
-            returnArray[idQuantityJson[i]['name']] = idQuantityJson[i]['value'];
-        }
+        const quantity = $('#formControlSelect.form-control').children("option:selected").val();
+        const id = getURLQueryParameter();
+        const returnObject = {bookID: parseInt(id), copies: parseInt(quantity)};
+        const returnJSON = JSON.stringify(returnObject);
 
         $.ajax({
             type: "POST",
             url: "/xXEmilioXx/MyBookstore/1.0.0/user/cart/addBook",
-            data: JSON.stringify(returnArray),
+            data: returnJSON,
             contentType: "application/json",
             headers : {'x-auth-token' : window.localStorage.getItem("accessToken")},
             error: function (response) {
@@ -117,7 +115,7 @@ $(document).ready(function() {
                     '  <div class="toast-body">\n' +
                     '    Book added to cart!\n' +
                     '  </div>\n' +
-                    '</div>')
+                    '</div>');
             },
             success: function (response) {
             $("#quantityFormToast").append('<div class="toast" role="alert" aria-live="assertive" aria-atomic="true">\n' +
