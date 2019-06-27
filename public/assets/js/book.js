@@ -104,7 +104,7 @@ $(document).ready(function() {
             headers : {'x-auth-token' : window.localStorage.getItem("accessToken")},
             error: function (response) {
                 console.log(response.responseText);
-                window.alert("Error: you must be logged in to buy a book")
+                window.alert("Error: you must be logged in to buy a book");
                /* $("#quantityFormToast").append('<div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="failureToast">\n' +
                     '  <div class="toast-header">\n' +
                     '    <img src="..." class="rounded mr-2" alt="...">\n' +
@@ -122,7 +122,7 @@ $(document).ready(function() {
             },
             success: function (response) {
                 console.log(response.responseText);
-                window.alert("Success! Book added to the cart")
+                window.alert("Success! Book added to the cart");
            /* $("#quantityFormToast").append('<div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="successToast">\n' +
                 '  <div class="toast-header">\n' +
                 '    <img src="..." class="rounded mr-2" alt="...">\n' +
