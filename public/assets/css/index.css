@@ -1,22 +1,28 @@
-#carouselExampleCaptions{
+#carouselExampleCaptions {
   max-height: 400px!important;
 }
-.bd-example{
+.bd-example {
   max-height: 400px!important;
 }
-.featurette-heading{
+.featurette-heading {
   color: #AF94B6!important;
 }
 
-a{
+a {
   color: #AF94B6;
 }
 
-.d-block{
+a:hover {
+  color: #9271a8;
+  text-decoration-color: #9271a8;
+}
+
+
+.d-block {
   opacity: 0.35;!important;
 }
 
-.carouselHeading{
+.carouselHeading {
   color: #675e66;
   font-size: 2rem;
 }

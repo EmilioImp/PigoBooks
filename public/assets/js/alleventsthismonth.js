@@ -12,7 +12,7 @@ $(document).ready(function(){
     function createPages(response){
         var i = 0;
         var j = 0;
-        var pageSize = 5;
+        var pageSize = 8;
         var obj = JSON.stringify(response);
         var jsArray = JSON.parse(obj);
         var arrayLength = jsArray.length;

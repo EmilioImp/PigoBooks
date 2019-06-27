@@ -8,10 +8,8 @@
 
 .card-columns {
     display: inline-block;
-    column-count: 4;
-    /*margin: 0 20% 0 20%;
-    width: 60%;*/
-    /*width: 100%;*/   /*one of the two options: cards occupying all the space (in this case there have to be no limits on margin e/o width) or limits posed on them*/
+    column-count: 5;
+    width: 100%;
     height: auto;
 }
 
@@ -24,12 +22,6 @@
 @media (max-width: 768px) {
     .card-columns {
         column-count: 3;
-    }
-}
-
-@media (min-width: 1200px) {
-    .card-columns {
-        column-count: 5;
     }
 }
 
@@ -71,7 +63,7 @@
     border-width : 2px;
     float : top;
     max-width : 95px;  /*width e height static as of now, to be replaced with dynamic values*/
-    height : 95px;
+    max-height : 95px;
     object-fit : cover;
 }
 
@@ -111,3 +103,16 @@
 }
 
 .page-item a:hover:not(.current) {background-color : #E2D5DD;}
+
+@media screen and (max-width: 1024px) {
+    .card-columns {
+        column-count: 3;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .card-columns {
+        column-count: 2;
+    }
+}
+

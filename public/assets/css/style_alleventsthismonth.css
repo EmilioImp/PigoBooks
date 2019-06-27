@@ -9,25 +9,8 @@
 .card-columns {
     display: inline-block;
     column-count: 4;
+    width: 100%;
     height: auto;
-}
-
-@media (max-width: 576px){
-    .card-columns {
-        column-count: 2!important;
-    }
-}
-
-@media (max-width: 768px) {
-    .card-columns {
-        column-count: 3;
-    }
-}
-
-@media (min-width: 1200px) {
-    .card-columns {
-        column-count: 5;
-    }
 }
 
 .card a{
@@ -79,7 +62,7 @@
     text-align : center;
     margin : auto;
     word-break: keep-all;
-
+    font-size: small;
 }
 
 .pagination {
@@ -108,3 +91,9 @@
 }
 
 .page-item a:hover:not(.current) {background-color : #E2D5DD;}
+
+@media screen and (max-width: 1024px){
+    .card-columns {
+        column-count: 2;
+    }
+}
