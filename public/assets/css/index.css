@@ -11,3 +11,11 @@
 a{
   color: #AF94B6;
 }
+
+.d-block w-100{
+  opacity: 0.5;!important;
+}
+
+.carouselHeading{
+  color: black;
+}
