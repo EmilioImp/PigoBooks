@@ -43,7 +43,7 @@ $(document).ready(function() {
         var nSimilarBooks = similarBooksArray.length;
         var randomSimilarBooksArray = [];
 
-        for (i; ((i < maxBooks) || (i < nSimilarBooks)); i++){
+        for (i; ((i < maxBooks) && (i < nSimilarBooks)); i++){
             r=Math.floor(Math.random() * (nSimilarBooks-i));
             randomSimilarBooksArray.push(similarBooksArray[r]);
 
@@ -104,7 +104,7 @@ $(document).ready(function() {
             headers : {'x-auth-token' : window.localStorage.getItem("accessToken")},
             error: function (response) {
                 console.log(response.responseText);
-                $("#quantityFormToast").append('<div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="failureToast" data-autohide="true">\n' +
+                $("#quantityFormToast").append('<div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="failureToast">\n' +
                     '  <div class="toast-header">\n' +
                     '    <img src="..." class="rounded mr-2" alt="...">\n' +
                     '    <strong class="mr-auto">Operation Failed.</strong>\n' +
@@ -120,7 +120,7 @@ $(document).ready(function() {
                 $('#failureToast').toast('show');
             },
             success: function (response) {
-            $("#quantityFormToast").append('<div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="successToast" data-autohide="true">\n' +
+            $("#quantityFormToast").append('<div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="successToast">\n' +
                 '  <div class="toast-header">\n' +
                 '    <img src="..." class="rounded mr-2" alt="...">\n' +
                 '    <strong class="mr-auto">Operation completed!</strong>\n' +
