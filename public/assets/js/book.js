@@ -104,7 +104,7 @@ $(document).ready(function() {
             headers : {'x-auth-token' : window.localStorage.getItem("accessToken")},
             error: function (response) {
                 console.log(response.responseText);
-                $('.toast').toast(option);
+                $('.toast').toast(options);
                 $("#quantityFormToast").append('<div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="failureToast" data-autohide="true">\n' +
                     '  <div class="toast-header">\n' +
                     '    <img src="..." class="rounded mr-2" alt="...">\n' +
@@ -120,7 +120,7 @@ $(document).ready(function() {
                 $('#failureToast').toast('show');
             },
             success: function (response) {
-                $('.toast').toast(option);
+                $('.toast').toast(options);
             $("#quantityFormToast").append('<div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="successToast" data-autohide="true">\n' +
                 '  <div class="toast-header">\n' +
                 '    <img src="..." class="rounded mr-2" alt="...">\n' +
