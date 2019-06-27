@@ -1,0 +1,110 @@
+.display-4 {
+    color : #805d89;
+    text-align : center;
+    font-weight : 300;
+    margin-top : 0.5em;
+    margin-bottom : 0.5em;
+}
+
+.card-columns {
+    display: inline-block;
+    column-count: 4;
+    height: auto;
+}
+
+@media (max-width: 576px){
+    .card-columns {
+        column-count: 2!important;
+    }
+}
+
+@media (max-width: 768px) {
+    .card-columns {
+        column-count: 3;
+    }
+}
+
+@media (min-width: 1200px) {
+    .card-columns {
+        column-count: 5;
+    }
+}
+
+.card a{
+    text-decoration : none;
+}
+
+.card:hover{
+    border-radius: 5px;
+    border-bottom-color : #AF94B6;
+    border-right-color : #AF94B6;
+    border-top-color : #805d89;
+    border-left-color : #805d89;
+    background-color : #cbb4c2;
+}
+
+.card {
+    display : block;
+    height : 33.3%;
+    max-width : 100%;
+    overflow : auto;
+    margin-bottom : 1%;
+    padding : 0.75rem 0.75rem 0.75rem 0.75rem;
+    border-radius: 3px;
+    border-bottom-color : #805d89;
+    border-right-color : #805d89;
+    border-top-color : #AF94B6;
+    border-left-color : #AF94B6;
+    border-width : 2px;
+    background-color : #E2D5DD;
+}
+
+.card-img {
+    display : block;
+    margin-left : auto;
+    margin-right: auto;
+    border-color : #805d89;
+    border-style : solid;
+    border-width : 2px;
+    float : top;
+    max-width : 95px;
+    height : 95px;
+    object-fit : cover;
+}
+
+.card-title {
+    display : block;
+    color : #805d89;
+    font-weight : bold;
+    text-align : center;
+    margin : auto;
+    word-break: keep-all;
+
+}
+
+.pagination {
+    padding-left : 0;
+    margin-top : 1em;
+    margin-left : 33.3%;
+    margin-right : 33.3%;
+}
+
+.page-item {
+    display : inline-block;
+}
+
+.page-item a{
+    color : #805d89;
+    float : left;
+    padding : 0.15em 0.30em 0.15em 0.30em;
+    text-decoration : none;
+    border-radius : 5px;
+}
+
+.page-item a.current {
+    background-color : #AF94B6;
+    color : white;
+    border-radius : 5px;
+}
+
+.page-item a:hover:not(.current) {background-color : #E2D5DD;}
