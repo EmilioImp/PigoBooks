@@ -104,7 +104,8 @@ $(document).ready(function() {
             headers : {'x-auth-token' : window.localStorage.getItem("accessToken")},
             error: function (response) {
                 console.log(response.responseText);
-                $("#quantityFormToast").append('<div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="failureToast">\n' +
+                window.alert("Error: you must be logged in to buy a book")
+               /* $("#quantityFormToast").append('<div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="failureToast">\n' +
                     '  <div class="toast-header">\n' +
                     '    <img src="..." class="rounded mr-2" alt="...">\n' +
                     '    <strong class="mr-auto">Operation Failed.</strong>\n' +
@@ -117,10 +118,12 @@ $(document).ready(function() {
                     '  </div>\n' +
                     '</div>');
                 $('#failureToast').toast(options);
-                $('#failureToast').toast('show');
+                $('#failureToast').toast('show');*/
             },
             success: function (response) {
-            $("#quantityFormToast").append('<div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="successToast">\n' +
+                console.log(response.responseText);
+                window.alert("Success! Book added to the cart")
+           /* $("#quantityFormToast").append('<div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="successToast">\n' +
                 '  <div class="toast-header">\n' +
                 '    <img src="..." class="rounded mr-2" alt="...">\n' +
                 '    <strong class="mr-auto">Operation completed!</strong>\n' +
@@ -133,7 +136,7 @@ $(document).ready(function() {
                 '  </div>\n' +
                 '</div>');
                 $('#successToast').toast(options);
-                $('#successToast').toast('show');
+                $('#successToast').toast('show');*/
             }
         });
     });
