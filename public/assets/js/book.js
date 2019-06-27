@@ -58,7 +58,7 @@ $(document).ready(function() {
         var nRandomSimilarBooks = randomSimilarBooksArray.length;
 
         for (i=0; i < nRandomSimilarBooks; i++) {
-            $("#similarBooksList").append('<a href="book.html?parameter=' + randomSimilarBooksArray[i].bookID + '" class="list-group-item list-group-item-action">' + similarBooksArray[i].name + '</a>')
+            $("#similarBooksList").append('<a href="book.html?parameter=' + randomSimilarBooksArray[i].bookID + '" class="list-group-item list-group-item-action">' + similarBooksArray[i].name + '</a>');
         }
     }
 
@@ -104,21 +104,24 @@ $(document).ready(function() {
             headers : {'x-auth-token' : window.localStorage.getItem("accessToken")},
             error: function (response) {
                 console.log(response.responseText);
-                $("#quantityFormToast").append('<div class="toast" role="alert" aria-live="assertive" aria-atomic="true">\n' +
+                $('.toast').toast(option);
+                $("#quantityFormToast").append('<div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="failureToast" data-autohide="true">\n' +
                     '  <div class="toast-header">\n' +
                     '    <img src="..." class="rounded mr-2" alt="...">\n' +
-                    '    <strong class="mr-auto">Operation completed!</strong>\n' +
+                    '    <strong class="mr-auto">Operation Failed.</strong>\n' +
                     '    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">\n' +
                     '      <span aria-hidden="true">&times;</span>\n' +
                     '    </button>\n' +
                     '  </div>\n' +
                     '  <div class="toast-body">\n' +
-                    '    Book added to cart!\n' +
+                    '    You must be logged in to purchase a book\n' +
                     '  </div>\n' +
                     '</div>');
+                $('#failureToast').toast('show');
             },
             success: function (response) {
-            $("#quantityFormToast").append('<div class="toast" role="alert" aria-live="assertive" aria-atomic="true">\n' +
+                $('.toast').toast(option);
+            $("#quantityFormToast").append('<div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="successToast" data-autohide="true">\n' +
                 '  <div class="toast-header">\n' +
                 '    <img src="..." class="rounded mr-2" alt="...">\n' +
                 '    <strong class="mr-auto">Operation completed!</strong>\n' +
@@ -129,7 +132,8 @@ $(document).ready(function() {
                 '  <div class="toast-body">\n' +
                 '    Book added to cart!\n' +
                 '  </div>\n' +
-                '</div>')
+                '</div>');
+                $('#successToast').toast('show');
             }
         });
     });
