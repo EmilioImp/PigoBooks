@@ -13,9 +13,10 @@ a{
 }
 
 .d-block{
-  opacity: 0.5;!important;
+  opacity: 0.35;!important;
 }
 
 .carouselHeading{
-  color: black;
+  color: #675e66;
+  font-size: 2rem;
 }
