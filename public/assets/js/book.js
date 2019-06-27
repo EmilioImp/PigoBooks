@@ -58,7 +58,7 @@ $(document).ready(function() {
         var nRandomSimilarBooks = randomSimilarBooksArray.length;
 
         for (i=0; i < nRandomSimilarBooks; i++) {
-            $("#similarBooksList").append('<a href="book.html?parameter=' + randomSimilarBooksArray[i].bookID + '" class="list-group-item list-group-item-action">' + similarBooksArray[i].name + '</a>');
+            $("#similarBooksList").append('<a href="book.html?parameter=' + randomSimilarBooksArray[i].bookID + '" class="list-group-item list-group-item-action">' + randomSimilarBooksArray[i].name + '</a>');
         }
     }
 
