@@ -97,3 +97,30 @@ hr {
         max-height : 90px;
     }
 }
+
+.pagination {
+    padding-left : 0;
+    margin-top : 1em;
+    margin-left : 33.3%;
+    margin-right : 33.3%;
+}
+
+.page-item {
+    display : inline-block;
+}
+
+.page-item a{
+    color : #805d89;
+    float : left;
+    padding : 0.15em 0.30em 0.15em 0.30em;
+    text-decoration : none;
+    border-radius : 5px;
+}
+
+.page-item a.current {
+    background-color : #AF94B6;
+    color : white;
+    border-radius : 5px;
+}
+
+.page-item a:hover:not(.current) {background-color : #E2D5DD;}

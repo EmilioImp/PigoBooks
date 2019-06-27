@@ -71,28 +71,38 @@ h1.error-emoji {
     margin-bottom : 1em!important;
 }
 
+.col-10 > .row {
+    margin-left: 0!important;
+    margin-right: 0!important;
+}
+
 .featurette {
     overflow : hidden;
-}
-
-.featurette-heading {
-    margin: 0.8em 0 0 0
-}
-
-.featurette-heading > a{
-    color : #9271a8!important;
-    margin: 0 0 0 2.6em;
-}
-
-.muted {
-    margin: 1em 0 0 4em;
+    margin : 0 1em 0 1em;
 }
 
 .featurette-image {
     float: left;
+    margin-left: 5%;
     border-radius: 5px;
-    width : 150px;
-    height : 150px;
+    max-width : 100px;
+    max-height : 150px;
+}
+
+
+.orderedBookName > h4{
+    color : #9271a8!important;
+    margin: 0 0 0 20%;
+    font-size: larger;
+}
+
+.orderedBookName:hover {
+    text-decoration-color: #9271a8;
+}
+
+
+.orderedBookAuthors {
+    margin-left: 20%;
 }
 
 .icon-btn {
@@ -103,7 +113,12 @@ h1.error-emoji {
     color : #63486a;
 }
 
-.action {
+.row.action {
+    margin-left: 0!important;
+    margin-right: 0!important;
+}
+
+h4.action {
     margin: 0.5rem 0 0.5rem 0;
     color : #805d89;
 }
@@ -111,6 +126,156 @@ h1.error-emoji {
 .modal-title {
     color : red;
 }
+
+@media screen and (max-width: 1024px){
+
+    .orderedBookName > h4{
+        font-size: large;
+    }
+
+    .orderedBookAuthors {
+        font-size: small;
+    }
+
+    h4.action {
+        margin: 0.75rem 0 0.75rem 0;
+    }
+
+    #orderHistory {
+        margin : 10% 10% 0 15%;
+    }
+
+    #orderBooks {
+        margin : 20% 10% 20% 15%;
+    }
+
+    #orderHistory > p {
+        font-size: small;
+    }
+
+    #orderBooks > p {
+        font-size: small;
+    }
+
+    .error-emoji {
+        font-size: 1500%!important;
+    }
+}
+
+@media screen and (max-width: 768px){
+
+    .display-3 {
+        font-size: 200%;
+    }
+
+    .lead {
+        font-size: 100%;
+
+    }
+
+    .orderedBookName > h4{
+        font-size: large;
+    }
+
+    .orderedBookAuthors {
+        font-size: small;
+    }
+
+    h4.action {
+        margin: 0.75rem 0 0.75rem 0;
+    }
+
+    #orderHistory {
+        margin : 10% 10% 0 15%;
+    }
+
+    #orderBooks {
+        margin : 20% 10% 20% 15%;
+    }
+
+    #orderHistory > p {
+        font-size: small;
+    }
+
+    #orderBooks > p {
+        font-size: small;
+    }
+
+    .error-emoji {
+        font-size: 1000%!important;
+    }
+
+    #empty-cart {
+        font-size: larger;
+    }
+}
+
+@media screen and (max-width: 450px) {
+
+    .container-cart {
+        margin: 0 1em 0 1em;
+    }
+
+    .display-3 {
+        font-size: xx-large;
+    }
+
+    .lead {
+        font-size: medium;
+    }
+
+    .featurette {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .featurette-image {
+        max-width: 60px;
+        max-height: 100px;
+        margin-left: 0;
+    }
+
+    .orderedBookName > h4{
+        font-size: 65%;
+    }
+
+    .orderedBookAuthors {
+        font-size: 50%;
+    }
+
+    .nCopies {
+        font-size: 55%;
+    }
+
+    h4.action {
+        font-size: 65%;
+    }
+
+    #orderHistory > p {
+        font-size: 50%;
+    }
+
+    #orderBooks > p {
+        font-size: 50%;
+    }
+
+    .icon-btn {
+        margin-top : 30%;
+    }
+
+    .pagination > li > a {
+        font-size: 80%;
+    }
+
+    .error-emoji {
+        font-size: 600%!important;
+    }
+
+    #empty-cart {
+
+    }
+}
+
 
 .pagination {
     padding-left : 0;

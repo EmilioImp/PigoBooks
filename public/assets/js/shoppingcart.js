@@ -80,25 +80,30 @@ $(document).ready(function(){
             $(".container-cart").append('<div class="featurette"><h1 class="error-emoji text-faded">' + "\\(o_o)/" + '</h1><p class="lead text-faded" id="empty-cart">' +
                 'Your shopping cart is empty!<br>But you can click <a id="orderHistoryEmptyPageLink" href="orderhistory.html">here</a> to see your order history!</p><hr class="featurette-divider"></div>');
         }
+
         else {
             for (i; i < arrayLength; i++){
                 $("#booksCol").append('<div class="featurette"><div class="row no-gutters"><div class="col-10">' +
-                    '<img class="featurette-image pull-left" alt="100x100" src="' + jsArray[i].image_path + '">' +
-                    '<h4 class="featurette-heading">' +
-                    '<a href="book.html?parameter=' + jsArray[i].bookID + '">' + jsArray[i].name + '</a></h4>' +
-                    '<span class="muted">' + addAuthorNames(jsArray, i) + '</span></div><div class="col-2">' +
+                    '<div class="row">' +
+                    '<div class="col-4"><img class="featurette-image pull-left" alt="100x100" src="' + jsArray[i].image_path + '"></div>' +
+                    '<div class="col-8">' +
+                    '<a class ="orderedBookName" href="book.html?parameter=' +  jsArray[i].bookID + '"><h4>' + jsArray[i].name + '</h4></a>' +
+                    '<p class="orderedBookAuthors">' + addAuthorNames(jsArray, i) + '</p></div>' +
+                    '</div></div>' +
+                    '<div class="col-2">' +
                     '<p class="nCopies text-right">' + "Copies: " + jsArray[i].copies + '</p>' +
-                    '<button type="button" id="' + jsArray[i].bookID + '" class="icon-btn pull-right" data-toggle="modal" data-target="#itemDeletionAlert">' +
+                    '<button type="button" id="' + jsArray[i].bookID +
+                    '" class="icon-btn pull-right" data-toggle="modal" data-target="#itemDeletionAlert">' +
                     '<i class="material-icons">remove_shopping_cart</i>' +
                     '</button></div></div><hr class="featurette-divider"></div>'
                 );
             }
             $("#booksCol").append('<nav aria-label="page-navigation"><ul class="pagination justify-content-center"></ul></nav>');
 
-            $("#actionsCol").append('<div class="row"><div id="orderHistory" class="card"><h4 class="action">Order History</h4><p>Press the button down here to see all the past orders made with this account:<br></p>' +
+            $("#actionsCol").append('<div class="row action"><div id="orderHistory" class="card"><h4 class="action">Order History</h4><p>Press the button down here to see all the past orders made with this account:<br></p>' +
                 '<a href="orderhistory.html" type="button" class="btn btn-primary"><i class="material-icons">history</i></a></div></div>' +
-                '<div class="row"><div id="orderBooks" class="card"><h4 class="action">Order all books</h4><p>Press the button down here to complete your order of all the books in the cart:</p>' +
-                '<a id="order" href="#" type="button" class="btn btn-primary"><i class="material-icons">library_books</i></a></div></div>');
+                '<div class="row action"><div id="orderBooks" class="card"><h4 class="action">Order all books</h4><p>Press the button down here to complete your order of all the books in the cart:</p>' +
+                '<a id="order" href="#" type="button" class="btn btn-primary" data-toggle="modal" data-target="#purchaseOfAllBooks"><i class="material-icons">library_books</i></a></div></div>');
 
             if (pageCount > 1){
                 $(".pagination").append('<li id="first" class="page-item"><a href="#" aria-label="First"><span aria-hidden="true">&laquo;</span></a></li>');
@@ -170,7 +175,7 @@ $(document).ready(function(){
             });
 
 
-            $("#orderBooks").on('click','a#order.btn.btn-primary', function(){
+            $("#purchaseBooks").click(function(){
                 orderAllBooks();
             })
         }
