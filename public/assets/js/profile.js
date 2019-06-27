@@ -29,5 +29,20 @@ $(document).ready(function () {
     }
 
 
+    $('#acceptModal').click(function () {
+
+        $.ajax({
+            type: 'DELETE',
+            url: '/xXEmilioXx/MyBookstore/1.0.0/user/unregister',
+            datatype : 'json',
+            headers : {'x-auth-token' : window.localStorage.getItem("accessToken")},
+            success: function(response){
+                window.localStorage.removeItem("accessToken");
+                window.location.href = "../../index.html"
+            }
+        })
+    })
+
+
 
 });
