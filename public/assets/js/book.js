@@ -11,6 +11,8 @@ $(document).ready(function() {
         }
     });
 
+
+
     function createGenresList(genresArray) {
         var i = 0;
         var nGenres = genresArray.length;
@@ -73,6 +75,17 @@ $(document).ready(function() {
         $("#authorList").append('<a href="author.html?parameter=' + authorArray[i].authorID + '">' + authorArray[i].firstName + ' ' + authorArray[i].lastName + '</a>');
     }
 
+    function createEventList (eventArray){
+        var i = 0;
+        var nEvents = eventArray.length;
+
+        for (i; i < nEvents-1; i++){
+            $("#eventList").append('<a href="event.html?parameter=' + eventArray[i].eventID + '">' + eventArray[i].name + '</a>' +', ');
+        }
+        $("#eventList").append('<a href="event.html?parameter=' + eventArray[i].eventID + '">' + eventArray[i].name + '</a>');
+
+    }
+
 
     function adjustBookPage(bookjson) {
         var book = JSON.parse(JSON.stringify(bookjson));
@@ -82,10 +95,11 @@ $(document).ready(function() {
         document.getElementById("edition").innerHTML =
             book[0].edition;
         document.getElementById("cost").innerHTML =
-            book[0].cost;
+            book[0].cost + " €";
         createAuthorList(book[0].authors);
         createGenresList(book[0].genres);
         createThemesList(book[0].themes);
+        createEventList(book[0].events);
         createSimilarBookList(book[0].similarBooks);
     }
 
