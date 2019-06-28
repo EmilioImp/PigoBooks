@@ -17,6 +17,9 @@ $(function (){
             error: function (response) {
                 $("#registrationFailedAlert").modal();
             },
+            success: function (response) {
+                window.location.href = "../../index.html"
+            }
         });
 
     });

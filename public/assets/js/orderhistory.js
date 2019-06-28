@@ -24,7 +24,7 @@ $(document).ready(function () {
                 '<p class="bookInfo">Copies: ' + jsArray[i].books[j].copies + '</p>' +
                 '</div>' +
                 '<div class="col copies">' +
-                '<p class="bookInfo">[bookCost]</p>' +
+                '<p class="bookInfo"> Total: ' + jsArray[i].books[j].cost * jsArray[i].books[j].copies + ' €</p>' +
                 '</div>' +
                 '</div>';
 
@@ -46,8 +46,15 @@ $(document).ready(function () {
 
 
         for(let i = 0; i < arrayLength; i++){
+            let totalAmount = 0;
+            let numberOfBooks = jsArray[i].books.length;
+            for(let j = 0; j < numberOfBooks; j++){
+                totalAmount += jsArray[i].books[j].cost * jsArray[i].books[j].copies;
+            }
+
             $('#ordersContainer').append('<div class="card">' +
-                '<div class="card-header"><p class="lead">Date of order: ' + jsArray[i].date + '</p></div>' +
+                '<div class="card-header"><p class="lead">Date of order: ' + jsArray[i].date + '</p>' +
+                '<p id="totalAmountText" class="lead">Total amount: '+ totalAmount +' €</p></div>' +
                 visualizeBooks(jsArray, i) + '</div>');
         }
 
@@ -102,5 +109,4 @@ $(document).ready(function () {
             showPage(parseInt($(this).text()))
         });
     }
-
 });

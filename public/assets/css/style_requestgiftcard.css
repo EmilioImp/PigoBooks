@@ -28,6 +28,11 @@
     text-align : center;
 }
 
-a{
+.link-in-page{
     color: #AF94B6;
+}
+
+.link-in-page:hover {
+    color: #9271a8;
+    text-decoration-color: #9271a8;
 }
