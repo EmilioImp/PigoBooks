@@ -82,6 +82,7 @@ $(document).ready(function(){
         }
 
         else {
+            let totalAmount = 0;
             for (i; i < arrayLength; i++){
                 $("#booksCol").append('<div class="featurette"><div class="row no-gutters"><div class="col-10">' +
                     '<div class="row">' +
@@ -92,17 +93,21 @@ $(document).ready(function(){
                     '</div></div>' +
                     '<div class="col-2">' +
                     '<p class="nCopies text-right">' + "Copies: " + jsArray[i].copies + '</p>' +
+                    '<p class="nCopies text-right">Total: '+ jsArray[i].copies * jsArray[i].cost +'€</p>' +
                     '<button type="button" id="' + jsArray[i].bookID +
                     '" class="icon-btn pull-right" data-toggle="modal" data-target="#itemDeletionAlert">' +
                     '<i class="material-icons">remove_shopping_cart</i>' +
                     '</button></div></div><hr class="featurette-divider"></div>'
                 );
+
+                totalAmount += jsArray[i].copies * jsArray[i].cost;
             }
             $("#booksCol").append('<nav aria-label="page-navigation"><ul class="pagination justify-content-center"></ul></nav>');
 
             $("#actionsCol").append('<div class="row action"><div id="orderHistory" class="card"><h4 class="action">Order History</h4><p>Press the button down here to see all the past orders made with this account:<br></p>' +
                 '<a href="orderhistory.html" type="button" class="btn btn-primary"><i class="material-icons">history</i></a></div></div>' +
-                '<div class="row action"><div id="orderBooks" class="card"><h4 class="action">Order all books</h4><p>Press the button down here to complete your order of all the books in the cart:</p>' +
+                '<div class="row action"><div id="orderBooks" class="card"><h4 class="action">Order all books</h4><p>Press the button down here to complete your order of all the books in the cart:<br></p>' +
+                '<h5 class="action">Total amount: '+ totalAmount +'€</h5>' +
                 '<a id="order" href="#" type="button" class="btn btn-primary" data-toggle="modal" data-target="#purchaseOfAllBooks"><i class="material-icons">library_books</i></a></div></div>');
 
             if (pageCount > 1){
