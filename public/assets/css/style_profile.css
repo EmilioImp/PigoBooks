@@ -55,5 +55,192 @@ h5 {
 }
 
 .profile-button {
-    margin-bottom: 10%;
+    margin-bottom: 5%;
+    margin-top: 5%
+}
+
+#buttonRow {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+#orderHistoryButton {
+    display: inline-block;
+    float: left;
+}
+
+#shoppingCartButton {
+    display: inline-block;
+    margin-left: 22.5%;
+    margin-right: 22.5%;
+}
+
+#deleteAccountButton {
+    display: inline-block;
+    float: right!important;
+}
+
+@media screen and (max-width: 1024px) {
+    #orderHistoryButton {
+        display: inline-block;
+        float: left;
+    }
+
+    #shoppingCartButton {
+        display: inline-block;
+        margin-left: 11.6%;
+        margin-right: 11.6%;
+    }
+
+    #deleteAccountButton {
+        display: inline-block;
+        float: right!important;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #orderHistoryButton {
+        display: inline-block;
+        float: left;
+    }
+
+    #shoppingCartButton {
+        display: inline-block;
+        margin-left: 6.5%;
+        margin-right: 6.5%;
+    }
+
+    #deleteAccountButton {
+        display: inline-block;
+        float: right!important;
+    }
+
+    text {
+        font-size: 80%;
+    }
+}
+
+@media screen and (max-width: 736px) {
+    #orderHistoryButton {
+        display: inline-block;
+        float: left;
+    }
+
+    #shoppingCartButton {
+        display: inline-block;
+        margin-left: 9%;
+        margin-right: 9%;
+    }
+
+    #deleteAccountButton {
+        display: inline-block;
+        float: right!important;
+    }
+
+    text {
+        font-size: 70%;
+    }
+}
+
+@media screen and (max-width: 667px) {
+    #orderHistoryButton {
+        margin-left: 0.2%;
+        display: inline-block;
+        float: left;
+    }
+
+    #shoppingCartButton {
+        display: inline-block;
+        margin-left: 4.4%;
+        margin-right: 4.4%;
+    }
+
+    #deleteAccountButton {
+        display: inline-block;
+        float: right!important;
+    }
+
+    text {
+        font-size: 70%;
+    }
+
+    h5.card-subtitle {
+        font-size: 100%
+    }
+
+    #profileCard > p {
+        font-size: 90%
+    }
+}
+
+@media screen and (max-width: 414px) {
+    #orderHistoryButton {
+        margin-left: 0.5%;
+        display: inline-block;
+        float: left;
+    }
+
+    #shoppingCartButton {
+        display: inline-block;
+        margin-left: 22%;
+        margin-right: 0;
+    }
+
+    #deleteAccountButton {
+        margin-left: 0.5%;
+        display: inline-block;
+        float: right!important;
+    }
+
+    text {
+        font-size: 70%;
+    }
+
+    h5.card-subtitle {
+        font-size: 100%
+    }
+
+    #profileCard > p {
+        font-size: 90%
+    }
+
+    .col-profile {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    #orderHistoryButton {
+        display: inline-block;
+        float: left;
+    }
+
+    #shoppingCartButton {
+        display: inline-block;
+        margin-left: 15%;
+        margin-right: 0;
+    }
+
+    #deleteAccountButton {
+        display: inline-block;
+        float: right!important;
+    }
+
+    text {
+        font-size: 70%;
+    }
+
+    h5.card-subtitle {
+        font-size: 100%
+    }
+
+    #profileCard > p {
+        font-size: 90%
+    }
+
+    .col-profile {
+        padding-left: 0;
+        padding-right: 0;
+    }
 }

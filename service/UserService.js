@@ -101,7 +101,7 @@ exports.getUserCart = async function(userID) {
     if (user.length <= 0) throw {actualResponse: 'User not found', status: 404};
     else{
         //get the books in user's cart
-        const books = await db.select('Book.bookID','Book.name','Book.image_path','Cart.copies',).from('Cart').join('Book',{'Book.bookID' : 'Cart.bookID'}).where('userID', userID);
+        const books = await db.select('Book.bookID','Book.name','Book.image_path','Book.cost','Cart.copies',).from('Cart').join('Book',{'Book.bookID' : 'Cart.bookID'}).where('userID', userID);
         //for every book, get the authors
         const nBooks = books.length;
         for (var i=0; i< nBooks; i++){
@@ -210,7 +210,7 @@ exports.getUserOrders = async function(userID) {
             //put the date in a better format
             orders[i] = {date: date[0].date.toISOString().slice(0,10)};
             //get the data about all the books ordered in every specific order
-            orders[i].books = await db.select('Book.bookID', 'Book.name', 'Book.image_path', 'OrderBook.copies').from('OrderBook').join('Book', {'OrderBook.bookID' : 'Book.bookID'}).where('orderID', uniqueOrdersID[i]);
+            orders[i].books = await db.select('Book.bookID', 'Book.name', 'Book.image_path', 'Book.cost', 'OrderBook.copies').from('OrderBook').join('Book', {'OrderBook.bookID' : 'Book.bookID'}).where('orderID', uniqueOrdersID[i]);
         }
         return {actualResponse: orders, status: 200};
     }

@@ -83,6 +83,9 @@ exports.getBookById = async function(bookID) {
     book[0].themes = themesArray;
     //get all the books similar to the given one
     book[0].similarBooks = await db.select('Book.bookID', 'Book.name').from('Book').join('BookSimilar', {'Book.bookID' : 'BookSimilar.bookSimilarID'}).where('BookSimilar.bookID', bookID);
+    //get all the events related to the book
+    book[0].events = await db.select('eventID', 'name').from('Event').where('bookID', bookID);
+
     return {actualResponse: book, status: 200};
   }
 };

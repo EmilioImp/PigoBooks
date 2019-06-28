@@ -537,12 +537,10 @@ definitions:
       cost:
         type: "integer"
         format: "int64"
-      status:
-        type: "string"
-        description: "book status in the store"
-        enum:
-        - "available"
-        - "out_of_stock"
+      events:
+        type: "array"
+        items:
+          $ref: "#/definitions/EventIDandName"
   BookEssential:
     type: "object"
     properties:
@@ -603,6 +601,9 @@ definitions:
         format: "int64"
       image_path:
         type: "string"
+      cost:
+        type: "integer"
+        format: "int64"
       copies:
         type: "integer"
         format: "int64"
@@ -686,19 +687,30 @@ definitions:
         items:
           $ref: "#/definitions/BookInCart"
   Order:
-    type: "array"
-    items:
-      $ref: "#/definitions/OrderBook"
+    type: "object"
+    properties:
+      date:
+        type: "string"
+      books:
+        type: "array"
+        items:
+          $ref: "#/definitions/OrderBook"
   OrderBook:
     type: "object"
     properties:
-      book:
-        $ref: "#/definitions/BookIDandName"
+      bookID:
+        type: "integer"
+        format: "int64"
+      name:
+        type: "string"
+      image_path:
+        type: "string"
+      cost:
+        type: "integer"
+        format: "int64"
       copies:
         type: "integer"
         format: "int64"
-      date:
-        type: "string"
   AddToCartRequest:
     type: "object"
     properties:
@@ -777,4 +789,12 @@ definitions:
       date:
         type: "string"
       image_path:
+        type: "string"
+  EventIDandName:
+    type: "object"
+    properties:
+      eventID:
+        type: "integer"
+        format: "int64"
+      name:
         type: "string"
