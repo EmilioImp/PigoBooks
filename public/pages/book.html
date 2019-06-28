@@ -13,55 +13,56 @@
         <script src="../assets/js/book.js"></script>
         <script src="../assets/js/loginCheck.js"></script>
     </head>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="../index.html">
-                <img src="http://i63.tinypic.com/vg33mq.png" alt="">
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="../index.html">
+                    <img src="http://i63.tinypic.com/vg33mq.png" alt="">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="../index.html">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Books
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="allbookgenres.html">Genres</a>
-                            <a class="dropdown-item" href="allbookthemes.html">Themes</a>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="allauthors.html">Authors</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="alleventsthismonth.html">Events</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="best_sellers.html">Best Sellers</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="ourfavouritereadings.html">Our Favourites</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="requestgiftcard.html">Request a Gift Card</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="contact%20us.html">Contact Us</a>
-                    </li>
-                    <li class="nav-item" id="loginItem">
-                        <a href="login.html" type="submit" class="btn btn-primary mb-2" id="loginButton">Log in</a>
-                        <a href="registration.html" type="submit" class="btn btn-primary mb-2" id="registerButton">Register</a>
-                    </li>
-                </ul>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="../index.html">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Books
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="allbookgenres.html">Genres</a>
+                                <a class="dropdown-item" href="allbookthemes.html">Themes</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="allauthors.html">Authors</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="alleventsthismonth.html">Events</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="best_sellers.html">Best Sellers</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="ourfavouritereadings.html">Our Favourites</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="requestgiftcard.html">Request a Gift Card</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact%20us.html">Contact Us</a>
+                        </li>
+                        <li class="nav-item" id="loginItem">
+                            <a href="login.html" type="submit" class="btn btn-primary mb-2" id="loginButton">Log in</a>
+                            <a href="registration.html" type="submit" class="btn btn-primary mb-2" id="registerButton">Register</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
 
 
         <h1 class="display-2" id="name"> [name] </h1>
@@ -102,46 +103,34 @@
             </div>
         </div>
 
-    <form>
-        <div class="form-group" id="quantityForm">
-            <label for="formControlSelect">Book Quantity</label>
-            <select class="form-control" id="formControlSelect">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-            </select>
-        </div>
-        <a id="pressBuyBookButton" type="submit" class="btn btn-primary btn-md active justify-content-center" href="#" role="button" aria-pressed="true">Add Book to Cart</a>
-    </form>
+        <form>
+            <div class="form-group" id="quantityForm">
+                <label for="formControlSelect">Book Quantity</label>
+                <select class="form-control" id="formControlSelect">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+            </div>
+            <a id="pressBuyBookButton" type="submit" class="btn btn-primary btn-md active justify-content-center" href="javascript:void(0)" role="button" aria-pressed="true">Add Book to Cart</a>
+        </form>
 
-    <div class="quantityFormToast">
+        <div id="orderError" class="snackbar">Something went wrong: try again!</div>
 
-    </div>
+        <div id="orderSuccess" class="snackbar">Added to the shopping cart!</div>
 
-
-
-        <!-- Footer -->
         <footer class="page-footer font-small">
-            <!-- Footer Links -->
             <div class="container text-center text-md-left mt-5">
-                <!-- Grid row -->
                 <div class="row mt-3">
-                    <!-- Grid column -->
                     <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-                        <!-- Content -->
                         <h6 class="text-uppercase font-weight-bold">Pigo Books</h6>
                         <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto">
                         <p>2019 © Pigo Books srl</p>
                         <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto">
                     </div>
-                    <!-- Grid column -->
-                    <!-- Grid column -->
-                    <!-- Grid column -->
-                    <!-- Grid column -->
                     <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-4">
-                        <!-- Links -->
                         <h6 class="text-uppercase font-weight-bold">Useful links</h6>
                         <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto">
                         <p>
@@ -151,10 +140,7 @@
                             <a class="link" href="#!">Ordering and Shipping</a>
                         </p>
                     </div>
-                    <!-- Grid column -->
-                    <!-- Grid column -->
                     <div class="col-md-5 col-lg-4 col-xl-4 mx-auto mb-md-0 mb-4">
-                        <!-- Links -->
                         <h6 class="text-uppercase font-weight-bold">Contact</h6>
                         <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto">
                         <p><b>
@@ -168,17 +154,11 @@
                             <a class="link" href="tel:+311-555-2368">+311-555-2368</a><br/>
                         </address>
                     </div>
-                    <!-- Grid column -->
-                    <!-- Grid row -->
                 </div>
             </div>
-            <!-- Footer Links -->
-            <!-- Copyright -->
         </footer>
-        <!-- Footer -->
 
         <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     </body>

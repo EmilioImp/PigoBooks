@@ -39,6 +39,11 @@ input {
     border-color: blueviolet;
 }
 
+#submitRegisterButton:hover {
+    color: #63486a;
+}
+
+
 @media screen and (max-width: 400px){
     #content-box {
         margin : 0 10% 4em 10%!important;

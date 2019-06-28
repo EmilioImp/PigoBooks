@@ -16,12 +16,11 @@ a.link{
     }
 
 .figure{
-  margin: 0 0 0rem!important;
-  margin-bottom: 0rem!important;
+  margin: 0 0 0 0!important;
 }
 
 .figure-img {
-    margin-bottom: 0rem;
+    margin-bottom: 0;
     line-height: 1;
 }
 
@@ -29,8 +28,36 @@ a.link{
   background-color: #f0e6ee!important;
 }
 
-.btn-primary {
-    color: #fff;!important;
+.btn {
+    color: #fff!important;
     background-color: #805d89;
-    border-color: blueviolet;
+}
+
+.btn:hover {
+   color: #fff!important;
+   background-color: #63486a;
+   border-color: #2c222a;
+}
+
+.btn:active{
+   color: #fff!important;
+   background: #63486a;
+   border-color: #2c222a;
+}
+
+.btn.focus, .btn:focus {
+    outline: 0;
+    box-shadow: none!important;
+    color: #2c222a;
+}
+
+.navbar-toggler.focus, .navbar-toggler:focus {
+    outline: 0;
+    box-shadow: none!important;
+}
+
+@media (hover: hover) {
+    .btn:hover {
+        outline:0;
+    }
 }

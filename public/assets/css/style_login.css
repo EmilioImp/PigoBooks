@@ -31,10 +31,19 @@
 
 #submitLoginButton {
     margin : 1vw 30% 1vw 42%;
-    background-color: #805d89;
-    border-color: blueviolet;
-    border-radius: 16px;
+    background-color: #63486a;
 }
+
+#submitLoginButton:hover {
+    color: #fff!important;
+    background-color: #47344c;
+}
+
+#submitLoginButton:active {
+    color: #fff!important;
+    background-color: #47344c;
+}
+
 
 @media screen and (max-width: 512px){
     #content-box {

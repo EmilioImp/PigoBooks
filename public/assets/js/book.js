@@ -137,6 +137,25 @@ $(document).ready(function() {
         createSimilarBookList(book[0].similarBooks);
     }
 
+    function noticePurchase(state){
+
+        if (state === "error") {
+            // Add the "show" class to div
+            $("#orderError").addClass = "show";
+
+            // After 3 seconds, remove the show class from DIV
+            setTimeout(function(){ $("#orderError").addClass = "show"; }, 3000);
+        }
+
+        else if (state === "success") {
+            // Add the "show" class to div
+            $("#orderSuccess").addClass("show");
+
+            // After 3 seconds, remove the show class from div
+            setTimeout(function(){ $("#orderSuccess").removeClass("show"); }, 3000);
+        }
+    }
+
     $('#pressBuyBookButton').click(function () {
 
         const quantity = $('#formControlSelect.form-control').children("option:selected").val();
@@ -151,40 +170,10 @@ $(document).ready(function() {
             contentType: "application/json",
             headers : {'x-auth-token' : window.localStorage.getItem("accessToken")},
             error: function (response) {
-                console.log(response.responseText);
-                window.alert("Error: you must be logged in to buy a book");
-               /* $("#quantityFormToast").append('<div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="failureToast">\n' +
-                    '  <div class="toast-header">\n' +
-                    '    <img src="..." class="rounded mr-2" alt="...">\n' +
-                    '    <strong class="mr-auto">Operation Failed.</strong>\n' +
-                    '    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">\n' +
-                    '      <span aria-hidden="true">&times;</span>\n' +
-                    '    </button>\n' +
-                    '  </div>\n' +
-                    '  <div class="toast-body">\n' +
-                    '    You must be logged in to purchase a book\n' +
-                    '  </div>\n' +
-                    '</div>');
-                $('#failureToast').toast(options);
-                $('#failureToast').toast('show');*/
+                noticePurchase("error");
             },
             success: function (response) {
-                console.log(response.responseText);
-                window.alert("Success! Book added to the cart");
-           /* $("#quantityFormToast").append('<div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="successToast">\n' +
-                '  <div class="toast-header">\n' +
-                '    <img src="..." class="rounded mr-2" alt="...">\n' +
-                '    <strong class="mr-auto">Operation completed!</strong>\n' +
-                '    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">\n' +
-                '      <span aria-hidden="true">&times;</span>\n' +
-                '    </button>\n' +
-                '  </div>\n' +
-                '  <div class="toast-body">\n' +
-                '    Book added to cart!\n' +
-                '  </div>\n' +
-                '</div>');
-                $('#successToast').toast(options);
-                $('#successToast').toast('show');*/
+                noticePurchase("success")
             }
         });
     });
