@@ -17,25 +17,31 @@ $(document).ready(function() {
         var i = 0;
         var nGenres = genresArray.length;
 
-
-        $("#genreList").append('<p>');
-        for (i; i < nGenres-1; i++) {
-            $("#genreList").append(genresArray[i] + ', ' );
+        if (nGenres != 0) {
+            $("#genreList").append('<p>');
+            for (i; i < nGenres - 1; i++) {
+                $("#genreList").append(genresArray[i] + ', ');
+            }
+            $("#genreList").append(genresArray[i]);
+            $("#genreList").append('</p>');
         }
-        $("#genreList").append(genresArray[i]);
-        $("#genreList").append('</p>');
+        else $("#genreList").append('<p>This book has no genres</p>');
     }
+
 
     function createThemesList(themesArray) {
         var i = 0;
         var nThemes = themesArray.length;
 
-        $("#themeList").append('<p>');
-        for (i; i < nThemes-1; i++) {
-            $("#themeList").append(themesArray[i] + ', ' );
+        if (nThemes!=0) {
+            $("#themeList").append('<p>');
+            for (i; i < nThemes - 1; i++) {
+                $("#themeList").append(themesArray[i] + ', ');
+            }
+            $("#themeList").append(themesArray[i]);
+            $("#themeList").append('</p>');
         }
-        $("#themeList").append(themesArray[i]);
-        $("#themeList").append('</p>');
+        else $("#themeList").append('<p>This book has no particular themes</p>');
     }
 
     function createSimilarBookList(similarBooksArray) {
@@ -43,59 +49,87 @@ $(document).ready(function() {
         var i = 0;
         var r;
         var nSimilarBooks = similarBooksArray.length;
-        var randomSimilarBooksArray = [];
+        if (nSimilarBooks !=0) {
+            var randomSimilarBooksArray = [];
 
-        for (i; ((i < maxBooks) && (i < nSimilarBooks)); i++){
-            r=Math.floor(Math.random() * (nSimilarBooks-i));
-            randomSimilarBooksArray.push(similarBooksArray[r]);
+            for (i; ((i < maxBooks) && (i < nSimilarBooks)); i++) {
+                r = Math.floor(Math.random() * (nSimilarBooks - i));
+                randomSimilarBooksArray.push(similarBooksArray[r]);
 
-            for( var j = 0; j < nSimilarBooks; j++){
-                if ( j === r ) {
-                    similarBooksArray.splice(j, 1);
+                for (var j = 0; j < nSimilarBooks; j++) {
+                    if (j === r) {
+                        similarBooksArray.splice(j, 1);
+                    }
                 }
+
             }
 
-        }
+            var nRandomSimilarBooks = randomSimilarBooksArray.length;
 
-        var nRandomSimilarBooks = randomSimilarBooksArray.length;
-
-        for (i=0; i < nRandomSimilarBooks; i++) {
-            $("#similarBooksList").append('<a href="book.html?parameter=' + randomSimilarBooksArray[i].bookID + '" class="list-group-item list-group-item-action">' + randomSimilarBooksArray[i].name + '</a>');
+            $("#similarBooksList").append('<div class="card-deck">');
+            for (i = 0; i < nRandomSimilarBooks; i++) {
+                $("#similarBooksList").append('<div class="card">\n' +
+                    '    <img src="'+ randomSimilarBooksArray[i].image_path +'" class="card-img-top" alt="Book Image">\n' +
+                    '    <div class="card-body">\n' +
+                    '      <h5 class="card-title">'+ randomSimilarBooksArray[i].name +'</h5>\n' +
+                    '    </div>\n' +
+                    '  </div>');
+                //$("#similarBooksList").append('<a href="book.html?parameter=' + randomSimilarBooksArray[i].bookID + '" class="list-group-item list-group-item-action">' + randomSimilarBooksArray[i].name + '</a>');
+            }
+            $("#similarBooksList").append('</div>');
         }
+        else $("#similarBooksList").append('<p>This book has no similar Books</p>');
     }
 
     function createAuthorList(authorArray) {
         var i = 0;
         var nAuthors = authorArray.length;
 
-
-        for (i; i < nAuthors-1; i++) {
-            $("#authorList").append('<a href="author.html?parameter=' + authorArray[i].authorID + '">' + authorArray[i].firstName + ' ' + authorArray[i].lastName + '</a>' +', ');
+        if (nAuthors!=0) {
+            for (i; i < nAuthors - 1; i++) {
+                $("#authorList").append('<a href="author.html?parameter=' + authorArray[i].authorID + '">' + authorArray[i].firstName + ' ' + authorArray[i].lastName + '</a>' + ', ');
+            }
+            $("#authorList").append('<a href="author.html?parameter=' + authorArray[i].authorID + '">' + authorArray[i].firstName + ' ' + authorArray[i].lastName + '</a>');
         }
-        $("#authorList").append('<a href="author.html?parameter=' + authorArray[i].authorID + '">' + authorArray[i].firstName + ' ' + authorArray[i].lastName + '</a>');
+        else $("#authorList").append('<p>No authors for this book</p>');
     }
 
     function createEventList (eventArray){
         var i = 0;
         var nEvents = eventArray.length;
-
-        for (i; i < nEvents-1; i++){
-            $("#eventList").append('<a href="event.html?parameter=' + eventArray[i].eventID + '">' + eventArray[i].name + '</a>' +', ');
+        if (nEvents!=0) {
+            for (i; i < nEvents - 1; i++) {
+                $("#eventList").append('<a href="event.html?parameter=' + eventArray[i].eventID + '">' + eventArray[i].name + '</a>' + ', ');
+            }
+            $("#eventList").append('<a href="event.html?parameter=' + eventArray[i].eventID + '">' + eventArray[i].name + '</a>');
         }
-        $("#eventList").append('<a href="event.html?parameter=' + eventArray[i].eventID + '">' + eventArray[i].name + '</a>');
+        else $("#eventList").append('<p>No events associated with this book</p>');
 
     }
 
 
     function adjustBookPage(bookjson) {
         var book = JSON.parse(JSON.stringify(bookjson));
-        $(".card-img").attr("src", book[0].image_path);
-        document.getElementById("name").innerHTML =
-            book[0].name;
-        document.getElementById("edition").innerHTML =
-            book[0].edition;
-        document.getElementById("cost").innerHTML =
-            book[0].cost + " €";
+
+        if (book[0].image_path===undefined)
+            $(".card-img").attr("src", "../img/noImagePlaceholder.jpg");
+        else
+            $(".card-img").attr("src", book[0].image_path);
+
+        if (book[0].name===undefined)
+            document.getElementById("name").innerHTML = "Name not found";
+        else
+            document.getElementById("name").innerHTML = book[0].name;
+
+        if (book[0].edition===undefined)
+            document.getElementById("edition").innerHTML = "Edition not found";
+        else
+            document.getElementById("edition").innerHTML = book[0].edition;
+
+        if (book[0].cost===undefined)
+            document.getElementById("cost").innerHTML = "Cost not found";
+        else
+            document.getElementById("cost").innerHTML = book[0].cost + " €";
         createAuthorList(book[0].authors);
         createGenresList(book[0].genres);
         createThemesList(book[0].themes);
