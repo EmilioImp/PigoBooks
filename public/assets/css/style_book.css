@@ -142,3 +142,8 @@ form{
     from {bottom: 30px; opacity: 1;}
     to {bottom: 0; opacity: 0;}
 }
+
+.card-img-top {
+    max-height: 300px;!important;
+    max-width: 200px;!important;
+}

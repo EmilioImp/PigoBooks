@@ -71,7 +71,7 @@ $(document).ready(function() {
                 $("#similarBooksList").append('<div class="card">\n' +
                     '    <img src="'+ randomSimilarBooksArray[i].image_path +'" class="card-img-top" alt="Book Image">\n' +
                     '    <div class="card-body">\n' +
-                    '      <h5 class="card-title">'+ randomSimilarBooksArray[i].name +'</h5>\n' +
+                    '      <h5 class="card-title">' + '<a href="book.html?parameter='+ randomSimilarBooksArray[i].bookID + '">' + randomSimilarBooksArray[i].name +'</a></h5>\n' +
                     '    </div>\n' +
                     '  </div>');
                 //$("#similarBooksList").append('<a href="book.html?parameter=' + randomSimilarBooksArray[i].bookID + '" class="list-group-item list-group-item-action">' + randomSimilarBooksArray[i].name + '</a>');
