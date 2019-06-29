@@ -41,7 +41,7 @@ a.link{
 
 .btn:active{
    color: #fff!important;
-   background: #63486a;
+   background: #63486a!important; /*necessarily !important to change the color while the button is kept pressed*/
    border-color: #2c222a;
 }
 

@@ -25,6 +25,19 @@
     margin : 1vw 3vw 1vw 3vw;
 }
 
+input.focus, input:focus {
+    outline: 0;
+    box-shadow: none!important;
+    color: #2c222a;
+    border: 1px solid blueviolet!important;
+}
+
+textarea.focus, textarea:focus {
+    outline: 0;
+    box-shadow: none!important;
+    border: 1px solid blueviolet!important;
+}
+
 #submitButton {
     margin : 1vw 35% 1vw 35%;
     background-color: #805d89;

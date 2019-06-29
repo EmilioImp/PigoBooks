@@ -25,6 +25,13 @@
     margin : 1vw 5vw 1vw 5vw;
 }
 
+input.focus, input:focus {
+    outline: 0;
+    box-shadow: none!important;
+    color: #2c222a;
+    border: 1px solid blueviolet!important;
+}
+
 .formField {
     text-align: center;
 }
