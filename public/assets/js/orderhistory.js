@@ -24,7 +24,7 @@ $(document).ready(function () {
                 '<p class="bookInfo">Copies: ' + jsArray[i].books[j].copies + '</p>' +
                 '</div>' +
                 '<div class="col copies">' +
-                '<p class="bookInfo"> Total: ' + jsArray[i].books[j].cost * jsArray[i].books[j].copies + ' €</p>' +
+                '<p class="bookInfo"> Total: ' + jsArray[i].books[j].cost * jsArray[i].books[j].copies + '€</p>' +
                 '</div>' +
                 '</div>';
 

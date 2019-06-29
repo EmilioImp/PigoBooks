@@ -117,9 +117,30 @@
             <a id="pressBuyBookButton" type="submit" class="btn btn-primary btn-md active justify-content-center" href="javascript:void(0)" role="button" aria-pressed="true">Add Book to Cart</a>
         </form>
 
-        <div id="orderError" class="snackbar">Something went wrong: try again!</div>
+        <div class="modal fade" id="noAccount" tabindex="-1" role="dialog" aria-labelledby="noAccountLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="noAccountLabel">Error</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>You have to be logged-in into an existing account to order one or more books!<br>Log-in if you are already registered, otherwise create an account!</p>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="login.html" type="link" id="toLogin" class="btn btn-primary">Log-in</a>
+                        <a href="registration.html" type="link" id="toRegistration" class="btn btn-primary">Register</a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-        <div id="orderSuccess" class="snackbar">Added to the shopping cart!</div>
+        <div aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center">
+            <div id="orderSuccess" class="snackbar">Added to the shopping cart!</div>
+        </div>
+
 
         <footer class="page-footer font-small">
             <div class="container text-center text-md-left mt-5">

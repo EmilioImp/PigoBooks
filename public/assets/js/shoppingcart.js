@@ -93,8 +93,8 @@ $(document).ready(function(){
                     '</div></div>' +
                     '<div class="col-2">' +
                     '<p class="nCopies text-right">' + "Copies: " + jsArray[i].copies + '</p>' +
-                    '<p class="nCopies text-right">Total: '+ jsArray[i].copies * jsArray[i].cost +'€</p>' +
-                    '<button type="button" id="' + jsArray[i].bookID +
+                    '<p class="nCopies text-right">Subtotal: '+ jsArray[i].copies * jsArray[i].cost +'€</p>' +
+                    '<button type="button" class="removeBook" id="' + jsArray[i].bookID +
                     '" class="icon-btn pull-right" data-toggle="modal" data-target="#itemDeletionAlert">' +
                     '<i class="material-icons">remove_shopping_cart</i>' +
                     '</button></div></div><hr class="featurette-divider"></div>'

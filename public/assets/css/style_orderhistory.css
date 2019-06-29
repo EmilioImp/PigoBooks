@@ -87,6 +87,12 @@ hr {
 
 .page-item a:hover:not(.current) {background-color : #E2D5DD;}
 
+@media screen and (max-width: 667px) {
+    .card-header > p {
+        font-size: medium;
+    }
+}
+
 @media screen and (max-width: 450px) {
 
     .card-title {

@@ -137,26 +137,21 @@ $(document).ready(function() {
         createSimilarBookList(book[0].similarBooks);
     }
 
-    function noticePurchase(state){
+    function noticePurchase(){
+        // Add the "show" class to div
+        $("#orderSuccess").addClass("show");
 
-        if (state === "error") {
-            // Add the "show" class to div
-            $("#orderError").addClass = "show";
-
-            // After 3 seconds, remove the show class from DIV
-            setTimeout(function(){ $("#orderError").addClass = "show"; }, 3000);
-        }
-
-        else if (state === "success") {
-            // Add the "show" class to div
-            $("#orderSuccess").addClass("show");
-
-            // After 3 seconds, remove the show class from div
-            setTimeout(function(){ $("#orderSuccess").removeClass("show"); }, 3000);
-        }
+        // After 3 seconds, remove the show class from div
+        setTimeout(function(){ $("#orderSuccess").removeClass("show"); }, 2000);
     }
 
-    $('#pressBuyBookButton').click(function () {
+    $('form').on('click', '#pressBuyBookButton', function () {
+
+        // in case the user has not logged-in, the order is avoided and instead the user is directed toward the "Log-in" or "Registration" pages through a modal
+        if (window.localStorage.getItem("accessToken") === null){
+            $("#noAccount").modal('show');
+            return;
+        }
 
         const quantity = $('#formControlSelect.form-control').children("option:selected").val();
         const id = getURLQueryParameter();
@@ -169,16 +164,12 @@ $(document).ready(function() {
             data: returnJSON,
             contentType: "application/json",
             headers : {'x-auth-token' : window.localStorage.getItem("accessToken")},
-            error: function (response) {
-                noticePurchase("error");
-            },
-            success: function (response) {
-                noticePurchase("success")
+            success: function () {
+                noticePurchase();
             }
         });
     });
 
-
-})
+});
 
 
