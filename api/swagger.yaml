@@ -512,6 +512,27 @@ definitions:
   Book:
     type: "object"
     properties:
+      name:
+        type: "string"
+      edition:
+        type: "integer"
+        format: "int64"
+      isbn:
+        type: "integer"
+        format: "int64"
+      cost:
+        type: "integer"
+        format: "int64"
+      image_path:
+        type: "string"
+      abstract:
+        type: "string"
+      authorInterview:
+        type: "string"
+      authors:
+        type: "array"
+        items:
+          $ref: "#/definitions/AuthorEssentialWithoutImage"
       genres:
         type: "array"
         items:
@@ -520,27 +541,18 @@ definitions:
         type: "array"
         items:
           type: "string"
-      name:
-        type: "string"
-        example: "Il sentiero"
-      authors:
-        type: "array"
-        items:
-          $ref: "#/definitions/AuthorEssentialWithoutImage"
       similarBooks:
         type: "array"
         items:
           $ref: "#/definitions/BookSimilar"
-      edition:
-        type: "integer"
-        format: "int64"
-      cost:
-        type: "integer"
-        format: "int64"
       events:
         type: "array"
         items:
           $ref: "#/definitions/EventIDandName"
+      reviews:
+        type: "array"
+        items:
+          $ref: "#/definitions/Review"
   BookEssential:
     type: "object"
     properties:
@@ -621,6 +633,13 @@ definitions:
         type: "array"
         items:
           $ref: "#/definitions/AuthorEssentialWithoutImage"
+  Review:
+    type: "object"
+    properties:
+      reviewer:
+        type: "string"
+      review:
+        type: "string"
   FavouriteReadings:
     type: "object"
     properties:
@@ -783,6 +802,8 @@ definitions:
       instagramlink:
         type: "string"
       twitterlink:
+        type: "string"
+      description:
         type: "string"
       book:
         $ref: "#/definitions/BookIDandName"
