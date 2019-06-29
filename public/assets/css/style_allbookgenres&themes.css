@@ -130,8 +130,10 @@ a:hover, a:focus {
 }
 
 .card {
+    min-width: 290px;
+    min-height: 174px;
     max-width : 292px;
-    max-height : 180px; /*may need to make it lesser to make all the card identical, with a value of like 130px to be sure*/
+    max-height : 180px;
     margin-left : 11%!important;
     background-color: #2c222a;
 }
@@ -199,6 +201,13 @@ a:hover, a:focus {
         max-width: 125px;
         max-height: 125px;
     }
+
+    .card {
+        min-height: 166px;
+        min-width: 272px;
+        max-height: 167px;
+        max-width: 273px;
+    }
 }
 
 @media screen and (max-width: 991px){
@@ -208,6 +217,10 @@ a:hover, a:focus {
 
     .card {
         margin-left : 5%!important;
+        min-height: 165px;
+        min-width: 208px;
+        max-height: 166px;
+        max-width: 209px;
     }
 
     .card-title {
@@ -256,7 +269,9 @@ a:hover, a:focus {
     }
 
     .card-img {
-        margin-top: 28%!important;
+        margin-top: 10%!important;
+        min-height: 130px;
+        max-height: 140px!important;
     }
 
     .card > a > .row > .col-md-4{
@@ -266,6 +281,10 @@ a:hover, a:focus {
 
     .card {
         margin-left : 11%!important;
+        min-height: 158px;
+        min-width: 290px;
+        max-height: 159px;
+        max-width: 292px;
     }
 
     .card > a > .row > .col-md-8 {
@@ -340,7 +359,9 @@ a:hover, a:focus {
     }
 
     .card-img {
-        margin-top: 28%!important;
+        margin-top: 10%!important;
+        min-height: 130px;
+        max-height: 140px!important;
     }
 
     .card > a > .row > .col-md-4{
@@ -350,6 +371,10 @@ a:hover, a:focus {
 
     .card {
         margin-left : 11%!important;
+        min-height: 158px;
+        min-width: 290px;
+        max-height: 159px;
+        max-width: 292px;
     }
 
     .card > a > .row > .col-md-8 {
@@ -392,6 +417,16 @@ a:hover, a:focus {
 @media only screen and (max-width: 375px){
     .card {
         margin-left : 6%!important;
+        min-height: 158px;
+        min-width: 290px;
+        max-height: 159px;
+        max-width: 292px;
+    }
+
+    .card-img {
+        margin-top: 10%!important;
+        min-height: 130px;
+        max-height: 140px!important;
     }
 }
 

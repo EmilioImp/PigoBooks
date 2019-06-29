@@ -1,3 +1,11 @@
+.container-fluid {
+    padding: 0 0 0 0;
+}
+
+.dropdown-menu {
+    margin-top: 0;
+}
+
 #map {
   height: 400px;  /* The height is 400 pixels */
  width: 100%;  /* The width is the width of the web page */}
@@ -26,6 +34,14 @@ a.link{
 
 .bg-light {
   background-color: #f0e6ee!important;
+}
+
+#loginButton {
+    margin: 0 0.2em 0 0.8em;
+}
+
+#registerButton {
+    margin:0 0 0 0.8em;
 }
 
 .btn {
