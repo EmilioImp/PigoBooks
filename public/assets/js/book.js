@@ -107,6 +107,19 @@ $(document).ready(function() {
 
     }
 
+    function createReviewList (reviewArray){
+        var i = 0;
+        var nReviews = reviewArray.length;
+        if (nReviews!=0) {
+            $("#reviewList").append('</p><hr class="featurette-divider">');
+            for (i; i < nReviews - 1; i++) {
+                $("#reviewList").append('<h3 class="reviewTitle">' + reviewArray[i].reviewer + '</h3><p class="reviewBody">' + reviewArray[i].review + '</p><hr class="featurette-divider">');
+            }
+        }
+        else $("#reviewList").append('<p>No reviews of this book present</p>');
+
+    }
+
 
     function adjustBookPage(bookjson) {
         var book = JSON.parse(JSON.stringify(bookjson));
@@ -139,6 +152,7 @@ $(document).ready(function() {
         if (!(book[0].authorInterview===null))
             $("#authorInterview").append('<h1 class="display-4"> Author Interview: </h1><p class="authorInterview">'+ book[0].authorInterview +'</p>');
 
+        createReviewList(book[0].reviews);
         createAuthorList(book[0].authors);
         createGenresList(book[0].genres);
         createThemesList(book[0].themes);
