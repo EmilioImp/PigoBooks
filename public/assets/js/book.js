@@ -150,7 +150,7 @@ $(document).ready(function() {
             document.getElementById("abstract").innerHTML = book[0].abstract;
 
         if (!(book[0].authorInterview===null))
-            $("#authorInterview").append('<h1 class="display-4"> Author Interview: </h1><p class="authorInterview">'+ book[0].authorInterview +'</p>');
+            $("#authorInterview").append('<h1 class="display-4"> Author Interview </h1><p class="authorInterview">'+ book[0].authorInterview +'</p>');
 
         createReviewList(book[0].reviews);
         createAuthorList(book[0].authors);
