@@ -128,6 +128,14 @@ form{
     text-align: center;!important;
 }
 
+.similarBookLink a{
+    color: #9271a8!important;
+}
+
+.similarBookLink a:hover{
+    color : #63486a!important;
+}
+
 .snackbar {
     visibility: hidden;
     min-width: 250px;

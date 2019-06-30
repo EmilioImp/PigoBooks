@@ -71,7 +71,7 @@ $(document).ready(function() {
                 $("#similarBooksList").append('<div class="card">\n' +
                     '    <img src="'+ randomSimilarBooksArray[i].image_path +'" class="card-img-top" alt="Book Image">\n' +
                     '    <div class="card-body">\n' +
-                    '      <h5 class="card-title">' + '<a href="book.html?parameter='+ randomSimilarBooksArray[i].bookID + '">' + randomSimilarBooksArray[i].name +'</a></h5>\n' +
+                    '      <h5 class="card-title">' + '<a class="similarBookLink" href="book.html?parameter='+ randomSimilarBooksArray[i].bookID + '">' + randomSimilarBooksArray[i].name +'</a></h5>\n' +
                     '    </div>\n' +
                     '  </div>');
                 //$("#similarBooksList").append('<a href="book.html?parameter=' + randomSimilarBooksArray[i].bookID + '" class="list-group-item list-group-item-action">' + randomSimilarBooksArray[i].name + '</a>');
@@ -136,7 +136,7 @@ $(document).ready(function() {
         else
             document.getElementById("abstract").innerHTML = book[0].abstract;
 
-        if (!(book[0].authorInterview===undefined))
+        if (!(book[0].authorInterview===null))
             $("#authorInterview").append('<h1 class="display-4"> Author Interview: </h1><p class="authorInterview">'+ book[0].authorInterview +'</p>');
 
         createAuthorList(book[0].authors);
