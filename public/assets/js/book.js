@@ -1,13 +1,27 @@
 $(document).ready(function() {
 
+    function createBreadcrumb(name, url){
 
+        if (!window.sessionStorage.getItem("lastPage")) {
+            $("#orderedListBreadCrumb").append('<li class="breadcrumb-item active" aria-current="page">'+ name +'</li>');
+        }
+        else {
+            const lastPage = JSON.parse(window.sessionStorage.getItem("lastPage"));
+            $("#orderedListBreadCrumb").append('' +
+                '<li class="breadcrumb-item"><a href="'+ lastPage.url +'">'+ lastPage.name +'</a></li>' +
+                '<li class="breadcrumb-item active" aria-current="page">'+ name +'</li>');
+        }
+        window.sessionStorage.setItem("lastPage", JSON.stringify({url: url, name: name}));
+    }
 
     $.ajax({
         type: 'GET',
         url: '/xXEmilioXx/MyBookstore/1.0.0/book/' + getURLQueryParameter(),
         datatype: 'json',
         success: function (response) {
-            adjustBookPage(response);
+            const book = JSON.parse(JSON.stringify(response));
+            createBreadcrumb(book[0].name, 'book.html?parameter='+ getURLQueryParameter() +'');
+            adjustBookPage(book);
         }
     });
 
@@ -121,8 +135,7 @@ $(document).ready(function() {
     }
 
 
-    function adjustBookPage(bookjson) {
-        var book = JSON.parse(JSON.stringify(bookjson));
+    function adjustBookPage(book) {
 
         if (book[0].image_path===undefined)
             $(".card-img").attr("src", "../img/noImagePlaceholder.jpg");

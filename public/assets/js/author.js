@@ -1,11 +1,27 @@
 $(document).ready(function(){
 
+    function createBreadcrumb(name, url){
+
+        if (!window.sessionStorage.getItem("lastPage")) {
+            $("#orderedListBreadCrumb").append('<li class="breadcrumb-item active" aria-current="page">'+ name +'</li>');
+        }
+        else {
+            const lastPage = JSON.parse(window.sessionStorage.getItem("lastPage"));
+            $("#orderedListBreadCrumb").append('' +
+                '<li class="breadcrumb-item"><a href="'+ lastPage.url +'">'+ lastPage.name +'</a></li>' +
+                '<li class="breadcrumb-item active" aria-current="page">'+ name +'</li>');
+        }
+        window.sessionStorage.setItem("lastPage", JSON.stringify({url: url, name: name}));
+    }
+
     $.ajax({ //with this GET we receive a json array with the info regarding a particular author in the first position, while in the successive position we have an array containing all the author's books
         type : 'GET',
         url : '/xXEmilioXx/MyBookstore/1.0.0/author/' + getURLQueryParameter(), <!-- + authorid -->
         datatype : 'json',
         success : function (response) {
-            createAuthorPage(response);
+            var author = JSON.parse(JSON.stringify(response)); //parsing the json object containing the info I need
+            createBreadcrumb(author[0].firstName + " " + author[0].lastName, 'author.html?parameter='+ getURLQueryParameter() +'');
+            createAuthorPage(author);
         }
     });
 
@@ -18,9 +34,7 @@ $(document).ready(function(){
         }
     }
 
-    function createAuthorPage(authorjson) {
-        var author = JSON.parse(JSON.stringify(authorjson)); //parsing the json object containing the info I need
-
+    function createAuthorPage(author) {
         document.getElementById("authorName").innerHTML = author[0].firstName + " " + author[0].lastName; //dynamically creating the title
         $("#authorImg").attr("src", author[0].image_path); //adding the author's image
         document.getElementById("shortBio").innerHTML = author[0].shortBio; //adding the author's short biography
