@@ -26,13 +26,12 @@
     background-color : #cbb4c2;
 }
 
-.card {
+.card.author {
     display : block;
     height : 33.3%;
     max-width : 100%;
-    overflow : auto;
     margin-bottom : 1%;
-    padding : 0.75rem 0.75rem 0.75rem 0.75rem; /*works on pc, media-queries to be done for other medias*/
+    padding : 0.75rem 0.75rem 0.75rem 0.75rem;
     border-radius: 3px;
     border-bottom-color : #805d89;
     border-right-color : #805d89;
@@ -50,7 +49,7 @@
     border-style : solid;
     border-width : 2px;
     float : top;
-    max-width : 95px;  /*width e height static as of now, to be replaced with dynamic values*/
+    max-width : 95px;
     max-height : 95px;
     object-fit : cover;
 }

@@ -14,6 +14,10 @@
     margin-bottom : 0.5em;
 }
 
+.col.text > a > p {
+    margin-bottom: 0!important;
+}
+
 #noAccountLabel {
     color: red;
 }

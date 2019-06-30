@@ -69,9 +69,9 @@ $(document).ready(function(){
                 $(".pagination").empty();
 
                 for( i; i < arrayLength; i++){
-                    $(".card-deck").append('<div class="card text-center mb-3">' +
+                    $(".card-deck").append('<div class="card books text-center mb-3">' +
                         '<a href="book.html?parameter=' + jsArray[i].bookID + '">' +
-                        '<div class="row no-gutters">' +
+                        '<div class="row  books no-gutters">' +
                         '<div class="col-md-4">' +
                         '<img src="' + jsArray[i].image_path + '" class="card-img" alt="Book image">' +
                         '</div>' +
@@ -117,8 +117,8 @@ $(document).ready(function(){
                 }
 
                 showPage = function(page) {
-                    $(".card").hide();
-                    $(".card").each(function(n) {
+                    $(".card.books").hide();
+                    $(".card.books").each(function(n) {
                         if (n >= pageSize * (page - 1) && n < pageSize * page)
                             $(this).show();
                     });

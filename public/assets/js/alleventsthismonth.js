@@ -19,7 +19,7 @@ $(document).ready(function(){
         var pageCount =  arrayLength / pageSize;
 
         for( i; i < arrayLength; i++){
-            $(".card-columns").append('<div class="card"><a href="event.html?parameter=' + jsArray[i].eventID + '" class="card-link"><img class="card-img" src="' + jsArray[i].image_path + '" alt="Card img cap"><div class="card-body"><h5 class="card-title">' + jsArray[i].name + '<br>' + jsArray[i].date + " - " + jsArray[i].time + '</h5></div></a></div>');
+            $(".card-columns").append('<div class="card event"><a href="event.html?parameter=' + jsArray[i].eventID + '" class="card-link"><img class="card-img" src="' + jsArray[i].image_path + '" alt="Card img cap"><div class="card-body"><h5 class="card-title">' + jsArray[i].name + '<br>' + jsArray[i].date + " - " + jsArray[i].time + '</h5></div></a></div>');
         }
 
         if (pageCount > 1){

@@ -19,7 +19,7 @@ $(document).ready(function(){
         var pageCount =  arrayLength / pageSize; //pages necessary to contain all the authors
 
         for( i; i < arrayLength; i++){  //for each element in the array I create a card with a link to the author's page, his/her image and his/her name
-            $(".card-columns").append('<div class="card"><a href="author.html?parameter=' + jsArray[i].authorID + '" class="card-link"><img class="card-img" src="' + jsArray[i].image_path + '" alt="Card img cap"><div class="card-body"><h5 class="card-title">' + jsArray[i].firstName + " " + jsArray[i].lastName + '</h5></div></a></div>');
+            $(".card-columns").append('<div class="card author"><a href="author.html?parameter=' + jsArray[i].authorID + '" class="card-link"><img class="card-img" src="' + jsArray[i].image_path + '" alt="Card img cap"><div class="card-body"><h5 class="card-title">' + jsArray[i].firstName + " " + jsArray[i].lastName + '</h5></div></a></div>');
         }
 
         //if pageCount > 1 I must append the << symbol first
