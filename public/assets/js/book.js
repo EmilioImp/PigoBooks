@@ -130,6 +130,15 @@ $(document).ready(function() {
             document.getElementById("cost").innerHTML = "Cost not found";
         else
             document.getElementById("cost").innerHTML = book[0].cost + " €";
+
+        if (book[0].abstract===undefined)
+            document.getElementById("abstract").innerHTML = "Abstract not found";
+        else
+            document.getElementById("abstract").innerHTML = book[0].abstract;
+
+        if (!(book[0].authorInterview===undefined))
+            $("#authorInterview").append('<h1 class="display-4"> Author Interview: </h1><p class="authorInterview">'+ book[0].authorInterview +'</p>');
+
         createAuthorList(book[0].authors);
         createGenresList(book[0].genres);
         createThemesList(book[0].themes);
