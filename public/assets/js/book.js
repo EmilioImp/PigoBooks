@@ -39,7 +39,7 @@ $(document).ready(function() {
             $("#genreList").append(genresArray[i]);
             $("#genreList").append('</p>');
         }
-        else $("#genreList").append('<p>This book has no genres</p>');
+        else $("#genreList").append('<p>This book has no specific genres</p>');
     }
 
 
@@ -63,7 +63,7 @@ $(document).ready(function() {
         var i = 0;
         var r;
         var nSimilarBooks = similarBooksArray.length;
-        if (nSimilarBooks !=0) {
+        if (nSimilarBooks > 0) {
             var randomSimilarBooksArray = [];
 
             for (i; ((i < maxBooks) && (i < nSimilarBooks)); i++) {
@@ -80,9 +80,8 @@ $(document).ready(function() {
 
             var nRandomSimilarBooks = randomSimilarBooksArray.length;
 
-            $("#similarBooksList").append('<div class="card-deck">');
             for (i = 0; i < nRandomSimilarBooks; i++) {
-                $("#similarBooksList").append('<div class="card">\n' +
+                $("#similarBooksList").append('<div class="card similar">\n' +
                     '    <img src="'+ randomSimilarBooksArray[i].image_path +'" class="card-img-top" alt="Book Image">\n' +
                     '    <div class="card-body">\n' +
                     '      <h5 class="card-title">' + '<a class="similarBookLink" href="book.html?parameter='+ randomSimilarBooksArray[i].bookID + '">' + randomSimilarBooksArray[i].name +'</a></h5>\n' +
@@ -92,14 +91,14 @@ $(document).ready(function() {
             }
             $("#similarBooksList").append('</div>');
         }
-        else $("#similarBooksList").append('<p>This book has no similar Books</p>');
+        else $("#similarBooksRow").append('<p>This book has no similar books</p>');
     }
 
     function createAuthorList(authorArray) {
         var i = 0;
         var nAuthors = authorArray.length;
 
-        if (nAuthors!=0) {
+        if (nAuthors > 0) {
             for (i; i < nAuthors - 1; i++) {
                 $("#authorList").append('<a href="author.html?parameter=' + authorArray[i].authorID + '">' + authorArray[i].firstName + ' ' + authorArray[i].lastName + '</a>' + ', ');
             }
@@ -111,7 +110,7 @@ $(document).ready(function() {
     function createEventList (eventArray){
         var i = 0;
         var nEvents = eventArray.length;
-        if (nEvents!=0) {
+        if (nEvents > 0) {
             for (i; i < nEvents - 1; i++) {
                 $("#eventList").append('<a href="event.html?parameter=' + eventArray[i].eventID + '">' + eventArray[i].name + '</a>' + ', ');
             }
@@ -124,14 +123,14 @@ $(document).ready(function() {
     function createReviewList (reviewArray){
         var i = 0;
         var nReviews = reviewArray.length;
-        if (nReviews!=0) {
-            $("#reviewList").append('</p><hr class="featurette-divider">');
+        if (nReviews > 0) {
+            $("#reviewList").append('<hr class="featurette-divider">');
             for (i; i < nReviews; i++) {
-                $("#reviewList").append('<h3 class="reviewTitle">' + reviewArray[i].reviewer + '</h3><p class="reviewBody">' + reviewArray[i].review + '</p><hr class="featurette-divider">');
+                $("#reviewList").append('<p class="reviewBody">' + '"' + reviewArray[i].review + '"' + '</p><p>' + '-' +
+                    reviewArray[i].reviewer + '-' + '</p><hr class="featurette-divider">');
             }
         }
-        else $("#reviewList").append('<p>No reviews of this book present</p>');
-
+        else $("#reviewList").append('<p>As of now there are no reviews of this book.</p>');
     }
 
 
@@ -142,28 +141,28 @@ $(document).ready(function() {
         else
             $(".card-img").attr("src", book[0].image_path);
 
-        if (book[0].name===undefined)
+        if (book[0].name === undefined)
             document.getElementById("name").innerHTML = "Name not found";
         else
             document.getElementById("name").innerHTML = book[0].name;
 
-        if (book[0].edition===undefined)
+        if (book[0].edition === undefined)
             document.getElementById("edition").innerHTML = "Edition not found";
         else
             document.getElementById("edition").innerHTML = book[0].edition;
 
-        if (book[0].cost===undefined)
+        if (book[0].cost === undefined)
             document.getElementById("cost").innerHTML = "Cost not found";
         else
             document.getElementById("cost").innerHTML = book[0].cost + " €";
 
-        if (book[0].abstract===undefined)
-            document.getElementById("abstract").innerHTML = "Abstract not found";
+        if (book[0].abstract === undefined)
+            document.getElementById("abstractText").innerHTML = "Abstract not found";
         else
-            document.getElementById("abstract").innerHTML = book[0].abstract;
+            document.getElementById("abstractText").innerHTML = book[0].abstract;
 
-        if (!(book[0].authorInterview===null))
-            $("#authorInterview").append('<h1 class="display-4"> Author Interview </h1><p class="authorInterview">'+ book[0].authorInterview +'</p>');
+        if (!(book[0].authorInterview === null))
+            document.getElementById("interviewText").innerHTML = book[0].authorInterview;
 
         createReviewList(book[0].reviews);
         createAuthorList(book[0].authors);
@@ -171,6 +170,25 @@ $(document).ready(function() {
         createThemesList(book[0].themes);
         createEventList(book[0].events);
         createSimilarBookList(book[0].similarBooks);
+
+        $("#abstractContainer").show();
+        $("#interviewContainer").hide();
+
+        //handling the case in which I am on Abstract and I press on Author Interview
+        $("#interview").click(function(){
+            $("#abstract").removeClass("active");
+            $("#interview").addClass("active");
+            $("#interviewContainer").show();
+            $("#abstractContainer").hide();
+        });
+
+        //handling the case in which I am on Author Interview and I press on Abstract
+        $("#abstract").click(function(){
+            $("#interview").removeClass("active");
+            $("#abstract").addClass("active");
+            $("#abstractContainer").show();
+            $("#interviewContainer").hide();
+        });
     }
 
     function noticePurchase(){
@@ -178,7 +196,7 @@ $(document).ready(function() {
         $("#orderSuccess").addClass("show");
 
         // After 3 seconds, remove the show class from div
-        setTimeout(function(){ $("#orderSuccess").removeClass("show"); }, 2000);
+        setTimeout(function(){ $("#orderSuccess").removeClass("show"); }, 4000);
     }
 
     $('form').on('click', '#pressBuyBookButton', function () {

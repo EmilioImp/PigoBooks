@@ -6,12 +6,18 @@
     margin-bottom : 0.5em;
 }
 
-.display-2 {
+.display-5 {
     color : #805d89;
-    text-align : center;
+    text-align : left;
     font-weight : 300;
     margin-top : 0.5em;
     margin-bottom : 0.5em;
+}
+
+#similarAndReviews {
+    width: 100%;
+    margin: 5% 10% 5% 4%;
+    padding: 0 0 0 0;
 }
 
 .col.text > a > p {
@@ -30,6 +36,17 @@
     border-color: #63486a;
 }
 
+.card-deck {
+    margin-left: 0!important;
+    margin-right: 0!important;
+}
+
+.card-deck::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
 .card-img {
     width: 100%;
     border-radius: calc(.25rem - 1px);
@@ -41,9 +58,20 @@
     width: 100%;
 }
 
-.card {
-    margin : 3% 10% 3% 10%;
+#bookCard {
+    margin : 3% 5% 3% 5%;
     background-color : #E2D5DD;
+}
+
+.card.similar {
+    margin: 2% 5% 0 5%;
+    max-width: 250px;
+    max-height: 500px;
+    border: 0;
+}
+
+.card.similar > .card-body {
+    text-align: center;
 }
 
 .card-header {
@@ -56,7 +84,7 @@
 
 p {
     margin-top: 0;
-    margin-bottom: 1rem;
+    margin-bottom: 1em;
 }
 
 .text-muted {
@@ -88,23 +116,13 @@ i {
     color : #63486a!important;
 }
 
-@media screen and (max-width: 1006px) {
-    #link-box {
-        margin : 2em 35% 2em 30%;
-    }
-
-    #link-intro {
-        display: block;
-    }
-
-    #booklink {
-        margin-right: 15%;
-        margin-left : 15%;
-    }
+#copiesToBuy {
+    font-weight: 500;
 }
 
 form{
-    padding: 1rem 10rem 2rem;
+    float: left;
+    padding: 0 0 2em 0;
 }
 
 .btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle {
@@ -114,18 +132,69 @@ form{
 }
 
 .card-img-top {
-    max-height: 300px;!important;
-    max-width: 200px;!important;
+    max-height: 320px;
+    max-width: 100%;
+    object-fit: cover;
 }
 
-.close.focus, .close:focus{
+.close.focus, .close:focus {
     outline: 0;
     box-shadow: none!important;
     color: #2c222a;
 }
 
-.authorInterview{
+select.focus, select:focus {
+    outline: 0;
+    box-shadow: none!important;
+    color: #2c222a;
+    border: 1px solid blueviolet!important;
+}
+
+
+#pressBuyBookButton {
+    color: white!important;
+}
+
+.authorInterview {
     text-align: center;!important;
+}
+
+#abstract {
+    color : #63486a;
+}
+
+#interview {
+    color : #63486a;
+}
+
+#abstract.active {
+    color : #ffffff!important;
+    background-color : #805d89!important;
+}
+
+#interview.active {
+    color : #ffffff!important;
+    background-color : #805d89!important;
+}
+
+#similarBooksRow {
+    display: block;
+    margin: 0 0 0 0!important;
+}
+
+#reviewsRow {
+    display: block;
+    margin: 5% 0 0 0!important;
+}
+
+.similarBookLink{
+    color: #805d89!important;
+    word-wrap: break-spaces;
+}
+
+.similarBookLink:hover{
+    color : #63486a!important;
+    text-decoration: none;
 }
 
 .reviewTitle{
@@ -134,14 +203,6 @@ form{
 
 .reviewBody{
     font-style: italic;!important;
-}
-
-.similarBookLink a{
-    color: #9271a8!important;
-}
-
-.similarBookLink a:hover{
-    color : #63486a!important;
 }
 
 .snackbar {
@@ -161,8 +222,8 @@ form{
 /* Show the snackbar when a book/books order is successful*/
 .snackbar.show {
     visibility: visible;
-    -webkit-animation: fadein 0.5s, fadeout 0.5s 1.5s;
-    animation: fadein 0.5s, fadeout 0.5s 1.5s;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 3.5s;
+    animation: fadein 0.5s, fadeout 0.5s 3.5s;
 }
 
 /* Animations to fade the snackbar in and out */
@@ -184,4 +245,38 @@ form{
 @keyframes fadeout {
     from {bottom: 30px; opacity: 1;}
     to {bottom: 0; opacity: 0;}
+}
+
+@media screen and (max-width: 768px) {
+    #bookCard {
+        margin: 3% 5% 3% 5%;
+    }
+}
+
+@media screen and (max-width: 736px) {
+    #bookCard {
+        margin: 3% 10% 3% 10%;
+    }
+
+    #bookImg {
+        max-height: 600px;
+    }
+
+    .similarBookLink {
+        font-size: small;
+    }
+}
+
+@media screen and (max-width: 414px) {
+    #bookCard {
+        margin: 3% 7% 3% 7%;
+    }
+
+    #similarAndReviews {
+        max-width: 414px;
+    }
+
+    .similarBookLink {
+        font-size: medium;
+    }
 }

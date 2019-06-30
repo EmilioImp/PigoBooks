@@ -59,4 +59,4 @@ $(document).ready(function(){
         $("#biotext").show();
         $("#book-list").hide();
     });
-})
+});

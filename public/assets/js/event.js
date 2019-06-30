@@ -44,6 +44,7 @@ $(document).ready(function(){
         document.getElementById("date").innerHTML = event[0].date;
         document.getElementById("time").innerHTML = event[0].time;
         document.getElementById("booklink").innerHTML = event[0].book.name;
+        document.getElementById("eventInfo").innerHTML = event[0].description;
         $("#booklink").attr("href", "book.html?parameter=" + event[0].book.bookID);
         $("#bookmarkLink").attr("href", "book.html?parameter=" + event[0].book.bookID);
         //lines of code dynamically showing social icons IF their value in the database is different from #
@@ -57,6 +58,5 @@ $(document).ready(function(){
         else {  //otherwise, we hide the text and only show the icons for the socials on which the event has a page
             iconControl();
         }
-        //$("#authorlink").innerHTML = event[0].authorFirstName + " " + event[0].authorLastName;
     }
 });

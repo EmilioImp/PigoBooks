@@ -39,19 +39,18 @@ $(document).ready(function() {
         var obj = JSON.stringify(response);
         var jsArray = JSON.parse(obj);
         for (i; i<maxBooks;i++){
-            $(".top-books").append('<div class="row featurette" id="top-book">\n' +
+            $(".top-books").append('<div class="row featurette">\n' +
                 '         <div class="col-md-7 order-md-2">\n' +
                 '           <h2 class="featurette-heading"><a href="book.html?parameter=' + jsArray[i].bookID + '">' + jsArray[i].name + '</a><span class="badge badge-secondary" id="position">' + jsArray[i].placement + '</span></h2>\n' +
-                '           <p class="lead" id="authors">'+ generateAuthorLinks(jsArray[i].authors)
+                '           <p class="lead">'+ generateAuthorLinks(jsArray[i].authors)
                 +'</p>\n' +
                 '         </div>\n' +
                 '         <div class="col-md-5 order md-1">\n' +
-                '           <img class="img-fluid" id="book-img" src="'+ jsArray[i].image_path +'" alt="book image">\n' +
+                '           <img class="img-fluid book" src="'+ jsArray[i].image_path +'" alt="book image">\n' +
                 '         </div>\n' +
                 '       </div>\n' +
                 '         <hr class="featurette-divider">')
         }
     }
 
-
-})
+});

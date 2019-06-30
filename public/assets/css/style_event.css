@@ -23,6 +23,10 @@
     overflow : auto;
 }
 
+.card-footer {
+    width: 100%;
+}
+
 #eventImg {
     max-width: 100%;
     height: 100%;

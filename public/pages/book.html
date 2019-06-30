@@ -69,65 +69,84 @@
             </ol>
         </nav>
 
+        <h3 class="display-4" id="name"> [name] </h3>
 
-        <h1 class="display-2" id="name"> [name] </h1>
+        <div class="container">
+            <div id="bookCard" class="card mb-3">
+                <div class="row no-gutters">
 
-        <div class="card mb-3">
-            <div class="row no-gutters">
+                    <div class="col-md-5">
+                        <img id="bookImg" src="#" class="card-img" alt="Book image">
+                    </div>
 
-                <div class="col-md-5">
-                    <img id="bookImg" src="#" class="card-img" alt="Book image">
+                    <div class="col-md-7">
+                        <div class="card-block">
+                            <h5 class="card-subtitle mb-2 text-muted"> Authors:</h5>
+                            <p id="authorList"></p>
+                            <h5 class="card-subtitle mb-2 text-muted"> Genres:</h5>
+                            <p id="genreList"></p>
+                            <h5 class="card-subtitle mb-2 text-muted"> Themes:</h5>
+                            <p id="themeList"></p>
+                            <h5 class="card-subtitle mb-2 text-muted"> Edition:</h5>
+                            <p id="edition"> [edition]</p>
+                            <h5 class="card-subtitle mb-2 text-muted"> Cost:</h5>
+                            <p id="cost"> [cost]</p>
+                            <h5 class="card-subtitle mb-2 text-muted"> Events associated with this book:</h5>
+                            <p id="eventList"></p>
+
+                            <form>
+                                <div class="form-group" id="quantityForm">
+                                    <label id="copiesToBuy" class="card-subtitle mb-2 text-muted" for="formControlSelect">Copies to order:</label>
+                                    <select class="form-control" id="formControlSelect">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                    </select>
+                                </div>
+                                <a id="pressBuyBookButton" type="submit" class="btn btn-primary btn-md active justify-content-center" href="javascript:void(0)" role="button" aria-pressed="true">Add Book to Cart</a>
+                            </form>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="col-md-7">
-                    <div class="card-block">
-                        <h5 class="card-subtitle mb-2 text-muted"> Authors:</h5>
-                        <p id="authorList"></p>
-                        <h5 class="card-subtitle mb-2 text-muted"> Genres:</h5>
-                        <p id="genreList"></p>
-                        <h5 class="card-subtitle mb-2 text-muted"> Themes:</h5>
-                        <p id="themeList"></p>
-                        <h5 class="card-subtitle mb-2 text-muted"> Edition:</h5>
-                        <p id="edition"> [edition]</p>
-                        <h5 class="card-subtitle mb-2 text-muted"> Cost:</h5>
-                        <p id="cost"> [cost]</p>
-                        <h5 class="card-subtitle mb-2 text-muted"> Abstract:</h5>
-                        <p id="abstract"> [abstract]</p>
-                        <h5 class="card-subtitle mb-2 text-muted"> Events associated with this book:</h5>
-                        <p id="eventList"></p>
+                <div class="card-footer">
+                    <ul class="nav nav-pills card-header-pills justify-content-center">
 
+                        <li class="nav-item">
+                            <a id="abstract" class="nav-link active" href="javascript:void(0)"> Abstract </a>
+                        </li>
 
-                    </div>
+                        <li class="nav-item">
+                            <a id="interview" class="nav-link" href="javascript:void(0)"> Author interview </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div id="abstractContainer" class="card-body">
+                    <p id="abstractText" class="card-text">[Abstract]</p>
+                </div>
+
+                <div id="interviewContainer" class="card-body">
+                    <p id="interviewText" class="card-text">[Author Interview}</p>
                 </div>
             </div>
 
-            <div class="row no-gutters">
-                <div class="card-footer">
-                    <div id="authorInterview" class="card-body">
-                    </div>
-                    <h1 class="display-4"> Reviews </h1>
-                    <div id="reviewList" class="card-body">
-                    </div>
-                    <h1 class="display-4"> Similar Books </h1>
-                    <div id="similarBooksList" class="card-body">
-                    </div>
+
+            <div id="similarAndReviews" class="container">
+                <div id="similarBooksRow" class="row">
+                    <h2 class="display-5"> Similar Books </h2>
+                    <div id="similarBooksList" class="card-deck"></div>
+                </div>
+
+                <div id="reviewsRow" class="row">
+                    <h2 id="reviews" class="display-5"> Reviews </h2>
+                    <div id="reviewList" class="container-fluid"></div>
                 </div>
             </div>
         </div>
 
-        <form>
-            <div class="form-group" id="quantityForm">
-                <label for="formControlSelect">Book Quantity</label>
-                <select class="form-control" id="formControlSelect">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                </select>
-            </div>
-            <a id="pressBuyBookButton" type="submit" class="btn btn-primary btn-md active justify-content-center" href="javascript:void(0)" role="button" aria-pressed="true">Add Book to Cart</a>
-        </form>
 
         <div class="modal fade" id="noAccount" tabindex="-1" role="dialog" aria-labelledby="noAccountLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">

@@ -1,7 +1,39 @@
-.featurette-heading{
+.display-3 {
+    color : #805d89;
+    text-align : center;
+    font-weight : 300;
+    margin-top : 0.5em;
+    margin-bottom : 0.5em;
+}
+
+#title_lead {
+    text-align: center;
+    margin: 0 0.5em 2em 0.5em;
+}
+
+.badge {
+    margin-left: 1em;
+}
+
+.img-fluid.book {
+    max-width: 200px;
+    max-height: 300px;
+}
+
+.featurette-heading {
     color: #AF94B6!important;
 }
 
-a{
+a {
     color: #AF94B6;
+}
+
+@media screen and (max-width: 414px){
+    .featurette-heading {
+        font-size: 150%;
+    }
+
+    .col-md-7 > .lead {
+        font-size: 100%;
+    }
 }
