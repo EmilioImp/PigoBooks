@@ -1,3 +1,5 @@
+/* MEDIA-QUERIES PER SETTARE MAX-WIDTH DELLE CARDS*/
+
 .display-4 {
     color : #805d89;
     text-align : center;
@@ -13,11 +15,11 @@
     height: auto;
 }
 
-.card a{
+.card.event a{
     text-decoration : none;
 }
 
-.card:hover{
+.card.event:hover{
     border-radius: 5px;
     border-bottom-color : #AF94B6;
     border-right-color : #AF94B6;
