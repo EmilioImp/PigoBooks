@@ -71,7 +71,7 @@ p {
 
 #bookImg {
     max-width: 100%;!important;
-    height: 100%;!important;
+    max-height: 100%;!important;
     object-fit: cover;
 }
 
@@ -122,6 +122,10 @@ form{
     outline: 0;
     box-shadow: none!important;
     color: #2c222a;
+}
+
+.authorInterview{
+    text-align: center;!important;
 }
 
 .snackbar {
