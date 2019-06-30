@@ -112,7 +112,7 @@ $(document).ready(function() {
         var nReviews = reviewArray.length;
         if (nReviews!=0) {
             $("#reviewList").append('</p><hr class="featurette-divider">');
-            for (i; i < nReviews - 1; i++) {
+            for (i; i < nReviews; i++) {
                 $("#reviewList").append('<h3 class="reviewTitle">' + reviewArray[i].reviewer + '</h3><p class="reviewBody">' + reviewArray[i].review + '</p><hr class="featurette-divider">');
             }
         }
