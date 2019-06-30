@@ -42,7 +42,7 @@ $(document).ready(function(){
             url : '/xXEmilioXx/MyBookstore/1.0.0/user/cart/deleteBook/' + bookID,
             headers : {'x-auth-token' : window.localStorage.getItem("accessToken")},
             success : function(){
-                $("button[id=" + bookID + "]").parent().parent().parent().remove();
+                location.reload();
             }
         })
     }
@@ -161,7 +161,7 @@ $(document).ready(function(){
                 showPage(parseInt($(this).text()))
             });
 
-            $("#booksCol").on('click', '.icon-btn', function(){
+            $("#booksCol").on('click', '.removeBook', function(){
                 if (typeof(Storage) !== "undefined"){
                     window.sessionStorage.setItem("pressedDelete", $(this).attr("id"));
                 }
