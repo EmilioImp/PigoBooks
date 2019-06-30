@@ -26,7 +26,7 @@
     background-color : #cbb4c2;
 }
 
-.card {
+.card.event {
     display : block;
     height : 33.3%;
     max-width : 100%;
