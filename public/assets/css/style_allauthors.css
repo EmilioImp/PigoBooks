@@ -1,3 +1,5 @@
+/* MEDIA-QUERIES PER SETTARE MAX-WIDTH DELLE CARDS*/
+
 .display-4 {
     color : #805d89;
     text-align : center;
@@ -13,11 +15,11 @@
     height: auto;
 }
 
-.card a{
+.card.author a{
     text-decoration : none;
 }
 
-.card:hover{
+.card.author:hover{
     border-radius: 5px;
     border-bottom-color : #AF94B6;
     border-right-color : #AF94B6;
@@ -30,6 +32,7 @@
     display : block;
     height : 33.3%;
     max-width : 100%;
+    overflow: auto;
     margin-bottom : 1%;
     padding : 0.75rem 0.75rem 0.75rem 0.75rem;
     border-radius: 3px;
@@ -50,7 +53,8 @@
     border-width : 2px;
     float : top;
     max-width : 95px;
-    max-height : 95px;
+    min-height : 95px;
+    max-height: 95px;
     object-fit : cover;
 }
 
@@ -61,6 +65,7 @@
     text-align : center;
     margin : auto;
     word-break: keep-all;
+    font-size: small;
 
 }
 
