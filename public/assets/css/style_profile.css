@@ -11,6 +11,11 @@ h5 {
     margin-top : 0.3em!important;
 }
 
+#profileRow {
+    margin-left: 0!important;
+    margin-right: 0!important;
+}
+
 #imgContainer {
     border : 0;
 }
@@ -67,17 +72,20 @@ h5 {
 #orderHistoryButton {
     display: inline-block;
     float: left;
+    border-color: blueviolet;
 }
 
 #shoppingCartButton {
     display: inline-block;
     margin-left: 22.5%;
     margin-right: 22.5%;
+    border-color: blueviolet;
 }
 
 #deleteAccountButton {
     display: inline-block;
     float: right!important;
+    border-color: blueviolet;
 }
 
 @media screen and (max-width: 1024px) {

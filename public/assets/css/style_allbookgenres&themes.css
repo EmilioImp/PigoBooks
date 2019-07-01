@@ -243,6 +243,8 @@ a:hover, a:focus {
 
     .row.books {
         border-right: 0;
+        margin-left: 0!important;
+        margin-right: 0!important;
     }
 
     #filterList > li > a {

@@ -11,6 +11,11 @@ hr {
     margin-top: 0;
 }
 
+#ordersRow {
+    margin-left: 0!important;
+    margin-right: 0!important;
+}
+
 .lead {
     color : white;
     margin-bottom: 0!important;
@@ -95,6 +100,10 @@ hr {
 
 @media screen and (max-width: 450px) {
 
+    .col-8 {
+        padding: 0 0 0 0;
+    }
+
     .card-title {
         font-size: small;
     }
@@ -114,6 +123,14 @@ hr {
 
     .lead {
         font-size: medium;
+    }
+
+    .col-8 {
+        padding: 0 0 0 0;
+    }
+
+    .col-2 {
+        padding: 0 0 0 0;
     }
 
     .card-title {

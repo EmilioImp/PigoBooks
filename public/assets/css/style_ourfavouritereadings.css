@@ -11,6 +11,11 @@
     margin: 0 0.5em 2em 0.5em;
 }
 
+#card-row {
+    margin-left: 0!important;
+    margin-right: 0!important;
+}
+
 .footer {
     clear : both;
 }

@@ -8,13 +8,13 @@
 
 #content_box {
 	display : block;
-	margin-bottom : 0!important;
+	margin: 0 1em 0 1em!important;
 	background-color: white!important;
 	padding-top : 0.1rem;
 	padding-bottom : 0.5rem;
 }
 
-.question_text {
+.lead.question_text {
 	color : #805d89;
 	text-align : center;
 	line-height : 1.2;
@@ -24,13 +24,8 @@
     margin-right : 2em;
 }
 
-.answer_text {
-	text-align : center;
-	line-height: 1.2;
-	word-spacing : 0.1em;
-	margin-bottom : 1.5em; 
-	margin-left : 2em;
-    margin-right : 2em;
+.lead {
+	text-align: center;
 }
 
 @media screen and (max-width: 424px){

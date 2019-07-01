@@ -32,6 +32,16 @@ a.link{
       padding: 0.1rem;
 }
 
+.page-footer > .container-fluid > .row.mt-3 {
+    margin-left: 0!important;
+    margin-right: 0!important;
+}
+
+.page-footer > .container > .row.mt-3 {
+    margin-left: 0!important;
+    margin-right: 0!important;
+}
+
 .figure{
   margin: 0 0 0 0!important;
 }
