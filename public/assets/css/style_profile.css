@@ -77,8 +77,8 @@ h5 {
 
 #shoppingCartButton {
     display: inline-block;
-    margin-left: 22.5%;
-    margin-right: 22.5%;
+    margin-left: 22%;
+    margin-right: 22%;
     border-color: blueviolet;
 }
 
@@ -96,8 +96,8 @@ h5 {
 
     #shoppingCartButton {
         display: inline-block;
-        margin-left: 11.6%;
-        margin-right: 11.6%;
+        margin-left: 10.5%;
+        margin-right: 10.5%;
     }
 
     #deleteAccountButton {
@@ -114,8 +114,8 @@ h5 {
 
     #shoppingCartButton {
         display: inline-block;
-        margin-left: 6.5%;
-        margin-right: 6.5%;
+        margin-left: 4.8%;
+        margin-right: 4.8%;
     }
 
     #deleteAccountButton {
@@ -136,8 +136,8 @@ h5 {
 
     #shoppingCartButton {
         display: inline-block;
-        margin-left: 9%;
-        margin-right: 9%;
+        margin-left: 7%;
+        margin-right: 7%;
     }
 
     #deleteAccountButton {
@@ -159,8 +159,8 @@ h5 {
 
     #shoppingCartButton {
         display: inline-block;
-        margin-left: 4.4%;
-        margin-right: 4.4%;
+        margin-left: 2%;
+        margin-right: 2%;
     }
 
     #deleteAccountButton {
@@ -190,7 +190,7 @@ h5 {
 
     #shoppingCartButton {
         display: inline-block;
-        margin-left: 22%;
+        margin-left: 16%;
         margin-right: 0;
     }
 
@@ -226,7 +226,7 @@ h5 {
 
     #shoppingCartButton {
         display: inline-block;
-        margin-left: 15%;
+        margin-left: 8%;
         margin-right: 0;
     }
 
