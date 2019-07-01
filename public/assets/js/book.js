@@ -161,7 +161,9 @@ $(document).ready(function() {
         else
             document.getElementById("abstractText").innerHTML = book[0].abstract;
 
-        if (!(book[0].authorInterview === null))
+        if (book[0].authorInterview === null)
+            document.getElementById("interviewText").innerHTML = "There are no interviews of the author available!";
+        else
             document.getElementById("interviewText").innerHTML = book[0].authorInterview;
 
         createReviewList(book[0].reviews);

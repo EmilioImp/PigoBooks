@@ -1,0 +1,11 @@
+#orderedListBreadCrumb {
+    background-color: #E2D5DD;
+}
+
+#orderedListBreadCrumb > .breadcrumb-item.active {
+    color: #2c222a;
+}
+
+#orderedListBreadCrumb > .breadcrumb-item > a {
+    color: blueviolet;
+}
