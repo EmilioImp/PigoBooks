@@ -16,7 +16,7 @@ $(document).ready(function(){
 
     $.ajax({  //GET to receive the data regarding the event plus the book presented
         type : 'GET',
-        url : '/xXEmilioXx/MyBookstore/1.0.0/event/' + getURLQueryParameter(),
+        url : '/hypermedia2019/api/event/' + getURLQueryParameter(),
         datatype : 'json',
         success : function(response) {
             const event = JSON.parse(JSON.stringify(response));

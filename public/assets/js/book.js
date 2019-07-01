@@ -16,7 +16,7 @@ $(document).ready(function() {
 
     $.ajax({
         type: 'GET',
-        url: '/xXEmilioXx/MyBookstore/1.0.0/book/' + getURLQueryParameter(),
+        url: '/hypermedia2019/api/book/' + getURLQueryParameter(),
         datatype: 'json',
         success: function (response) {
             const book = JSON.parse(JSON.stringify(response));
@@ -216,7 +216,7 @@ $(document).ready(function() {
 
         $.ajax({
             type: "POST",
-            url: "/xXEmilioXx/MyBookstore/1.0.0/user/cart/addBook",
+            url: "/hypermedia2019/api/user/cart/addBook",
             data: returnJSON,
             contentType: "application/json",
             headers : {'x-auth-token' : window.localStorage.getItem("accessToken")},

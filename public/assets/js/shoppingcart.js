@@ -16,7 +16,7 @@ $(document).ready(function(){
 
     $.ajax({
         type : 'GET',
-        url : '/xXEmilioXx/MyBookstore/1.0.0/user/cart',
+        url : '/hypermedia2019/api/user/cart',
         datatype : 'json',
         headers : {'x-auth-token' : window.localStorage.getItem("accessToken")},
         success : function(response){
@@ -53,7 +53,7 @@ $(document).ready(function(){
     function deleteBook(bookID){
         $.ajax({
             type : 'DELETE',
-            url : '/xXEmilioXx/MyBookstore/1.0.0/user/cart/deleteBook/' + bookID,
+            url : '/hypermedia2019/api/user/cart/deleteBook/' + bookID,
             headers : {'x-auth-token' : window.localStorage.getItem("accessToken")},
             success : function(){
                 location.reload();
@@ -64,7 +64,7 @@ $(document).ready(function(){
     function orderAllBooks(){
         $.ajax({
             type : 'POST',
-            url : '/xXEmilioXx/MyBookstore/1.0.0/user/cart/buyBooks',
+            url : '/hypermedia2019/api/user/cart/buyBooks',
             headers : {'x-auth-token' : window.localStorage.getItem("accessToken")},
             success : function(){
                 $("#booksCol").children().remove();

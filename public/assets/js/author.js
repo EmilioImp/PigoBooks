@@ -16,7 +16,7 @@ $(document).ready(function(){
 
     $.ajax({ //with this GET we receive a json array with the info regarding a particular author in the first position, while in the successive position we have an array containing all the author's books
         type : 'GET',
-        url : '/xXEmilioXx/MyBookstore/1.0.0/author/' + getURLQueryParameter(), <!-- + authorid -->
+        url : '/hypermedia2019/api/author/' + getURLQueryParameter(), <!-- + authorid -->
         datatype : 'json',
         success : function (response) {
             var author = JSON.parse(JSON.stringify(response)); //parsing the json object containing the info I need

@@ -16,7 +16,7 @@ $(document).ready(function () {
 
     $.ajax({
         type : 'GET',
-        url : '/xXEmilioXx/MyBookstore/1.0.0/user',
+        url : '/hypermedia2019/api/user',
         datatype : 'json',
         headers : {'x-auth-token' : window.localStorage.getItem("accessToken")},
         success : function(response){
@@ -45,7 +45,7 @@ $(document).ready(function () {
 
         $.ajax({
             type: 'DELETE',
-            url: '/xXEmilioXx/MyBookstore/1.0.0/user/unregister',
+            url: '/hypermedia2019/api/user/unregister',
             datatype : 'json',
             headers : {'x-auth-token' : window.localStorage.getItem("accessToken")},
             success: function(response){

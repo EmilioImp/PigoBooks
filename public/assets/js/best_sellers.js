@@ -16,7 +16,7 @@ $(document).ready(function() {
 
     $.ajax({
         type: 'GET',
-        url: '/xXEmilioXx/MyBookstore/1.0.0/book/bestSellers',
+        url: '/hypermedia2019/api/book/bestSellers',
         datatype: 'json',
         success: function (response) {
             getFirstThreeBooks(response);

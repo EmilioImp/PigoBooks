@@ -16,7 +16,7 @@ $(document).ready(function(){
 
     $.ajax({
         type : 'GET',
-        url : '/xXEmilioXx/MyBookstore/1.0.0/book/genres',
+        url : '/hypermedia2019/api/book/genres',
         dataType : 'json',
         success : function(response){
             createFlexElements(response);
@@ -38,7 +38,7 @@ $(document).ready(function(){
 
             $.ajax({
                 type: 'GET',
-                url: '/xXEmilioXx/MyBookstore/1.0.0/book/findByGenre?genre=' + $(this).text(),
+                url: '/hypermedia2019/api/book/findByGenre?genre=' + $(this).text(),
                 datatype: 'json',
                 success: function(response) {
                     $(this).add('activeTemp');

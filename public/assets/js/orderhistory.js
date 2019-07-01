@@ -16,7 +16,7 @@ $(document).ready(function () {
 
     $.ajax({
         type : 'GET',
-        url : '/xXEmilioXx/MyBookstore/1.0.0/user/orders',
+        url : '/hypermedia2019/api/user/orders',
         datatype : 'json',
         headers : {'x-auth-token' : window.localStorage.getItem("accessToken")},
         success : function(response){

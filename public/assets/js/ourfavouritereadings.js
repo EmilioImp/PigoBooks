@@ -16,7 +16,7 @@ $(document).ready(function(){
 
     $.ajax({
         type : 'GET',
-        url : '/xXEmilioXx/MyBookstore/1.0.0/book/favouriteReadings',
+        url : '/hypermedia2019/api/book/favouriteReadings',
         dataType : 'json',
         success : function(response){
             generateStaffCards(response);

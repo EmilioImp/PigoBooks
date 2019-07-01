@@ -16,7 +16,7 @@ $(document).ready(function(){
 
     $.ajax({
         type : 'GET',
-        url : '/xXEmilioXx/MyBookstore/1.0.0/event',
+        url : '/hypermedia2019/api/event',
         dataType : 'json',
         success : function(response){
             createPages(response);

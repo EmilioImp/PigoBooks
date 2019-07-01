@@ -25,7 +25,7 @@ $(document).ready(function (){
 
         $.ajax({
             type: "POST",
-            url: "/xXEmilioXx/MyBookstore/1.0.0/user/register",
+            url: "/hypermedia2019/api/user/register",
             data: JSON.stringify(returnArray),
             contentType: "application/json",
             error: function (response) {
