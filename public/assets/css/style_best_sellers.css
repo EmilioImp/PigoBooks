@@ -24,8 +24,32 @@
     color: #AF94B6!important;
 }
 
-a {
+.bestsellerLink {
     color: #AF94B6;
+}
+
+.bestsellerLink:hover {
+    color: #9271a8;
+    text-decoration-color: #9271a8;
+}
+
+.authorLink {
+    color: #AF94B6;
+}
+
+.authorLink:hover {
+    color: #9271a8;
+    text-decoration-color: #9271a8;
+}
+
+@media screen and (min-width: 1024px) {
+    .img-fluid {
+        max-width: 95%!important;
+    }
+
+    #title_lead {
+        margin-bottom: 0.5em;
+    }
 }
 
 @media screen and (max-width: 414px){

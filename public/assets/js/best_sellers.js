@@ -27,9 +27,9 @@ $(document).ready(function() {
         var j = 0;
         var string = "";
         for (j; j < authorlist.length-1; j++) {
-            string = string + '<a href="author.html?parameter=' + authorlist[j].authorID + '"' + '>' + authorlist[j].firstName + ' ' + authorlist[j].lastName + '</a>' + ', ';
+            string = string + '<a class="authorLink" href="author.html?parameter=' + authorlist[j].authorID + '"' + '>' + authorlist[j].firstName + ' ' + authorlist[j].lastName + '</a>' + ', ';
         }
-        string = string + '<a href="author.html?parameter=' + authorlist[j].authorID + '"' + '>' + authorlist[j].firstName + ' ' + authorlist[j].lastName + '</a>';
+        string = string + '<a  class="authorLink" href="author.html?parameter=' + authorlist[j].authorID + '"' + '>' + authorlist[j].firstName + ' ' + authorlist[j].lastName + '</a>';
         return string;
     }
 
@@ -41,7 +41,7 @@ $(document).ready(function() {
         for (i; i<maxBooks;i++){
             $(".top-books").append('<div class="row featurette">\n' +
                 '         <div class="col-md-7 order-md-2">\n' +
-                '           <h2 class="featurette-heading"><a href="book.html?parameter=' + jsArray[i].bookID + '">' + jsArray[i].name + '</a><span class="badge badge-secondary" id="position">' + jsArray[i].placement + '</span></h2>\n' +
+                '           <h2 class="featurette-heading"><a class="bestsellerLink" href="book.html?parameter=' + jsArray[i].bookID + '">' + jsArray[i].name + '</a><span class="badge badge-secondary" id="position">' + jsArray[i].placement + '</span></h2>\n' +
                 '           <p class="lead">'+ generateAuthorLinks(jsArray[i].authors)
                 +'</p>\n' +
                 '         </div>\n' +

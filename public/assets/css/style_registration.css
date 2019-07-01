@@ -51,13 +51,13 @@ input.focus, input:focus {
 }
 
 
-@media screen and (max-width: 400px){
+@media screen and (min-width: 1200px){
     #content-box {
-        margin : 0 10% 4em 10%!important;
+        margin : 0 33% 4em 33%;
     }
 
     #submitRegisterButton {
-        margin : 1vw 35% 1vw 35%!important;
+        margin : 1vw 39% 1vw 40%;
     }
 }
 
@@ -71,12 +71,12 @@ input.focus, input:focus {
     }
 }
 
-@media screen and (min-width: 1200px){
+@media screen and (max-width: 414px){
     #content-box {
-        margin : 0 33% 4em 33%;
+        margin : 0 10% 4em 10%!important;
     }
 
     #submitRegisterButton {
-        margin : 1vw 39% 1vw 40%;
+        margin : 1vw 35% 1vw 35%!important;
     }
 }

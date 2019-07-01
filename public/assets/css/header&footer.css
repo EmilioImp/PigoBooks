@@ -156,6 +156,10 @@ a.link{
         margin-left: 0;
     }
 
+    #loginButton {
+        margin-left: 0;
+    }
+
     .col.img {
         display: block;
         max-width: 30%!important;
