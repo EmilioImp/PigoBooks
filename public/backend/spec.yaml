@@ -1,0 +1,932 @@
+---
+swagger: "2.0"
+info:
+  description: "This is a Bookstore server\n"
+  version: "1.0.0"
+  title: "MyBookstore"
+host: "hypermedia2019.herokuapp.com"
+basePath: "/hypermedia2019/api"
+tags:
+  - name: "book"
+    description: "Operations about books"
+  - name: "user"
+    description: "Operations about users"
+  - name: "author"
+    description: "Operations about authors"
+  - name: "event"
+    description: "Operations about events"
+schemes:
+  - "https"
+  - "http"
+paths:
+  /book/{bookID}:
+    get:
+      tags:
+        - "book"
+      summary: "Find book by ID"
+      description: "Returns a single book"
+      operationId: "getBookById"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "bookID"
+          in: "path"
+          description: "ID of the book to return"
+          required: true
+          type: "integer"
+          format: "int64"
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/Book"
+        404:
+          description: "Book not found"
+      x-swagger-router-controller: "Book"
+  /book/findByGenre:
+    get:
+      tags:
+        - "book"
+      summary: "Finds books by genre"
+      operationId: "findBooksByGenre"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "genre"
+          in: "query"
+          description: "Genre value that need to be considered for filter"
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/BookEssential"
+        400:
+          description: "Invalid genre value"
+        404:
+          description: "No books with that genre"
+      x-swagger-router-controller: "Book"
+  /book/findByTheme:
+    get:
+      tags:
+        - "book"
+      summary: "Finds books by theme"
+      operationId: "findBooksByTheme"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "theme"
+          in: "query"
+          description: "Theme value that need to be considered for filter"
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/BookEssential"
+        400:
+          description: "Invalid theme value"
+        404:
+          description: "No books with that theme"
+      x-swagger-router-controller: "Book"
+  /book/genres:
+    get:
+      tags:
+        - "book"
+      summary: "Get the genres"
+      operationId: "getGenres"
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            type: "array"
+            items:
+              type: string
+      x-swagger-router-controller: "Book"
+  /book/themes:
+    get:
+      tags:
+        - "book"
+      summary: "Get the themes"
+      operationId: "getThemes"
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            type: "array"
+            items:
+              type: string
+      x-swagger-router-controller: "Book"
+  /book/favouriteReadings:
+    get:
+      tags:
+        - "book"
+      summary: "Returns our favourite readings"
+      operationId: "favouriteReadings"
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/FavouriteReadings"
+        400:
+          description: "No favourite readings found"
+      x-swagger-router-controller: "Book"
+  /book/bestSellers:
+    get:
+      tags:
+        - "book"
+      summary: "Returns the best sellers"
+      operationId: "getBestSellers"
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/BookEssentialBestSeller"
+        404:
+          description: "No bestseller found"
+      x-swagger-router-controller: "Book"
+  /user:
+    get:
+      tags:
+        - "user"
+      summary: "Returns user data"
+      operationId: "getUser"
+      produces:
+        - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/UserWithoutPass"
+        403:
+          description: "Access denied"
+      security:
+        - Bearer: []
+      x-security-scopes:
+        - "user"
+      x-swagger-router-controller: "User"
+  /user/register:
+    post:
+      tags:
+        - "user"
+      summary: "Creates user"
+      description: "Creates a new user profile"
+      operationId: "createUser"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "User that needs to register"
+          required: true
+          schema:
+            $ref: "#/definitions/User"
+      responses:
+        201:
+          description: "User registered"
+          schema:
+            $ref: "#/definitions/UserIDandName"
+        400:
+          description: "User already registered"
+      x-swagger-router-controller: "User"
+  /user/login:
+    post:
+      tags:
+        - "user"
+      summary: "Logs user into the system"
+      operationId: "loginUser"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "User that needs to register"
+          required: true
+          schema:
+            $ref: "#/definitions/UserLogin"
+      responses:
+        201:
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/Token"
+        400:
+          description: "Invalid username or password"
+      x-swagger-router-controller: "User"
+  /user/unregister:
+    delete:
+      tags:
+        - "user"
+      summary: "Deletes user"
+      description: "A logged in user deletes his own account"
+      operationId: "deleteUser"
+      produces:
+        - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/UserWithID"
+        403:
+          description: "Access denied"
+      security:
+        - Bearer: []
+      x-security-scopes:
+        - "user"
+      x-swagger-router-controller: "User"
+  /user/cart:
+    get:
+      tags:
+        - "user"
+      summary: "Gets the shopping cart of the user"
+      operationId: "getUserCart"
+      produces:
+        - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/BookInCart"
+        403:
+          description: "Access denied"
+      security:
+        - Bearer: []
+      x-security-scopes:
+        - "user"
+      x-swagger-router-controller: "User"
+  /user/cart/addBook:
+    post:
+      tags:
+        - "user"
+      summary: "Adds book to the user's cart"
+      operationId: "addBookToCart"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "bookID and number of copies to add to the cart"
+          required: true
+          schema:
+            $ref: "#/definitions/AddToCartRequest"
+      responses:
+        201:
+          description: "Book added"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/BookIDAndCopies"
+        400:
+          description: "Invalid input"
+        403:
+          description: "Access denied"
+        404:
+          description: "Book not found"
+      security:
+        - Bearer: []
+      x-security-scopes:
+        - "user"
+      x-swagger-router-controller: "User"
+  /user/cart/deleteBook/{bookID}:
+    delete:
+      tags:
+        - "user"
+      summary: "Deletes book from the user's cart"
+      operationId: "userCartDeleteBookBookID"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "bookID"
+          in: "path"
+          description: "ID of the book to delete from the cart"
+          required: true
+          type: "integer"
+          format: "int64"
+      responses:
+        200:
+          description: "Book deleted from the cart"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/BookIDAndCopies"
+        403:
+          description: "Access denied"
+        404:
+          description: "Book not found"
+      security:
+        - Bearer: []
+      x-security-scopes:
+        - "user"
+      x-swagger-router-controller: "User"
+  /user/cart/buyBooks:
+    post:
+      tags:
+        - "user"
+      summary: "Buy books from user's cart"
+      operationId: "userCartBuyBooks"
+      produces:
+        - "application/json"
+      parameters: []
+      responses:
+        201:
+          description: "Successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/BookIDAndCopies"
+        403:
+          description: "Access denied"
+      security:
+        - Bearer: []
+      x-security-scopes:
+        - "user"
+      x-swagger-router-controller: "User"
+  /user/orders:
+    get:
+      tags:
+        - "user"
+      summary: "Get orders of user"
+      operationId: "getUserOrders"
+      produces:
+        - "application/json"
+      responses:
+        201:
+          description: "Successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Order"
+        404:
+          description: "User not found"
+      security:
+        - Bearer: []
+      x-security-scopes:
+        - "user"
+      x-swagger-router-controller: "User"
+  /author:
+    get:
+      tags:
+        - "author"
+      summary: "Returns all authors' essential data"
+      operationId: "getAuthors"
+      produces:
+        - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/AuthorEssential"
+        404:
+          description: "No author found"
+      x-swagger-router-controller: "Author"
+  /author/{authorID}:
+    get:
+      tags:
+        - "author"
+      summary: "Returns a single author by ID"
+      operationId: "getAuthorByID"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "authorID"
+          in: "path"
+          description: "ID of the author to return"
+          required: true
+          type: "integer"
+          format: "int64"
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/Author"
+        400:
+          description: "Invalid ID supplied"
+        404:
+          description: "Author not found"
+      x-swagger-router-controller: "Author"
+  /event:
+    get:
+      tags:
+        - "event"
+      summary: "Returns all events' essential data"
+      operationId: "getEvents"
+      produces:
+        - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/EventEssential"
+        404:
+          description: "No event found"
+      x-swagger-router-controller: "Event"
+  /event/{eventID}:
+    get:
+      tags:
+        - "event"
+      summary: "Returns a single event by ID"
+      operationId: "getEventByID"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "eventID"
+          in: "path"
+          description: "ID of the event to return"
+          required: true
+          type: "integer"
+          format: "int64"
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/Event"
+        400:
+          description: "invalid ID supplied"
+        404:
+          description: "Event not found"
+      x-swagger-router-controller: "Event"
+securityDefinitions:
+  Bearer:
+    type: "apiKey"
+    name: "json_web_token"
+    in: "header"
+definitions:
+  Token:
+    type: "object"
+    properties:
+      token:
+        type: "string"
+    example:
+      token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjI5LCJpYXQiOjE1NjE5OTg2NjB9.SWYMJXTTM8pe6NQw1QwS-d8Btt6Isuzzk5JtH775uV0"
+  Book:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+      edition:
+        type: "integer"
+        format: "int64"
+      isbn:
+        type: "integer"
+        format: "int64"
+      cost:
+        type: "integer"
+        format: "int64"
+      image_path:
+        type: "string"
+      abstract:
+        type: "string"
+      authorInterview:
+        type: "string"
+      authors:
+        type: "array"
+        items:
+          $ref: "#/definitions/AuthorEssentialWithoutImage"
+      genres:
+        type: "array"
+        items:
+          type: "string"
+      themes:
+        type: "array"
+        items:
+          type: "string"
+      similarBooks:
+        type: "array"
+        items:
+          $ref: "#/definitions/BookIDandNameAndImage"
+      events:
+        type: "array"
+        items:
+          $ref: "#/definitions/EventIDandName"
+      reviews:
+        type: "array"
+        items:
+          $ref: "#/definitions/Review"
+    example:
+      name: "Il sentiero dei nidi di ragno"
+      edition: 2
+      isbn: 8403948537234
+      cost: 15
+      image_path: "/assets/img/il_sentiero_dei_nidi_di_ragno.jpg"
+      abstract: "Il sentiero dei nidi di ragno's abstract"
+      authorInterview: "I wrote this book after WWII."
+      authors: [{"authorID": 1, "firstName": "Italo", "lastName": "Calvino"}]
+      genres: ["Adventure Novel", "Romance"]
+      themes: ["Friendship"]
+      similarBooks: []
+      events: [{"eventID": 3, "name": "Partigiani"}]
+      reviews: ["revewer": "Emilio", "review": "Nice book"]
+  BookEssential:
+    type: "object"
+    properties:
+      bookID:
+        type: "integer"
+        format: "int64"
+      name:
+        type: "string"
+      image_path:
+        type: "string"
+      authors:
+        type: "array"
+        items:
+          $ref: "#/definitions/AuthorEssentialWithoutImage"
+    example:
+      bookID: 1
+      name: "Il sentiero dei nidi di ragno"
+      image_path: "/assets/img/il_sentiero_dei_nidi_di_ragno.jpg"
+      authors: [{"authorID": 2, "firstName": "Italo", "lastName": "Calvino"}]
+  BookEssentialBestSeller:
+    type: "object"
+    properties:
+      bookID:
+        type: "integer"
+        format: "int64"
+      placement:
+        type: "integer"
+        format: "int64"
+      name:
+        type: "string"
+      image_path:
+        type: "string"
+      authors:
+        type: "array"
+        items:
+          $ref: "#/definitions/AuthorEssentialWithoutImage"
+    example:
+      bookID: 1
+      placement: 2
+      name: "Il sentiero dei nidi di ragno"
+      image_path: "/assets/img/il_sentiero_dei_nidi_di_ragno.jpg"
+      authors: [{"authorID": 2, "firstName": "Italo", "lastName": "Calvino"}]
+  BookIDandName:
+    type: "object"
+    properties:
+      bookID:
+        type: "integer"
+        format: "int64"
+      name:
+        type: "string"
+    example:
+      bookID: 1
+      name: "Il sentiero dei nidi di ragno"
+  BookIDandNameAndImage:
+    type: "object"
+    properties:
+      bookID:
+        type: "integer"
+        format: "int64"
+      name:
+        type: "string"
+      image_path:
+        type: "string"
+    example:
+      bookID: 1
+      name: "Il sentiero dei nidi di ragno"
+      image_path: "/assets/img/il_sentiero_dei_nidi_di_ragno.jpg"
+  BookInCart:
+    type: "object"
+    properties:
+      bookID:
+        type: "integer"
+        format: "int64"
+      name:
+        type: "string"
+      image_path:
+        type: "string"
+      cost:
+        type: "integer"
+        format: "int64"
+      copies:
+        type: "integer"
+        format: "int64"
+      authors:
+        type: "array"
+        items:
+          $ref: "#/definitions/AuthorEssentialWithoutImage"
+    example:
+      bookID: 1
+      name: "Il sentiero dei nidi di ragno"
+      image_path: "/assets/img/il_sentiero_dei_nidi_di_ragno.jpg"
+      cost: 15
+      copies: 3
+      authors: [{"authorID": 2, "firstName": "Italo", "lastName": "Calvino"}]
+  BookIDAndCopies:
+    type: "object"
+    properties:
+      bookID:
+        type: "integer"
+        format: "int64"
+      copies:
+        type: "integer"
+        format: "int64"
+    example:
+      bookID: 1
+      copies: 3
+  Review:
+    type: "object"
+    properties:
+      reviewer:
+        type: "string"
+      review:
+        type: "string"
+    example:
+      reviewer: "Emilio"
+      review: "Nice book"
+  FavouriteReadings:
+    type: "object"
+    properties:
+      person:
+        type: "string"
+      person_image_path:
+        type: "string"
+      book:
+        $ref: "#/definitions/BookIDandNameAndImage"
+    example:
+      person: "Cristiano"
+      person_image_path: "/assets/img/cristiano.jpg"
+  User:
+    type: "object"
+    properties:
+      username:
+        type: "string"
+      firstName:
+        type: "string"
+      lastName:
+        type: "string"
+      email:
+        type: "string"
+      password:
+        type: "string"
+      phone:
+        type: "string"
+    example:
+      username: "xXEmilioXx"
+      firstName: "Emilio"
+      lastName: "Imperiali"
+      email: "emilio.imperiali@mail.polimi.it"
+      password: "1234"
+      phone: "333 333333"
+  UserWithoutPass:
+    type: "object"
+    properties:
+      username:
+        type: "string"
+      firstName:
+        type: "string"
+      lastName:
+        type: "string"
+      email:
+        type: "string"
+      phone:
+        type: "string"
+    example:
+      username: "xXEmilioXx"
+      firstName: "Emilio"
+      lastName: "Imperiali"
+      email: "emilio.imperiali@mail.polimi.it"
+      phone: "333 333333"
+  UserIDandName:
+    type: "object"
+    properties:
+      userID:
+        type: "integer"
+        format: "int64"
+      username:
+        type: "string"
+    example:
+      userID: 1
+      username: "xXEmilioXx"
+  UserWithID:
+    type: "object"
+    properties:
+      userID:
+        type: "integer"
+        format: "int64"
+      username:
+        type: "string"
+      firstName:
+        type: "string"
+      lastName:
+        type: "string"
+      email:
+        type: "string"
+      phone:
+        type: "string"
+    example:
+      userID: 1
+      username: "xXEmilioXx"
+      firstName: "Emilio"
+      lastName: "Imperiali"
+      email: "emilio.imperiali@mail.polimi.it"
+      phone: "333 333333"
+  UserLogin:
+    type: "object"
+    properties:
+      username:
+        type: "string"
+      password:
+        type: "string"
+    example:
+      username: "xXEmilioXx"
+      password: "1234"
+  Order:
+    type: "object"
+    properties:
+      date:
+        type: "string"
+      books:
+        type: "array"
+        items:
+          $ref: "#/definitions/OrderBook"
+    example:
+      date: "2019-05-28"
+      books: [{"bookID": 1, "name": "Il sentiero dei nidi di ragno", "image_path": "/assets/img/il_sentiero_dei_nidi_di_ragno.jpg", "cost": 15, "copies": 3}, {"bookID": 2, "name": "Il libro che ha paura", "image_path": "/assets/img/il_libro_che_ha_paura.jpg", "cost": 10, "copies": 1}]
+  OrderBook:
+    type: "object"
+    properties:
+      bookID:
+        type: "integer"
+        format: "int64"
+      name:
+        type: "string"
+      image_path:
+        type: "string"
+      cost:
+        type: "integer"
+        format: "int64"
+      copies:
+        type: "integer"
+        format: "int64"
+    example:
+      bookID: 1
+      name: "Il sentiero dei nidi di ragno"
+      image_path: "/assets/img/il_sentiero_dei_nidi_di_ragno.jpg"
+      cost: 15
+      copies: 3
+  AddToCartRequest:
+    type: "object"
+    properties:
+      bookID:
+        type: "integer"
+        format: "int64"
+      copies:
+        type: "integer"
+        format: "int64"
+    example:
+      bookID: 1
+      copies: 3
+  Author:
+    type: "object"
+    properties:
+      firstName:
+        type: "string"
+      lastName:
+        type: "string"
+      image_path:
+        type: "string"
+      shortBio:
+        type: "string"
+      writtenBooks:
+        type: "array"
+        items:
+          $ref: "#/definitions/BookIDandName"
+    example:
+      firstName: "Italo"
+      lastName: "Calvino"
+      image_path: "/assets/img/italo_calvino.jpg"
+      shortBio: "Italo calvino fought in WWII"
+      writtenBooks: [{"bookID": 1, "name": "Il sentiero dei nidi di ragno"}, {"bookID": 3, "name": "Il barone rampante"}]
+  AuthorEssential:
+    type: "object"
+    properties:
+      authorID:
+        type: "integer"
+        format: "int64"
+      firstName:
+        type: "string"
+      lastName:
+        format: "string"
+      image_path:
+        type: "string"
+    example:
+      authorID: 1
+      firstName: "Italo"
+      lastName: "Calvino"
+      image_path: "/assets/img/italo_calvino.jpg"
+  AuthorEssentialWithoutImage:
+    type: "object"
+    properties:
+      authorID:
+        type: "integer"
+        format: "int64"
+      firstName:
+        type: "string"
+      lastName:
+        format: "string"
+    example:
+      authorID: 1
+      firstName: "Italo"
+      lastName: "Calvino"
+  Event:
+    type: "object"
+    properties:
+      eventID:
+        type: "integer"
+        format: "int64"
+      name:
+        type: "string"
+      location:
+        type: "string"
+      time:
+        type: "string"
+      date:
+        type: "string"
+      image_path:
+        type: "string"
+      fblink:
+        type: "string"
+      instagramlink:
+        type: "string"
+      twitterlink:
+        type: "string"
+      description:
+        type: "string"
+      book:
+        $ref: "#/definitions/BookIDandName"
+    example:
+      eventID: 1
+      name: "Partigiani"
+      location: "Roma"
+      time: "12:00"
+      date: "2018-05-23"
+      image_path: "/assets/img/partigiani.jpg"
+      fblink: "facebook/partigiani"
+      instagramlink: "instagram/partigiani"
+      twitterlink: "twitter/partigiani"
+      description: "a meeting about partigiani and how they are described in Il sentiero dei nidi di ragno"
+      book: {"bookID": 1, "name": "Il sentiero dei nidi di ragno"}
+  EventEssential:
+    type: "object"
+    properties:
+      eventID:
+        type: "integer"
+        format: "int64"
+      name:
+        type: "string"
+      time:
+        type: "string"
+      date:
+        type: "string"
+      image_path:
+        type: "string"
+    example:
+      eventID: 1
+      name: "Il sentiero dei nidi di ragno"
+      time: "12.00"
+      date: "2018-05-23"
+      image_path: "/assets/img/partigiani.jpg"
+  EventIDandName:
+    type: "object"
+    properties:
+      eventID:
+        type: "integer"
+        format: "int64"
+      name:
+        type: "string"
+    example:
+      eventID: 1
+      name: "Partigiani"
