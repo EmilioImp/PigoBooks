@@ -25,16 +25,24 @@ a:hover {
 .carouselHeading {
   color: #2c222a;
   font-size: 2rem;
+  filter: drop-shadow(0 0 0.75rem white)
+}
+
+.carousel-indicators > li {
+  background-color: #2c222a;
+  filter: drop-shadow(0 0 0.75rem white)
 }
 
 .carousel-control-next-icon {
   border-radius: 9px;
   background-color: #2c222a!important;
+  filter: drop-shadow(0 0 0.85rem white)
 }
 
 .carousel-control-prev-icon {
   border-radius: 9px;
   background-color: #2c222a!important;
+  filter: drop-shadow(0 0 0.85rem white)
 }
 
 @media screen and (max-width: 768px) {
