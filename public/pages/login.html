@@ -77,22 +77,18 @@
 <h1 class="display-4">Login</h1>
 
 <div class="jumbotron jumbotron-fluid" id="content-box">
-    <form class="needs-validation" id = "loginForm" novalidate>
+    <form role="form" id = "loginForm">
         <div class="form-row">
             <div class="col">
                 <label class="formField" for="loginUsername">Username</label>
-                <input type="text" name="username" class="form-control" id="loginUsername" placeholder="Username" required>
-                <div class="valid-feedback">Looks good!</div>
-                <div class="invalid-feedback">Please write a valid username</div>
+                <input type="text" name="username" class="form-control" id="loginUsername" placeholder="Username">
             </div>
         </div>
 
         <div class="form-row">
             <div class="col">
                 <label class="formField" for="loginPassword">Password</label>
-                <input type="password" name="password" class="form-control" id="loginPassword" placeholder="Password" required>
-                <div class="valid-feedback">Looks good!</div>
-                <div class="invalid-feedback">Please write a valid password</div>
+                <input type="password" name="password" class="form-control" id="loginPassword" placeholder="Password">
             </div>
         </div>
 

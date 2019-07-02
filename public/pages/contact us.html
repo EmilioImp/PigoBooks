@@ -75,31 +75,25 @@
 
 
     <div class="jumbotron jumbotron-fluid" id="content-box">
-        <form class="needs-validation" novalidate>
+        <form role="form">
             <div class="form-row">
                 <div class="col">
                     <label class="formField" for="contactEmail">Email address</label>
-                    <input type="email" class="form-control" id="contactEmail" placeholder="Email address"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
-                    <div class="valid-feedback">Looks good!</div>
-                    <div class="invalid-feedback">Please write a valid email address</div>
+                    <input type="email" class="form-control" id="contactEmail" placeholder="Email address">
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="col">
                     <label class="formField" for="contactObject">Object</label>
-                    <input type="text" class="form-control" id="contactObject" placeholder="Object" required>
-                    <div class="valid-feedback">Looks good!</div>
-                    <div class="invalid-feedback">Please write an object</div>
+                    <input type="text" class="form-control" id="contactObject" placeholder="Object">
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="col">
                     <label class="formField" for="contactMessage">Message</label>
-                    <textarea class="form-control" id="contactMessage" placeholder="Message" required></textarea>
-                    <div class="valid-feedback">Looks good!</div>
-                    <div class="invalid-feedback">Please write a message</div>
+                    <textarea class="form-control" id="contactMessage" placeholder="Message"></textarea>
                 </div>
             </div>
 
