@@ -189,6 +189,37 @@ a:hover, a:focus {
     color : white;
 }
 
+.pagination {
+    padding-left : 0;
+    margin-top : 1em;
+    margin-left : 33.3%;
+    margin-right : 33.3%;
+}
+
+.page-item {
+    display : inline-block;
+}
+
+.page-item a{
+    color : #805d89;
+    float : left;
+    padding : 0.15em 0.30em 0.15em 0.30em;
+    text-decoration : none;
+    border-radius : 5px;
+}
+
+.page-item a.current {
+    background-color : #AF94B6;
+    color : white;
+    border-radius : 5px;
+}
+
+.page-item a:hover:not(.current) {background-color : #E2D5DD;}
+
+#footerRow {
+    border-right: 0;
+}
+
 @media screen and (min-width : 1025px) {
     .card-img {
         margin-top: 15.7%;
@@ -228,7 +259,7 @@ a:hover, a:focus {
     }
 
     .card-img {
-        margin-top: 36.4%;
+        margin-top: 46.4%;
         max-width: 100px!important;
         max-height: 100px!important;
     }
@@ -372,7 +403,7 @@ a:hover, a:focus {
     }
 
     .card.books {
-        margin-left : 11%!important;
+        margin-left : 7%!important;
         min-height: 158px;
         min-width: 290px;
         max-height: 159px;
@@ -418,7 +449,7 @@ a:hover, a:focus {
 
 @media only screen and (max-width: 375px){
     .card.books {
-        margin-left : 6%!important;
+        margin-left : 2%!important;
         min-height: 158px;
         min-width: 290px;
         max-height: 159px;
@@ -430,35 +461,23 @@ a:hover, a:focus {
         min-height: 130px;
         max-height: 140px!important;
     }
-}
 
-.pagination {
-    padding-left : 0;
-    margin-top : 1em;
-    margin-left : 33.3%;
-    margin-right : 33.3%;
-}
+    .card.books > a {
+        min-height: 158px;
+        max-height: 159px;
+    }
 
-.page-item {
-    display : inline-block;
-}
+    .card.books > a > .row {
+        min-height: 158px;
+        max-height: 159px;
+    }
 
-.page-item a{
-    color : #805d89;
-    float : left;
-    padding : 0.15em 0.30em 0.15em 0.30em;
-    text-decoration : none;
-    border-radius : 5px;
-}
+    .card.books > a > .row > .col-md-4 {
+        min-height: 158px;
+        max-height: 159px;
+    }
 
-.page-item a.current {
-    background-color : #AF94B6;
-    color : white;
-    border-radius : 5px;
-}
-
-.page-item a:hover:not(.current) {background-color : #E2D5DD;}
-
-#footerRow {
-    border-right: 0;
+    .card.books > a > .row > .col-md-8{
+        max-height: 159px;
+    }
 }

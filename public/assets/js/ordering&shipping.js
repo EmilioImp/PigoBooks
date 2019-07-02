@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
     const name = "Ordering and shipping info";
-    const url = "ordering@shipping.html";
+    const url = "ordering&shipping.html";
 
     if (!window.sessionStorage.getItem("lastPage")) {
         $("#orderedListBreadCrumb").append('<li class="breadcrumb-item active" aria-current="page">'+ name +'</li>');
