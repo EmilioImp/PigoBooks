@@ -13,7 +13,7 @@ $(document).ready(function() {
         }
         else {
             let lastPage = JSON.parse(window.sessionStorage.getItem("lastPage"));
-            if (lastPage.name == name){
+            if (lastPage.name === name){
                 const penultimePage =  JSON.parse(window.sessionStorage.getItem("penultimePage"));
                 if (!penultimePage) $("#orderedListBreadCrumb").append('<li class="breadcrumb-item active" aria-current="page">'+ name +'</li>');
                 else{
@@ -46,7 +46,7 @@ $(document).ready(function() {
         var i = 0;
         var nGenres = genresArray.length;
 
-        if (nGenres != 0) {
+        if (nGenres !== 0) {
             $("#genreList").append('<p>');
             for (i; i < nGenres - 1; i++) {
                 $("#genreList").append(genresArray[i] + ', ');
@@ -62,7 +62,7 @@ $(document).ready(function() {
         var i = 0;
         var nThemes = themesArray.length;
 
-        if (nThemes!=0) {
+        if (nThemes !== 0) {
             $("#themeList").append('<p>');
             for (i; i < nThemes - 1; i++) {
                 $("#themeList").append(themesArray[i] + ', ');
@@ -151,7 +151,7 @@ $(document).ready(function() {
 
     function adjustBookPage(book) {
 
-        if (book[0].image_path===undefined)
+        if (book[0].image_path === undefined)
             $(".card-img").attr("src", "../img/noImagePlaceholder.jpg");
         else
             $(".card-img").attr("src", book[0].image_path);

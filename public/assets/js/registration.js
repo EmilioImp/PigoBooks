@@ -14,7 +14,7 @@ $(document).ready(function (){
     }
     else {
         let lastPage = JSON.parse(window.sessionStorage.getItem("lastPage"));
-        if (lastPage.name == name){
+        if (lastPage.name === name){
             const penultimePage =  JSON.parse(window.sessionStorage.getItem("penultimePage"));
             if (!penultimePage) $("#orderedListBreadCrumb").append('<li class="breadcrumb-item active" aria-current="page">'+ name +'</li>');
             else{

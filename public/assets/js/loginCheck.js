@@ -6,7 +6,7 @@ $(document).ready(function(){
 
 
     function appendLoginDone(){
-        const loginItem =$('#loginItem');
+        const loginItem = $('#loginItem');
         loginItem.empty();
         loginItem.append('<div id="avatarCard" class="card">' +
             '<div id="avatarRow" class="row">' +
@@ -32,10 +32,3 @@ $(document).ready(function(){
         })
     }
 });
-
-/*'<div class="col cart">' +
-            '<a href="../../pages/shoppingcart.html">' +
-            '<img src="../assets/img/baseline-shopping_cart-24px.svg" alt="cart">'</a></div>
-
-            '<a href="../../pages/profile.html">' +
- */
