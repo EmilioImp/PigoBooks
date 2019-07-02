@@ -61,6 +61,14 @@ $(document).ready(function(){
         })
     }
 
+    function noticePurchase(){
+        // Add the "show" class to div
+        $("#purchaseSuccess").addClass("show");
+
+        // After 3 seconds, remove the show class from div
+        setTimeout(function(){ $("#purchaseSuccess").removeClass("show"); }, 4000);
+    }
+
     function orderAllBooks(){
         $.ajax({
             type : 'POST',
@@ -74,6 +82,7 @@ $(document).ready(function(){
                 $(".container-cart").append('<div class="featurette"><h1 class="error-emoji text-faded">' + "\\(o_o)/" + '</h1><p class="lead text-faded"' + '' +
                     'id="empty-cart">Your shopping cart is empty!<br>But you can click <a id="orderHistoryEmptyPageLink" href="orderhistory.html">here</a> to see your order history!' +
                     '</p><hr class="featurette-divider"></div>');
+                noticePurchase();
             }
         })
 

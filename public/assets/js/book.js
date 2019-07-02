@@ -151,6 +151,11 @@ $(document).ready(function() {
         else
             document.getElementById("edition").innerHTML = book[0].edition;
 
+        if (book[0].isbn === undefined)
+            document.getElementById("isbn").innerHTML = "Isbn not found";
+        else
+            document.getElementById("isbn").innerHTML = book[0].isbn;
+
         if (book[0].cost === undefined)
             document.getElementById("cost").innerHTML = "Cost not found";
         else

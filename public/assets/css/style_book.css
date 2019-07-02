@@ -89,7 +89,6 @@ p {
 
 .text-muted {
     color: #6c757d!important;
-    font-size: 2rem;
 }
 
 
@@ -118,6 +117,7 @@ i {
 
 #copiesToBuy {
     font-weight: 500;
+    font-size: 20px;
 }
 
 form{
