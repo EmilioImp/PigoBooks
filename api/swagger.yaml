@@ -4,37 +4,37 @@ info:
   description: "This is a Bookstore server\n"
   version: "1.0.0"
   title: "MyBookstore"
-host: "virtserver.swaggerhub.com"
+host: "hypermedia2019.herokuapp.com"
 basePath: "/hypermedia2019/api"
 tags:
-- name: "book"
-  description: "Operations about books"
-- name: "user"
-  description: "Operations about users"
-- name: "author"
-  description: "Operations about authors"
-- name: "event"
-  description: "Operations about events"
+  - name: "book"
+    description: "Operations about books"
+  - name: "user"
+    description: "Operations about users"
+  - name: "author"
+    description: "Operations about authors"
+  - name: "event"
+    description: "Operations about events"
 schemes:
-- "https"
-- "http"
+  - "https"
+  - "http"
 paths:
   /book/{bookID}:
     get:
       tags:
-      - "book"
+        - "book"
       summary: "Find book by ID"
       description: "Returns a single book"
       operationId: "getBookById"
       produces:
-      - "application/json"
+        - "application/json"
       parameters:
-      - name: "bookID"
-        in: "path"
-        description: "ID of the book to return"
-        required: true
-        type: "integer"
-        format: "int64"
+        - name: "bookID"
+          in: "path"
+          description: "ID of the book to return"
+          required: true
+          type: "integer"
+          format: "int64"
       responses:
         200:
           description: "Successful operation"
@@ -46,17 +46,17 @@ paths:
   /book/findByGenre:
     get:
       tags:
-      - "book"
+        - "book"
       summary: "Finds books by genre"
       operationId: "findBooksByGenre"
       produces:
-      - "application/json"
+        - "application/json"
       parameters:
-      - name: "genre"
-        in: "query"
-        description: "Genre value that need to be considered for filter"
-        required: true
-        type: "string"
+        - name: "genre"
+          in: "query"
+          description: "Genre value that need to be considered for filter"
+          required: true
+          type: "string"
       responses:
         200:
           description: "Successful operation"
@@ -72,17 +72,17 @@ paths:
   /book/findByTheme:
     get:
       tags:
-      - "book"
+        - "book"
       summary: "Finds books by theme"
       operationId: "findBooksByTheme"
       produces:
-      - "application/json"
+        - "application/json"
       parameters:
-      - name: "theme"
-        in: "query"
-        description: "Theme value that need to be considered for filter"
-        required: true
-        type: "string"
+        - name: "theme"
+          in: "query"
+          description: "Theme value that need to be considered for filter"
+          required: true
+          type: "string"
       responses:
         200:
           description: "Successful operation"
@@ -98,11 +98,11 @@ paths:
   /book/genres:
     get:
       tags:
-      - "book"
+        - "book"
       summary: "Get the genres"
       operationId: "getGenres"
       produces:
-      - "application/json"
+        - "application/json"
       responses:
         200:
           description: "Successful operation"
@@ -114,11 +114,11 @@ paths:
   /book/themes:
     get:
       tags:
-      - "book"
+        - "book"
       summary: "Get the themes"
       operationId: "getThemes"
       produces:
-      - "application/json"
+        - "application/json"
       responses:
         200:
           description: "Successful operation"
@@ -130,11 +130,11 @@ paths:
   /book/favouriteReadings:
     get:
       tags:
-      - "book"
+        - "book"
       summary: "Returns our favourite readings"
       operationId: "favouriteReadings"
       produces:
-      - "application/json"
+        - "application/json"
       responses:
         200:
           description: "Successful operation"
@@ -148,11 +148,11 @@ paths:
   /book/bestSellers:
     get:
       tags:
-      - "book"
+        - "book"
       summary: "Returns the best sellers"
       operationId: "getBestSellers"
       produces:
-      - "application/json"
+        - "application/json"
       responses:
         200:
           description: "Successful operation"
@@ -166,11 +166,11 @@ paths:
   /user:
     get:
       tags:
-      - "user"
+        - "user"
       summary: "Returns user data"
       operationId: "getUser"
       produces:
-      - "application/json"
+        - "application/json"
       parameters: []
       responses:
         200:
@@ -180,28 +180,28 @@ paths:
         403:
           description: "Access denied"
       security:
-      - Bearer: []
+        - Bearer: []
       x-security-scopes:
-      - "user"
+        - "user"
       x-swagger-router-controller: "User"
   /user/register:
     post:
       tags:
-      - "user"
+        - "user"
       summary: "Creates user"
       description: "Creates a new user profile"
       operationId: "createUser"
       consumes:
-      - "application/json"
+        - "application/json"
       produces:
-      - "application/json"
+        - "application/json"
       parameters:
-      - in: "body"
-        name: "body"
-        description: "User that needs to register"
-        required: true
-        schema:
-          $ref: "#/definitions/User"
+        - in: "body"
+          name: "body"
+          description: "User that needs to register"
+          required: true
+          schema:
+            $ref: "#/definitions/User"
       responses:
         201:
           description: "User registered"
@@ -213,20 +213,20 @@ paths:
   /user/login:
     post:
       tags:
-      - "user"
+        - "user"
       summary: "Logs user into the system"
       operationId: "loginUser"
       consumes:
-      - "application/json"
+        - "application/json"
       produces:
-      - "application/json"
+        - "application/json"
       parameters:
-      - in: "body"
-        name: "body"
-        description: "User that needs to register"
-        required: true
-        schema:
-          $ref: "#/definitions/UserLogin"
+        - in: "body"
+          name: "body"
+          description: "User that needs to register"
+          required: true
+          schema:
+            $ref: "#/definitions/UserLogin"
       responses:
         201:
           description: "Successful operation"
@@ -238,12 +238,12 @@ paths:
   /user/unregister:
     delete:
       tags:
-      - "user"
+        - "user"
       summary: "Deletes user"
       description: "A logged in user deletes his own account"
       operationId: "deleteUser"
       produces:
-      - "application/json"
+        - "application/json"
       parameters: []
       responses:
         200:
@@ -253,18 +253,18 @@ paths:
         403:
           description: "Access denied"
       security:
-      - Bearer: []
+        - Bearer: []
       x-security-scopes:
-      - "user"
+        - "user"
       x-swagger-router-controller: "User"
   /user/cart:
     get:
       tags:
-      - "user"
+        - "user"
       summary: "Gets the shopping cart of the user"
       operationId: "getUserCart"
       produces:
-      - "application/json"
+        - "application/json"
       parameters: []
       responses:
         200:
@@ -276,27 +276,27 @@ paths:
         403:
           description: "Access denied"
       security:
-      - Bearer: []
+        - Bearer: []
       x-security-scopes:
-      - "user"
+        - "user"
       x-swagger-router-controller: "User"
   /user/cart/addBook:
     post:
       tags:
-      - "user"
+        - "user"
       summary: "Adds book to the user's cart"
       operationId: "addBookToCart"
       consumes:
-      - "application/json"
+        - "application/json"
       produces:
-      - "application/json"
+        - "application/json"
       parameters:
-      - in: "body"
-        name: "body"
-        description: "bookID and number of copies to add to the cart"
-        required: true
-        schema:
-          $ref: "#/definitions/AddToCartRequest"
+        - in: "body"
+          name: "body"
+          description: "bookID and number of copies to add to the cart"
+          required: true
+          schema:
+            $ref: "#/definitions/AddToCartRequest"
       responses:
         201:
           description: "Book added"
@@ -311,25 +311,25 @@ paths:
         404:
           description: "Book not found"
       security:
-      - Bearer: []
+        - Bearer: []
       x-security-scopes:
-      - "user"
+        - "user"
       x-swagger-router-controller: "User"
   /user/cart/deleteBook/{bookID}:
     delete:
       tags:
-      - "user"
+        - "user"
       summary: "Deletes book from the user's cart"
       operationId: "userCartDeleteBookBookID"
       produces:
-      - "application/json"
+        - "application/json"
       parameters:
-      - name: "bookID"
-        in: "path"
-        description: "ID of the book to delete from the cart"
-        required: true
-        type: "integer"
-        format: "int64"
+        - name: "bookID"
+          in: "path"
+          description: "ID of the book to delete from the cart"
+          required: true
+          type: "integer"
+          format: "int64"
       responses:
         200:
           description: "Book deleted from the cart"
@@ -342,18 +342,18 @@ paths:
         404:
           description: "Book not found"
       security:
-      - Bearer: []
+        - Bearer: []
       x-security-scopes:
-      - "user"
+        - "user"
       x-swagger-router-controller: "User"
   /user/cart/buyBooks:
     post:
       tags:
-      - "user"
+        - "user"
       summary: "Buy books from user's cart"
       operationId: "userCartBuyBooks"
       produces:
-      - "application/json"
+        - "application/json"
       parameters: []
       responses:
         201:
@@ -365,9 +365,9 @@ paths:
         403:
           description: "Access denied"
       security:
-      - Bearer: []
+        - Bearer: []
       x-security-scopes:
-      - "user"
+        - "user"
       x-swagger-router-controller: "User"
   /user/orders:
     get:
@@ -394,11 +394,11 @@ paths:
   /author:
     get:
       tags:
-      - "author"
+        - "author"
       summary: "Returns all authors' essential data"
       operationId: "getAuthors"
       produces:
-      - "application/json"
+        - "application/json"
       parameters: []
       responses:
         200:
@@ -413,18 +413,18 @@ paths:
   /author/{authorID}:
     get:
       tags:
-      - "author"
+        - "author"
       summary: "Returns a single author by ID"
       operationId: "getAuthorByID"
       produces:
-      - "application/json"
+        - "application/json"
       parameters:
-      - name: "authorID"
-        in: "path"
-        description: "ID of the author to return"
-        required: true
-        type: "integer"
-        format: "int64"
+        - name: "authorID"
+          in: "path"
+          description: "ID of the author to return"
+          required: true
+          type: "integer"
+          format: "int64"
       responses:
         200:
           description: "Successful operation"
@@ -438,11 +438,11 @@ paths:
   /event:
     get:
       tags:
-      - "event"
+        - "event"
       summary: "Returns all events' essential data"
       operationId: "getEvents"
       produces:
-      - "application/json"
+        - "application/json"
       parameters: []
       responses:
         200:
@@ -457,18 +457,18 @@ paths:
   /event/{eventID}:
     get:
       tags:
-      - "event"
+        - "event"
       summary: "Returns a single event by ID"
       operationId: "getEventByID"
       produces:
-      - "application/json"
+        - "application/json"
       parameters:
-      - name: "eventID"
-        in: "path"
-        description: "ID of the event to return"
-        required: true
-        type: "integer"
-        format: "int64"
+        - name: "eventID"
+          in: "path"
+          description: "ID of the event to return"
+          required: true
+          type: "integer"
+          format: "int64"
       responses:
         200:
           description: "Successful operation"
@@ -491,7 +491,7 @@ definitions:
       token:
         type: "string"
     example:
-      token: "token"
+      token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjI5LCJpYXQiOjE1NjE5OTg2NjB9.SWYMJXTTM8pe6NQw1QwS-d8Btt6Isuzzk5JtH775uV0"
   Book:
     type: "object"
     properties:
@@ -536,6 +536,20 @@ definitions:
         type: "array"
         items:
           $ref: "#/definitions/Review"
+    example:
+      name: "Il sentiero dei nidi di ragno"
+      edition: 2
+      isbn: 8403948537234
+      cost: 15
+      image_path: "/assets/img/il_sentiero_dei_nidi_di_ragno.jpg"
+      abstract: "Il sentiero dei nidi di ragno's abstract"
+      authorInterview: "I wrote this book after WWII."
+      authors: [{"authorID": 1, "firstName": "Italo", "lastName": "Calvino"}]
+      genres: ["Adventure Novel", "Romance"]
+      themes: ["Friendship"]
+      similarBooks: []
+      events: [{"eventID": 3, "name": "Partigiani"}]
+      reviews: ["revewer": "Emilio", "review": "Nice book"]
   BookEssential:
     type: "object"
     properties:
@@ -550,6 +564,11 @@ definitions:
         type: "array"
         items:
           $ref: "#/definitions/AuthorEssentialWithoutImage"
+    example:
+      bookID: 1
+      name: "Il sentiero dei nidi di ragno"
+      image_path: "/assets/img/il_sentiero_dei_nidi_di_ragno.jpg"
+      authors: [{"authorID": 2, "firstName": "Italo", "lastName": "Calvino"}]
   BookEssentialBestSeller:
     type: "object"
     properties:
@@ -567,6 +586,12 @@ definitions:
         type: "array"
         items:
           $ref: "#/definitions/AuthorEssentialWithoutImage"
+    example:
+      bookID: 1
+      placement: 2
+      name: "Il sentiero dei nidi di ragno"
+      image_path: "/assets/img/il_sentiero_dei_nidi_di_ragno.jpg"
+      authors: [{"authorID": 2, "firstName": "Italo", "lastName": "Calvino"}]
   BookIDandName:
     type: "object"
     properties:
@@ -575,6 +600,9 @@ definitions:
         format: "int64"
       name:
         type: "string"
+    example:
+      bookID: 1
+      name: "Il sentiero dei nidi di ragno"
   BookIDandNameAndImage:
     type: "object"
     properties:
@@ -585,6 +613,10 @@ definitions:
         type: "string"
       image_path:
         type: "string"
+    example:
+      bookID: 1
+      name: "Il sentiero dei nidi di ragno"
+      image_path: "/assets/img/il_sentiero_dei_nidi_di_ragno.jpg"
   BookInCart:
     type: "object"
     properties:
@@ -605,6 +637,13 @@ definitions:
         type: "array"
         items:
           $ref: "#/definitions/AuthorEssentialWithoutImage"
+    example:
+      bookID: 1
+      name: "Il sentiero dei nidi di ragno"
+      image_path: "/assets/img/il_sentiero_dei_nidi_di_ragno.jpg"
+      cost: 15
+      copies: 3
+      authors: [{"authorID": 2, "firstName": "Italo", "lastName": "Calvino"}]
   BookIDAndCopies:
     type: "object"
     properties:
@@ -614,6 +653,9 @@ definitions:
       copies:
         type: "integer"
         format: "int64"
+    example:
+      bookID: 1
+      copies: 3
   Review:
     type: "object"
     properties:
@@ -621,6 +663,9 @@ definitions:
         type: "string"
       review:
         type: "string"
+    example:
+      reviewer: "Emilio"
+      review: "Nice book"
   FavouriteReadings:
     type: "object"
     properties:
@@ -630,6 +675,9 @@ definitions:
         type: "string"
       book:
         $ref: "#/definitions/BookIDandNameAndImage"
+    example:
+      person: "Cristiano"
+      person_image_path: "/assets/img/cristiano.jpg"
   User:
     type: "object"
     properties:
@@ -645,6 +693,13 @@ definitions:
         type: "string"
       phone:
         type: "string"
+    example:
+      username: "xXEmilioXx"
+      firstName: "Emilio"
+      lastName: "Imperiali"
+      email: "emilio.imperiali@mail.polimi.it"
+      password: "1234"
+      phone: "333 333333"
   UserWithoutPass:
     type: "object"
     properties:
@@ -659,11 +714,11 @@ definitions:
       phone:
         type: "string"
     example:
-      firstName: "firstName"
-      lastName: "lastName"
-      phone: "phone"
-      email: "email"
-      username: "username"
+      username: "xXEmilioXx"
+      firstName: "Emilio"
+      lastName: "Imperiali"
+      email: "emilio.imperiali@mail.polimi.it"
+      phone: "333 333333"
   UserIDandName:
     type: "object"
     properties:
@@ -672,6 +727,9 @@ definitions:
         format: "int64"
       username:
         type: "string"
+    example:
+      userID: 1
+      username: "xXEmilioXx"
   UserWithID:
     type: "object"
     properties:
@@ -688,6 +746,13 @@ definitions:
         type: "string"
       phone:
         type: "string"
+    example:
+      userID: 1
+      username: "xXEmilioXx"
+      firstName: "Emilio"
+      lastName: "Imperiali"
+      email: "emilio.imperiali@mail.polimi.it"
+      phone: "333 333333"
   UserLogin:
     type: "object"
     properties:
@@ -695,6 +760,9 @@ definitions:
         type: "string"
       password:
         type: "string"
+    example:
+      username: "xXEmilioXx"
+      password: "1234"
   Order:
     type: "object"
     properties:
@@ -704,6 +772,9 @@ definitions:
         type: "array"
         items:
           $ref: "#/definitions/OrderBook"
+    example:
+      date: "2019-05-28"
+      books: [{"bookID": 1, "name": "Il sentiero dei nidi di ragno", "image_path": "/assets/img/il_sentiero_dei_nidi_di_ragno.jpg", "cost": 15, "copies": 3}, {"bookID": 2, "name": "Il libro che ha paura", "image_path": "/assets/img/il_libro_che_ha_paura.jpg", "cost": 10, "copies": 1}]
   OrderBook:
     type: "object"
     properties:
@@ -720,6 +791,12 @@ definitions:
       copies:
         type: "integer"
         format: "int64"
+    example:
+      bookID: 1
+      name: "Il sentiero dei nidi di ragno"
+      image_path: "/assets/img/il_sentiero_dei_nidi_di_ragno.jpg"
+      cost: 15
+      copies: 3
   AddToCartRequest:
     type: "object"
     properties:
@@ -729,6 +806,9 @@ definitions:
       copies:
         type: "integer"
         format: "int64"
+    example:
+      bookID: 1
+      copies: 3
   Author:
     type: "object"
     properties:
@@ -744,6 +824,12 @@ definitions:
         type: "array"
         items:
           $ref: "#/definitions/BookIDandName"
+    example:
+      firstName: "Italo"
+      lastName: "Calvino"
+      image_path: "/assets/img/italo_calvino.jpg"
+      shortBio: "Italo calvino fought in WWII"
+      writtenBooks: [{"bookID": 1, "name": "Il sentiero dei nidi di ragno"}, {"bookID": 3, "name": "Il barone rampante"}]
   AuthorEssential:
     type: "object"
     properties:
@@ -756,6 +842,11 @@ definitions:
         format: "string"
       image_path:
         type: "string"
+    example:
+      authorID: 1
+      firstName: "Italo"
+      lastName: "Calvino"
+      image_path: "/assets/img/italo_calvino.jpg"
   AuthorEssentialWithoutImage:
     type: "object"
     properties:
@@ -766,6 +857,10 @@ definitions:
         type: "string"
       lastName:
         format: "string"
+    example:
+      authorID: 1
+      firstName: "Italo"
+      lastName: "Calvino"
   Event:
     type: "object"
     properties:
@@ -792,6 +887,18 @@ definitions:
         type: "string"
       book:
         $ref: "#/definitions/BookIDandName"
+    example:
+      eventID: 1
+      name: "Partigiani"
+      location: "Roma"
+      time: "12:00"
+      date: "2018-05-23"
+      image_path: "/assets/img/partigiani.jpg"
+      fblink: "facebook/partigiani"
+      instagramlink: "instagram/partigiani"
+      twitterlink: "twitter/partigiani"
+      description: "a meeting about partigiani and how they are described in Il sentiero dei nidi di ragno"
+      book: {"bookID": 1, "name": "Il sentiero dei nidi di ragno"}
   EventEssential:
     type: "object"
     properties:
@@ -806,6 +913,12 @@ definitions:
         type: "string"
       image_path:
         type: "string"
+    example:
+      eventID: 1
+      name: "Il sentiero dei nidi di ragno"
+      time: "12.00"
+      date: "2018-05-23"
+      image_path: "/assets/img/partigiani.jpg"
   EventIDandName:
     type: "object"
     properties:
@@ -814,3 +927,6 @@ definitions:
         format: "int64"
       name:
         type: "string"
+    example:
+      eventID: 1
+      name: "Partigiani"
