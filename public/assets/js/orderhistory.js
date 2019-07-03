@@ -42,7 +42,7 @@ $(document).ready(function () {
     function visualizeBooks(jsArray, i){
         let books = '';
         let numberOfBooks = jsArray[i].books.length;
-        for(let j = 0; j < numberOfBooks; j++){
+        for (let j = 0; j < numberOfBooks; j++){
             books = books + '<div class="row">' +
                 '<div class="col">' +
                 '<img class="card-img" alt="bookimg" src="' + jsArray[i].books[j].image_path + '">' +
@@ -72,69 +72,76 @@ $(document).ready(function () {
         var arrayLength = jsArray.length;
         var pageCount = arrayLength / pageSize;
 
+        if (arrayLength > 0) {
+            for(let i = 0; i < arrayLength; i++){
+                let totalAmount = 0;
+                let numberOfBooks = jsArray[i].books.length;
+                for(let j = 0; j < numberOfBooks; j++){
+                    totalAmount += jsArray[i].books[j].cost * jsArray[i].books[j].copies;
+                }
 
-        for(let i = 0; i < arrayLength; i++){
-            let totalAmount = 0;
-            let numberOfBooks = jsArray[i].books.length;
-            for(let j = 0; j < numberOfBooks; j++){
-                totalAmount += jsArray[i].books[j].cost * jsArray[i].books[j].copies;
+                $('#ordersContainer').append('<div class="card">' +
+                    '<div class="card-header"><p class="lead">Date of order: ' + jsArray[i].date + '</p>' +
+                    '<p id="totalAmountText" class="lead">Total amount: '+ totalAmount +' €</p></div>' +
+                    visualizeBooks(jsArray, i) + '</div>');
             }
 
-            $('#ordersContainer').append('<div class="card">' +
-                '<div class="card-header"><p class="lead">Date of order: ' + jsArray[i].date + '</p>' +
-                '<p id="totalAmountText" class="lead">Total amount: '+ totalAmount +' €</p></div>' +
-                visualizeBooks(jsArray, i) + '</div>');
-        }
+            if (pageCount > 1){
+                $(".pagination").append('<li id="first" class="page-item"><a href="#" aria-label="First"><span aria-hidden="true">&laquo;</span></a></li>');
+            }
 
-        if (pageCount > 1){
-            $(".pagination").append('<li id="first" class="page-item"><a href="#" aria-label="First"><span aria-hidden="true">&laquo;</span></a></li>');
-        }
+            for( j ; j < pageCount; j++){
+                $(".pagination").append('<li class="page-item"><a href="#">'+(j+1)+'</a></li>');
+            }
 
-        for( j ; j < pageCount; j++){
-            $(".pagination").append('<li class="page-item"><a href="#">'+(j+1)+'</a></li>');
-        }
+            if (pageCount > 1){
+                $(".pagination").append('<li id="last" class="page-item"><a href="#" aria-label="Last"><span aria-hidden="true">&raquo;</span></a></li>');
+            }
 
-        if (pageCount > 1){
-            $(".pagination").append('<li id="last" class="page-item"><a href="#" aria-label="Last"><span aria-hidden="true">&raquo;</span></a></li>');
-        }
+            if (pageCount === 1){
+                $(".pagination li").first().find("a").addClass("current");
+            }
 
-        if (pageCount === 1){
-            $(".pagination li").first().find("a").addClass("current");
+            else {
+                $(".pagination li").first().next().find("a").addClass("current");
+            }
+
+            showPage = function(page) {
+                $("#ordersContainer > .card").hide();
+                $("#ordersContainer > .card").each(function(n) {
+                    if (n >= pageSize * (page - 1) && n < pageSize * page)
+                        $(this).show();
+                });
+            };
+
+            showPage(1);
+
+            //handling the click on <<
+            $("#first").click(function() {
+                $(".pagination li a").removeClass("current");
+                $("#first").next().find("a").addClass("current");
+                showPage(parseInt($("#first").next().find("a").text()))
+            });
+
+            //handling the click on >>
+            $("#last").click(function() {
+                $(".pagination li a").removeClass("current");
+                $("#last").prev().find("a").addClass("current");
+                showPage(parseInt($("#last").prev().find("a").text()))
+            });
+
+            //handling of clicks on generic numerical indexes
+            $(".pagination li a").click(function() {
+                $(".pagination li a").removeClass("current");
+                $(this).addClass("current");
+                showPage(parseInt($(this).text()))
+            });
         }
 
         else {
-            $(".pagination li").first().next().find("a").addClass("current");
+            $("#ordersContainer").append('<div class="featurette"><h1 class="error-emoji text-faded">' + "\\(o_o)/" + '</h1><p class="lead text-faded"' + '' +
+                'id="empty-cart">You have to make an order yet, so the history is empty!<br>Check out all our books to find the fittest ones for you!' +
+                '</p><hr class="featurette-divider"></div>');
         }
-
-        showPage = function(page) {
-            $("#ordersContainer > .card").hide();
-            $("#ordersContainer > .card").each(function(n) {
-                if (n >= pageSize * (page - 1) && n < pageSize * page)
-                    $(this).show();
-            });
-        };
-
-        showPage(1);
-
-        //handling the click on <<
-        $("#first").click(function() {
-            $(".pagination li a").removeClass("current");
-            $("#first").next().find("a").addClass("current");
-            showPage(parseInt($("#first").next().find("a").text()))
-        });
-
-        //handling the click on >>
-        $("#last").click(function() {
-            $(".pagination li a").removeClass("current");
-            $("#last").prev().find("a").addClass("current");
-            showPage(parseInt($("#last").prev().find("a").text()))
-        });
-
-        //handling of clicks on generic numerical indexes
-        $(".pagination li a").click(function() {
-            $(".pagination li a").removeClass("current");
-            $(this).addClass("current");
-            showPage(parseInt($(this).text()))
-        });
     }
 });
