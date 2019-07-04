@@ -41,11 +41,11 @@ $(document).ready(function(){
     });
 
     function iconControl(){
-        $("#noPages").hide();
-        $("a.socialicon i").hide();
+        $("#noPages").remove();
+        $("a.socialicon ion-icon").hide();
         $("a.socialicon").each(function(){
             if ($(this).attr("href") !== '#'){
-                $(this).find('i').show();
+                $(this).find('ion-icon').show();
             }
         });
     }
@@ -68,7 +68,7 @@ $(document).ready(function(){
         $("#twitterIcon").attr("href", event[0].twitterlink);
 
         if ($("#facebookIcon").attr("href") === '#' && $("#instagramIcon").attr("href") === '#' && $("#twitterIcon").attr("href") === '#'){
-            $("a.socialicon i").hide();  //if there are no social pages regarding the event, we hide all the icons and only keep the text
+            $("a.socialicon ion-icon").hide();  //if there are no social pages regarding the event, we hide all the icons and only keep the text
         }
         else {  //otherwise, we hide the text and only show the icons for the socials on which the event has a page
             iconControl();
