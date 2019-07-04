@@ -104,7 +104,7 @@
         height : 85vw!important;
     }
 
-    .flip-card-inner.is-flipped {
+    .flip-card-inner.is-flipped:hover, .flip-card-inner.is-flipped:active {
         transform: rotateY(180deg)!important;
     }
 }

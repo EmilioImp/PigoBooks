@@ -54,6 +54,17 @@
     float : right;
 }
 
+#facebookIcon {
+    font-size: 24px;
+}
+
+#instagramIcon {
+    font-size: 24px;
+}
+
+#twitterIcon {
+    font-size: 24px;
+}
 
 i {
     display : inline-block;

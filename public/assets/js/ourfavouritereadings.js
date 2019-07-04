@@ -45,7 +45,7 @@ $(document).ready(function(){
 
         for(i; i < len; i++){
             $("#card-row").append('<div class="column"><div class="flip-card">' +
-                '<div class="flip-card-inner">' +
+                '<div class="flip-card-inner" onclick="">' +
                 '<div class="flip-card-front">' +
                 '<img class="staffImg" src="' + jsArray[i].person_image_path + '" alt="avatar"></div>'+
                 '<div class="flip-card-back">' +
