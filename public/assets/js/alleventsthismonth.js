@@ -72,8 +72,8 @@ $(document).ready(function(){
         }
 
         showPage = function(page) {
-            $(".card").hide();
-            $(".card").each(function(n) {
+            $(".card.event").hide();
+            $(".card.event").each(function(n) {
                 if (n >= pageSize * (page - 1) && n < pageSize * page)
                     $(this).show();
             });
