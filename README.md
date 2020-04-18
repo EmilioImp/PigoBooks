@@ -24,6 +24,6 @@ This is the URL of the Swagger documentation: https://hypermedia2019.herokuapp.c
 ## Group
 | First name | Last Name | Email address   |
 | ---------- | --------- | --------------- |
-| Desoli | Cristiano | cristiano.desoli@mail.polimi.it |
+| Cristiano | Desoli | cristiano.desoli@mail.polimi.it |
 | Emilio | Imperiali | emilio.imperiali@mail.polimi.it |
 | Riccardo | Pigozzi  | riccardo.pigozzi@mail.polimi.it |
