@@ -727,9 +727,12 @@ definitions:
         format: "int64"
       username:
         type: "string"
+      token:
+        type: "string"
     example:
       userID: 1
       username: "xXEmilioXx"
+      token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjI5LCJpYXQiOjE1NjE5OTg2NjB9.SWYMJXTTM8pe6NQw1QwS-d8Btt6Isuzzk5JtH775uV0"
   UserWithID:
     type: "object"
     properties:

@@ -55,6 +55,8 @@ exports.createUser = async function(body) {
     //create the user
     await db('User').insert([{username: body.username, firstName: body.firstName, lastName: body.lastName, email: body.email, password_hashed: hashed, phone: body.phone}]);
     const registered = await db.select('userID', 'username').from('User').where('username', body.username);
+    //get the token, so that the registered user is already logged in
+    registered[0].token = jwt.sign({userID: registered[0].userID}, config.get('jwtPrivateKey'));
     return {actualResponse: registered, status: 201};
 };
 
@@ -74,7 +76,7 @@ exports.deleteUser = async function(userID) {
         await db('User').del().where('userID', userID);
         return {actualResponse: user, status: 200};
     }
-}
+};
 
 
 /**
@@ -87,7 +89,7 @@ exports.getUser = async function(userID) {
     const user = await db.select('username','firstName','lastName','email','phone').from('User').where('userID', userID);
     if (user.length <= 0) throw {actualResponse: 'User not found', status: 404};
     else return {actualResponse: user, status: 200};
-}
+};
 
 
 /**
@@ -134,7 +136,7 @@ exports.loginUser = async function(body) {
             return {actualResponse: {token: token}, status: 201};
       }
     }
-}
+};
 
 
 /**
