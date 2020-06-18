@@ -131,9 +131,9 @@ exports.loginUser = async function(body) {
         const isValid = await bcrypt.compare(body.password, user[0].password_hashed);
         if (!isValid) throw {actualResponse: 'Invalid username or password', status: 400};
         else {
-            //if the password is valid, send the token to the user
+            //if the password is valid, send the token and the username to the user
             const token = jwt.sign({userID: user[0].userID}, config.get('jwtPrivateKey'));
-            return {actualResponse: {token: token}, status: 201};
+            return {actualResponse: {token: token, username: user[0].username}, status: 201};
       }
     }
 };
