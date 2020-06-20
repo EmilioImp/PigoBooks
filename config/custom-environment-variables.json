@@ -1,3 +1,5 @@
 {
-  "jwtPrivateKey": "hypermedia2019_jwtPrivateKey"
+  "jwtPrivateKey": "hypermedia2019_jwtPrivateKey",
+  "AWS_ACCESS_KEY_ID": "hypermedia2019_AWS_ACCESS_KEY_ID",
+  "AWS_SECRET_ACCESS_KEY": "hypermedia2019_AWS_SECRET_ACCESS_KEY"
 }

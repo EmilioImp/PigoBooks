@@ -479,6 +479,32 @@ paths:
         404:
           description: "Event not found"
       x-swagger-router-controller: "Event"
+
+  /image:
+    post:
+      summary: "upload an image"
+      operationId: "uploadImage"
+      consumes:
+        - "multipart/form-data"
+      parameters:
+        - name: "image"
+          in: "formData"
+          type: "file"
+          description: "The image to be uploaded"
+      responses:
+        201:
+          description: "Successful operation"
+          schema:
+            type: "object"
+            properties:
+              imageID:
+                type: "integer"
+            example:
+              imageID: 5
+        422:
+          description: "Image upload error"
+      x-swagger-router-controller: "Default"
+
 securityDefinitions:
   Bearer:
     type: "apiKey"
