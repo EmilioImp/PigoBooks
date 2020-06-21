@@ -44,7 +44,7 @@ exports.uploadImage = async (image) => {
   try {
     const data = await s3.putObject(params).promise();
     console.log(data);
-    return {actualResponse: {'imageID': imageID}, status: 201};
+    return {actualResponse: {'imageID': parseInt(imageID)}, status: 201};
   }
   catch (err) {
     console.log("Error: ", err);
