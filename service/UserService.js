@@ -53,7 +53,7 @@ exports.createUser = async function(body) {
     const salt = await bcrypt.genSalt(10);
     const hashed = await bcrypt.hash(body.password, salt);
     //create the user
-    await db('User').insert([{username: body.username, firstName: body.firstName, lastName: body.lastName, email: body.email, password_hashed: hashed, phone: body.phone}]);
+    await db('User').insert([{username: body.username, firstName: body.firstName, lastName: body.lastName, email: body.email, password_hashed: hashed, phone: body.phone, imageID: body.imageID}]);
     const registered = await db.select('userID', 'username').from('User').where('username', body.username);
     //get the token, so that the registered user is already logged in
     registered[0].token = jwt.sign({userID: registered[0].userID}, config.get('jwtPrivateKey'));
