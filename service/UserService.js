@@ -54,9 +54,12 @@ exports.createUser = async function(body) {
     const hashed = await bcrypt.hash(body.password, salt);
     //create the user
     await db('User').insert([{username: body.username, firstName: body.firstName, lastName: body.lastName, email: body.email, password_hashed: hashed, phone: body.phone, imageID: body.imageID}]);
-    const registered = await db.select('userID', 'username').from('User').where('username', body.username);
+    const registered = await db.select('userID', 'username', 'imageID').from('User').where('username', body.username);
     //get the token, so that the registered user is already logged in
     registered[0].token = jwt.sign({userID: registered[0].userID}, config.get('jwtPrivateKey'));
+    //send the link to the image instead of the imageID
+    registered[0].imageLink = 'https://pigo-books.s3.eu-central-1.amazonaws.com/' + registered[0].imageID;
+    delete registered[0].imageID;
     return {actualResponse: registered, status: 201};
 };
 
@@ -133,7 +136,7 @@ exports.loginUser = async function(body) {
         else {
             //if the password is valid, send the token and the username to the user
             const token = jwt.sign({userID: user[0].userID}, config.get('jwtPrivateKey'));
-            return {actualResponse: {token: token, username: user[0].username}, status: 201};
+            return {actualResponse: {token: token, username: user[0].username, imageLink: 'https://pigo-books.s3.eu-central-1.amazonaws.com/' + user[0].imageID}, status: 201};
       }
     }
 };
