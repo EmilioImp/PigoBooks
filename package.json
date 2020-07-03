@@ -17,6 +17,7 @@
     "bcrypt": "^3.0.6",
     "config": "^3.1.0",
     "connect": "^3.2.0",
+    "firebase-admin": "^8.13.0",
     "js-yaml": "^3.13.1",
     "jsonwebtoken": "^8.5.1",
     "knex": "^0.19.5",

@@ -236,6 +236,32 @@ paths:
         400:
           description: "User already registered"
       x-swagger-router-controller: "User"
+  /user/external/register:
+    post:
+      tags:
+        - "user"
+      summary: "Creates user"
+      description: "Creates a new user profile"
+      operationId: "createThirdPartyUser"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "User that needs to register"
+          required: true
+          schema:
+            $ref: "#/definitions/UserThirdParty"
+      responses:
+        201:
+          description: "User registered"
+          schema:
+            $ref: "#/definitions/UserIDandName"
+        400:
+          description: "User already registered"
+      x-swagger-router-controller: "User"
   /user/login:
     post:
       tags:
@@ -751,6 +777,28 @@ definitions:
       lastName: "Imperiali"
       email: "emilio.imperiali@mail.polimi.it"
       password: "1234"
+      phone: "333 333333"
+  UserThirdParty:
+    type: "object"
+    properties:
+      idToken:
+        type: "string"
+      username:
+        type: "string"
+      firstName:
+        type: "string"
+      lastName:
+        type: "string"
+      email:
+        type: "string"
+      phone:
+        type: "string"
+    example:
+      idToken: "idToken"
+      username: "xXEmilioXx"
+      firstName: "Emilio"
+      lastName: "Imperiali"
+      email: "emilio.imperiali@mail.polimi.it"
       phone: "333 333333"
   UserWithoutPass:
     type: "object"

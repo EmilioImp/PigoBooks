@@ -7,6 +7,13 @@ const db = knex.database;
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
+const admin = require('firebase-admin');
+const serviceAccount = require('../firebaseSettings.json');
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+    databaseURL: "https://pigo-books-7e9fe.firebaseio.com"
+});
+
 /**
  * Adds book to the user's cart
  *
@@ -219,5 +226,20 @@ exports.getUserOrders = async function(userID) {
         }
         return {actualResponse: orders, status: 200};
     }
+};
+
+exports.createThirdPartyUser = async function createThirdPartyUser(body) {
+    //check if the the uid is already taken (it must be unique)
+    const decodedIdToken = await admin.auth().verifyIdToken(body.idToken);
+    const uid = decodedIdToken.uid;
+    const user = await db.select().from('UserThirdParty').where('uid', uid);
+    if (user.length>0) throw {actualResponse: 'User already registered', status: 400};
+    //create the user
+    await db('UserThirdParty').insert([{uid: uid, username: body.username, firstName: body.firstName, lastName: body.lastName, email: body.email, phone: body.phone, imageID: body.imageID}]);
+    const registered = await db.select('userID', 'username', 'imageID').from('UserThirdParty').where('username', body.username);
+    //send the link to the image instead of the imageID
+    registered[0].imageLink = 'https://pigo-books.s3.eu-central-1.amazonaws.com/' + registered[0].imageID;
+    delete registered[0].imageID;
+    return {actualResponse: registered, status: 201};
 };
 

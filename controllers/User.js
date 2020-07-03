@@ -119,3 +119,14 @@ module.exports.getUserOrders = function deleteUser (req, res, next) {
         utils.writeJson(res, response.actualResponse, response.status);
       });
 };
+
+module.exports.createThirdPartyUser = function createThirdPartyUser (req, res, next) {
+  var body = req.swagger.params['body'].value;
+  User.createThirdPartyUser(body)
+      .then(function (response) {
+        utils.writeJson(res, response.actualResponse, response.status);
+      })
+      .catch(function (response) {
+        utils.writeJson(res, response.actualResponse, response.status);
+      });
+};
