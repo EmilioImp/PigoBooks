@@ -50,6 +50,20 @@ exports.findBooksByTheme = async function(theme) {
   }
 };
 
+exports.findBooksByName = async function(name) {
+  //get the books with given name
+  const books = await db.select('Book.bookID', 'Book.name', 'Book.image_path').from('Book').where('Book.name', 'ilike', '%'+ name +'%');
+  if (books.length <= 0) throw {actualResponse: 'No books with that name', status: 404};
+  else{
+    //for every book, get the authors
+    const nBooks = books.length;
+    for (var i=0; i< nBooks; i++){
+      const bookID = books[i].bookID;
+      books[i].authors = await db.select('Author.authorID', 'Author.firstName', 'Author.lastName').from('Author').join('BookAuthor', {'Author.authorID' : 'BookAuthor.authorID'}).where('BookAuthor.bookID', bookID);
+    }
+    return {actualResponse: books, status: 200};
+  }
+};
 
 /**
  * Find book by ID

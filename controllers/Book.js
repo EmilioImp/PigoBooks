@@ -25,6 +25,17 @@ module.exports.findBooksByTheme = function findBooksByTheme (req, res, next) {
     });
 };
 
+module.exports.findBooksByName = function findBooksByName (req, res, next) {
+    var name = req.swagger.params['name'].value;
+    Book.findBooksByName(name)
+        .then(function (response) {
+            utils.writeJson(res, response.actualResponse, response.status);
+        })
+        .catch(function (response) {
+            utils.writeJson(res, response.actualResponse, response.status);
+        });
+};
+
 module.exports.getBookById = function getBookById (req, res, next) {
   var bookID = req.swagger.params['bookID'].value;
   Book.getBookById(bookID)

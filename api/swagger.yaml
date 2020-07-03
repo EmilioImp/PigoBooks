@@ -95,6 +95,32 @@ paths:
         404:
           description: "No books with that theme"
       x-swagger-router-controller: "Book"
+  /book/findByName:
+    get:
+      tags:
+        - "book"
+      summary: "Finds books by name"
+      operationId: "findBooksByName"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "name"
+          in: "query"
+          description: "Name value that need to be considered for filter"
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/BookEssential"
+        400:
+          description: "Invalid name value"
+        404:
+          description: "No books with that Name"
+      x-swagger-router-controller: "Book"
   /book/genres:
     get:
       tags:
