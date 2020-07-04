@@ -347,7 +347,7 @@ exports.getUserOrders = async function(userID) {
             //get the date of the order
             const date = await db.select('date').from('Order').where('orderID', uniqueOrdersID[i]);
             //put the date in a better format
-            orders[i] = {date: date[0].date.toISOString().slice(0,10)};
+            orders[i] = {date: dateToString(date[0].date)};
             //get the data about all the books ordered in every specific order
             orders[i].books = await db.select('Book.bookID', 'Book.name', 'Book.image_path', 'Book.cost', 'OrderBook.copies').from('OrderBook').join('Book', {'OrderBook.bookID' : 'Book.bookID'}).where('orderID', uniqueOrdersID[i]);
         }
