@@ -152,7 +152,7 @@ module.exports.userCartThirdPartyDeleteBookBookID = function userCartThirdPartyD
         });
 };
 
-module.exports.getUserOrders = function deleteUser (req, res, next) {
+module.exports.getUserOrders = function getUserOrders (req, res, next) {
   const authenticated = auth(req, res);
   if (!authenticated) return;
   var userID = req.user.userID;
@@ -163,6 +163,17 @@ module.exports.getUserOrders = function deleteUser (req, res, next) {
       .catch(function (response) {
         utils.writeJson(res, response.actualResponse, response.status);
       });
+};
+
+module.exports.getUserOrdersThirdParty = function getUserOrdersThirdParty (req, res, next) {
+    var body = req.swagger.params['body'].value;
+    User.getUserOrdersThirdParty(body)
+        .then(function (response) {
+            utils.writeJson(res, response.actualResponse, response.status);
+        })
+        .catch(function (response) {
+            utils.writeJson(res, response.actualResponse, response.status);
+        });
 };
 
 module.exports.createThirdPartyUser = function createThirdPartyUser (req, res, next) {

@@ -339,6 +339,39 @@ exports.getUserOrders = async function(userID) {
     }
 };
 
+exports.getUserOrdersThirdParty = async function(body) {
+    //check if there is a user associated to the idToken
+    const decodedIdToken = await admin.auth().verifyIdToken(body.idToken);
+    const uid = decodedIdToken.uid;
+    const user = await db.select().from('UserThirdParty').where('uid', uid);
+    if (user.length <= 0) throw {actualResponse: 'User not found', status: 404};
+    else {
+        //get the userID
+        const userID = user[0].userID;
+        //get all the orderIDs of the user. They won't be unique due to the structure of "Order" table
+        const ordersID = await db.select('orderID').from('OrderThirdParty').where('userID', userID);
+        //make the orderIDs unique
+        let ordersIDArray = [];
+        const numberOfNotUniqueOrdersID = ordersID.length;
+        for (let i = 0; i < numberOfNotUniqueOrdersID; i++){
+            ordersIDArray[i] = ordersID[i].orderID;
+        }
+        //this array contains the unique orderIDs
+        let uniqueOrdersID = [...new Set(ordersIDArray)];
+        const numberOfOrders = uniqueOrdersID.length;
+        const orders = [];
+        for (let i=0; i < numberOfOrders; i++){
+            //get the date of the order
+            const date = await db.select('date').from('OrderThirdParty').where('orderID', uniqueOrdersID[i]);
+            //put the date in a better format
+            orders[i] = {date: dateToString(date[0].date)};
+            //get the data about all the books ordered in every specific order
+            orders[i].books = await db.select('Book.bookID', 'Book.name', 'Book.image_path', 'Book.cost', 'OrderBookThirdParty.copies').from('OrderBookThirdParty').join('Book', {'OrderBookThirdParty.bookID' : 'Book.bookID'}).where('orderID', uniqueOrdersID[i]);
+        }
+        return {actualResponse: orders, status: 200};
+    }
+};
+
 exports.createThirdPartyUser = async function createThirdPartyUser(body) {
     //check if the the uid is already taken (it must be unique)
     const decodedIdToken = await admin.auth().verifyIdToken(body.idToken);
@@ -354,3 +387,12 @@ exports.createThirdPartyUser = async function createThirdPartyUser(body) {
     return {actualResponse: registered, status: 201};
 };
 
+//converts date object into string
+const dateToString = function(date) {
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const monthWithZero = (month > 9 ? '' : '0') + month;
+    const day = date.getDate();
+    const dayWithZero = (day > 9 ? '' : '0') + day;
+    return year + '-' + monthWithZero + '-' + dayWithZero;
+};
