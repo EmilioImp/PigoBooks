@@ -140,6 +140,18 @@ module.exports.userCartDeleteBookBookID = function userCartDeleteBookBookID (req
     });
 };
 
+module.exports.userCartThirdPartyDeleteBookBookID = function userCartThirdPartyDeleteBookBookID (req, res, next) {
+    var body = req.swagger.params['body'].value;
+    var bookID = req.swagger.params['bookID'].value;
+    User.userCartThirdPartyDeleteBookBookID(body, bookID)
+        .then(function (response) {
+            utils.writeJson(res, response.actualResponse, response.status);
+        })
+        .catch(function (response) {
+            utils.writeJson(res, response.actualResponse, response.status);
+        });
+};
+
 module.exports.getUserOrders = function deleteUser (req, res, next) {
   const authenticated = auth(req, res);
   if (!authenticated) return;

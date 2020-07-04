@@ -286,6 +286,29 @@ exports.userCartDeleteBookBookID = async function(bookID, userID) {
     }
 };
 
+exports.userCartThirdPartyDeleteBookBookID = async function(body, bookID) {
+    //check if there is a user associated to the idToken
+    const decodedIdToken = await admin.auth().verifyIdToken(body.idToken);
+    const uid = decodedIdToken.uid;
+    const user = await db.select().from('UserThirdParty').where('uid', uid);
+    if (user.length <= 0) throw {actualResponse: 'User not found', status: 404};
+    else {
+        //get the userID
+        const userID = user[0].userID;
+        //check if the book with given bookID is in the user's cart
+        const books = await db.select().from('CartThirdParty').where({userID: userID, bookID: bookID});
+        if (books.length <= 0) {
+            throw {actualResponse: "Book not found", status: 404};
+        }
+        else {
+            //delete the book from the cart (by means of deleting all of the copies, so deleting the row in the table)
+            await db('CartThirdParty').del().where({userID: userID, bookID: bookID});
+            const cart = await db.select('bookID', 'copies').from('CartThirdParty').where('userID', userID);
+            return {actualResponse: cart, status: 200};
+        }
+    }
+};
+
 
 exports.getUserOrders = async function(userID) {
     //check if there is a user with given userID

@@ -464,6 +464,43 @@ paths:
       x-security-scopes:
         - "user"
       x-swagger-router-controller: "User"
+  /user/external/cart/deleteBook/{bookID}:
+    delete:
+      tags:
+        - "user"
+      summary: "Deletes book from the user's cart"
+      operationId: "userCartThirdPartyDeleteBookBookID"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "bookID"
+          in: "path"
+          description: "ID of the book to delete from the cart"
+          required: true
+          type: "integer"
+          format: "int64"
+        - in: "body"
+          name: "body"
+          description: "User idToken"
+          required: true
+          schema:
+            $ref: "#/definitions/UserIdToken"
+      responses:
+        200:
+          description: "Book deleted from the cart"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/BookIDAndCopies"
+        403:
+          description: "Access denied"
+        404:
+          description: "Book not found"
+      security:
+        - Bearer: []
+      x-security-scopes:
+        - "user"
+      x-swagger-router-controller: "User"
   /user/cart/buyBooks:
     post:
       tags:
