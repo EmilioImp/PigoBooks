@@ -367,6 +367,41 @@ paths:
       x-security-scopes:
         - "user"
       x-swagger-router-controller: "User"
+  /user/external/cart/addBook:
+    post:
+      tags:
+        - "user"
+      summary: "Adds book to the user's cart"
+      operationId: "addBookToCartThirdParty"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "bookID and number of copies to add to the cart"
+          required: true
+          schema:
+            $ref: "#/definitions/AddToCartThirdPartyRequest"
+      responses:
+        201:
+          description: "Book added"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/BookIDAndCopies"
+        400:
+          description: "Invalid input"
+        403:
+          description: "Access denied"
+        404:
+          description: "Book not found"
+      security:
+        - Bearer: []
+      x-security-scopes:
+        - "user"
+      x-swagger-router-controller: "User"
   /user/cart/deleteBook/{bookID}:
     delete:
       tags:
@@ -910,6 +945,21 @@ definitions:
         type: "integer"
         format: "int64"
     example:
+      bookID: 1
+      copies: 3
+  AddToCartThirdPartyRequest:
+    type: "object"
+    properties:
+      idToken:
+        type: "string"
+      bookID:
+        type: "integer"
+        format: "int64"
+      copies:
+        type: "integer"
+        format: "int64"
+    example:
+      idToken: "idToken"
       bookID: 1
       copies: 3
   Author:

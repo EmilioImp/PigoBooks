@@ -19,6 +19,17 @@ module.exports.addBookToCart = function addBookToCart (req, res, next) {
     });
 };
 
+module.exports.addBookToCartThirdParty = function addBookToCartThirdParty (req, res, next) {
+  var body = req.swagger.params['body'].value;
+  User.addBookToCartThirdParty(body)
+      .then(function (response) {
+        utils.writeJson(res, response.actualResponse, response.status);
+      })
+      .catch(function (response) {
+        utils.writeJson(res, response.actualResponse, response.status);
+      });
+};
+
 module.exports.createUser = function createUser (req, res, next) {
   var body = req.swagger.params['body'].value;
   User.createUser(body)

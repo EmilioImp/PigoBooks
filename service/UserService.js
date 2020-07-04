@@ -44,6 +44,39 @@ exports.addBookToCart = async function(body, userID) {
     }
 };
 
+exports.addBookToCartThirdParty = async function(body) {
+    //get the userID
+    const decodedIdToken = await admin.auth().verifyIdToken(body.idToken);
+    const uid = decodedIdToken.uid;
+    const user = await db.select().from('UserThirdParty').where('uid', uid);
+    if (user.length <= 0) throw {actualResponse: 'User not found', status: 404};
+    else {
+        const userID = user[0].userID;
+        //check if there are books with given bookID
+        const book = await db.select().from('Book').where('bookID', body.bookID);
+        if (book.length <= 0) {
+            throw {actualResponse: 'Book not found', status: 404};
+        }
+        else {
+            //check if the book with given bookID is already in the cart
+            const bookInCart = await db.select().from('CartThirdParty').where({userID: userID, bookID: body.bookID});
+            if (bookInCart.length <= 0) {
+                //if the book isn't already in the cart, add it with given number of copies
+                await db('CartThirdParty').insert([{userID: userID, bookID: body.bookID, copies: body.copies}]);
+                const result = await db.select('bookID', 'copies').from('CartThirdParty').where('userID', userID);
+                return {actualResponse: result, status: 201};
+            }
+            else {
+                //else (the book is already in the cart) update the number of copies, by adding the given value
+                await db('CartThirdParty').update({copies: bookInCart[0].copies + body.copies}).where({userID: userID, bookID: body.bookID});
+                const result = await db.select('bookID', 'copies').from('CartThirdParty').where('userID', userID);
+                return {actualResponse: result, status: 201};
+            }
+        }
+    }
+
+};
+
 
 /**
  * Creates user
