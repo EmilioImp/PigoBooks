@@ -135,6 +135,22 @@ exports.getUser = async function(userID) {
     else return {actualResponse: user, status: 200};
 };
 
+exports.getUserThirdParty = async function(body) {
+    //check if there is a user associated to the idToken
+    const decodedIdToken = await admin.auth().verifyIdToken(body.idToken);
+    const uid = decodedIdToken.uid;
+    const user = await db.select().from('UserThirdParty').where('uid', uid);
+    if (user.length <= 0) throw {actualResponse: 'User not found', status: 404};
+    else {
+        //get the userID
+        const userID = user[0].userID;
+        //get the data about the user with given userID
+        const userToRetrieve = await db.select('username','firstName','lastName','email','phone').from('UserThirdParty').where('userID', userID);
+        if (userToRetrieve.length <= 0) throw {actualResponse: 'User not found', status: 404};
+        else return {actualResponse: userToRetrieve, status: 200};
+    }
+};
+
 
 /**
  * Gets the shopping cart of the user

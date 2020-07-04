@@ -67,6 +67,17 @@ module.exports.getUser = function getUser (req, res, next) {
     });
 };
 
+module.exports.getUserThirdParty = function getUserThirdParty (req, res, next) {
+    var body = req.swagger.params['body'].value;
+    User.getUserThirdParty(body)
+        .then(function (response) {
+            utils.writeJson(res, response.actualResponse, response.status);
+        })
+        .catch(function (response) {
+            utils.writeJson(res, response.actualResponse, response.status);
+        });
+};
+
 module.exports.getUserCart = function getUserCart (req, res, next) {
   const authenticated = auth(req, res);
   if (!authenticated) return;

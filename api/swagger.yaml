@@ -210,6 +210,35 @@ paths:
       x-security-scopes:
         - "user"
       x-swagger-router-controller: "User"
+  /user/external:
+    get:
+      tags:
+        - "user"
+      summary: "Returns user data"
+      operationId: "getUserThirdParty"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "User idToken"
+          required: true
+          schema:
+            $ref: "#/definitions/UserIdToken"
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/UserWithoutPass"
+        403:
+          description: "Access denied"
+      security:
+        - Bearer: []
+      x-security-scopes:
+        - "user"
+      x-swagger-router-controller: "User"
   /user/register:
     post:
       tags:
