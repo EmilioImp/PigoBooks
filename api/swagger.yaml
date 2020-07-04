@@ -332,6 +332,37 @@ paths:
       x-security-scopes:
         - "user"
       x-swagger-router-controller: "User"
+  /user/external/cart:
+    get:
+      tags:
+        - "user"
+      summary: "Gets the shopping cart of the user"
+      operationId: "getUserCartThirdParty"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "User idToken"
+          required: true
+          schema:
+            $ref: "#/definitions/UserIdToken"
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/BookInCart"
+        403:
+          description: "Access denied"
+      security:
+        - Bearer: []
+      x-security-scopes:
+        - "user"
+      x-swagger-router-controller: "User"
   /user/cart/addBook:
     post:
       tags:
@@ -1083,3 +1114,10 @@ definitions:
     example:
       eventID: 1
       name: "Partigiani"
+  UserIdToken:
+    type: "object"
+    properties:
+      idToken:
+        type: "string"
+    example:
+      idToken: "idToken"

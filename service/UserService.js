@@ -45,12 +45,13 @@ exports.addBookToCart = async function(body, userID) {
 };
 
 exports.addBookToCartThirdParty = async function(body) {
-    //get the userID
+    //check if there is a user associated to the idToken
     const decodedIdToken = await admin.auth().verifyIdToken(body.idToken);
     const uid = decodedIdToken.uid;
     const user = await db.select().from('UserThirdParty').where('uid', uid);
     if (user.length <= 0) throw {actualResponse: 'User not found', status: 404};
     else {
+        //get the userID
         const userID = user[0].userID;
         //check if there are books with given bookID
         const book = await db.select().from('Book').where('bookID', body.bookID);
@@ -147,6 +148,27 @@ exports.getUserCart = async function(userID) {
     else{
         //get the books in user's cart
         const books = await db.select('Book.bookID','Book.name','Book.image_path','Book.cost','Cart.copies',).from('Cart').join('Book',{'Book.bookID' : 'Cart.bookID'}).where('userID', userID);
+        //for every book, get the authors
+        const nBooks = books.length;
+        for (var i=0; i< nBooks; i++){
+            const bookID = books[i].bookID;
+            books[i].authors = await db.select('Author.authorID', 'Author.firstName', 'Author.lastName').from('Author').join('BookAuthor', {'Author.authorID' : 'BookAuthor.authorID'}).where('BookAuthor.bookID', bookID);
+        }
+        return {actualResponse: books, status: 200};
+    }
+};
+
+exports.getUserCartThirdParty = async function(body) {
+    //check if there is a user associated to the idToken
+    const decodedIdToken = await admin.auth().verifyIdToken(body.idToken);
+    const uid = decodedIdToken.uid;
+    const user = await db.select().from('UserThirdParty').where('uid', uid);
+    if (user.length <= 0) throw {actualResponse: 'User not found', status: 404};
+    else {
+        //get the userID
+        const userID = user[0].userID;
+        //get the books in user's cart
+        const books = await db.select('Book.bookID','Book.name','Book.image_path','Book.cost','CartThirdParty.copies',).from('CartThirdParty').join('Book',{'Book.bookID' : 'CartThirdParty.bookID'}).where('userID', userID);
         //for every book, get the authors
         const nBooks = books.length;
         for (var i=0; i< nBooks; i++){

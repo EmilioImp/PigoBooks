@@ -80,6 +80,17 @@ module.exports.getUserCart = function getUserCart (req, res, next) {
     });
 };
 
+module.exports.getUserCartThirdParty = function getUserCartThirdParty (req, res, next) {
+    var body = req.swagger.params['body'].value;
+    User.getUserCartThirdParty(body)
+        .then(function (response) {
+            utils.writeJson(res, response.actualResponse, response.status);
+        })
+        .catch(function (response) {
+            utils.writeJson(res, response.actualResponse, response.status);
+        });
+};
+
 module.exports.loginUser = function loginUser (req, res, next) {
   var body = req.swagger.params['body'].value;
   User.loginUser(body)
