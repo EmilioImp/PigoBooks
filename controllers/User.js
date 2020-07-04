@@ -115,6 +115,17 @@ module.exports.userCartBuyBooks = function userCartBuyBooks (req, res, next) {
     });
 };
 
+module.exports.userCartThirdPartyBuyBooks = function userCartThirdPartyBuyBooks (req, res, next) {
+    var body = req.swagger.params['body'].value;
+    User.userCartThirdPartyBuyBooks(body)
+        .then(function (response) {
+            utils.writeJson(res, response.actualResponse, response.status);
+        })
+        .catch(function (response) {
+            utils.writeJson(res, response);
+        });
+};
+
 module.exports.userCartDeleteBookBookID = function userCartDeleteBookBookID (req, res, next) {
   const authenticated = auth(req, res);
   if (!authenticated) return;

@@ -487,6 +487,37 @@ paths:
       x-security-scopes:
         - "user"
       x-swagger-router-controller: "User"
+  /user/external/cart/buyBooks:
+    post:
+      tags:
+        - "user"
+      summary: "Buy books from user's cart"
+      operationId: "userCartThirdPartyBuyBooks"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "User idToken"
+          required: true
+          schema:
+            $ref: "#/definitions/UserIdToken"
+      responses:
+        201:
+          description: "Successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/BookIDAndCopies"
+        403:
+          description: "Access denied"
+      security:
+        - Bearer: []
+      x-security-scopes:
+        - "user"
+      x-swagger-router-controller: "User"
   /user/orders:
     get:
       tags:

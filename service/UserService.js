@@ -232,6 +232,39 @@ exports.userCartBuyBooks = async function(userID) {
     return {actualResponse: order, status: 201};
 };
 
+exports.userCartThirdPartyBuyBooks = async function(body) {
+    //check if there is a user associated to the idToken
+    const decodedIdToken = await admin.auth().verifyIdToken(body.idToken);
+    const uid = decodedIdToken.uid;
+    const user = await db.select().from('UserThirdParty').where('uid', uid);
+    if (user.length <= 0) throw {actualResponse: 'User not found', status: 404};
+    else {
+        //get the userID
+        const userID = user[0].userID;
+
+        //get the books in the user's cart
+        const books = await db.select('bookID', 'copies').from('CartThirdParty').where('userID', userID);
+
+        //create the order, with the association to its user and the date. get the orderID generated
+        const orderID = await db('OrderThirdParty').insert({userID: userID, date: new Date()}).returning('orderID');
+
+        //use an array to create the rows that represent the books (with the number of copies) in the order
+        //at each position of the array there is a row
+        const numberOfOrderedBooks = books.length;
+        let booksArray = [];
+        for (let i = 0; i < numberOfOrderedBooks; i++) {
+            booksArray[i] = {orderID: orderID[0], bookID: books[i].bookID, copies: books[i].copies};
+        }
+        //all the rows are inserted in the OrderBook table with only 1 insert
+        //doing 1 insert for each row would have been less efficient, that's why the array is useful
+        await db('OrderBookThirdParty').insert(booksArray);
+        const order = await db.select('bookID', 'copies').from('OrderBookThirdParty').where('orderID', orderID[0]);
+        //delete all the books from the cart, since they have been ordered
+        await db('CartThirdParty').del().where('userID', userID);
+        return {actualResponse: order, status: 201};
+    }
+};
+
 
 /**
  * Deletes book from the user's cart
