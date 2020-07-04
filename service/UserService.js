@@ -8,7 +8,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 const admin = require('firebase-admin');
-const serviceAccount = require('../firebaseSettings.json');
+const serviceAccount = JSON.parse(config.get('FIREBASE_KEY'));
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
     databaseURL: "https://pigo-books-7e9fe.firebaseio.com"
