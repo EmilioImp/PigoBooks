@@ -197,3 +197,17 @@ module.exports.createThirdPartyUser = function createThirdPartyUser (req, res, n
         utils.writeJson(res, response.actualResponse, response.status);
       });
 };
+
+module.exports.modifyUser = function modifyUser (req, res, next) {
+    const authenticated = auth(req, res);
+    if (!authenticated) return;
+    var userID = req.user.userID;
+    var body = req.swagger.params['body'].value;
+    User.modifyUser(body, userID)
+        .then(function (response) {
+            utils.writeJson(res, response.actualResponse, response.status);
+        })
+        .catch(function (response) {
+            utils.writeJson(res, response.actualResponse, response.status);
+        });
+};

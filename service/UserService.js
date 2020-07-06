@@ -403,6 +403,39 @@ exports.createThirdPartyUser = async function createThirdPartyUser(body) {
     return {actualResponse: registered, status: 201};
 };
 
+exports.modifyUser = async function modifyUser(body, userID) {
+    const user = await db.select().from('User').where('userID', userID);
+    //check that there isn't another user with the same new username
+    const otherUsers = await db.select().from('User').where('username', body.username).whereNot('userID', userID);
+    if (otherUsers.length > 0 ) throw {actualResponse: 'Username already taken', status: 400};
+    //the oldPassword string is empty if the user doesn't want to change password. otherwise it contains something
+    if(body.oldPassword !== '') {
+        //if the user wants to change the password, check that the old one sent is correct
+        const isValid = await bcrypt.compare(body.oldPassword, user[0].password_hashed);
+        if (!isValid) throw {actualResponse: "Old password doesn't match", status: 400};
+        //hash the new the password with a salt
+        const salt = await bcrypt.genSalt(10);
+        const hashed = await bcrypt.hash(body.newPassword, salt);
+        //update the user
+        await db.update({username: body.username, firstName: body.firstName, lastName: body.lastName, email: body.email, password_hashed: hashed, phone: body.phone}).from('User').where('userID', userID);
+    }
+    else {
+        //update the user leaving the old password
+        try {
+            await db.update({username: body.username, firstName: body.firstName, lastName: body.lastName, email: body.email, phone: body.phone}).from('User').where('userID', userID);
+        } catch (err) {
+            console.log(err);
+        }
+
+    }
+
+    const changed = await db.select('userID', 'username', 'imageID').from('User').where('username', body.username);
+    //send the link to the image instead of the imageID
+    changed[0].imageLink = 'https://pigo-books.s3.eu-central-1.amazonaws.com/' + changed[0].imageID;
+    delete changed[0].imageID;
+    return {actualResponse: changed, status: 201};
+};
+
 //converts date object into string
 const dateToString = function(date) {
     const year = date.getFullYear();
