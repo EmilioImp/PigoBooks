@@ -417,12 +417,12 @@ exports.modifyUser = async function modifyUser(body, userID) {
         const salt = await bcrypt.genSalt(10);
         const hashed = await bcrypt.hash(body.newPassword, salt);
         //update the user
-        await db.update({username: body.username, firstName: body.firstName, lastName: body.lastName, email: body.email, password_hashed: hashed, phone: body.phone}).from('User').where('userID', userID);
+        await db.update({username: body.username, firstName: body.firstName, lastName: body.lastName, email: body.email, password_hashed: hashed, phone: body.phone, imageID: body.imageID}).from('User').where('userID', userID);
     }
     else {
         //update the user leaving the old password
         try {
-            await db.update({username: body.username, firstName: body.firstName, lastName: body.lastName, email: body.email, phone: body.phone}).from('User').where('userID', userID);
+            await db.update({username: body.username, firstName: body.firstName, lastName: body.lastName, email: body.email, phone: body.phone, imageID: body.imageID}).from('User').where('userID', userID);
         } catch (err) {
             console.log(err);
         }
