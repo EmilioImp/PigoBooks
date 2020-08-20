@@ -14,7 +14,7 @@
   "private": true,
   "dependencies": {
     "aws-sdk": "^2.701.0",
-    "bcrypt": "^3.0.6",
+    "bcrypt": "^5.0.0",
     "config": "^3.1.0",
     "connect": "^3.2.0",
     "firebase-admin": "^8.13.0",
